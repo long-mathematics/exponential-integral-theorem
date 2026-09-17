@@ -1,43 +1,70 @@
 # Exponential Integral Theorem
 
-Working research repository for the Exponential Integral Theorem and its compact exponential-period, Kontsevich–Zagier, relative Nori–Ayoub, and polynomial-flag companions.
+Research manuscripts on algebraic exponential integrals, compact exponential periods, Kontsevich–Zagier relations, and relative exponential fixed parts.
 
-## Manuscripts
+Authors: **Christopher D. Long and Antoine-Auguste Le Blanc**. Le Blanc cryptographic author identifier: `b604812530b3535b23d6dbb0f5abe32d1ed1a9de35fb4f7d04d62cff08ea19c8`.
 
-| Paper | Subject | Source |
-| --- | --- | --- |
-| I | Exponential Integral Theorem | [exponential-integral-theorem.tex](papers/01-exponential-integral-theorem/exponential-integral-theorem.tex) |
-| II | Linear Kontsevich–Zagier theorem on the affine line | [linear-kz-affine-line.tex](papers/02-compact-polynomial-line-kz/linear-kz-affine-line.tex) |
-| III | Polynomial Kontsevich–Zagier theorem on the affine line | [polynomial-kz-affine-line.tex](papers/03-complete-polynomial-kz/polynomial-kz-affine-line.tex) |
-| IV | Relative exponential fixed parts and Nori–Ayoub | [relative-exponential-nori-ayoub.tex](papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex) |
-| V | Polynomial-flag exponential periods | [polynomial-flag-exponential-periods.tex](papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex) |
+## Read the papers
 
-These are recovered working drafts, not newly certified proofs or publication releases. Paper V's numerical theorem is restricted to its endpoint-complete hypotheses. Paper IV concerns functional periods; numerical specialization is a separate issue.
+| Paper | Manuscript | PDF | LaTeX |
+| --- | --- | --- | --- |
+| I | Algebraic Exponential Integrals: Transcendence and Linear Relations | [Read PDF](output/pdf/exponential-integral-theorem.pdf) | [Source](papers/01-exponential-integral-theorem/exponential-integral-theorem.tex) |
+| II | A Linear Kontsevich–Zagier Theorem for Compact Exponential Periods on the Affine Line | [Read PDF](output/pdf/linear-kz-affine-line.pdf) | [Source](papers/02-compact-polynomial-line-kz/linear-kz-affine-line.tex) |
+| III | A Polynomial Kontsevich–Zagier Theorem for Compact Exponential Periods on the Affine Line | [Read PDF](output/pdf/polynomial-kz-affine-line.pdf) | [Source](papers/03-complete-polynomial-kz/polynomial-kz-affine-line.tex) |
+| IV | Relative Exponential Fixed Parts and Functional Periods: An Exponential Nori–Ayoub Theorem | [Read PDF](output/pdf/relative-exponential-nori-ayoub.pdf) | [Source](papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex) |
+| V | Relative Exponential Periods on Polynomial Flags: Face Lattices, Stokes Generation, and Endpoint-Complete Relations | [Read PDF](output/pdf/polynomial-flag-exponential-periods.pdf) | [Source](papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex) |
+
+The PDFs are committed snapshots of the corresponding sources, not expiring build-artifact links. Access follows the repository's visibility.
+
+### Scope and status
+
+These are working research drafts. Their inclusion here and successful compilation are not new mathematical certifications.
+
+- **I:** algebraic-value rigidity and common-polynomial linear relations.
+- **II:** formal linear relations for compact affine-line exponential periods.
+- **III:** polynomial relations for the tensor-generated affine-line algebra, building on I and II.
+- **IV:** relative functional periods and exponential fixed parts. Numerical specialization remains a separate issue.
+- **V:** polynomial-flag geometry and a numerical comparison theorem under the explicitly stated endpoint-complete hypotheses, not an unrestricted two-variable theorem.
+
+The polynomial-flags manuscript was historically called “Paper IV”; this repository assigns it **Paper V** and reserves **Paper IV** for Nori–Ayoub. Historical audit filenames retain their original terminology.
 
 ## Supplements and notes
 
-- [Linear KZ supplement](papers/02-compact-polynomial-line-kz/linear-kz-supplement.tex): alternate presentations and extensions.
-- [Polynomial KZ supplement](papers/03-complete-polynomial-kz/polynomial-kz-supplement.tex): quadratic normal forms, tensor-square residues, and entire exponential integrals.
-- [EIT structural companion](notes/eit-structural-companion.tex).
-- [Draft provenance and original filenames](notes/provenance/draft-import.md).
+| Document | PDF | LaTeX |
+| --- | --- | --- |
+| Linear KZ: alternate presentations and extensions | [Read PDF](output/pdf/linear-kz-supplement.pdf) | [Source](papers/02-compact-polynomial-line-kz/linear-kz-supplement.tex) |
+| Polynomial KZ: quadratic normal forms, tensor-square residues, and entire exponential integrals | [Read PDF](output/pdf/polynomial-kz-supplement.pdf) | [Source](papers/03-complete-polynomial-kz/polynomial-kz-supplement.tex) |
+| EIT structural companion | [Read PDF](output/pdf/eit-structural-companion.pdf) | [Source](notes/eit-structural-companion.tex) |
 
-Historical audit and revision records are kept in `notes/provenance/`; they should not be confused with a fresh verification of the imported sources.
+## Build and check
 
-## Building
-
-Each `.tex` file is a standalone document with its own embedded bibliography. A TeX Live installation and `latexmk` are required. For example, from the repository root:
+On Debian/Ubuntu, install the build dependencies:
 
 ```sh
-cd papers/01-exponential-integral-theorem
-latexmk -pdf -interaction=nonstopmode -halt-on-error exponential-integral-theorem.tex
+sudo apt-get install latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils python3 make
 ```
 
-The same command applies to the other source files in their respective directories. Generated PDFs and build intermediates are not part of this initial source import.
+From the repository root:
 
-## Working conventions
+```sh
+make pdf    # compile all eight documents; refresh PDFs and manifest
+make check  # verify hashes, rebuild, compare PDF text, and check README links
+make test   # test the build checks
+```
 
-Use stable descriptive source names; Git records revisions instead of filename suffixes such as `updated`, `definitive`, or `v9`. Keep mathematical edits separate from moves and formatting changes. The original polynomial-flags “Paper IV” is organized here as Paper V.
+Each LaTeX source is standalone and has an embedded bibliography. PDFs live in `output/pdf/`; intermediate files stay in ignored `.build/`. The [manifest](output/pdf/manifest.json) records each source hash, PDF hash, and page count.
+
+The [LaTeX workflow](.github/workflows/latex.yml) runs on pull requests and pushes to `main`. It checks committed snapshots without writing back to the repository and uploads fresh PDFs and logs for inspection.
+
+## Provenance and maintenance
+
+- [Recovered drafts and original-to-working filename map](notes/provenance/draft-import.md)
+- [Original import validation](notes/provenance/import-validation.md)
+- [Repository setup and outstanding research checks](notes/repository-status.md)
+- [Contribution and PDF-update workflow](CONTRIBUTING.md)
+
+Historical audit reports are preserved in `notes/provenance/`. Stable filenames identify the working sources; Git records their revisions. Mathematical changes should be separated from editorial and build changes.
 
 ## License
 
-See [LICENSE](LICENSE).
+[MIT License](LICENSE).
