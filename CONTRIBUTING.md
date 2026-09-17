@@ -9,6 +9,8 @@
 
 Use stable filenames. Keep mathematical changes separate from editorial, build, and file-organization changes. Record newly discovered gaps and later corrections explicitly; do not infer proof status from historical filenames or audit reports.
 
+Use the standard 11pt `article` title layout, the same author order and Le Blanc identifier, an explicit `Month YYYY` date, and a centered small monospace `galizur@gmail.com` contact line immediately after `\maketitle`. Preserve manuscript dates unless deliberately revising them. Do not include the former corporate affiliation. PDF title metadata must match the full printed title, including subtitles.
+
 The build keeps intermediates in `.build/`. It disables shell escape and fails on undefined references/citations, duplicate labels, or overfull boxes. Underfull-box warnings are reported but are not automatically fatal.
 
 `make check` verifies source/PDF hashes, recompiles all manuscripts, compares extracted PDF text with the committed snapshots, and checks local README links. It intentionally does not require byte-identical output from different TeX distributions. Manual visual review remains necessary for layout changes.
