@@ -1,0 +1,790 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1.04in]{geometry}
+\usepackage{amsmath,amssymb,mathtools,amsthm}
+\usepackage{mathrsfs}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage[capitalize,noabbrev]{cleveref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!45!black,
+  citecolor=green!35!black,
+  urlcolor=blue!55!black,
+  pdftitle={Structural Companion to Algebraic Exponential Integrals},
+  pdfauthor={Christopher D. Long}
+}
+
+\numberwithin{equation}{section}
+\setlength{\emergencystretch}{3em}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Qbar}{\overline{\mathbb Q}}
+\newcommand{\Aone}{\mathbb A^1}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Mcal}{\mathcal M}
+\newcommand{\Ecal}{\mathcal E}
+\newcommand{\Rcal}{\mathcal R}
+\newcommand{\Dmod}{\mathcal D}
+\newcommand{\Ocal}{\mathcal O}
+\newcommand{\Lcal}{\mathscr L}
+\newcommand{\Vcal}{\mathscr V}
+
+\title{Structural Companion to Algebraic Exponential Integrals:\\
+Audit, Detailed Lemmas, and Directions for Generalization}
+\author{Christopher D. Long}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This companion records the material removed from the streamlined base paper
+\emph{Algebraic Exponential Integrals: Transcendence and Linear
+Independence}.  It has three purposes.  First, it audits the earlier
+1,832-line draft and records the parameter absorptions and proof compression.
+Second, it preserves the stronger structural results that are not needed for
+the shortest base proof: the full Brieskorn lattice, a detailed
+Fourier--Laplace semisimplicity argument, the complete horizontal
+endomorphism algebra, multiplicity-free decomposition, the relation
+differential submodule of relations and its constant projector, and the exact
+Cauchy-transform criterion.  Third, it separates polynomial-specific
+calculations from mechanisms likely to survive for finite maps of curves,
+larger families of exponential period functions, and algorithmic
+$E$-function problems.
+\end{abstract}
+
+\tableofcontents
+
+\section{Vocabulary and scope}
+
+The revised base paper follows the terminology used in the closest
+$E$-function and exponential-period literature.  A parameter integral
+$\int_\gamma e^{-zf}\omega$ is an \emph{exponential period function}; $f$
+is a regular function and, in the one-variable case considered here, a
+polynomial \cite{FresanJossen,CommelinHabeggerHuber}.  The geometric language
+is that of exponential twists, twisted de~Rham cohomology,
+Fourier--Laplace transforms, and topological or relative chains
+\cite{HienRoucairol,SabbahYu}.  For the final analytic step, the established
+terms are moments, the polynomial moment problem, Cauchy transforms,
+zero-cycles, inverse branches, and polynomial constellations
+\cite{PakovichMuzychuk,GavrilovPakovich}.
+
+Accordingly, this companion uses \emph{polynomial $q$}, \emph{values of
+$q$}, \emph{critical values}, \emph{zero-cycle}, and \emph{moment
+identities}.  The word \emph{phase} is reserved for genuine stationary-phase
+or oscillatory-asymptotic arguments and is not used for the basic algebraic
+data here.  The standard word \emph{constellation} is used only for the preimage
+of a star joining a regular value to the critical values.  When extra arms
+are added to reach $q(\operatorname{supp}\Delta)$, we refer simply to the
+enlarged tree $T$ and its lifted graph $q^{-1}(T)$.
+
+\section{Audit of the earlier draft}
+
+The audited source is the August 2026 manuscript
+\texttt{algebraic\_exponential\_integrals.tex}, containing 1,832 source
+lines.  The revised base source contains about 710 lines, including
+its expanded bibliography, and compiles to nine pages in the present format.
+
+\subsection{Verdict}
+
+No fatal gap was found in the main proof chain
+\[
+\begin{gathered}
+\text{Beukers lifting}
+\Longrightarrow
+\text{constant splitting}
+\Longrightarrow
+\text{exponential polynomial},\\
+\text{exponential polynomial}
+\Longrightarrow
+\text{weighted moments}
+\Longrightarrow
+\text{Cauchy-transform vanishing criterion}.
+\end{gathered}
+\]
+The highest-risk points remain the standard but convention-sensitive
+Fourier--Laplace identification, the localization of simple Weyl modules,
+and the lateral-jump argument on a ramified lifted graph.  They are recorded
+in expanded form below so that they can be audited independently.
+
+The principal problem in the earlier draft was not a false theorem but a
+mismatch between two goals: it used the foundational theorem as the vehicle
+for developing a much larger structural toolkit.  The base proof was therefore
+longer than necessary, while useful generalization mechanisms were buried
+inside a theorem that did not require their full strength.
+
+\subsection{Parameter absorptions and genuine simplifications}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.21\textwidth}>{\raggedright\arraybackslash}p{0.34\textwidth}>{\raggedright\arraybackslash}p{0.36\textwidth}}
+\toprule
+Item & Earlier treatment & Streamlined treatment \\
+\midrule
+\endhead
+Evaluation parameter $\xi$ & Carried through the main theorem and the proof. &
+Replace $q$ by $\xi q$ and prove only the value at $z=1$.  Since
+$I_{\xi q,\Delta}(z)=I_{q,\Delta}(\xi z)$, no information is lost. \\
+\addlinespace
+Affine normalization of $q$ & Translate to remove the $x^{n-1}$ term and
+scale the leading coefficient to $1/n$. & Unnecessary.  For arbitrary
+leading coefficient, Euclidean division still gives
+$h_j=x^{j+1}/n+O(x^j)$, hence the same residue spectrum. \\
+\addlinespace
+Normalization of the inhomogeneous term & Define scaled vectors
+$n(h_0,\ldots,h_{n-2})$ and use the prefactor $1/(nz)$. & Define
+$\mathbf h=(h_j)$ directly and
+write $z^{-1}\sum\mathbf b_\lambda e^{\lambda z}$.  The factor $n$ has no
+mathematical role. \\
+\addlinespace
+Special identity $h_0=x/n$ & Used to motivate an unnecessary scaling of the inhomogeneous term. &
+Not needed anywhere in the rigidity argument. \\
+\addlinespace
+General Beukers statement & State the full homogeneous-polynomial lifting
+theorem. & Only the linear lifting statement at $z=1$ is used. \\
+\addlinespace
+Horizontal endomorphisms & Compute the complete algebra and deduce
+multiplicity-free semisimplicity. & The base theorem needs only that a
+horizontal projector is constant.  The stronger theorem is retained here. \\
+\addlinespace
+Cauchy geometry & Prove an exact Cauchy-transform characterization of all
+functional relations. & The base theorem needs only the implication from
+weighted moments to functional vanishing.  The equivalence is retained
+here. \\
+\addlinespace
+Height bookkeeping & A separate joint-height lemma and a fully quantified
+denominator construction. & The base paper uses the exact coefficient formula
+plus a one-paragraph exponential denominator estimate.  The full certificate
+is retained in \cref{sec:height}. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Corrections of emphasis and notation}
+
+\begin{enumerate}[leftmargin=2.2em]
+\item The base theorem should be advertised as an exact \emph{transfer} of
+value relations to functional relations.  An explicit closed-form
+classification of every functional relation is a separate geometric problem.
+The distinct-regular-value criterion gives an important sufficient
+case, not a general combinatorial classification.
+
+\item The symbols used for affine scaling in the old normalization argument
+collided with the support-point symbol $\alpha$.  Removing the normalization also
+removes this avoidable notational hazard.
+
+\item The semisimplicity proof is correct only after the reduced constant
+summand is tracked through Fourier transform: the constant connection becomes
+a module supported at the Fourier origin and vanishes after generic
+localization.  This point should be stated, not left implicit.
+
+\item Generic localization of a simple Weyl module must be justified.  Exactness
+alone does not say that a nonzero localization remains simple.  The needed
+one-line argument is included in \cref{prop:semisimple-expanded}.
+
+\item The Cauchy-transform proof requires integrability at ramified vertices.
+The estimate $x'(t)=O(|t-c|^{1/r-1})$ is load-bearing and should remain visible
+in any compressed version.
+\end{enumerate}
+
+\section{Intrinsic moment module without normalization}
+
+Let $q\in\Qbar[x]$ have degree $n\ge2$, put $K=\Qbar(z)$, and define
+\begin{equation}\label{eq:twisted-module}
+  \Mcal_q=K[x]\big/(\partial_x+zq'(x))K[x].
+\end{equation}
+The quotient is a $K$-vector space, not a quotient ring.  Write $[p]$ for
+the class of $p$.
+
+\begin{lemma}[Brieskorn basis]\label{lem:Brieskorn}
+The classes $[1],[x],\ldots,[x^{n-2}]$ form a $K$-basis of $\Mcal_q$.
+Moreover,
+\[
+  \C[z,z^{-1},x]\big/
+  (\partial_x+zq')\C[z,z^{-1},x]
+\]
+is free over $\C[z,z^{-1}]$ with the same basis.  Differentiation in $z$
+defines the connection
+\[
+  \nabla_{\partial_z}[p]=[\partial_z p+qp].
+\]
+\end{lemma}
+
+\begin{proof}
+The identity $[zq'p]=-[p']$ reduces every monomial of degree at least
+$n-1$.  If $p\ne0$, then $(\partial_x+zq')p$ has degree
+$\deg p+n-1$, so its leading term cannot cancel.  Hence the image contains
+no nonzero polynomial of degree below $n-1$.  Finally,
+$[\partial_z+q,\partial_x+zq']=0$, so the connection is well defined.
+\end{proof}
+
+For $0\le j\le n-2$, divide
+\begin{equation}\label{eq:division-toolkit}
+  qx^j=h_jq'+r_j,
+  \qquad \deg r_j<n-1,
+\end{equation}
+and define
+\[
+  \mathsf C(x^j)=r_j,
+  \qquad
+  \mathsf D(x^j)=-h_j'.
+\]
+Then $\mathsf C$ is multiplication by $q$ on the Jacobian algebra
+$\C[x]/(q')$, and the connection matrix is
+$\mathsf C+\mathsf D/z$.
+
+\begin{lemma}[Unnormalized residue spectrum]\label{lem:unnormalized-D}
+For every polynomial $q$ of degree $n$, without any translation or scaling,
+$\mathsf D$ is triangular in the monomial basis with diagonal
+\[
+  -\frac1n,-\frac2n,\ldots,-\frac{n-1}{n}.
+\]
+\end{lemma}
+
+\begin{proof}
+If $q(x)=cx^n+O(x^{n-1})$, then $q'(x)=ncx^{n-1}+O(x^{n-2})$.
+Consequently,
+$h_j=x^{j+1}/n+O(x^j)$ and
+$-h_j'=-(j+1)x^j/n+O(x^{j-1})$.
+\end{proof}
+
+\section{Full arithmetic certificate for the moment functions}
+\label{sec:height}
+
+Fix a finite degree-zero zero-cycle
+$\Delta=\sum_{\alpha\in S}d_\alpha[\alpha]$ with coefficients in $\Qbar$,
+and choose a finite piecewise $C^1$ one-chain $\Gamma$ with
+$\partial\Gamma=\Delta$.  Put
+\[
+  U_j(z)=\int_\Gamma x^j e^{zq(x)}\,dx
+  =\sum_{m\ge0}u_{j,m}\frac{z^m}{m!}.
+\]
+
+\begin{lemma}[Joint height from one denominator]\label{lem:joint-height}
+Let $K_0$ be a number field and let
+$\alpha_0,\ldots,\alpha_m\in K_0$.  If
+$\delta\alpha_k\in\mathcal O_{K_0}$ for every $k$, then
+\[
+ h(\alpha_0,\ldots,\alpha_m)
+ \le \log\delta+
+ \log\max\left(1,\max_{k,\sigma}|\sigma(\alpha_k)|\right).
+\]
+\end{lemma}
+
+\begin{proof}
+Use the projective coordinates
+$(1:\alpha_0:\cdots:\alpha_m)=(\delta:\delta\alpha_0:\cdots:\delta\alpha_m)$.
+All finite-place contributions are at most $1$, and the infinite-place
+contribution is bounded by the displayed quantity.
+\end{proof}
+
+\begin{proposition}[Explicit $E$-function certificate]\label{prop:E-certificate}
+Each $U_j$ is an $E$-function.  More precisely, there is a constant
+$\kappa_j$ such that
+\[
+  h(u_{j,0},\ldots,u_{j,m})\le\kappa_j(m+1).
+\]
+\end{proposition}
+
+\begin{proof}
+Write
+\[
+  q(x)^m=\sum_{k=0}^{nm}\gamma_{m,k}x^k.
+\]
+Since a primitive of $x^{j+k}$ is $x^{j+k+1}/(j+k+1)$,
+\begin{equation}\label{eq:exact-coefficient}
+  u_{j,m}=\sum_{k=0}^{nm}\gamma_{m,k}
+  \frac{\sum_{\alpha\in S}d_\alpha\alpha^{j+k+1}}{j+k+1}.
+\end{equation}
+Choose a number field $K_0$ containing all data and an integer $d\ge1$ such
+that the coefficients of $dq$, all $d\alpha$, and all $dd_\alpha$ are
+integral.  Then
+\[
+  \delta_m=
+  d^{(n+1)m+j+2}\operatorname{lcm}(1,\ldots,nm+j+1)
+\]
+is a common denominator for $u_{j,0},\ldots,u_{j,m}$.  Indeed,
+$d^m\gamma_{m,k}$ is integral, and the spare factor $d^{nm-k}$ makes the
+exponent uniform in \eqref{eq:exact-coefficient}.
+
+For archimedean embeddings, choose a disk containing every conjugate of every
+support point.  Integrating the conjugate polynomial along the straight segment
+from $0$ to the support point gives
+$|\sigma(u_{j,m})|\le C^{m+j+2}$.  Since
+$\log\operatorname{lcm}(1,\ldots,N)=O(N)$, \cref{lem:joint-height} gives the
+height bound.
+
+The integration-by-parts system
+\[
+  \mathbf U'=\left(C+\frac Dz\right)\mathbf U
+  +\frac1z\sum_\lambda\mathbf b_\lambda e^{\lambda z}
+\]
+shows that the $\Qbar(z)$-span of the moments together with the exponentials $e^{\lambda z}$ for
+$\lambda\in q(\operatorname{supp}\Delta)$ is
+stable under differentiation.  Hence each $U_j$ is holonomic, completing the
+$E$-function certificate.
+\end{proof}
+
+\section{Expanded Fourier--Laplace semisimplicity}
+
+Let $\Sigma$ be the critical-value set, $V_0=\Aone_t\setminus\Sigma$, and
+let $\Lcal$ be the permutation local system of the unramified cover
+$q^{-1}(V_0)\to V_0$.  Let
+$\Lcal^0=\ker(\operatorname{Tr}:\Lcal\to\C_{V_0})$.
+
+\begin{proposition}[Expanded semisimplicity proof]
+\label{prop:semisimple-expanded}
+The differential module over $\C(z)$ with matrix
+$\mathsf C+\mathsf D/z$ is semisimple.
+\end{proposition}
+
+\begin{proof}
+The cover is connected, so its monodromy acts transitively on a fiber.
+The permutation representation has finite image and splits as
+\[
+  \Lcal\simeq\C_{V_0}\oplus\Lcal^0.
+\]
+Maschke's theorem makes $\Lcal^0$ semisimple.  Since $q$ is finite, it is
+proper and small.  Therefore
+\[
+  Rq_*\C_{\Aone_x}[1]\simeq\operatorname{IC}(\Lcal),
+\]
+and the decomposition of $\Lcal$ into irreducibles gives a decomposition of
+$q_+\Ocal_{\Aone_x}$ into simple regular holonomic modules under the
+Riemann--Hilbert correspondence.
+
+Use the Fourier convention
+$t\mapsto-\partial_\tau$, $\partial_t\mapsto\tau$.  Fourier transform is an
+exact autoequivalence of Weyl modules and preserves simple objects.  The
+constant connection transforms to a module supported at $\tau=0$ and hence
+disappears after localization to $\C(\tau)$.
+
+We record the localization point.  Let $M$ be a simple Weyl module and
+$S=\C[\tau]\setminus\{0\}$.  The $S$-torsion of $M$ is a Weyl submodule:
+if $p(\tau)m=0$, then $p(\tau)^2\partial_\tau m=0$.  Hence either
+$S^{-1}M=0$ or $M$ injects into $S^{-1}M$.  In the latter case, every nonzero
+differential submodule of $S^{-1}M$ meets $M$ after clearing a denominator;
+the intersection is a nonzero Weyl submodule and therefore equals $M$.
+Thus every nonzero localized simple summand remains irreducible.
+
+To identify the localized transform, factor $q$ as its graph embedding
+followed by projection.  The graph generator $\delta_q$ satisfies
+\[
+  (t-q(x))\delta_q=0,
+  \qquad
+  (\partial_x+q'(x)\partial_t)\delta_q=0.
+\]
+After Fourier transform it is the exponential generator $e^{-\tau q(x)}$.
+On coefficient polynomials, the relative differential and connection are
+\[
+  \partial_x-\tau q'(x),
+  \qquad
+  \partial_\tau-q(x).
+\]
+The relative de Rham complex has no negative-degree cohomology because
+$-\tau q'p$ has larger $x$-degree than $p'$ for $p\ne0$.  Its degree-zero
+cohomology is
+\[
+  \C(\tau)[x]\big/(\partial_x-\tau q')\C(\tau)[x].
+\]
+Pulling back by $\tau=-z$ gives \eqref{eq:twisted-module} with connection
+$\partial_z+q$.  By \cref{lem:Brieskorn}, its matrix is
+$\mathsf C+\mathsf D/z$.  It is therefore a direct sum of irreducible
+differential modules.
+\end{proof}
+
+\section{The complete horizontal endomorphism algebra}
+
+For a critical point $\tau$, put
+$m_\tau=\ord_\tau q'$ and $\lambda_\tau=q(\tau)$, and define
+\[
+  g_{\tau,k}(x)=\frac{q'(x)}{(x-\tau)^k},
+  \qquad 1\le k\le m_\tau.
+\]
+
+\begin{lemma}[Critical basis and compressed residue]\label{lem:critical-full}
+The $g_{\tau,k}$ form a basis of $\Vcal=\C[x]_{<n-1}$.  They diagonalize
+$\mathsf C$:
+\[
+  \mathsf Cg_{\tau,k}=\lambda_\tau g_{\tau,k}.
+\]
+For a fixed critical value $\lambda$, the compression of $\mathsf D$ to the
+$\lambda$-eigenspace preserves each critical-point summand.  On the
+$\tau$-summand its triangular diagonal is
+\[
+  -\frac{m_\tau}{m_\tau+1},
+  -\frac{m_\tau-1}{m_\tau+1},\ldots,
+  -\frac1{m_\tau+1}.
+\]
+\end{lemma}
+
+\begin{proof}
+The Chinese remainder theorem gives
+\[
+  \C[x]/(q')\simeq
+  \bigoplus_\tau\C[x]/(x-\tau)^{m_\tau}.
+\]
+For fixed $\tau$, the images of $g_{\tau,k}$ vanish in all other factors and
+form a triangular basis in the $\tau$-factor.  Since
+$q-\lambda_\tau$ vanishes to order $m_\tau+1$,
+\[
+  qg_{\tau,k}
+  =\frac{q-\lambda_\tau}{(x-\tau)^k}q'
+   +\lambda_\tau g_{\tau,k},
+\]
+which proves the eigenvalue identity.
+
+Write $y=x-\tau$ and
+$q-\lambda_\tau=ay^{m_\tau+1}+O(y^{m_\tau+2})$.  Then
+\[
+  g_{\tau,k}=a(m_\tau+1)y^{m_\tau-k}+O(y^{m_\tau-k+1}),
+\]
+while
+\[
+ -\left(\frac{q-\lambda_\tau}{(x-\tau)^k}\right)'
+ =-a(m_\tau+1-k)y^{m_\tau-k}+O(y^{m_\tau-k+1}).
+\]
+This gives the diagonal.  If $\sigma\ne\tau$ has the same critical value,
+the displayed quotient vanishes at $\sigma$ to order $m_\sigma+1$; its
+derivative therefore vanishes modulo $(x-\sigma)^{m_\sigma}$, excluding
+cross terms.
+\end{proof}
+
+\begin{theorem}[Horizontal-endomorphism rigidity]
+\label{thm:full-endomorphism}
+If $P\in M_{n-1}(\C(z))$ satisfies
+\[
+  P'=\left[C+\frac Dz,P\right],
+\]
+then $P$ is constant.  Hence the horizontal endomorphism algebra is
+\[
+  Z(C)\cap Z(D).
+\]
+The same assertion holds for the dual module.
+\end{theorem}
+
+\begin{proof}
+Finite nonzero poles are excluded by pole order.  At zero, a pole of order
+$m$ gives $-mP_{-m}=[D,P_{-m}]$, impossible because the spectrum of
+$\operatorname{ad}D$ lies in $(-1,1)$.  Thus $P$ is polynomial.
+
+Transpose and write $Q=Q_d z^d+Q_{d-1} z^{d-1}+\cdots$.  If $d\ge1$, the top
+two coefficient equations are
+\[
+  [Q_d,\mathsf C]=0,
+  \qquad
+  dQ_d=[Q_{d-1},\mathsf C]+[Q_d,\mathsf D].
+\]
+Projecting to a nonzero critical-value block of $Q_d$ and using
+\cref{lem:critical-full} yields
+\[
+  dQ_{d,\lambda}=[Q_{d,\lambda},\overline D_\lambda].
+\]
+Every eigenvalue of the commutator on the right is a difference of two
+numbers in $(-1,0)$ and therefore lies in $(-1,1)$.  It cannot equal the
+positive integer $d$.  Hence $d=0$.  Substitution gives
+$[C,P]=[D,P]=0$.
+\end{proof}
+
+\begin{corollary}[Multiplicity-free semisimplicity]
+The horizontal endomorphism algebra is commutative.  Consequently, the
+semisimple moment connection is multiplicity-free.
+\end{corollary}
+
+\begin{proof}
+The matrix $D$ has distinct eigenvalues, so its centralizer is commutative.
+A repeated simple constituent of a semisimple differential module would
+contribute a noncommutative full matrix algebra to the endomorphism algebra.
+\end{proof}
+
+\section{The relation submodule and its constant projector}
+
+Let $\mathbf U$ satisfy the inhomogeneous moment system and put
+\[
+  \Ecal=\Span_{\C(z)}\{e^{\lambda z}:\lambda\in\Lambda\}.
+\]
+Define
+\[
+  \Rcal=
+  \{\boldsymbol\phi\in\C(z)^{1\times(n-1)}:
+    \boldsymbol\phi\mathbf U\in\Ecal\}.
+\]
+
+\begin{lemma}[Differential submodule of relations]
+The space $\Rcal$ is a differential submodule of the dual homogeneous
+connection.
+\end{lemma}
+
+\begin{proof}
+Write $A=C+D/z$ and
+$\mathbf f=z^{-1}\sum_\lambda\mathbf b_\lambda e^{\lambda z}$.  Then
+\[
+  (\boldsymbol\phi\mathbf U)'
+  =(\boldsymbol\phi'+\boldsymbol\phi A)\mathbf U
+   +\boldsymbol\phi\mathbf f.
+\]
+The left side and the last term belong to $\Ecal$ whenever
+$\boldsymbol\phi\in\Rcal$.
+\end{proof}
+
+\begin{proposition}[Constant projector mechanism]
+The relation module has the form
+\[
+  \Rcal=W\otimes_\C\C(z)
+\]
+for a constant subspace $W$ invariant under $C$ and $D$.
+\end{proposition}
+
+\begin{proof}
+By \cref{prop:semisimple-expanded}, the dual moment module is semisimple, so
+$\Rcal$ has a horizontal complement and a horizontal idempotent projector.
+By \cref{thm:full-endomorphism}, the projector is constant.  Its image is the
+required $W$.
+\end{proof}
+
+\begin{remark}[Why this mechanism should be preserved]
+The base theorem uses the projector only once, to pass from a lifted row whose
+value at $1$ is $\mathbf e_0$ to the constant row $\mathbf e_0$ itself.  In
+larger systems of exponential period functions, however, the same
+projector identifies the full differential submodule of functional relations.
+It is therefore a natural interface with uniform relation algorithms and
+with decompositions into summands detected or annihilated by the selected
+period functions.
+\end{remark}
+
+\section{Exact Cauchy-transform criterion}
+
+Let $\Delta$ be a finite degree-zero zero-cycle with complex coefficients,
+let $\Gamma$ be a finite piecewise $C^1$ one-chain with
+$\partial\Gamma=\Delta$, and choose a finite tree $T$ containing all critical values of $q$ and all values $q(\alpha)$ with
+$\alpha\in\operatorname{supp}\Delta$.  Choose a lifted graph chain
+$\widetilde\Gamma\subset q^{-1}(T)$ with the same boundary.  On an oriented
+open edge $e$, write $\widetilde\Gamma$ as a linear combination of inverse
+branches $x_{e,i}(t)$ and put
+\[
+  \psi_e(t)=\sum_i f_{e,i}x_{e,i}'(t)
+  =\sum_i\frac{f_{e,i}}{q'(x_{e,i}(t))}.
+\]
+Thus $\psi_e(t)\,dt$ is the density contributed by the lifts of $e$.
+
+\begin{theorem}[Exact Cauchy-transform criterion]
+\label{thm:edge-exact}
+For fixed $T$ and $\widetilde\Gamma$,
+\[
+  I_{q,\Delta}(z)\equiv0
+  \quad\Longleftrightarrow\quad
+  \psi_e\equiv0\text{ on every open edge }e.
+\]
+More generally, if $0\ne H\in\C[t]$ and
+\[
+  \int_\Gamma q(x)^mH(q(x))\,dx=0
+  \qquad(m\ge0),
+\]
+then every $\psi_e$ vanishes.
+\end{theorem}
+
+\begin{proof}
+For $s\notin T$, define
+\[
+  \mathcal C_H(s)=
+  \int_{\widetilde\Gamma}\frac{H(q(x))}{s-q(x)}\,dx.
+\]
+The moment identities make its Laurent expansion at infinity zero.  Since
+$\C\setminus T$ is connected, $\mathcal C_H$ vanishes there.  Edgewise
+change of variables gives
+\[
+  \mathcal C_H(s)=
+  \sum_e\int_e\frac{H(t)\psi_e(t)}{s-t}\,dt.
+\]
+At an interior point of one edge, contributions from all other edges extend
+holomorphically across a small disk.  The local Cauchy integral has lateral
+jump
+$2\pi i\varepsilon_e H(t)\psi_e(t)$.  Both lateral values vanish, so
+$H(t)\psi_e(t)=0$.  Away from the finite zero set of $H$, this gives
+$\psi_e=0$, and analyticity extends the conclusion to the entire edge.
+The exponential integral is the edgewise Laplace transform of the densities,
+proving one direction.  The other is immediate.  Taking $H=1$ after
+$I_{q,\Delta}\equiv0$ gives the converse implication in the equivalence.
+This is the standard Cauchy-transform mechanism used in the polynomial
+moment literature; compare \cite{GavrilovPakovich,PakovichRoytvarfYomdin}.
+\end{proof}
+
+\begin{corollary}[Functional independence over distinct regular values]
+If the support points $a_0,\ldots,a_r$ have pairwise distinct regular
+values under $q$, then the zero-cycle
+$\sum_i d_i[a_i]$ has identically zero exponential integral only when all
+$d_i=0$.
+\end{corollary}
+
+\begin{proof}
+Give each $q(a_i)$ a separate terminal arm.  On that arm, the only nonzero
+terminal coefficient is $d_i$, and the density equals
+$d_i/q'(x_i(t))$.  Apply \cref{thm:edge-exact}.
+\end{proof}
+
+\section{What is likely to generalize}
+
+The following division should guide later papers on exponential
+period functions.
+
+\subsection{Robust structural mechanisms}
+
+\begin{enumerate}[leftmargin=2.2em]
+\item \textbf{Differential submodule of relations and projector.}
+This is not tied to a scalar integral.  The same construction applies
+to an inhomogeneous differential system whose homogeneous module is
+semisimple and whose inhomogeneous term lies in a
+finite-dimensional differential submodule generated by exponential functions.
+
+\item \textbf{Nonresonant residue criterion.}
+The pole arguments use only that residue eigenvalue differences avoid
+nonzero integers, locally at finite points and after compression at infinity.
+This suggests an abstract nonresonant constant-splitting criterion.
+
+\item \textbf{Fourier--Laplace semisimplicity.}
+Finite monodromy before Fourier transform is a particularly transparent
+source of semisimplicity.  More general semisimple local systems on curves
+should produce analogous transformed modules.
+
+\item \textbf{Cauchy jump detection.}
+Moment vanishing is converted into vanishing of a Cauchy transform, and local
+jumps recover the density.  The argument should extend to algebraic finite
+covers of curves once a suitable cut graph and local branches are available.
+\end{enumerate}
+
+\subsection{Polynomial-specific pieces}
+
+\begin{enumerate}[leftmargin=2.2em]
+\item The monomial Brieskorn basis $1,x,\ldots,x^{n-2}$ and the division
+algorithm by $q'$ use the affine line essentially.
+
+\item The critical basis $q'/(x-\tau)^k$ and the explicit fractions
+$-r/(m+1)$ are special to one-variable polynomial ramification.
+
+\item The chosen tree $T$ lies in the target plane.  On a positive-genus
+curve it must be replaced by a cut graph, and closed-cycle periods may remain
+after all edge densities vanish.
+\end{enumerate}
+
+\subsection{Algorithmic outputs worth preserving}
+
+For a concrete polynomial $q$, the following data are explicit and small:
+\[
+  C,\quad D,\quad
+  \{(\tau,m_\tau,\lambda_\tau)\},\quad
+  \{\overline D_\lambda\},\quad
+  \{\mathbf b_\lambda\}.
+\]
+They provide certificates for residue nonresonance, constant projectors, and
+detection of boundary coefficients without reconstructing a large minimal
+scalar operator.  This is the natural point of contact with the
+Adamczewski--Rivoal and Bostan--Rivoal--Salvy exceptional-value algorithms.
+
+\section*{AI-assisted research disclosure}
+
+This companion was developed through interactive work between Christopher
+D. Long and ChatGPT 5.6 Pro.  ChatGPT assisted in proof compression,
+line-by-line auditing, symbolic stress tests, organization, and drafting.
+The AI system is not an author.  The human author bears full responsibility
+for all mathematical claims and any remaining errors.
+
+\small
+\begin{thebibliography}{99}
+
+\bibitem{AdamczewskiRivoal}
+B.~Adamczewski and T.~Rivoal,
+\emph{Exceptional values of $E$-functions at algebraic points},
+Bull. Lond. Math. Soc. \textbf{50} (2018), no.~4, 697--708.
+\href{https://doi.org/10.1112/blms.12168}{doi:10.1112/blms.12168}.
+
+\bibitem{Beukers}
+F.~Beukers,
+\emph{A refined version of the Siegel--Shidlovskii theorem},
+Ann. of Math. (2) \textbf{163} (2006), no.~1, 369--379.
+\href{https://doi.org/10.4007/annals.2006.163.369}{doi:10.4007/annals.2006.163.369}.
+
+\bibitem{BostanRivoalSalvy}
+A.~Bostan, T.~Rivoal, and B.~Salvy,
+\emph{Minimization of differential equations and algebraic values of
+$E$-functions},
+Math. Comp. \textbf{93} (2024), no.~347, 1427--1472.
+\href{https://doi.org/10.1090/mcom/3912}{doi:10.1090/mcom/3912}.
+
+\bibitem{CommelinHabeggerHuber}
+J.~Commelin, P.~Habegger, and A.~Huber,
+\emph{Exponential periods and o-minimality},
+arXiv:2007.08280, version of August 11, 2026.
+
+\bibitem{deCataldoMigliorini}
+M.~A.~A. de~Cataldo and L.~Migliorini,
+\emph{The decomposition theorem, perverse sheaves and the topology of
+algebraic maps},
+Bull. Amer. Math. Soc. (N.S.) \textbf{46} (2009), no.~4, 535--633.
+\href{https://doi.org/10.1090/S0273-0979-09-01260-9}{doi:10.1090/S0273-0979-09-01260-9}.
+
+\bibitem{FresanJossen}
+J.~Fres\'an and P.~Jossen,
+\emph{A non-hypergeometric $E$-function},
+Ann. of Math. (2) \textbf{194} (2021), no.~3, 903--942.
+\href{https://doi.org/10.4007/annals.2021.194.3.7}{doi:10.4007/annals.2021.194.3.7}.
+
+\bibitem{GavrilovPakovich}
+L.~Gavrilov and F.~Pakovich,
+\emph{Moments on Riemann surfaces and hyperelliptic Abelian integrals},
+Comment. Math. Helv. \textbf{89} (2014), no.~1, 125--155.
+\href{https://doi.org/10.4171/CMH/314}{doi:10.4171/CMH/314}.
+
+\bibitem{HienRoucairol}
+M.~Hien and C.~Roucairol,
+\emph{Integral representations for solutions of exponential Gauss--Manin
+systems},
+Bull. Soc. Math. France \textbf{136} (2008), no.~4, 505--532.
+\href{https://doi.org/10.24033/bsmf.2564}{doi:10.24033/bsmf.2564}.
+
+\bibitem{HTT}
+R.~Hotta, K.~Takeuchi, and T.~Tanisaki,
+\emph{$D$-Modules, Perverse Sheaves, and Representation Theory},
+Progress in Mathematics, vol.~236,
+Birkh\"auser Boston, Boston, MA, 2008.
+\href{https://doi.org/10.1007/978-0-8176-4523-6}{doi:10.1007/978-0-8176-4523-6}.
+
+\bibitem{PakovichMuzychuk}
+F.~Pakovich and M.~Muzychuk,
+\emph{Solution of the polynomial moment problem},
+Proc. Lond. Math. Soc. (3) \textbf{99} (2009), no.~3, 633--657.
+\href{https://doi.org/10.1112/plms/pdp010}{doi:10.1112/plms/pdp010}.
+
+\bibitem{PakovichRoytvarfYomdin}
+F.~Pakovich, N.~Roytvarf, and Y.~Yomdin,
+\emph{Cauchy-type integrals of algebraic functions},
+Israel J. Math. \textbf{144} (2004), 221--291.
+\href{https://doi.org/10.1007/BF02916714}{doi:10.1007/BF02916714}.
+
+\bibitem{SabbahYu}
+C.~Sabbah and J.-D.~Yu,
+\emph{On the irregular Hodge filtration of exponentially twisted mixed
+Hodge modules},
+Forum Math. Sigma \textbf{3} (2015), Paper No.~e9, 71 pp.
+\href{https://doi.org/10.1017/fms.2015.5}{doi:10.1017/fms.2015.5}.
+
+\end{thebibliography}
+\end{document}
