@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "documents": [
+    {
+      "source": "papers/01-exponential-integral-theorem/exponential-integral-theorem.tex",
+      "source_sha256": "8b88eaffec8399fffff053ca96fdff38489dfd58eef6ab9067adc154f000558d",
+      "pdf": "output/pdf/exponential-integral-theorem.pdf",
+      "pdf_sha256": "a54200c24df0f2fa8bcfb37796ee501aa60ca96cf8581cbade649299591dcb1a",
+      "pages": 13
+    },
+    {
+      "source": "papers/02-compact-polynomial-line-kz/linear-kz-affine-line.tex",
+      "source_sha256": "9732c4023997b746cf18fca71dcbca0a3452eb81eeb6599e6d2401e41739e29f",
+      "pdf": "output/pdf/linear-kz-affine-line.pdf",
+      "pdf_sha256": "20a86808c66c4e1d887d89b8c6ebc5bc0b2122c65da18c3ef976b3ee5701d672",
+      "pages": 19
+    },
+    {
+      "source": "papers/02-compact-polynomial-line-kz/linear-kz-supplement.tex",
+      "source_sha256": "90229af408617c22a795c0dfa02a43554d96abceaf7f801df0c5e05024dd9a58",
+      "pdf": "output/pdf/linear-kz-supplement.pdf",
+      "pdf_sha256": "25d5e335662e04c094f0ad75cacded5d542db7a4a0e6beaac653997443c5f4be",
+      "pages": 4
+    },
+    {
+      "source": "papers/03-complete-polynomial-kz/polynomial-kz-affine-line.tex",
+      "source_sha256": "20eaf97deccb3051f5017a5895494fb0a9ec30f8f6dd149f0b089d427170109e",
+      "pdf": "output/pdf/polynomial-kz-affine-line.pdf",
+      "pdf_sha256": "19eb552eaf26b47fe17a9fa76303e965cc47c9919c58846ffdd6f6adfdc4d5c6",
+      "pages": 12
+    },
+    {
+      "source": "papers/03-complete-polynomial-kz/polynomial-kz-supplement.tex",
+      "source_sha256": "32689be006e8eba13103285216d352d220d5affc99f2e83e43bff1e13e3553ce",
+      "pdf": "output/pdf/polynomial-kz-supplement.pdf",
+      "pdf_sha256": "fe6b066a96e87c37d17abe1408f0e9cb14ad549e1f6a610bafdad98240a045cd",
+      "pages": 9
+    },
+    {
+      "source": "papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex",
+      "source_sha256": "975ddae72e4ecee71c2bdd5f39391440defa0bf912f8e4d2b132349cab4872af",
+      "pdf": "output/pdf/relative-exponential-nori-ayoub.pdf",
+      "pdf_sha256": "e209228580839a755a21da64e7fff9064f2242b0aa2b1d86d9b47a2f6b7f81f7",
+      "pages": 26
+    },
+    {
+      "source": "papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex",
+      "source_sha256": "39c1e354a39bf7d4160522d85bd49c5424879d67a1929a2f4924b742395e98ed",
+      "pdf": "output/pdf/polynomial-flag-exponential-periods.pdf",
+      "pdf_sha256": "2a354efbf5709617cecc34cce2b4ae1783cbae2a68747eea52ed6b10426f5f03",
+      "pages": 35
+    },
+    {
+      "source": "notes/eit-structural-companion.tex",
+      "source_sha256": "4db2a93c9286fdd3f4519d819351e8edd71a8e14a0ee24306fe16f39fad15253",
+      "pdf": "output/pdf/eit-structural-companion.pdf",
+      "pdf_sha256": "87bc4ad6494609d83e0b5296dfdb6cd8adddacb48ba1a3573d6513ead2b874d4",
+      "pages": 11
+    }
+  ]
+}
