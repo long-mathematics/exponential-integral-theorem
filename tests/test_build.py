@@ -9,6 +9,19 @@ spec.loader.exec_module(build)
 
 
 class BuildChecks(unittest.TestCase):
+    def test_front_matter(self):
+        for source in build.sources():
+            with self.subTest(source=source.name):
+                build.check_front_matter(source.read_text())
+        text = build.sources()[0].read_text()
+        for changed in [text.replace("galizur@gmail.com", "missing@example.com"),
+                        text + "\nHeadlamp Software",
+                        text.replace(r"\date{August 2026}", r"\date{\today}"),
+                        text.replace("pdftitle={", "pdftitle={Wrong title "),
+                        text.replace("11pt", "12pt", 1)]:
+            with self.subTest(change=changed[-80:]), self.assertRaises(RuntimeError):
+                build.check_front_matter(changed)
+
     def test_author_identifier(self):
         text = (r"\author{Christopher D. Long \and Antoine-Auguste Le Blanc "
                 + build.LE_BLANC_ID + "}\n"

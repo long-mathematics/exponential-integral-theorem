@@ -16,6 +16,8 @@ OUTPUT = ROOT / "output/pdf"
 MANIFEST = OUTPUT / "manifest.json"
 BUILD = ROOT / ".build"
 LE_BLANC_ID = "b604812530b3535b23d6dbb0f5abe32d1ed1a9de35fb4f7d04d62cff08ea19c8"
+CONTACT_BLOCK = "\n".join((r"\maketitle", "", r"\begin{center}", r"\small",
+                           r"\texttt{galizur@gmail.com}", r"\end{center}"))
 
 
 def check_authors(text):
@@ -25,6 +27,22 @@ def check_authors(text):
             or LE_BLANC_ID not in compact
             or "pdfauthor={Christopher D. Long; Antoine-Auguste Le Blanc}" not in text):
         raise RuntimeError("Author list, Le Blanc identifier, or PDF author metadata is inconsistent")
+
+
+def check_front_matter(text):
+    check_authors(text)
+    if "headlamp" in text.lower():
+        raise RuntimeError("Removed affiliation remains in manuscript")
+    if not text.startswith(r"\documentclass[11pt]{article}") or CONTACT_BLOCK not in text:
+        raise RuntimeError("Inconsistent document class or title-page contact block")
+    months = "January|February|March|April|May|June|July|August|September|October|November|December"
+    if not re.search(r"^\\date\{(?:" + months + r") \d{4}\}$", text, re.M):
+        raise RuntimeError("Use an explicit Month YYYY manuscript date")
+    title = re.search(r"^\\title\{([^{}]+)\}", text, re.M)
+    metadata = re.search(r"pdftitle=\{([^{}]+)\}", text)
+    if (not title or not metadata
+            or " ".join(title[1].replace(r"\\", " ").split()) != metadata[1]):
+        raise RuntimeError("Printed title and PDF title metadata differ")
 
 
 def digest(path):
@@ -81,7 +99,7 @@ def main():
             raise RuntimeError("Missing dependency: " + command)
     inputs = sources()
     for source in inputs:
-        check_authors(source.read_text(encoding="utf-8"))
+        check_front_matter(source.read_text(encoding="utf-8"))
     old = {}
     if args.check:
         if not MANIFEST.exists():
