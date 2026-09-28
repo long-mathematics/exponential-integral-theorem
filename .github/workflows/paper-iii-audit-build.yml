@@ -1,0 +1,104 @@
+name: Build Paper III audit revision
+
+on:
+  push:
+    branches: [build/paper-iii-audit-2026-09-28]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-iii-audit-revision-2026-09-28
+  cancel-in-progress: false
+
+jobs:
+  revise:
+    if: github.repository == 'long-mathematics/exponential-integral-theorem'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      BASE: 5c11c2e1cba0b4400006e553056254711c9ba9da
+      TARGET: paper-iii/audit-clarifications-2026-09-28
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - name: Preserve baseline and apply checked source revisions
+        run: |
+          mkdir -p .build/review
+          git archive --format=tar.gz "$BASE" > .build/review/baseline.tar.gz
+          python3 .paper-iii-audit-revision.py
+      - name: Install TeX and PDF tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils
+      - name: Test build checks
+        run: make test
+      - name: Compile all manuscripts
+        run: make pdf
+      - name: Preserve unchanged PDF snapshots and manifest entries
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          p = Path('output/pdf/manifest.json')
+          baseline = json.loads(subprocess.check_output(['git', 'show', os.environ['BASE'] + ':' + str(p)]))
+          built = json.loads(p.read_text())
+          targets = {
+              'papers/03-complete-polynomial-kz/polynomial-kz-affine-line.tex',
+              'papers/03-complete-polynomial-kz/polynomial-kz-supplement.tex',
+          }
+          new = {r['source']: r for r in built['documents']}
+          for index, record in enumerate(baseline['documents']):
+              if record['source'] in targets:
+                  baseline['documents'][index] = new[record['source']]
+              else:
+                  subprocess.run(['git', 'restore', '--source', os.environ['BASE'], '--worktree', '--', record['pdf']], check=True)
+          p.write_text(json.dumps(baseline, indent=2) + '\n')
+          PY
+      - name: Verify source/PDF consistency and links
+        run: make check
+      - name: Prepare clean six-file delivery commit
+        run: |
+          test -z "$(git ls-remote origin "refs/heads/$TARGET")"
+          git add papers/03-complete-polynomial-kz/polynomial-kz-affine-line.tex papers/03-complete-polynomial-kz/polynomial-kz-supplement.tex output/pdf/polynomial-kz-affine-line.pdf output/pdf/polynomial-kz-supplement.pdf output/pdf/manifest.json notes/provenance/paper-iii-audit-clarifications-2026-09-28.md
+          git rm .paper-iii-audit-revision.py .github/workflows/paper-iii-audit-build.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          TREE=$(git write-tree)
+          COMMIT=$(git commit-tree "$TREE" -p "$BASE" -m 'Clarify Paper III audited proofs and regenerate both PDFs')
+          export COMMIT
+          python3 - <<'PY'
+          import os, subprocess
+          expected = {
+              'papers/03-complete-polynomial-kz/polynomial-kz-affine-line.tex',
+              'papers/03-complete-polynomial-kz/polynomial-kz-supplement.tex',
+              'output/pdf/polynomial-kz-affine-line.pdf',
+              'output/pdf/polynomial-kz-supplement.pdf',
+              'output/pdf/manifest.json',
+              'notes/provenance/paper-iii-audit-clarifications-2026-09-28.md',
+          }
+          actual = set(subprocess.check_output(['git', 'diff', '--name-only', os.environ['BASE'], os.environ['COMMIT']], text=True).splitlines())
+          if actual != expected:
+              raise SystemExit('Unexpected delivery diff: ' + repr(actual))
+          PY
+          git diff "$BASE" "$COMMIT" -- papers/03-complete-polynomial-kz > .build/review/source.diff
+          git diff --stat "$BASE" "$COMMIT" > .build/review/diff-stat.txt
+          printf '%s\n' "$COMMIT" > .build/review/delivery-commit.txt
+          git archive --format=tar.gz "$COMMIT" > .build/review/revised.tar.gz
+          git push origin "$COMMIT:refs/heads/$TARGET"
+          echo "Delivery commit: $COMMIT" >> "$GITHUB_STEP_SUMMARY"
+          echo 'make test, make pdf, and make check passed. Visual review and normal PR checks are required before merge.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload sources, PDFs, diff, and build logs for review
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: paper-iii-audit-review
+          path: |
+            .build/review/**
+            .build/**/*.log
+            .build/**/build-console.txt
+            papers/03-complete-polynomial-kz/*.tex
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
