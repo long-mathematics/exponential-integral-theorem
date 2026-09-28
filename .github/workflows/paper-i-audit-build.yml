@@ -18,6 +18,7 @@ jobs:
     timeout-minutes: 25
     env:
       BASE: c3b1e3d703c6c9df54a740e8c102608b544c4ec6
+      DELIVERY_PARENT: 1c8b2a5aca14fb62b1a5fab6051c677111376022
       TARGET: paper-i/audit-clarifications-2026-09-28
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -29,6 +30,36 @@ jobs:
           cp papers/01-exponential-integral-theorem/exponential-integral-theorem.tex .build/review/before/
           cp output/pdf/exponential-integral-theorem.pdf .build/review/before/
           python3 .paper-i-audit-revision.py
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          p = Path('papers/01-exponential-integral-theorem/exponential-integral-theorem.tex')
+          text = p.read_text()
+          edits = [
+              (r'Rq_*\C_{\Aone_x}[1]\simeq\operatorname{IC}(\Lcal),',
+               r'Rq_*\C_{\Aone_x}[1]\simeq\operatorname{IC}(\Lcal).'),
+              (r'''\[
+            g_{\tau,k}=(m+1)a y^{m-k}+O(y^{m-k+1}),\qquad
+            \mathsf Dg_{\tau,k}=-(m+1-k)a y^{m-k}+O(y^{m-k+1}).
+          \]''',
+               r'''\begin{align*}
+            g_{\tau,k}&=(m+1)a y^{m-k}+O(y^{m-k+1}),\\
+            \mathsf Dg_{\tau,k}&=-(m+1-k)a y^{m-k}+O(y^{m-k+1}).
+          \end{align*}'''),
+              (r'''$p_\lambda\in\Qbar[z]$.  This argument uses only finite linear algebra,
+          not the action of field automorphisms on analytic limits.''',
+               r'$p_\lambda\in\Qbar[z]$.'),
+          ]
+          for old, new in edits:
+              if text.count(old) != 1:
+                  raise SystemExit('Polish anchor mismatch: ' + old[:80])
+              text = text.replace(old, new, 1)
+          raw = text.encode()
+          blob = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+          if blob != 'caffbdaccb69bcbfd9bae04b9dfcefe976ad95ab':
+              raise SystemExit('Final source does not match locally compiled revision: ' + blob)
+          p.write_bytes(raw)
+          PY
       - name: Install TeX and PDF tools
         run: |
           sudo apt-get update
@@ -58,12 +89,14 @@ jobs:
         run: make check
       - name: Prepare a clean four-file delivery commit
         run: |
+          CURRENT=$(git ls-remote origin "refs/heads/$TARGET" | cut -f1)
+          test "$CURRENT" = "$DELIVERY_PARENT"
           git add papers/01-exponential-integral-theorem/exponential-integral-theorem.tex output/pdf/exponential-integral-theorem.pdf output/pdf/manifest.json notes/provenance/paper-i-audit-clarifications-2026-09-28.md
           git rm .paper-i-audit-revision.py .github/workflows/paper-i-audit-build.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           TREE=$(git write-tree)
-          COMMIT=$(git commit-tree "$TREE" -p "$BASE" -m 'Clarify Paper I audit arguments and refresh its PDF')
+          COMMIT=$(git commit-tree "$TREE" -p "$DELIVERY_PARENT" -m 'Polish Paper I proof layout and refresh the checked PDF')
           export COMMIT
           python3 - <<'PY'
           import os, subprocess
