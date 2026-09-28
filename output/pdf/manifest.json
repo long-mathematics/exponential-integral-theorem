@@ -24,17 +24,17 @@
     },
     {
       "source": "papers/03-complete-polynomial-kz/polynomial-kz-affine-line.tex",
-      "source_sha256": "26939469fb18261335dcf28e650f55ec66c9ea35e7a3ee3ab90a0f132774f331",
+      "source_sha256": "7e12aa1727e413bc1816bf130f4e6ccf561a9d93bb8462b2bdc397c881d65910",
       "pdf": "output/pdf/polynomial-kz-affine-line.pdf",
-      "pdf_sha256": "aeec5219c14629901f66abbd9fa1def94bfce1bdb43daaf529da547322763870",
+      "pdf_sha256": "39f24de81f9fef5a3619bd9a1e530e7eb8a3118fa224bf9c27f6a846bca79beb",
       "pages": 12
     },
     {
       "source": "papers/03-complete-polynomial-kz/polynomial-kz-supplement.tex",
-      "source_sha256": "e2afe1bc4a32d7ca69af232fb7f0f02b4b0d31b0726b9416496f5b1561c2bb00",
+      "source_sha256": "22428727db84b4c9c270855930e69eac79140a9c6a33fe1044fd4d8ee2db201f",
       "pdf": "output/pdf/polynomial-kz-supplement.pdf",
-      "pdf_sha256": "fdb2431cefecffe7eeb79ec6fafcf2f70a62419aa292fc624ebcfff1f7b64f7d",
-      "pages": 9
+      "pdf_sha256": "51e20a8c422d53160d788904c515ec160d82fe2528b0f08a092f59126a91302a",
+      "pages": 10
     },
     {
       "source": "papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex",
