@@ -1,0 +1,100 @@
+name: Build Paper I audit revision
+
+on:
+  push:
+    branches: [build/paper-i-audit-2026-09-28]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-i-audit-revision-2026-09-28
+  cancel-in-progress: false
+
+jobs:
+  revise:
+    if: github.repository == 'long-mathematics/exponential-integral-theorem'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      BASE: c3b1e3d703c6c9df54a740e8c102608b544c4ec6
+      TARGET: paper-i/audit-clarifications-2026-09-28
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - name: Preserve baseline and apply source revision
+        run: |
+          mkdir -p .build/review/before .build/review/after
+          cp papers/01-exponential-integral-theorem/exponential-integral-theorem.tex .build/review/before/
+          cp output/pdf/exponential-integral-theorem.pdf .build/review/before/
+          python3 .paper-i-audit-revision.py
+      - name: Install TeX and PDF tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils
+      - name: Test build checks
+        run: make test
+      - name: Compile all manuscripts
+        run: make pdf
+      - name: Preserve unchanged snapshots and manifest entries
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          p = Path('output/pdf/manifest.json')
+          baseline = json.loads(subprocess.check_output(['git', 'show', os.environ['BASE'] + ':' + str(p)]))
+          built = json.loads(p.read_text())
+          target = 'papers/01-exponential-integral-theorem/exponential-integral-theorem.tex'
+          new = {r['source']: r for r in built['documents']}
+          for index, record in enumerate(baseline['documents']):
+              if record['source'] == target:
+                  baseline['documents'][index] = new[target]
+              else:
+                  subprocess.run(['git', 'restore', '--source', os.environ['BASE'], '--worktree', '--', record['pdf']], check=True)
+          p.write_text(json.dumps(baseline, indent=2) + '\n')
+          PY
+      - name: Verify source/PDF consistency and links
+        run: make check
+      - name: Prepare a clean four-file delivery commit
+        run: |
+          git add papers/01-exponential-integral-theorem/exponential-integral-theorem.tex output/pdf/exponential-integral-theorem.pdf output/pdf/manifest.json notes/provenance/paper-i-audit-clarifications-2026-09-28.md
+          git rm .paper-i-audit-revision.py .github/workflows/paper-i-audit-build.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          TREE=$(git write-tree)
+          COMMIT=$(git commit-tree "$TREE" -p "$BASE" -m 'Clarify Paper I audit arguments and refresh its PDF')
+          export COMMIT
+          python3 - <<'PY'
+          import os, subprocess
+          expected = {
+              'papers/01-exponential-integral-theorem/exponential-integral-theorem.tex',
+              'output/pdf/exponential-integral-theorem.pdf',
+              'output/pdf/manifest.json',
+              'notes/provenance/paper-i-audit-clarifications-2026-09-28.md',
+          }
+          actual = set(subprocess.check_output(['git', 'diff', '--name-only', os.environ['BASE'], os.environ['COMMIT']], text=True).splitlines())
+          if actual != expected:
+              raise SystemExit('Unexpected delivery diff: ' + repr(actual))
+          PY
+          git diff "$BASE" "$COMMIT" -- papers/01-exponential-integral-theorem/exponential-integral-theorem.tex > .build/review/source.diff
+          git diff --stat "$BASE" "$COMMIT" > .build/review/diff-stat.txt
+          printf '%s\n' "$COMMIT" > .build/review/delivery-commit.txt
+          cp papers/01-exponential-integral-theorem/exponential-integral-theorem.tex .build/review/after/
+          cp output/pdf/exponential-integral-theorem.pdf output/pdf/manifest.json .build/review/after/
+          cp notes/provenance/paper-i-audit-clarifications-2026-09-28.md .build/review/after/
+          git push origin "$COMMIT:refs/heads/$TARGET"
+          echo "Delivery commit: $COMMIT" >> "$GITHUB_STEP_SUMMARY"
+          echo 'make test, make pdf, and make check passed; visual inspection is still required.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload before/after documents, diff, and build logs
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: paper-i-audit-review
+          path: |
+            .build/review/**
+            .build/**/*.log
+            .build/**/build-console.txt
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
