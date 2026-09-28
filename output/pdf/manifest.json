@@ -3,10 +3,10 @@
   "documents": [
     {
       "source": "papers/01-exponential-integral-theorem/exponential-integral-theorem.tex",
-      "source_sha256": "b8752fb83f169b0f73b0d5a4e74072717f13bc0fe6ffa32199a0254e8e7cbbdc",
+      "source_sha256": "fb5a27bf21499182702770a14048f88f32f71227b4caa7bfa2cb3faa3342645c",
       "pdf": "output/pdf/exponential-integral-theorem.pdf",
-      "pdf_sha256": "0ec462b7ab14876bbbf263b6982b8fa52823e974973c65c8922edba75876c01d",
-      "pages": 13
+      "pdf_sha256": "474a91bb1d56ae64221326f7df9010fac2eb0f73bc24472f668d9c5422786fa9",
+      "pages": 14
     },
     {
       "source": "papers/02-compact-polynomial-line-kz/linear-kz-affine-line.tex",

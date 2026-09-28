@@ -233,6 +233,17 @@ exponential-polynomial identity produces vanishing polynomial moments, and
 a Cauchy transform on a finite tree forces all inverse-branch densities to
 vanish.
 
+\paragraph{Scope of the differential form.}
+The fixed form $dx$ is essential.  For $q(x)=x(x-1)$ and
+$r(x)=2x^2-x+1$, one has
+\[
+  r(x)e^{q(x)}=\frac{d}{dx}\bigl(xe^{q(x)}\bigr),
+  \qquad \int_0^1 r(x)e^{q(x)}\,dx=1.
+\]
+Yet the function $\int_0^1 r(x)e^{zq(x)}\,dx$ is not identically zero:
+its value at $z=0$ is $7/6$.  Thus \cref{thm:rigidity} does not extend
+unchanged to arbitrary polynomial amplitudes.
+
 \section{The moment system}
 
 We use the standard definition: an entire function
@@ -355,7 +366,8 @@ Formula \eqref{eq:coefficient-formula} shows that
 $\delta_m u_{j,\ell}$ is an algebraic integer for every $0\le\ell\le m$:
 indeed, $d^\ell\gamma_{\ell,k}$, $d d_\alpha$, and
 $d^{j+k+1}\alpha^{j+k+1}$ are integral, while
-$k\le n\ell\le nm$.  Since
+$k\le n\ell\le nm$, and the total exponent of $d$ needed for each term
+satisfies $\ell+j+k+2\le(n+1)m+j+2$.  Since
 $\log\operatorname{lcm}(1,\ldots,N)=O(N)$, \eqref{eq:arch-bound} and
 \eqref{eq:common-denominator} imply
 \[
@@ -379,7 +391,9 @@ When $q(x)=ax+b$ is linear, the explicit identity
 shows directly that $I_{q,\Delta}$ is also an $E$-function.
 
 We use the following linear form of Beukers' refinement of the
-Siegel--Shidlovskii theorem \cite{Beukers}.
+Siegel--Shidlovskii theorem
+\cite[Theorem~3.2 and Lemma~3.1]{Beukers}.  No linear independence
+hypothesis on the coordinates is required.
 
 \begin{theorem}[Beukers, linear lifting]\label{thm:Beukers}
 Let $\mathbf F=(F_1,\ldots,F_N)^{\mathsf T}$ be a vector of $E$-functions
@@ -420,13 +434,16 @@ Maschke's theorem.  The trace map splits it as
   \qquad \Lcal^0=\ker(\Tr:\Lcal\to\C_{V_0}).
 \]
 
-The map $q$ is finite, hence proper and small.  The small-map form of the
-decomposition theorem gives
+The map $q$ is finite, hence proper and small.  The small-map
+intermediate-extension identity
+\cite[Remark~4.2.4]{deCataldoMigliorini} gives
 \begin{equation}\label{eq:small-map}
-  Rq_*\C_{\Aone_x}[1]\simeq\operatorname{IC}(\Lcal),
+  Rq_*\C_{\Aone_x}[1]\simeq\operatorname{IC}(\Lcal).
 \end{equation}
-so this perverse sheaf is semisimple
-\cite{deCataldoMigliorini}.  Under the Riemann--Hilbert correspondence and
+Intermediate extension preserves direct sums and takes irreducible local
+systems to simple perverse sheaves.  Thus the semisimplicity of $\Lcal$
+makes this perverse sheaf semisimple.  Under the Riemann--Hilbert
+correspondence and
 its compatibility with proper direct image, the regular holonomic
 $\Dmod$-module $q_+\Ocal_{\Aone_x}$ is therefore semisimple; the constant
 summand of $\Lcal$ corresponds to $\Ocal_{\Aone_t}$
@@ -437,6 +454,9 @@ Use a Fourier variable $\tau$ and the Weyl-algebra convention
   t\longmapsto-\partial_\tau,
   \qquad \partial_t\longmapsto\tau.
 \end{equation}
+This is the inverse convention to the transform with kernel $e^{t\tau}$
+in \cite[\S1.3.b]{SabbahFourier}; our convention corresponds to the
+kernel $e^{-t\tau}$.
 Fourier transformation is an exact equivalence on holonomic Weyl modules
 and preserves simple objects and direct sums.  The transform of
 $\Ocal_{\Aone_t}$ is supported at $\tau=0$, hence disappears after
@@ -463,8 +483,11 @@ After \eqref{eq:Fourier-convention}, the transformed generator satisfies
   \qquad
   (\partial_x+\tau q'(x))\widehat\delta_q=0.
 \]
-The generic direct image along the $x$-line is therefore the degree-zero
-cohomology of
+In particular,
+$\partial_x(p\widehat\delta_q)=(p'-\tau q'p)\widehat\delta_q$:
+the relation on the generator induces a minus sign in the differential
+on coefficient polynomials.  The generic direct image along the $x$-line
+is therefore the degree-zero cohomology of
 \[
   \C(\tau)[x]
   \xrightarrow{\ \partial_x-\tau q'(x)\ }
@@ -479,8 +502,9 @@ $x$-degree than $p'$.  Hence the generic transform is
   \qquad
   \nabla_{\partial_\tau}[p]=[\partial_\tau p-qp].
 \end{equation}
-This is the standard algebraic Fourier--Laplace direct-image model; see
-\cite{SabbahFourier} for the convention and construction.
+This is the algebraic Fourier--Laplace direct-image construction of
+\cite[\S1.3.b]{SabbahFourier}, with the inverse convention fixed in
+\eqref{eq:Fourier-convention}.
 
 Pulling \eqref{eq:generic-Fourier} back by $\tau=-z$ gives
 \begin{equation}\label{eq:twisted-module}
@@ -488,6 +512,10 @@ Pulling \eqref{eq:generic-Fourier} back by $\tau=-z$ gives
   \C(z)[x]\big/(\partial_x+zq'(x))\C(z)[x],
   \qquad
   \nabla_{\partial_z}[p]=[\partial_zp+qp].
+\end{equation}
+The connection descends to this quotient because
+\begin{equation}\label{eq:twisted-commutator}
+  [\partial_z+q,\partial_x+zq']=q'-q'=0.
 \end{equation}
 The classes of $1,x,\ldots,x^{n-2}$ form a basis: the relation
 $[zq'p]=-[p']$ reduces every higher monomial, while degree comparison proves
@@ -555,26 +583,54 @@ $\pi_\lambda$ be its spectral projection, and put
   \overline D_\lambda
   =\pi_\lambda\mathsf D|_{E_\lambda}.
 \]
-For each $\tau$ with $\lambda_\tau=\lambda$, the operator
-$\overline D_\lambda$ preserves the span of
-$g_{\tau,1},\ldots,g_{\tau,m_\tau}$.  In this ordered basis its diagonal
-is
-\begin{equation}\label{eq:local-spectrum}
-  -\frac{m_\tau}{m_\tau+1},
-  -\frac{m_\tau-1}{m_\tau+1},\ldots,
-  -\frac1{m_\tau+1}.
-\end{equation}
-Indeed, if $y=x-\tau$ and
-$q-\lambda_\tau=ay^{m_\tau+1}+O(y^{m_\tau+2})$, then comparison of the
-leading terms of $g_{\tau,k}$ and
+Fix $\tau$ with $\lambda_\tau=\lambda$, and write $m=m_\tau$.
+Define
 \[
-  -\left(\frac{q-\lambda_\tau}{(x-\tau)^k}\right)'
+  F_{\tau,0}=0,\qquad
+  F_{\tau,k}=\Span_\C\{g_{\tau,1},\ldots,g_{\tau,k}\}
+  \quad(1\le k\le m).
 \]
-gives the corresponding diagonal entry
-$-(m_\tau+1-k)/(m_\tau+1)$.  If $\sigma\ne\tau$ has the same critical
-value, the latter derivative vanishes at $\sigma$ to order at least
-$m_\sigma$; hence its component in the $\sigma$-factor of
-$\C[x]/(q')$ is zero.  This also proves the asserted block preservation.
+We claim the explicit flag relation
+\begin{equation}\label{eq:local-flag}
+  \overline D_\lambda g_{\tau,k}
+  +\frac{m+1-k}{m+1}g_{\tau,k}
+  \in F_{\tau,k-1}
+  \qquad(1\le k\le m).
+\end{equation}
+To prove it, write $y=x-\tau$ and
+$q-\lambda=ay^{m+1}+O(y^{m+2})$, with $a\ne0$.  Euclidean division gives
+\[
+  \mathsf Dg_{\tau,k}
+  =-\left(\frac{q-\lambda}{(x-\tau)^k}\right)',
+\]
+so
+\begin{align*}
+  g_{\tau,k}&=(m+1)a y^{m-k}+O(y^{m-k+1}),\\
+  \mathsf Dg_{\tau,k}&=-(m+1-k)a y^{m-k}+O(y^{m-k+1}).
+\end{align*}
+Their combination in \eqref{eq:local-flag} therefore vanishes at $\tau$
+to order at least $m-k+1$.  If $\sigma\ne\tau$ has the same critical
+value, then $(x-\tau)^{-k}$ is regular at $\sigma$, while $q-\lambda$
+vanishes there to order $m_\sigma+1$.  Hence
+$\mathsf Dg_{\tau,k}$ vanishes at $\sigma$ to order at least $m_\sigma$,
+and its component in that factor of $\C[x]/(q')$ is zero.
+
+Under the Chinese remainder decomposition, $F_{\tau,k-1}$ consists
+precisely of the classes supported in the $\tau$-factor and divisible
+there by $y^{m-k+1}$.  Projection by $\pi_\lambda$ removes all factors
+over other critical values.  The preceding vanishing statements thus
+prove \eqref{eq:local-flag}.  In particular, every $F_{\tau,k}$ is
+$\overline D_\lambda$-invariant.  On each $F_{\tau,m}$ the matrix in the
+ordered basis $g_{\tau,1},\ldots,g_{\tau,m}$ is triangular, with diagonal
+\begin{equation}\label{eq:local-spectrum}
+  -\frac{m}{m+1},
+  -\frac{m-1}{m+1},\ldots,-\frac1{m+1}.
+\end{equation}
+As $\tau$ ranges over the critical points with value $\lambda$, these
+lists give the full spectrum of $\overline D_\lambda$, with
+multiplicities.  In particular, all its eigenvalues lie in $(-1,0)$,
+including when distinct critical points have the same value and different
+ramification indices.
 
 Suppose
 \[
@@ -588,8 +644,9 @@ The top two coefficients of the transposed equation give
   dQ_d=[Q_{d-1},\mathsf C]+[Q_d,\mathsf D].
 \end{equation}
 The first identity makes $Q_d$ block diagonal for the eigenspace
-decomposition of $\mathsf C$.  Projecting the second identity to a
-nonzero $\lambda$-block yields
+decomposition of $\mathsf C$.  Choose a critical value $\lambda$ for
+which $Q_{d,\lambda}\ne0$; the value $\lambda=0$ is allowed.
+Projecting the second identity to this block yields
 \[
   dQ_{d,\lambda}
   =[Q_{d,\lambda},\overline D_\lambda].
@@ -669,8 +726,11 @@ Since $\Ecal$ is stable under differentiation, this proves that $\Rcal$
 is a differential submodule of the dual homogeneous connection.  By
 \cref{cor:constant-splitting},
 $\Rcal=W\otimes_\C\C(z)$ for a constant $C$- and $D$-invariant subspace
-$W$.  Equation \eqref{eq:lifted} puts $\boldsymbol\phi$ in $\Rcal$, so
-its value at $1$ lies in $W$.  Hence the constant row
+$W$.  Equation \eqref{eq:lifted} puts $\boldsymbol\phi$ in $\Rcal$.
+Every constant linear form annihilating $W$ therefore annihilates
+$\boldsymbol\phi(z)$ identically, and hence also annihilates
+$\boldsymbol\phi(1)$.  Thus $\boldsymbol\phi(1)\in W$, without
+specializing any rational basis.  Hence the constant row
 $\mathbf e_0=(1,0,\ldots,0)$ belongs to $W$, and
 $U_0=\mathbf e_0\mathbf U$ belongs to $\Ecal$.
 
@@ -707,11 +767,30 @@ strictly between $-1$ and $0$ by \eqref{eq:D-spectrum}; none is a negative
 integer.  Thus every $\mathbf r_\lambda$ is polynomial, and so are the
 coefficients $p_\lambda$ in \eqref{eq:exp-poly}.
 
-It remains only to descend their coefficients.  The Taylor coefficients of
-$U_0$ and all $\lambda\in\Lambda$ lie in $\Qbar$.  Applying any
-automorphism of $\C$ fixing $\Qbar$ to \eqref{eq:exp-poly}, and using the
-uniqueness of the expansion over $\C(z)$, fixes every $p_\lambda$.
-Therefore $p_\lambda\in\Qbar[z]$.
+It remains to show that their coefficients are algebraic.  Choose an
+integer $d\ge0$ bounding the degrees of all the $p_\lambda$, write
+$p_\lambda(z)=\sum_{k=0}^d a_{\lambda,k}z^k$, and put
+$M=(d+1)|\Lambda|$.  Differentiating \eqref{eq:exp-poly} at $0$ gives
+\begin{equation}\label{eq:finite-descent}
+  U_0^{(m)}(0)
+  =\sum_{\lambda\in\Lambda}\sum_{k=0}^d
+     a_{\lambda,k}
+     \left.\frac{d^k}{dt^k}t^m\right|_{t=\lambda}
+  \qquad(0\le m<M).
+\end{equation}
+The square coefficient matrix has algebraic entries and is invertible.
+Indeed, its transpose is the Hermite evaluation map
+\[
+  \Qbar[t]_{<M}\longrightarrow\Qbar^M,
+  \qquad f\longmapsto
+  \bigl(f^{(k)}(\lambda)\bigr)_{\lambda\in\Lambda,\,0\le k\le d}.
+\]
+A polynomial in its kernel is divisible by
+$\prod_{\lambda\in\Lambda}(t-\lambda)^{d+1}$, of degree $M$, so must
+vanish.  Thus the map is injective and hence invertible.  All derivatives
+$U_0^{(m)}(0)$ are algebraic by \eqref{eq:coefficient-formula}; solving
+\eqref{eq:finite-descent} yields $a_{\lambda,k}\in\Qbar$.  Therefore
+$p_\lambda\in\Qbar[z]$.
 \end{proof}
 
 \section{Moments, Cauchy transforms, and functional relations}
