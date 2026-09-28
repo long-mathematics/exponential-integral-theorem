@@ -445,6 +445,16 @@ so an unreduced differential does not retain the same decomposition as $z$
 varies.  This is why \cref{thm:transfer} is stated for reduced
 polynomials $s_j$, while the general formal theorem first applies
 \cref{lem:twisted-reduction} at $z=1$.
+
+For example, take $q(x)=x(x-1)$, $r(x)=2x^2-x+1$, and
+$\Delta=[1]-[0]$.  Then $r=R'+q'R$ with $R=x$, so $s=0$ and
+\[
+  \int_0^1 r(x)e^{q(x)}\,dx
+  =\bigl[xe^{q(x)}\bigr]_0^1=1.
+\]
+Nevertheless, $I_{q,r,\Delta}(0)=7/6$, so the deformed function is not
+identically zero.  The algebraic value at $1$ is entirely an endpoint term;
+the reduced transfer theorem cannot be applied to the unreduced function.
 \end{remark}
 
 \section{The moment package from Paper I}\label{sec:moment-package}
@@ -528,8 +538,9 @@ then there are polynomials $A_1(z),\ldots,A_s(z)\in\Qbar[z]$ such that
 \end{theorem}
 
 \begin{proof}
-This is the degree-one case of Beukers' complete lifting theorem
-\cite[Theorems~1.3 and~3.2]{Beukers}.
+This is the linear lifting theorem
+\cite[Theorem~3.2 and Lemma~3.1]{Beukers}.  No linear independence
+hypothesis on the coordinates is required.
 \end{proof}
 
 \begin{lemma}[Distinct exponential functions]\label{lem:distinct-exponentials}
@@ -746,7 +757,9 @@ By \cref{cor:constant-submodules},
 \]
 for a constant $C,D$-invariant row subspace $W$.  The row
 $\boldsymbol\phi$ in \eqref{eq:lifted-relation} belongs to $\Rcal$ and is
-regular at $1$, so $v=\boldsymbol\phi(1)\in W$.  Hence the constant row
+regular at $1$.  Choose a constant matrix $T_W$ whose columns span the
+annihilator of $W$.  Then $\boldsymbol\phi(z)T_W=0$, and evaluation at
+$1$ gives $vT_W=0$.  Thus $v\in W$.  Hence the constant row
 $v$ belongs to $\Rcal$, and
 \begin{equation}\label{eq:F-in-E}
   F=v\mathbf U\in\Ecal_\Lambda.
@@ -796,11 +809,36 @@ $(-1,0)$, so this is impossible.  Thus every $\mathbf r_\lambda$ is a
 polynomial vector, and \eqref{eq:F-in-E} gives
 \eqref{eq:F-exp-polynomial} with $p_\lambda\in\C[z]$.
 
-Finally, $F$ has Taylor coefficients in $\Qbar$, and every
-$\lambda\in\Lambda$ is algebraic.  Applying any automorphism of
-$\C/\Qbar$ coefficientwise to \eqref{eq:F-exp-polynomial} and using the
-uniqueness furnished by \cref{lem:distinct-exponentials} shows that every
-$p_\lambda$ is fixed.  Hence $p_\lambda\in\Qbar[z]$.
+Finally, the coefficients of the $p_\lambda$ are algebraic by a finite
+Hermite-interpolation argument.  If every $p_\lambda$ is zero, there is
+nothing to prove.  Otherwise choose an integer $\ell\ge1$ such that
+$\deg p_\lambda<\ell$ for every $\lambda$, write
+\[
+  p_\lambda(z)=\sum_{k=0}^{\ell-1}c_{\lambda,k}z^k,
+  \qquad h=\ell|\Lambda|,
+\]
+and differentiate \eqref{eq:F-exp-polynomial} at zero.  For $0\le m<h$,
+\[
+  F^{(m)}(0)
+  =\sum_{\lambda\in\Lambda}\sum_{k=0}^{\ell-1}
+    c_{\lambda,k}
+    \left.\frac{d^k}{dt^k}t^m\right|_{t=\lambda}.
+\]
+The coefficient matrix is the transpose of the matrix of the Hermite
+jet-evaluation map
+\[
+  \Qbar[t]_{<h}\longrightarrow
+  \bigoplus_{\lambda\in\Lambda}\Qbar^\ell,
+  \qquad
+  H\longmapsto
+  \bigl(H^{(k)}(\lambda)\bigr)_{\lambda,\,0\le k<\ell}.
+\]
+This map is injective: an element of its kernel is divisible by
+$\prod_{\lambda\in\Lambda}(t-\lambda)^\ell$, whose degree is $h$.
+Since the source and target both have dimension $h$, the matrix is
+invertible over $\Qbar$.  Every $F^{(m)}(0)$ is algebraic, so the unique
+solution has $c_{\lambda,k}\in\Qbar$.  Hence
+$p_\lambda\in\Qbar[z]$.
 \end{proof}
 
 \section{A common tree and the Cauchy-transform criterion}
@@ -1044,8 +1082,10 @@ Combine \cref{thm:transfer} with both directions of
 
 \begin{corollary}[Linear independence after adjoining zero-dimensional exponential periods]
 \label{cor:independence-with-points}
-If $F_1,\ldots,F_N$ are linearly independent over $\Qbar$ as entire
-functions and $\beta_1,\ldots,\beta_M$ are distinct, then
+Let $F_j=I_{q_j,s_j,\Delta_j}$ satisfy the reduced hypotheses of
+\cref{thm:transfer}, and let $\beta_1,\ldots,\beta_M\in\Qbar$ be
+distinct.  If $F_1,\ldots,F_N$ are linearly independent over $\Qbar$ as
+entire functions, then
 \[
   F_1(1),\ldots,F_N(1),e^{\beta_1},\ldots,e^{\beta_M}
 \]
@@ -1095,8 +1135,9 @@ $\rho_{j,\sigma}:Y\to\Aone_x$ satisfying
 \begin{equation}\label{eq:cover-factorization}
   q_j\circ\rho_{j,\sigma}=\pi.
 \end{equation}
-If $B\subset U(\C)$ is nonempty, connected, and simply connected, and
-$\widetilde B$ is a connected component of $\pi^{-1}(B)$, then the
+The morphism $\pi$ is finite \'{e}tale over $U$.
+If $B\subset U(\C)$ is a nonempty, connected, simply connected open set,
+and $\widetilde B$ is a connected component of $\pi^{-1}(B)$, then the
 functions
 \[
   \rho_{j,\sigma}\circ
@@ -1107,10 +1148,13 @@ are precisely the analytic inverse branches of $q_j$ on $B$.
 
 \begin{proof}
 For each $j$, put $K_j=\Qbar(x_j)$ with $t=q_j(x_j)$.  The extension
-$K_j/\Qbar(t)$ is finite separable of degree $\deg q_j$.  Let $L$ be a
-finite Galois extension of $\Qbar(t)$ containing the compositum of the
-Galois closures of all the $K_j$, and let $Y$ be the normalization of
-$\Aone_t$ in $L$.  Since $L$ is a field, $Y$ is connected; normalization
+$K_j/\Qbar(t)$ is finite separable of degree $\deg q_j$.  Inside a fixed algebraic closure of $\Qbar(t)$, let
+$K_j^{\mathrm{gal}}$ be the Galois closure of $K_j/\Qbar(t)$, and take
+\[
+  L=K_1^{\mathrm{gal}}\cdots K_N^{\mathrm{gal}}
+\]
+to be their compositum itself.  This is a finite Galois extension of
+$\Qbar(t)$.  Let $Y$ be the normalization of $\Aone_t$ in $L$.  Since $L$ is a field, $Y$ is connected; normalization
 is finite over the affine line, so $Y$ is affine; and a normal curve in
 characteristic zero is smooth.  Let $\pi$ be the normalization morphism.
 
@@ -1164,10 +1208,22 @@ gives
 Take the simultaneous cover $\pi:Y\to\Aone_t$ from
 \cref{lem:simultaneous-cover}.  Fix an edge $e$.  Choose a thin simply
 connected neighborhood $B_e$ of its interior containing no critical value,
-and a component $\widetilde B_e$ of $\pi^{-1}(B_e)$.  The lift of the
-edge interior has a compact closure $\eta_e$ in $Y(\C)$; after a harmless
-reparametrization it is a finite piecewise $C^1$ relative one-chain.  Orient
-it so that $\pi_*\eta_e=e$.
+and a component $\widetilde B_e$ of $\pi^{-1}(B_e)$.  We justify that
+the lifted edge defines an admissible relative chain.  Since $\pi$ is
+finite, it is proper, so the lift of the edge interior has compact closure
+in $\pi^{-1}(\overline e)$.  At a point over an endpoint $t_0$, a local
+holomorphic coordinate $u$ gives
+\[
+  t-t_0=u^r
+\]
+for the ramification index $r\ge1$.  This model shows that the lift has a
+unique limit at each endpoint.  Reparametrizing a terminal straight
+segment by an $r$-th power makes its lift $C^1$ up to that endpoint.
+Doing this at both ends gives a finite piecewise $C^1$ chain $\eta_e$.
+Its endpoints lie in finite fibers over the algebraic vertices of $T$;
+since $\pi$ is defined over $\Qbar$, these endpoints belong to
+$Y(\Qbar)$.  Thus $[\eta_e]\in H_1^{\mathrm{rel}}(Y)$.  Orient it so
+that $\pi_*\eta_e=\overline e$ with the chosen orientation.
 
 The morphisms from \cref{lem:simultaneous-cover}, restricted to
 $\widetilde B_e$, give all inverse branches.  Relabeling them, we obtain
@@ -1205,8 +1261,9 @@ Functoriality, \eqref{eq:cover-factorization},
     \right\rangle\\
   &=0.
 \end{align*}
-Summing over all edges and using
-\eqref{eq:edge-decomposition-formal} proves
+Each displayed identity is a separate relative-chain relation, so the
+lifts $\eta_e$ may be chosen independently for different edges.  Summing
+these identities and using \eqref{eq:edge-decomposition-formal} proves
 \eqref{eq:formal-functional-relation}.
 \end{proof}
 
