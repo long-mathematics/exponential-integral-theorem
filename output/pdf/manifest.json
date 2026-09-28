@@ -10,10 +10,10 @@
     },
     {
       "source": "papers/02-compact-polynomial-line-kz/linear-kz-affine-line.tex",
-      "source_sha256": "d1397ca7e5ba83374fb15ee31d93b5641498e3e108bec0f0f3d712fcda210889",
+      "source_sha256": "d71350aca343c4ee333af806f3bf9f26dff9b686b953726c24a761cc535a9108",
       "pdf": "output/pdf/linear-kz-affine-line.pdf",
-      "pdf_sha256": "4ce43d25441cf89e81c9daec73c6ad2e42db43f9f4d6987fe0e8ea01e7e90070",
-      "pages": 18
+      "pdf_sha256": "ad25b1094bf7f715bb0125376a5eb42e5c71fc38f26c86078a4b69058bbc0bf7",
+      "pages": 19
     },
     {
       "source": "papers/02-compact-polynomial-line-kz/linear-kz-supplement.tex",
