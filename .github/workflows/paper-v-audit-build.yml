@@ -1,0 +1,128 @@
+name: Build Paper V audited rewrite
+
+on:
+  push:
+    branches: [build/paper-v-audit-rewrite-2026-09-29]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-v-audit-rewrite-2026-09-29
+  cancel-in-progress: false
+
+jobs:
+  revise:
+    if: github.repository == 'long-mathematics/exponential-integral-theorem'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      BASE: 0bb151018dc73c9e48b847fff31fb82fd2cb9072
+      TARGET: paper-v/audit-rewrite-2026-09-29
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - name: Apply hash-checked audited text revision
+        run: |
+          mkdir -p .build/review
+          git archive --format=tar.gz "$BASE" > .build/review/baseline.tar.gz
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json, lzma, os
+          data = b''.join(Path(f'.paper-v-delivery/payload-{i}.part').read_bytes() for i in range(6))
+          assert hashlib.sha256(data).hexdigest() == '9f754f765766db01d05735df95093538bd9e2b245d9695c272e6461603f99c39'
+          payload = json.loads(lzma.decompress(data))
+          assert payload['base'] == os.environ['BASE']
+          expected = {
+              'papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex',
+              'README.md', 'notes/repository-status.md',
+              'scripts/paper_v_certificate.py', 'tests/test_paper_v_certificates.py',
+              'scripts/check_paper_v.py', 'notes/provenance/paper-v-focused-audit-2026-09-29.md',
+          }
+          assert set(payload['files']) == expected
+          p = Path('papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex')
+          old = p.read_bytes()
+          assert hashlib.sha1(b'blob '+str(len(old)).encode()+b'\0'+old).hexdigest() == '5bb57fb3d46995e8e753bdc8eea6bdf102e8bf74'
+          for path, item in payload['files'].items():
+              raw = item['content'].encode('utf-8')
+              assert hashlib.sha256(raw).hexdigest() == item['sha256'], path
+              target = Path(path)
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_bytes(raw)
+          Path('.build/review/text-hashes.json').write_text(json.dumps({p:v['sha256'] for p,v in payload['files'].items()}, indent=2)+'\n')
+          print('Applied seven hash-verified text files.')
+          PY
+      - name: Install TeX and exact-check dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils python3-sympy
+      - name: Run repository unit tests
+        run: make test
+      - name: Run extended exact Paper V checks
+        run: /usr/bin/python3 scripts/check_paper_v.py
+      - name: Build all manuscripts
+        run: make pdf
+      - name: Preserve seven unchanged snapshots and manifest entries
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          p = Path('output/pdf/manifest.json')
+          baseline = json.loads(subprocess.check_output(['git','show',os.environ['BASE']+':'+str(p)]))
+          built = json.loads(p.read_text())
+          target = 'papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex'
+          fresh = {r['source']:r for r in built['documents']}
+          for i, record in enumerate(baseline['documents']):
+              if record['source'] == target:
+                  baseline['documents'][i] = fresh[target]
+              else:
+                  subprocess.run(['git','restore','--source',os.environ['BASE'],'--worktree','--',record['pdf']],check=True)
+          p.write_text(json.dumps(baseline,indent=2)+'\n')
+          PY
+      - name: Check all committed snapshots and links
+        run: make check
+      - name: Prepare clean nine-file delivery commit
+        run: |
+          test -z "$(git ls-remote origin "refs/heads/$TARGET")"
+          git add papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex README.md notes/repository-status.md scripts/paper_v_certificate.py tests/test_paper_v_certificates.py scripts/check_paper_v.py notes/provenance/paper-v-focused-audit-2026-09-29.md output/pdf/polynomial-flag-exponential-periods.pdf output/pdf/manifest.json
+          git rm -r .paper-v-delivery .github/workflows/paper-v-audit-build.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          TREE=$(git write-tree)
+          COMMIT=$(git commit-tree "$TREE" -p "$BASE" -m 'Rewrite Paper V around audited actual boundary systems and elliptic comparison')
+          export COMMIT
+          python3 - <<'PY'
+          import os, subprocess
+          expected = {
+              'papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex',
+              'README.md', 'notes/repository-status.md',
+              'scripts/paper_v_certificate.py', 'tests/test_paper_v_certificates.py',
+              'scripts/check_paper_v.py', 'notes/provenance/paper-v-focused-audit-2026-09-29.md',
+              'output/pdf/polynomial-flag-exponential-periods.pdf', 'output/pdf/manifest.json',
+          }
+          actual = set(subprocess.check_output(['git','diff','--name-only',os.environ['BASE'],os.environ['COMMIT']],text=True).splitlines())
+          assert actual == expected, actual
+          PY
+          git diff "$BASE" "$COMMIT" -- papers/05-polynomial-flags README.md notes/repository-status.md > .build/review/source.diff
+          git diff --stat "$BASE" "$COMMIT" > .build/review/diff-stat.txt
+          printf '%s\n' "$COMMIT" > .build/review/delivery-commit.txt
+          git archive --format=tar.gz "$COMMIT" > .build/review/revised.tar.gz
+          cp .build/paper-v-exact-checks.json .build/review/
+          git push origin "$COMMIT:refs/heads/$TARGET"
+          echo "Delivery commit: $COMMIT" >> "$GITHUB_STEP_SUMMARY"
+          echo 'All repository and extended exact checks passed. Downloaded PDF inspection and normal PR CI are required before merge.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload review sources, PDFs, and logs
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: paper-v-audit-review
+          path: |
+            .build/review/**
+            .build/**/*.log
+            .build/**/build-console.txt
+            .build/paper-v-exact-checks.json
+            papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
