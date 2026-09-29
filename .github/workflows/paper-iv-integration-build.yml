@@ -1,0 +1,168 @@
+name: Paper IV audited integration
+
+on:
+  push:
+    branches: [paper-iv/standalone-repair-note-2026-09-28]
+    paths: [.github/workflows/paper-iv-integration-build.yml]
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  integration:
+    if: github.repository == 'long-mathematics/exponential-integral-theorem' && github.ref == 'refs/heads/paper-iv/standalone-repair-note-2026-09-28'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - name: Preserve the frozen and audited snapshots
+        run: |
+          BASE=0bb151018dc73c9e48b847fff31fb82fd2cb9072
+          test "$(git rev-parse origin/baseline/paper-iv-pre-repair-2026-09-28)" = "$BASE"
+          mkdir -p .build/canonical-baseline .build/audited-repair
+          git archive "$BASE" | tar -x -C .build/canonical-baseline
+          git archive cb81b7d538ffbabd96081d24e8262422dda8052a | tar -x -C .build/audited-repair
+      - name: Decode and execute only the exact reviewed integration transform
+        run: |
+          python3 - <<'PY'
+          import base64, hashlib, subprocess, zlib
+          from pathlib import Path
+          payload = Path('scripts/.paper_iv_integration.b64').read_text().strip()
+          # Correct two transport transcription errors before verifying the complete payload.
+          payload = payload.replace('RiHWeVL4tLZ', 'RiHWeVL4t4LZ').replace('C1oPhF0sp', 'C1oOhF0sp')
+          script = zlib.decompress(base64.b64decode(payload, validate=True))
+          digest = hashlib.sha256(script).hexdigest()
+          assert digest == '5995204a6bbbb5e6f32095ea60a60f88c5cc014eb646eef9a6087106b8bf54f7', digest
+          p = Path('.build/paper-iv-integration-transform.py')
+          p.write_bytes(script)
+          subprocess.run(['python3', str(p)], check=True)
+          expected = {
+              'papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex': 'bc652b2f6d9a2e94b945c2a4e42c3f4b2ac9c19e0b060047cc949271cbf218cb',
+              'papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex': 'eac3f84b331389c80e687c5530604dc5399624d64b3fac3a94549c57b9f88236'
+          }
+          for name, digest in expected.items():
+              assert hashlib.sha256(Path(name).read_bytes()).hexdigest() == digest, name
+          PY
+      - name: Install TeX and PDF tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils
+      - name: Test repository build checks
+        run: make test 2>&1 | tee .build/paper-iv-integration-make-test.txt
+      - name: Build all nine documents
+        run: make pdf 2>&1 | tee .build/paper-iv-integration-make-pdf.txt
+      - name: Restore exactly the seven unaffected snapshots and manifest entries
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          baseline = Path('.build/canonical-baseline')
+          manifest_path = Path('output/pdf/manifest.json')
+          old = json.loads((baseline / manifest_path).read_text())
+          new = json.loads(manifest_path.read_text())
+          old_by_source = {r['source']: r for r in old['documents']}
+          canonical = 'papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex'
+          note = 'papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex'
+          assert len(old_by_source) == 8
+          assert {r['source'] for r in new['documents']} == set(old_by_source) | {note}
+          untouched = {k:v for k,v in old_by_source.items() if k != canonical}
+          assert len(untouched) == 7
+          for row in untouched.values():
+              assert Path(row['source']).read_bytes() == (baseline / row['source']).read_bytes(), row['source']
+              Path(row['pdf']).write_bytes((baseline / row['pdf']).read_bytes())
+          new['documents'] = [untouched.get(r['source'], r) for r in new['documents']]
+          manifest_path.write_text(json.dumps(new, indent=2) + '\n')
+          PY
+      - name: Verify all nine snapshots, rebuilt text, hashes, and links
+        run: make check 2>&1 | tee .build/paper-iv-integration-make-check.txt
+      - name: Record verification and close the active repair ledger
+        run: |
+          python3 - <<'PY'
+          import json, re, subprocess
+          from pathlib import Path
+          baseline = Path('.build/canonical-baseline')
+          old = json.loads((baseline / 'output/pdf/manifest.json').read_text())
+          new = json.loads(Path('output/pdf/manifest.json').read_text())
+          by_source = {r['source']: r for r in new['documents']}
+          can = 'papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex'
+          note = 'papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex'
+          for row in old['documents']:
+              if row['source'] == can:
+                  continue
+              assert by_source[row['source']] == row
+              for field in ('source','pdf'):
+                  assert Path(row[field]).read_bytes() == (baseline / row[field]).read_bytes()
+          structural = json.loads(Path('.build/paper-iv-integration-structure.json').read_text())
+          report = {
+              'revision_date': '2026-09-29',
+              'baseline_commit': '0bb151018dc73c9e48b847fff31fb82fd2cb9072',
+              'audited_repair_head': 'cb81b7d538ffbabd96081d24e8262422dda8052a',
+              'baseline_reference_verified': True,
+              'seven_unaffected_sources_pdfs_and_manifest_records_unchanged': True,
+              'make_test': 'passed', 'make_pdf': 'passed', 'make_check': 'passed',
+              'canonical_document': by_source[can],
+              'repair_note': by_source[note],
+              'structure_and_aliases': structural,
+              'mathematical_status': 'assembled proof and canonical integration source-checked; no unresolved essential objection found in this pass; not independent human peer review or formal verification',
+              'visual_review': 'local 35-page canonical and 26-page note reviewed; final repository artifact comparison and normal PR CI recorded in PR before merge',
+              'local_toolchain_limitation': 'TeX Live 2025/dev full check stops only at unchanged structural companion reference-name differences; official Ubuntu 24.04 check above passed all nine documents'
+          }
+          dest = Path('notes/provenance/paper-iv-integration-build-verification.json')
+          dest.write_text(json.dumps(report, indent=2) + '\n')
+          active = {
+              'revision_date': '2026-09-29',
+              'new_document': by_source[note],
+              'original_75_note_labels_preserved': True,
+              'make_test': 'passed', 'make_pdf': 'passed', 'make_check': 'passed',
+              'mathematical_status': 'audited assembled arguments integrated into canonical Paper IV on the repair branch; final CI and merge recorded in PR',
+              'verification_record': 'notes/provenance/paper-iv-integration-build-verification.json',
+              'audit_record': 'notes/provenance/paper-iv-assembled-integration-audit-2026-09-29.md'
+          }
+          Path('notes/repairs/paper-iv-note-build-verification.json').write_text(json.dumps(active, indent=2) + '\n')
+          ledger = Path('notes/repairs/paper-iv-repair-ledger.md')
+          with ledger.open('a') as f:
+              f.write('\n\n## Canonical integration and closure review, 2026-09-29\n\n')
+              f.write('The assembled candidate at `cb81b7d` has undergone the requested source-checked proof audit, followed by integration into canonical Paper IV and an integration audit. The recorded main proof has no unresolved essential objection in this pass. This is AI-assisted review, not independent human peer review or formal verification. Earlier ledger entries and reports remain historical.\n\n')
+              f.write('The augmentation interface, normalized kernel and fibers, actual nearby-cycle bridge, fixed parts, arithmetic lifting, compatible groups, and explicit torsor/constant-field descent are integrated. The optional split criterion now requires an actual rank-one comparison and effective descent; it is not used by the main generic proof. The module-functor uniqueness hypothesis, the two-graph cohomological convention, and the Nilsson-E monodromy wording are explicit.\n\n')
+              f.write(f'Canonical Paper IV is {by_source[can]["pages"]} pages; the retained repair companion is {by_source[note]["pages"]} pages. All 63 old canonical labels and all 75 old note labels remain. Duplicate canonical lemmas have been consolidated with label aliases; numerical theorem numbering is not unchanged. Authorship, titles, contacts, and manuscript dates are preserved.\n\n')
+              f.write('See [assembled and integration audit](../provenance/paper-iv-assembled-integration-audit-2026-09-29.md) and [build and structural verification](../provenance/paper-iv-integration-build-verification.json). The official revision build passed `make test`, `make pdf`, and `make check` for all nine documents, preserving the seven unaffected snapshots. Final artifact review, normal PR CI, and the merge are recorded in the PR. The frozen baseline branch remains pinned.\n')
+          Path('scripts/.paper_iv_integration.b64').unlink()
+          allowed = {
+              can,note,'output/pdf/relative-exponential-nori-ayoub.pdf','output/pdf/paper-iv-repair-note.pdf',
+              'output/pdf/manifest.json','notes/repairs/paper-iv-repair-ledger.md',
+              'notes/repairs/paper-iv-note-build-verification.json',str(dest),'scripts/.paper_iv_integration.b64'
+          }
+          changed = set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
+          untracked = set(subprocess.check_output(['git','ls-files','--others','--exclude-standard'],text=True).splitlines())
+          assert changed | untracked <= allowed, (changed | untracked) - allowed
+          PY
+          git diff --check
+          git add papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex output/pdf/relative-exponential-nori-ayoub.pdf output/pdf/paper-iv-repair-note.pdf output/pdf/manifest.json notes/repairs/paper-iv-repair-ledger.md notes/repairs/paper-iv-note-build-verification.json notes/provenance/paper-iv-integration-build-verification.json scripts/.paper_iv_integration.b64
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Paper IV: integrate the audited realization, fixed-part, and period-torsor repairs'
+          git push origin HEAD:refs/heads/paper-iv/standalone-repair-note-2026-09-28
+      - name: Upload integrated sources, PDFs, and verification evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: paper-iv-audited-integration
+          path: |
+            papers/04-relative-exponential-nori-ayoub/
+            output/pdf/relative-exponential-nori-ayoub.pdf
+            output/pdf/paper-iv-repair-note.pdf
+            output/pdf/manifest.json
+            notes/provenance/paper-iv-assembled-integration-audit-2026-09-29.md
+            notes/provenance/paper-iv-integration-build-verification.json
+            notes/repairs/
+            scripts/.paper_iv_integration.b64
+            .build/paper-iv-integration-*
+            .build/relative-exponential-nori-ayoub/*.log
+            .build/paper-iv-repair-note/*.log
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
