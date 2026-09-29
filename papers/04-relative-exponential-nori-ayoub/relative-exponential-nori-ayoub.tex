@@ -3,97 +3,108 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
-\usepackage[margin=1.08in]{geometry}
+\usepackage[margin=1.04in]{geometry}
 \usepackage{amsmath,amssymb,mathtools,amsthm}
-\usepackage{mathrsfs}
-\usepackage{microtype}
-\usepackage{enumitem}
-\usepackage{booktabs}
-\usepackage{array}
-\usepackage{xcolor}
-\usepackage{hyperref}
-\usepackage[capitalize,noabbrev]{cleveref}
-
-\hypersetup{
-  colorlinks=true,
-  linkcolor=blue!48!black,
-  citecolor=green!35!black,
-  urlcolor=blue!55!black,
+\usepackage{aliascnt}
+\usepackage{mathrsfs,microtype,enumitem}
+\usepackage{xcolor,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=green!35!black,urlcolor=blue!55!black,
   pdftitle={Relative Exponential Fixed Parts and Functional Periods: An Exponential Nori--Ayoub Theorem},
-  pdfauthor={Christopher D. Long; Antoine-Auguste Le Blanc},
-  pdfsubject={Exponential motives, perverse Nori motives, fixed parts, differential Galois groups, functional periods},
-  pdfkeywords={exponential motive, Nori motive, Ayoub, fixed part, Fourier-Laplace transform, rapid decay, functional period}
-}
-
+  pdfauthor={Christopher D. Long; Antoine-Auguste Le Blanc}}
 \numberwithin{equation}{section}
 \setlength{\emergencystretch}{3em}
 \allowdisplaybreaks
-
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{question}[theorem]{Question}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+\newaliascnt{externalinput}{theorem}
+\newtheorem{externalinput}[externalinput]{External input}
+\aliascntresetthe{externalinput}
 \theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{warning}[theorem]{Warning}
-
-\newcommand{\Aone}{\mathbb A^1}
-\newcommand{\Gm}{\mathbb G_m}
-\newcommand{\Ga}{\mathbb G_a}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+\usepackage[capitalize,noabbrev]{cleveref}
+\crefname{externalinput}{External input}{External inputs}
+\Crefname{externalinput}{External input}{External inputs}
 \newcommand{\Q}{\mathbb Q}
 \newcommand{\C}{\mathbb C}
-\newcommand{\kbar}{\overline{k}}
-\newcommand{\MNQ}{\mathsf{MN}_{\Q}}
-\newcommand{\MN}{\mathsf{MN}}
-\newcommand{\EMN}{\mathsf{EM}_{\mathrm N}}
-\newcommand{\EMH}{\mathsf{EM}_{\mathrm H}}
-\newcommand{\MHM}{\mathsf{MHM}}
-\newcommand{\Hol}{\mathsf{Hol}}
-\newcommand{\Conn}{\mathsf{Conn}}
-\newcommand{\Loc}{\mathsf{Loc}}
-\newcommand{\Perv}{\mathsf{Perv}}
+\newcommand{\A}{\mathbb A}
+\newcommand{\Gm}{\mathbb G_m}
+\newcommand{\Ocal}{\mathcal O}
+\newcommand{\Ecal}{\mathcal E}
+\newcommand{\Mcal}{\mathcal M}
 \newcommand{\Tcal}{\mathcal T}
+\newcommand{\Dcal}{\mathcal D}
+\newcommand{\Ncal}{\mathcal N}
 \newcommand{\Ccal}{\mathcal C}
 \newcommand{\Pcal}{\mathcal P}
-\newcommand{\Ecal}{\mathcal E}
-\newcommand{\Fcal}{\mathcal F}
-\newcommand{\Ocal}{\mathcal O}
-\newcommand{\Rcal}{\mathcal R}
-\newcommand{\Mcal}{\mathcal M}
-\newcommand{\Hom}{\operatorname{Hom}}
-\newcommand{\End}{\operatorname{End}}
-\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\MN}{\mathsf{MN}}
+\newcommand{\EM}{\mathsf{EM}_{\mathrm N}}
+\newcommand{\Perv}{\mathsf{Perv}}
+\newcommand{\Conn}{\mathsf{Conn}}
+\newcommand{\VecCat}{\mathsf{Vec}}
+\newcommand{\rat}{\operatorname{rat}}
 \newcommand{\im}{\operatorname{im}}
-\newcommand{\Spec}{\operatorname{Spec}}
-\newcommand{\Pic}{\operatorname{Pic}}
-\newcommand{\gr}{\operatorname{gr}}
-\newcommand{\Fix}{\operatorname{Fix}}
-\newcommand{\real}{\operatorname{real}}
-\newcommand{\per}{\operatorname{per}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Aut}{\operatorname{Aut}}
 \newcommand{\Isom}{\operatorname{Isom}}
-\newcommand{\Gal}{\operatorname{Gal}}
-\newcommand{\trdeg}{\operatorname{trdeg}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\id}{\operatorname{id}}
 \newcommand{\dR}{\mathrm{dR}}
 \newcommand{\dRB}{\mathrm{dRB}}
-\newcommand{\rd}{\mathrm{rd}}
-\newcommand{\Betti}{\mathrm B}
+\newcommand{\B}{\mathrm B}
+\newcommand{\lis}{\mathrm{lis}}
 \newcommand{\mot}{\mathrm{mot}}
 \newcommand{\diff}{\mathrm{diff}}
-\newcommand{\const}{\mathrm{const}}
+\newcommand{\fix}{\mathrm{fix}}
 \newcommand{\PV}{\mathrm{PV}}
-\newcommand{\St}{\mathrm{St}}
-\newcommand{\rank}{\operatorname{rank}}
-\newcommand{\id}{\operatorname{id}}
+\newcommand{\pH}{{}^{p}\!H}
+\newcommand{\one}{\mathbf1}
+\newcommand{\DD}{\mathbb D}
 
 \title{Relative Exponential Fixed Parts and Functional Periods:\\
 An Exponential Nori--Ayoub Theorem}
 \author{Christopher D. Long \and Antoine-Auguste Le Blanc\thanks{Le Blanc cryptographic author identifier: \texttt{b6048125\allowbreak{}30b3535b\allowbreak{}23d6dbb0\allowbreak{}f5abe32d\allowbreak{}1ed1a9de\allowbreak{}35fb4f7d\allowbreak{}04d62cff\allowbreak{}08ea19c8}}}
 \date{August 2026}
+
+\newcommand{\Aone}{\mathbb A^1}
+\newcommand{\Ga}{\mathbb G_a}
+\newcommand{\kbar}{\overline{k}}
+\newcommand{\MNQ}{\mathsf{MN}_{\Q}}
+\newcommand{\EMN}{\mathsf{EM}_{\mathrm N}}
+\newcommand{\EMH}{\mathsf{EM}_{\mathrm H}}
+\newcommand{\MHM}{\mathsf{MHM}}
+\newcommand{\Hol}{\mathsf{Hol}}
+\newcommand{\Loc}{\mathsf{Loc}}
+\newcommand{\Fcal}{\mathcal F}
+\newcommand{\Rcal}{\mathcal R}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\gr}{\operatorname{gr}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\real}{\operatorname{real}}
+\newcommand{\per}{\operatorname{per}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\trdeg}{\operatorname{trdeg}}
+\newcommand{\rd}{\mathrm{rd}}
+\newcommand{\Betti}{\mathrm B}
+\newcommand{\const}{\mathrm{const}}
+\newcommand{\St}{\mathrm{St}}
+\newcommand{\rank}{\operatorname{rank}}
 
 \begin{document}
 \maketitle
@@ -105,29 +116,30 @@ An Exponential Nori--Ayoub Theorem}
 
 \begin{abstract}
 We construct a relative category of exponential Nori motives over a smooth
-algebraic base and prove an exponential analogue of the Nori--Ayoub functional
-period theorem.  For a lisse relative exponential motive, the maximal trivial
-subconnection of its exponential Gauss--Manin realization is induced by a
-maximal constant exponential submotive.  Over $\overline{\Q}$, for every finitely generated
-Tannakian subcategory of the generic relative Kontsevich--Zagier exponential
-envelope and every $\lambda\in\overline{\Q}^{\times}$, we obtain an exact sequence
+algebraic base and prove a relative functional-period theorem. The algebraic
+realization over $k=\overline{\Q}$ is built from the absolute de Rham
+augmentation of the Nori algebra and its relative module presentation;
+comparison, operation maps, and nonzero exponential realization are retained
+in the construction. For a lisse relative exponential motive, algebraic
+horizontal sections of its Gauss--Manin connection are induced by its
+maximal constant exponential submotive.
+
+For each finite tensor-generated subcategory of the generic relative
+Kontsevich--Zagier exponential envelope and each $\lambda\in k^\times$,
+we obtain, in compatible fiber coordinates, an exact sequence
 \[
-  1\longrightarrow G_{\diff}
-   \longrightarrow G_{\mot}
-   \longrightarrow G_{\const}
-   \longrightarrow 1.
+1\longrightarrow G_{\diff}\longrightarrow G_{\mot}
+\longrightarrow G_{\const}\longrightarrow1.
 \]
-At $\lambda=1$, the generic relative formal exponential-period map is
-injective after imposing the algebraic relations among constant exponential
-periods.
-
-The proof combines Sabbah's relative Fourier--nearby-cycle comparison with the
-arithmetic theory of $1$-motives of Huber--W\"ustholz to control differential
-characters.  Numerical relations arising only after specialization, and an
-elementary presentation of all motivic period relations, are separate
-questions.
+The proof uses the relative Fourier comparison to control rank-one Betti
+constituents and the arithmetic theory of $1$-motives to lift their algebraic
+connections. Over the actual field of constant exponential periods, the
+relative comparison algebra is Picard--Vessiot and its analytic evaluation
+is injective. The constant-field assertion is proved after comparison over
+$\C(S)$, not assumed in order to obtain that comparison. Numerical relations
+created by specialization and an elementary presentation of all categorical
+period relations are separate questions.
 \end{abstract}
-
 \tableofcontents
 
 \section{Introduction}
@@ -138,19 +150,20 @@ For the arithmetic results we work over
 \[
   k=\overline{\Q},
 \]
-and let $S$ be a smooth connected quasi-projective $k$-variety.  The
-exponentiated category and the fixed-part theorem are defined over any
-algebraically closed subfield $k\subset\C$.  We use the $k$-linear scalar
-extension of the rational Nori categories.
+and let $S$ be a smooth connected quasi-projective $k$-variety.  The exponentiated category is defined over any algebraically closed
+subfield of $\C$. In this paper all algebraic realization and fixed-part
+statements use $k=\overline{\Q}$ and a scale in $k^\times$; over a larger
+algebraically closed ground field the same categorical statements apply
+with the scale in that field. We use the $k$-linear coefficient extension
+of the rational Nori categories, separately from geometric base extension.
 
 A relative exponential period is represented schematically by a family
 \[
   s\longmapsto \int_{\gamma_s} e^{-f_s}\omega_s,
 \]
 where the de Rham class is computed with the twisted differential
-$d-df_s\wedge$ and the Betti class is a rapid-decay cycle.  Exponential periods
-admit equivalent naive, cohomological, and Nori-motivic descriptions
-\cite{CHH,CommelinHuberII,FresanJossenExp}.  In families, the resulting functions
+$d-df_s\wedge$ and the Betti class is a rapid-decay cycle.  Exponential periods admit compatible naive, cohomological, and motivic
+descriptions \cite{CHH,FresanJossenExp}.  In families, the resulting functions
 are solutions of exponential Gauss--Manin systems and admit rapid-decay integral
 representations \cite{HienRoucairol,Hien}.
 
@@ -188,7 +201,9 @@ The essential image of
 \]
 is a Serre subcategory.  The quotient in \eqref{eq:intro-EMN} is the heart of
 the exponentiated derived coefficient system associated with $D^b(\MN(-))$.
-It carries the six operations and the additive-convolution tensor product.  The
+The derived quotient carries the six operations and the additive-convolution
+tensor product. On its lisse heart we use the normalized tensor product
+and fiber functor of \cref{sec:normalization}.  The
 Nori-to-Hodge realization descends to an exact faithful functor
 \[
   R_H^{\exp}:\EMN(X)\longrightarrow\EMH(X)
@@ -197,7 +212,7 @@ compatible with these operations and with every nonzero exponential
 realization.
 \end{theorem}
 
-Fix $\lambda\in\C^\times$.  Let $S$ have dimension $d$, let
+Fix $\lambda\in k^\times$.  Let $S$ have dimension $d$, let
 $a:S\to\Spec k$ be the structure morphism, and let $N\in\EMN(S)$ be
 $\lambda$-lisse.  Set
 \begin{equation}\label{eq:intro-fixed}
@@ -229,6 +244,9 @@ differential Galois group is normal in the motivic Galois group, and
    \longrightarrow1
 \]
 is exact.
+The groups are taken in the compatible algebraic evaluation
+fiber coordinates of \cref{sec:galois}; Betti coordinates are related by
+the comparison conjugation in \cref{lem:conjugation}.
 \end{theorem}
 
 \begin{theorem}[Relative exponential Nori--Ayoub theorem]
@@ -249,137 +267,746 @@ exponential-motivic lifts.  The resulting semi-invariant subobjects yield
 normality by Andr\'e's criterion, and the comparison torsor is identified with
 the Picard--Vessiot torsor.
 
-\subsection{Organization}
+\subsection{Proof architecture and organization}
 
-\Cref{sec:background} reviews the coefficient systems and realizations.
-\Cref{sec:Virk} records two consequences of Virk's realization theory.
-The relative exponential Nori heart is constructed in \cref{sec:Nori-heart},
-and the fixed-part theorem is proved in \cref{sec:fixed}.  Differential
-characters are treated in \cref{sec:rank-one}.  The Galois exact sequence and
-functional period theorem appear in \cref{sec:Tannaka,sec:periods}, and
-\cref{sec:KZ} states the Kontsevich--Zagier consequence.  The examples in
-\cref{sec:examples} include a complete functional presentation for finite
-cyclotomic Gamma packets and isolate the classical Rohrlich--Lang problem in
-the constant Gamma values.
+The proof is ordered so that the relative period theorem is never used to
+construct its own realization functor. \Cref{sec:normalization} fixes the
+kernel, lisse tensor product, and fiber conventions. In \cref{sec:heart}
+we construct the algebraic realization from the absolute Nori de Rham
+augmentation, prove its comparison and operation compatibilities, and pass
+to the affine-line quotient. \Cref{sec:fixed} proves the algebraic fixed-part
+and dense-open extension statements. \Cref{sec:fourier,sec:arithmetic}
+supply geometricity and rank-one lifting; the optional split criterion
+requires an actual rank-one comparison and is not used for the general
+saturation argument. \Cref{sec:galois} proves Galois exactness in compatible
+fiber coordinates. \Cref{sec:pv-base-change,sec:torsor} construct the
+Picard--Vessiot comparison first over $\C(S)$ and then prove the exact
+smaller constant field. Finally \cref{sec:KZ,sec:examples} state the generic
+functional consequence and compute the cyclotomic Gamma example.
 
-\section{Background and conventions}\label{sec:background}
+\section{Normalization conventions}\label{sec:normalization}\label{sec:background}
 
-\subsection{Perverse Nori motives}
+Put $k=\overline{\Q}\subset\C$. Let $S/k$ be smooth, connected, and
+quasi-projective, of dimension $d$, and write $a:S\to\Spec k$ and
+$K=k(S)$. Unless otherwise stated, $\lambda\in k^\times$. Geometric ground
+field, coefficient field, de Rham field, and analytic constant field are not
+silently identified: algebraic connections are defined over $k$, the
+motivic categories are $k$-linear, and analytic comparison is taken after
+extension to $\C$.
 
-Let $\MNQ(X)$ be the rational category of perverse Nori motives constructed by
-Ivorra--Morel.  Throughout the paper we use its scalar extension
+All six operations in this paper use sheaf-compatible perverse
+normalizations. Derived functors are derived even when no $R$ or $L$ is
+written. A vector bundle with connection $M$ on a smooth $d$-fold corresponds
+to a perverse-normalized object, while its unshifted de Rham complex has
+terms in degrees $0,\ldots,d$.
+
+\subsection{The exponential sign}
+
+We distinguish the holonomic heart object from the derived kernel:
+\begin{equation}\label{eq:exponential-sign}
+ \Ecal^f=(\Ocal_S,d-df),\qquad
+ \mathscr K_\lambda=(\Ocal_{\A^1_t},d-\lambda\,dt),\qquad
+ \mathscr L_\lambda=\mathscr K_\lambda[-1].
+\end{equation}
+In left differential-operator notation,
+$\partial_t\cdot p=p'-\lambda p$ on $\mathscr K_\lambda$.
+A horizontal section is $e^{\lambda t}$; the dual exponential in an
+integral pairing is $e^{-\lambda t}$. Virk defines the sheaf-compatible
+derived kernel by requiring $\mathscr L_\lambda[1]$ to be this heart
+object \cite[\S6.6 and Proposition~6.8]{Virk}.
+The shift and the sign are separate conventions, both of which matter.
+At the zero graph over a point, $i_0^*\mathscr L_\lambda=k$ in degree
+zero, whereas $i_0^*\mathscr K_\lambda=k[1]$. This verifies the unit and
+would detect an omitted kernel shift.
+
+Let $\mathsf Q_S$ be the exponential quotient functor, and let
+$i_h:S\to S\times\A^1_t$ be the graph of $h\in\Ocal(S)$.
+
+\begin{lemma}[Graph realization]\label{lem:graph}
+The normalized graph object
 \[
-  \MN(X):=\MNQ(X)\otimes_{\Q}k,
+  \mathsf G_S(h):=\mathsf Q_S(i_{h,*}\one_S[d])
 \]
-and similarly scalar-extend the Hodge and exponential realization categories; we
-suppress the coefficient field from the notation.  All functors used below are
-$\Q$-linear and extend $k$-linearly; on lisse Tannakian subcategories this is
-the usual scalar extension \cite{DeligneMilne}.  We take $k$ algebraically
-closed so that finite-order rank-one characters and their idempotents are
-defined over $k$.  The Betti realization becomes a faithful exact functor
-\[
-  \operatorname{rat}_X:\MN(X)\longrightarrow
-  \Perv(X^{\mathrm{an}},k).
-\]
-Its bounded derived categories carry the four operations and nearby and vanishing
-cycles \cite{IvorraMorel}.  Terenzi constructs a canonical closed symmetric
-monoidal structure and completes the six-functor formalism
-\cite{Terenzi}.  Tubach proves that the corresponding derived categories are the
-derived categories of their constructible hearts and constructs operation-compatible
-Nori and Hodge realizations \cite{Tubach}.  We use the following consequences.
-
-\begin{enumerate}[label=\textup{(N\arabic*)},leftmargin=3em]
-\item $\operatorname{rat}_X$ is faithful and exact, and its derived extension is
-conservative.
-\item Smooth pullback with the conventional relative-dimension shift is
-$t$-exact.
-\item The six operations, tensor product, duality, and perverse cohomology commute
-with Betti realization.
-\item There is a faithful exact Hodge realization
-\[
-  R_{H,X}:\MN(X)\longrightarrow\MHM(X)
-\]
-whose derived extension commutes with the six operations.
-\end{enumerate}
-
-The categorical construction and fixed-part theorem descend from the rational
-category by exact scalar extension.  The arithmetic exponential-kernel theorem
-and the functional period theorem are stated over $\overline{\Q}$.
-
-\subsection{Exponentiation}
-
-Let $\Ccal$ be a six-functor coefficient system.  Gallauer--Pepin Lehalleur
-associate with it an exponentiated coefficient system $\Ccal_{\exp}$ whose objects
-over $X$ may be represented on $X\times\Ga$, modulo objects pulled back from $X$.
-The tensor product is additive convolution in the potential coordinate
-\cite{GallauerPepin}.  In Virk's Hodge/$D$-module model one sets
-\[
-  E(X)=D(X\times\Ga)\big/\pi_X^*D(X),
-\]
-and the quotient inherits the six operations and convolution
-\cite[Sections~3--6]{Virk}.
-
-For each $\lambda\in\C^\times$, Virk defines a realization
-\[
-  \real_\lambda:E(X)\longrightarrow D_h^b(X)
-\]
-by twisting with the exponential kernel $e^{-\lambda t}$ and integrating in the
-$t$-direction.  He proves that it commutes with the four operations and duality,
-is $t$-exact, and is faithful on the exponential heart
-\cite[Theorems~6.13, 7.5, and 7.6]{Virk}.
-
-\subsection{Rapid decay and exponential periods}
-
-For a smooth variety $X$, a regular function $f$, and an algebraic differential
-form $\omega$, the twisted de Rham complex uses $d-df\wedge$.  Its topological
-dual is rapid-decay homology.  Hien proves the perfect period pairing for flat
-algebraic connections, and Hien--Roucairol identify solutions of exponential
-Gauss--Manin systems with rapid-decay integrals
-\cite{Hien,HienRoucairol}.  Fresan--Jossen's exponential Nori category packages
-the de Rham, rapid-decay, and perverse realizations
-\cite{FresanJossenExp}.  Commelin--Habegger--Huber and
-Commelin--Huber compare the naive, cohomological, and motivic notions of
-exponential period \cite{CHH,CommelinHuberII}.
-
-\begin{proposition}[Absolute rapid-decay fiber functor]
-\label{prop:absolute-rd-input}
-For the absolute exponential Nori envelope over $k$, the perverse realization
-lands in Katz's convolution category $\Perv_0(\Aone)$.  The nearby-fiber functor
-at infinity
-\[
-  \Psi_\infty:\Perv_0(\Aone)\longrightarrow\operatorname{Vec}_k
-\]
-is exact, faithful, and symmetric monoidal.  On an elementary exponential pair,
-its value is canonically identified with rapid-decay Betti cohomology, compatibly
-with the twisted de Rham comparison.
-\end{proposition}
-
+realizes the connection $\Ecal^{\lambda h}$ at scale $\lambda$. In
+particular, the graph potential realizing $\Ecal^f$ is $h=f/\lambda$.
+\end{lemma}
 \begin{proof}
-This combines Katz's convolution theorem with the perverse realization of
-Fres\'an--Jossen and its comparison with rapid-decay cohomology; see
-\cite{KatzESDE,FresanJossenExp} and
+Let $p:S\times\A^1\to S$ and $\mu:S\times\A^1\to\A^1$ be the
+projections. The algebraic realization constructed in
+\cref{thm:algebraic-exponential} tensors with
+$\mu^*\mathscr L_\lambda$ and applies $p_!$. Since $p i_h=\id_S$ and
+the graph is proper, projection formula reduces it to
+$\one_S[d]\otimes h^*\mathscr L_\lambda$. Its connection is
+$d-\lambda\,dh$. The $[-1]$ already in $\mathscr L_\lambda$ gives the
+unshifted rank-one local object under pullback; the remaining $[d]$ puts
+that connection in the perverse heart. There is no extra shift to remove
+and no change of sign.
+\end{proof}
+
+For example, on $\A^1_s$ at scale one, the potential $s$ gives $d-ds$,
+not $d+ds$. The two connections are not isomorphic over $k(s)$: a rational
+gauge between them would have logarithmic derivative $2$ or $-2$, whereas
+a rational logarithmic derivative tends to zero at infinity.
+
+\subsection{The lisse tensor normalization}
+
+Write $\star$ for the derived additive convolution over $S$, including the
+ordinary derived tensor product in the base direction. Its derived unit is
+$\one_S^{\exp}:=\mathsf Q_S(i_{0,*}\one_S)$. For perverse-lisse objects put
+\begin{equation}\label{eq:lisse-tensor}
+  N\otimes_{\lis}M=(N\star M)[-d],\qquad
+  \one_{S,\lis}=\one_S^{\exp}[d].
+\end{equation}
+The associativity, symmetry, and unit constraints are transported from the
+unshifted lisse normalization by $N\mapsto N[-d]$ and its inverse.
+This transport is part of the definition; the symmetry is not an
+unadjusted restriction of the derived Koszul symmetry.
+
+Fix a direction at infinity for the absolute Betti functor. For the
+pairing with $e^{-\lambda t}$ choose the ray with
+$\theta=-\arg\lambda$, or transport an equivalent choice consistently.
+In this paper $\Psi_\infty$ denotes this chosen directional functor
+$\Psi_{e^{i\theta}\infty}$, not a direction-free canonical fiber; see
+\cite[Definition~3.5 and Theorem~3.6]{Snodgrass}.
+
+\begin{proposition}[Normalized tensor and fiber]\label{prop:normalization}\label{prop:absolute-rd-input}
+On the lisse subcategory the operations in \eqref{eq:lisse-tensor} realize
+ordinary tensor products of connections. For an algebraic point $s\in S(k)$,
+the normalized absolute restriction is $i_s^*N[-d]$. Its absolute
+rapid-decay Betti fiber, in cohomological variance, is
+\begin{equation}\label{eq:betti-fiber}
+  \omega_{\B,s}(N)
+  =\Psi_\infty\bigl(\rat^{\exp}(i_s^*N[-d])\bigr).
+\end{equation}
+In any strictly full rigid subquotient-closed lisse tensor subcategory this
+is an exact tensor fiber functor. In homological notation one must dualize
+consistently, rather than identify homology with cohomology.
+\end{proposition}
+\begin{proof}
+For two connections, the sheaf-compatible derived tensor of their
+perverse-normalized objects is their usual tensor connection shifted by
+$d$. Shifting back by $[-d]$ therefore gives the usual tensor connection
+in the heart. Realization compatibility with derived convolution gives the
+first assertion, and reflection of the heart by exact faithful realization
+gives lisseness of the result. The same calculation for the unit gives
+$\one_{S,\lis}$.
+
+A constant perverse-lisse object is $a^*C[d]$, and
+$i_s^*a^*C[d][-d]=C$. For a general lisse object, normalized restriction
+is the vector-space fiber of its connection, hence is in degree zero.
+Exact faithful realization reflects that concentration, and the usual
+fiber functor on connections is exact. Tensor compatibility follows by
+applying $i_s^*[-d]$ to \eqref{eq:lisse-tensor}.
+Finally the absolute nearby-fiber functor is exact, faithful, and tensor,
+with the rapid-decay comparison; these are the absolute convolution inputs
+of Katz and Fres\'an--Jossen, in the form recalled by
 \cite[Corollary~2.17 and Theorem~3.6]{Snodgrass}.
 \end{proof}
 
-For a geometric point $s\in S(\C)$ and a lisse object $N\in\EMN(S)$, we use
-the rapid-decay Betti fiber
+\begin{remark}[Fixed-scale duality]\label{rem:duality}
+If $\epsilon(s,t)=(s,-t)$, then
+$\rho_\lambda\epsilon^*=\rho_{-\lambda}$. Virk's actual duality formula is
 \[
-  \omega_{\Betti,s}(N)
-  :=\Psi_\infty\!\left(
-      \operatorname{rat}^{\exp}(i_s^*N)
-    \right),
+  \DD\rho_\lambda=\rho_{-\lambda}\DD,
 \]
-where $i_s^*N$ is the absolute exponential Nori motive at $s$ and
-$\Psi_\infty$ is the nearby-fiber-at-infinity fiber functor on the perverse
-realization.  For elementary exponential pairs this is the usual rapid-decay
-homology, and it is exact and monoidal on the lisse Tannakian subcategory
-\cite{FresanJossenExp,Hien,Snodgrass}.  The de Rham/rapid-decay comparison
-therefore supplies the comparison point used in \cref{sec:periods}.
+not same-scale commutation \cite[Theorem~6.13]{Virk}. On the rigid lisse
+subcategory the usual expression for normalized tensor dual is
+$\epsilon^*\DD N(-d)$: the Tate twist removes the smooth-base orientation
+twist. Evaluation and coevaluation are understood in the transported
+normalization. In particular the tensor inverse of $\mathsf G_S(h)$ is
+$\mathsf G_S(-h)$; this follows directly from graph addition and does not
+rely on a bare Verdier-duality assertion. We do not infer that every
+object of the entire perverse heart is rigid.
+\end{remark}
 
+\section{The coefficient system and the affine-line quotient}\label{sec:heart}\label{sec:Nori-heart}
 
-\section{Consequences of Virk's realization theory}\label{sec:Virk}
+\begin{externalinput}[Ordinary Nori structure and absolute comparison]
+\label{input:ordinary}
+We use the rational perverse-Nori coefficient system of
+Ivorra--Morel, Terenzi, and Tubach, with its enhanced six operations,
+exact faithful perverse Betti realization, and conservative derived Betti
+realization \cite{IvorraMorel,Terenzi,Tubach}. Two precise additional
+forms of these established inputs will be used.
 
-The following consequences of Virk's realization theory separate the categorical and differential levels.
+First, put $\mathsf{DM}(X)=\mathsf{DM}_{\mathrm{et}}(X,\Q)$ and
+$\mathsf{DN}(X)=\operatorname{Ind}D^b(\MN_{\Q}(X))$. If
+$\mathsf{Nor}^*\dashv\mathsf{Nor}_*$ is Nori realization and
+\[
+ \mathscr N_k=\mathsf{Nor}_*\one,\qquad
+ \mathscr N_X=a_X^*\mathscr N_k,
+\]
+then $\mathscr N_X\simeq\mathsf{Nor}_{X,*}\one$ and
+\begin{equation}\label{eq:nori-module-model}
+ \mathsf{DN}(X)\simeq
+ \operatorname{Mod}_{\mathscr N_X}(\mathsf{DM}(X)).
+\end{equation}
+Under this symmetric monoidal equivalence, $\mathsf{Nor}_X^*Q$ is the
+free module $\mathscr N_X\otimes Q$. The equivalence is compatible
+with pullback and the constructible six operations. These are
+Tubach's Lemma~4.12, Corollary~4.14, and Proposition~4.16; the compatibility
+is part of the construction in his \S4.2.
+
+Second, at $\Spec k$ ordinary Nori motives have the exact tensor de Rham
+fiber $d_k$ over $k$, the rational Betti fiber $b_k$, and their natural
+complex comparison. Their derived versions compute the corresponding
+geometric realization complexes, compatibly with tensor products and
+comparison. This is the \emph{absolute} mixed-realization construction,
+not a relative realization assumption; see the cellular construction and
+mixed-realization factorization in
+\cite[Theorems~7.4.17 and~7.6.5]{Harrer} and
+\cite[\S\S6--7, especially Propositions~7.1 and~7.12]{ChoudhuryGallauer}.
+We use their complex-level constructions and extend them by Ind.
+The covariant convention here is the homological one in
+Choudhury--Gallauer; when using Harrer's contravariant cohomological
+construction, take its dual on rigid geometric motives. This fixes
+variance before any comparison of complexes.
+\end{externalinput}
+
+The relative algebraic realization is constructed below from the stated
+ordinary and absolute inputs. The construction uses the \emph{absolute}
+Nori algebra in \eqref{eq:nori-module-model}; a choice of separate
+algebraic models for complex Hodge objects would not give this construction.
+
+\subsection{Algebraic geometric realization before the Nori quotient}
+
+Let $\mathscr D_k(X)$ be the Ind-completion of the bounded constructible
+regular-holonomic algebraic differential-module category on $X/k$, in
+sheaf-compatible normalization. For singular $X$, use modules supported
+on a local smooth ambient variety and Kashiwara equivalence. Transfer
+bimodules and Spencer complexes give the enhanced operations. On a smooth
+$d$-fold the unshifted tensor unit is $\Ocal_X[-d]$, not the holonomic
+heart object $\Ocal_X$.
+
+\begin{lemma}[Geometric de Rham coefficient system]\label{lem:geometric-dR}
+There is a colimit-preserving symmetric monoidal geometric realization
+\[
+ r_X:\mathsf{DM}(X)\longrightarrow\mathscr D_k(X)
+\]
+which commutes with the six operations on constructible objects. After
+$k\hookrightarrow\C$ and regular Riemann--Hilbert, it is the complexified
+Betti realization, as a morphism of coefficient systems.
+\end{lemma}
+\begin{proof}
+Use algebraic differential operators and their transfer bimodules over
+$k$, rather than analytifying and choosing a descent afterward. Their
+standard localization, base-change, projection, and smooth-purity maps
+make $\mathscr D_k$ a rational stable coefficient system. These are the
+ordinary algebraic differential-module operations; a realization model
+retaining the filtered module over $k$ together with its complex
+comparison is explicitly described in Saito's \S1.8(ii), with the
+operations developed in his \S\S2--6 \cite{SaitoMixed}. No identification
+of all such mixed sheaves with Nori motives is asserted here.
+
+For clarity, the motivic localization conditions can be checked directly.
+Etale descent is descent of the algebraic modules and transfer complexes.
+For the affine-line projection, the relative algebraic de Rham complex of
+the constant object is $\Ocal_X[t]\xrightarrow{\partial_t}
+\Ocal_X[t]$, with cohomology $\Ocal_X$ in degree zero; integration of
+polynomials is allowed in characteristic zero. Projection formula gives
+$\id\simeq R\pi_*\pi^*$. The projective-line trace identifies the
+reduced projective-line object with an invertible shifted Tate line, giving
+stability. The usual de Rham orientation gives the rational motivic
+factorization. These checks yield $r_X$ by the universal coefficient-system
+construction \cite[Theorem~7.14]{DrewGallauer}. One restricts to the
+geometric constructible image to obtain six-operation compatibility,
+using the constructible realization argument of
+\cite[Theorem~4.5 and its proof]{Tubach}; initiality alone is not being
+used to assert compatibility with every right adjoint.
+
+The relative de Rham theorem over $\C$, the trace map, and the Kunneth
+map identify this system with Betti realization on smooth geometric
+objects and their structure maps. Etale descent, affine-line localization,
+and Tate stabilization extend this as a natural symmetric monoidal
+comparison of the enhanced systems. The comparisons of adjunction and
+base-change maps are the ones induced by the transfer complexes. Thus the
+comparison is a comparison of functors and maps, not just of cohomology
+dimensions or individual isomorphism classes.
+\end{proof}
+
+\begin{lemma}[The absolute comparison in the needed form]
+\label{lem:absolute-dR-comparison}
+On the absolute enhanced categories there is a symmetric monoidal
+identification
+\begin{equation}\label{eq:absolute-compatible}
+ d_k\mathsf{Nor}_k^*\simeq r_k,
+\end{equation}
+and its complexification agrees with the actual absolute de Rham--Betti
+comparison. The identification is compatible with the counit
+$\mathsf{Nor}^*\mathsf{Nor}_*\one\to\one$.
+\end{lemma}
+\begin{proof}
+Here is the specific use of the absolute input. For a good pair, its
+Nori cohomology realizes as the algebraic relative de Rham cohomology and
+as relative Betti cohomology with their integral comparison. Morphisms of
+pairs, boundary maps, products, and Tate maps are included in this diagram.
+Apply the two realizations to the good-filtration complexes used to
+construct absolute derived Nori realization. They give the geometric
+realization complexes with the same maps: the augmentation to the
+geometric complex is the filtration spectral-sequence augmentation when
+each relative pair has cohomology in its designated degree.
+
+Use the system of good filtrations and common refinements, together with
+finite affine Cech covers, not one independently chosen filtration for
+each variety. Its refinement maps and product maps are the complex-level
+construction in \cite[\S7]{ChoudhuryGallauer} and
+\cite[Chapters~4 and~7]{Harrer}. Applying the exact realization functors
+therefore gives a natural comparison of complexes, with the tensor
+coherences supplied by that construction. Localization and Tate
+stabilization give \eqref{eq:absolute-compatible}, and Ind extends it
+from constructibles. This is the usual absolute mixed-realization
+factorization in \cref{input:ordinary}. In particular, we do not need the
+more delicate comparison of separately chosen \emph{relative} cellular
+filtrations discussed in Tubach's Remark~4.10.
+
+The de Rham--Betti comparison is natural on absolute Nori motives; apply
+that naturality to the counit, viewed as a morphism in $\mathsf{DN}(k)$.
+This proves the last assertion. No assertion that its matrix entries are
+algebraic is required.
+\end{proof}
+
+\subsection{The absolute augmentation and the relative module formula}
+
+\begin{lemma}[Extension from an augmented algebra]\label{lem:module-extension}
+Let $\mathcal A$ and $\mathcal B$ be presentable stable symmetric monoidal
+categories, let $r:\mathcal A\to\mathcal B$ preserve colimits and tensor
+products, and let $T$ be a commutative algebra of $\mathcal A$ with an
+augmentation $\alpha:r(T)\to\one_{\mathcal B}$. Then
+\begin{equation}\label{eq:abstract-module-formula}
+ F(M)=\one_{\mathcal B}\otimes^{\mathbf L}_{r(T)}r(UM)
+\end{equation}
+defines a colimit-preserving symmetric monoidal functor
+$\operatorname{Mod}_{T}(\mathcal A)\to\mathcal B$. It sends the free
+module $T\otimes Q$ to $r(Q)$. Among colimit-preserving $r$-linear functors with the specified
+identification on free modules, the functor and its compatible natural
+transformations are determined by $r$ and the action $\alpha$.
+\end{lemma}
+\begin{proof}
+Applying $r$ to the multiplication and action maps makes $r(UM)$ an
+$r(T)$-module. Derived extension of scalars along $\alpha$ gives
+\eqref{eq:abstract-module-formula}; associativity of relative tensor
+products gives its monoidal and colimit properties. For a free module the
+formula reduces to
+$\one\otimes_{r(T)}(r(T)\otimes r(Q))\simeq r(Q)$.
+
+For the determination assertion use the augmented simplicial free bar
+resolution of a $T$-module. Its terms are free modules on
+$T^{\otimes n}\otimes UM$, and its face maps are multiplication and the
+module action, with degeneracies induced by the unit. The underlying
+augmented simplicial object is split by the unit, so its geometric
+realization is $M$. A colimit-preserving $r$-linear functor with the given
+action on the unit sends this bar construction to the relative-tensor
+bar construction in \eqref{eq:abstract-module-formula}. This proves the
+assertion for all modules and all module morphisms, not just for the
+objects that happen to be free. It also proves that a compatible
+comparison of $r$ and $\alpha$ induces a coherent comparison of $F$.
+\end{proof}
+
+By the lax symmetric monoidal right adjoint, $\mathscr N_k$ is a
+commutative algebra. Define an algebra map entirely over $k$ by
+\begin{equation}\label{eq:deRham-augmentation}
+ \begin{split}
+ \alpha_k:r_k(\mathscr N_k)
+ &\simeq d_k(\mathsf{Nor}_k^*\mathsf{Nor}_{k,*}\one)\\
+ &\xrightarrow{\ d_k(\varepsilon)\ }d_k(\one)=k.
+ \end{split}
+\end{equation}
+Here $\varepsilon$ is the adjunction counit. For $a_X:X\to\Spec k$
+put $\alpha_X=a_X^*\alpha_k$ under
+$r_X(\mathscr N_X)\simeq a_X^*r_k(\mathscr N_k)$.
+The map $\alpha_k$ is a \emph{de Rham augmentation}. It is not evaluation
+of a numerical period algebra at an alleged algebraic period point.
+
+\begin{theorem}[Algebraic realization and comparison interface]
+\label{thm:algebraic-interface}
+For quasi-projective $X/k$, under \eqref{eq:nori-module-model} set
+\begin{equation}\label{eq:relative-algebraic-realization}
+ R_{\dR,X}(M)=
+ \one_{\mathscr D_k(X)}\otimes^{\mathbf L}_{r_X(\mathscr N_X)}
+ r_X(UM),
+\end{equation}
+using $\alpha_X$. On constructibles this is an algebraic realization over
+$k$ with the following properties.
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.5em]
+\item It is symmetric monoidal, compatible with the six operations and their
+adjunction, projection, and base-change maps, and
+$R_{\dR,X}\mathsf{Nor}_X^*=r_X$.
+\item After $k\hookrightarrow\C$, regular Riemann--Hilbert identifies it
+naturally with the complexified Betti realization. Equivalently, its
+complex algebraic differential module is the underlying differential
+module of the established Nori-to-Hodge realization.
+\item It is $t$-exact for the perverse and holonomic hearts and is exact
+faithful on those hearts. It commutes with ordinary geometric nearby and
+vanishing cycles with their canonical and variation maps.
+\item Its absolute restriction is $d_k$, with the actual absolute
+comparison, not a newly chosen fiber functor.
+\end{enumerate}
+The same statements hold after the $k$-linear coefficient extension of the
+rational Nori category.
+\end{theorem}
+\begin{proof}
+\Cref{lem:module-extension} gives the functor, its tensor structure, and
+its formula on free modules. Since the augmentation is pulled back from
+$\Spec k$, associativity and pullback of relative tensor products supply
+the pullback comparison. On the absolute category the bar lemma identifies
+the formula with $d_k$: by construction \eqref{eq:deRham-augmentation}
+is exactly its action of $r_k(\mathscr N_k)$ on the unit.
+
+For the complex comparison, write the established Betti functor on
+$\mathsf{DN}(X)$ in the module model. It is linear over the Betti
+realization of $\mathsf{DM}(X)$; its action on the unit is its own
+augmentation, pulled back from $\Spec k$. The absolute comparison and
+\cref{lem:absolute-dR-comparison} identify this augmentation with
+$\alpha_k\otimes_k\C$ under the comparison for $r_k$. Pullback identifies
+the actions over $X$. The bar lemma now identifies the two functors on
+\emph{all} modules and their morphisms. This proves (ii) as a natural
+enhanced comparison, rather than by assigning unrelated descent data to
+the Hodge realizations.
+
+We give the six-operation verification explicitly. The compact module
+category is the thick closure of the free modules on compact geometric
+motives. Indeed, these modules are compact by the free--forgetful
+adjunction, since the forgetful functor preserves filtered colimits; they
+generate, since a module with no maps from their shifts has zero underlying
+object. This is also the compact generation used in Tubach's \S4.2.
+The free modules realize as constructible regular-holonomic objects by
+\cref{lem:geometric-dR}; finite cones and retracts show that the realization
+of every compact module is bounded constructible.
+
+The exchange map for a direct image is the mate of the pullback
+comparison and the adjunction counit. On a free module
+$\mathsf{Nor}_Y^*Q$, the source uses
+$f_*\mathsf{Nor}_Y^*Q\simeq\mathsf{Nor}_X^*f_*Q$ from
+\cref{input:ordinary}, and the exchange map becomes exactly
+$r_Xf_*Q\to f_*r_YQ$. It is the geometric exchange map, not merely an
+isomorphism between its source and target: the free action is multiplication
+followed by $\alpha_X$, so naturality of the counit and the pulled-back
+augmentation identifies the two mates. This map is an equivalence by
+\cref{lem:geometric-dR}. The class of constructible objects on which an
+exchange map between exact functors is an equivalence is thick, so the
+claim follows for every compact module. The same argument applies to
+$f_!$ and the mate for $f^!$. Alternatively one obtains $f_!$ from open
+extension, proper direct image, and compactification. Duality is treated
+with the evaluation and dualizing object; internal Hom follows from
+constructible duality and tensor product. Thus all six comparisons exist
+and are isomorphisms on the category used here.
+
+Their coherences are those of the module tensor construction and
+adjunction mates. In particular, a composition of pullbacks is identified
+by the associativity of the relative tensor product, and taking mates
+respects compositions. Projection and base-change squares reduce on free
+modules to the geometric squares and are compatible with the bar
+construction. We do not deduce equality of derived morphisms merely from
+conservativity of Betti realization.
+
+After extension to $\C$, (ii) makes every perverse cohomology outside
+degree zero vanish for a Nori heart object. Faithful flatness of
+$k\hookrightarrow\C$ reflects that vanishing, proving $t$-exactness.
+If a heart object has zero algebraic realization, its Betti realization
+is zero; faithful Betti realization makes the object zero. An exact
+functor detecting zero objects is faithful by applying this observation
+to images of morphisms. This also identifies our heart functor with the
+canonical universal-abelian-hull factorization of
+$Q\mapsto{}^pH^0r_X(Q)$: after comparison its kernel is the same as that
+of perverse Betti realization, and the universal factorization is unique.
+
+For ordinary geometric cycles one can use the actual gluing diagrams.
+Unipotent cycles are stabilized kernels and cokernels formed from
+$j_!,j_*$ and the logarithm objects whose algebraic connections are the
+nilpotent logarithmic systems $d-N\,dt/t$. Their units, trace maps, and
+nilpotent endomorphisms are geometric over $k$. The functor just constructed
+preserves these diagrams and their maps. Finite Kummer pullbacks and their
+character projectors supply the other eigenvalues for geometric objects;
+over $k=\overline\Q$ those projectors are defined. This proves the ordinary
+nearby/vanishing-cycle assertion including the canonical and variation
+maps. It does not identify arbitrary \emph{irregular} moderate cycles with
+topological cycles; that separate issue is treated in
+\cref{prop:regular-cycle-bridge}.
+
+Finally extend coefficients, not the geometric base. For a finite
+coefficient field $E/\Q$ in $k$, first apply the rational realization
+with its $E$-action, then take the summand corresponding to the specified
+embedding $E\hookrightarrow k$ in $E\otimes_\Q k$. Separability makes
+that projector exact. Every object, morphism, and finite diagram in the
+$k$-linear scalar extension is defined over such a finite $E$ and then
+idempotent completion; all comparisons above commute with these
+projectors. Passing to their filtered union gives the final assertion.
+This is distinct from the geometric extension $k\hookrightarrow\C$.
+\end{proof}
+
+\begin{remark}[Scope of the realization construction]\label{rem:interface-discharge}
+The relative algebraic functor, its operation maps, and the comparison are
+provided by \eqref{eq:deRham-augmentation}--\eqref{eq:relative-algebraic-realization}.
+The relative tensor product in the formula is genuinely derived.
+Neither its $t$-exactness nor its faithfulness is automatic for a general
+augmented algebra; those conclusions were proved by the actual complex
+comparison and faithful scalar extension. Likewise, agreement on the
+objects of a generating family alone would not suffice without agreement
+on the augmentation and the bar-resolution maps.
+The standard external inputs are now the ordinary Nori module presentation,
+the ordinary geometric differential-module formalism, and the absolute
+mixed-realization construction. No relative algebraic realization theorem
+or relative period theorem is inserted as an assumption in their place.
+The construction is deliberately on enhanced categories: a statement only
+about isolated cohomology groups would not define the augmentation and
+bar comparison. The relative construction is separate from the final period argument;
+its inputs are the ordinary geometric and absolute realization theorems
+specified above.
+\end{remark}
+
+\subsection{The affine-line quotient}
+
+Fix $X$ and $\pi:X\times\A^1\to X$. Let
+$\mathcal A_X=\MN(X)$ and
+$\Ccal_X=\pi^*[1]\mathcal A_X\subset\mathcal A_{X\times\A^1}$.
+
+\begin{lemma}[Derived affine-line full faithfulness]\label{lem:affine-ff}
+The adjunction unit $\id\to R\pi_*\pi^*$ is an isomorphism. In particular
+$\pi^*$ is fully faithful on the derived categories, in all degrees.
+\end{lemma}
+\begin{proof}
+Under Betti realization the unit is the usual pullback--pushforward unit
+for the product with the contractible complex affine line, and is an
+isomorphism. The cone has zero derived Betti realization; conservativity
+makes the cone zero. Adjunction now gives
+\[
+ \Hom(\pi^*A,\pi^*B[n])=\Hom(A,B[n])
+\]
+for every $n$. This is an assertion about the actual adjunction unit, not
+merely an unspecified equivalence of objects.
+\end{proof}
+
+\begin{lemma}[Reflection of pulled-back heart objects]\label{lem:ordinary-reflection}\label{lem:constant-reflection}
+If $A\in\mathcal A_{X\times\A^1}$ and
+$\rat(A)\simeq\pi^*L[1]$ for a perverse sheaf $L$ on $X$, then
+$A\simeq\pi^*B[1]$, where $B=\pH^{-1}(R\pi_*A)$.
+\end{lemma}
+\begin{proof}
+The Betti realization of $R\pi_*A$ is $L[1]$. Its other perverse
+cohomology groups vanish, and exact faithfulness reflects their vanishing.
+Thus $R\pi_*A\simeq B[1]$. The counit
+$\pi^*B[1]\to A$ realizes as an isomorphism. Its cone is zero by
+conservativity.
+\end{proof}
+
+\begin{proposition}[Serre closure and the derived essential image]\label{prop:serre-derived}\label{lem:derived-constant}\label{prop:Serre}
+The subcategory $\Ccal_X$ is Serre. The essential image of derived
+$\pi^*$ consists precisely of the bounded complexes whose perverse
+cohomology belongs to $\Ccal_X$. It is thick and stable under perverse
+truncations.
+\end{proposition}
+\begin{proof}
+Smooth pullback with connected fibers has subquotient-closed image on
+perverse sheaves, by BBD, Corollaire~4.2.6.2. Exact Betti realization and
+\cref{lem:ordinary-reflection} give subquotient closure in the Nori heart.
+
+For extension closure, an extension of $\pi^*B[1]$ by $\pi^*A[1]$ is
+represented by a connecting morphism
+$\pi^*B[1]\to\pi^*A[2]$. By \cref{lem:affine-ff} this is the pullback
+of a morphism $B\to A[1]$. Its extension triangle is a pullback triangle,
+and $\pi^*[1]$ is $t$-exact; hence the middle heart object belongs to
+$\Ccal_X$. This proves the Serre property using the special affine-line
+adjunction, not a claim about arbitrary connected smooth fibers.
+
+The pullback of a bounded complex has cohomology in $\Ccal_X$, up to the
+fixed shift. Conversely, induct on the number of nonzero perverse
+cohomology objects of a complex $K$. A single-cohomology object is in the
+image. In a truncation triangle, the two shorter objects are in the image
+by induction. Derived full faithfulness lifts the connecting morphism, so
+its cone is again a pullback. This proves the essential-image description.
+It also gives truncation stability. A summand is in the image because its
+cohomology is a summand of the pulled-back cohomology, hence belongs to the
+Serre subcategory. Thus the image is thick.
+\end{proof}
+
+\begin{remark}[Two invalid general principles are not used]
+The pullback image for $\Gm\to\Spec k$ is not extension-closed: the
+connection $d-\left(\begin{smallmatrix}0&1\\0&0\end{smallmatrix}\right)
+dx/x$ is a nonconstant extension of two trivial connections. Likewise a
+Serre inclusion need not induce a fully faithful bounded derived functor.
+The proof above uses derived affine-line full faithfulness before
+truncation induction. It agrees with the division of responsibilities in
+\cite[Proposition~7.2 and \S7.3]{Virk}.
+\end{remark}
+
+\begin{definition}[Relative exponential Nori heart]\label{def:EMN}
+Put $\EM(X)=\MN(X\times\A^1)/\pi_X^*[1]\MN(X)$.
+The quotient heart and its realizations are constructed below.
+\end{definition}
+
+\begin{theorem}[The quotient heart and faithful realization]\label{thm:quotient}\label{thm:heart-full}
+The Verdier quotient
+\[
+ D^b(\mathcal A_{X\times\A^1})/\pi^*D^b(\mathcal A_X)
+\]
+has the induced bounded $t$-structure with heart
+$\EM(X)=\mathcal A_{X\times\A^1}/\Ccal_X$.
+Exponentiation supplies the derived six operations and derived convolution.
+Hodge realization descends to an exact faithful functor on the quotient
+heart. Composing with nonzero exponential realization gives an exact
+faithful $\rho_\lambda$, which reflects the bounded $t$-structure.
+\end{theorem}
+\begin{proof}
+By \cref{prop:serre-derived}, the localization subcategory is stable under
+truncations. The localization theorem for $t$-structures identifies the
+heart with the indicated Serre quotient. The derived operations are those
+of exponentiation \cite{GallauerPepin}; this statement does not claim
+that all six operations are exact on every heart.
+
+The Hodge functor maps the constant Serre subcategory into the corresponding
+Hodge subcategory. It thus induces an exact quotient functor. If a quotient
+object has zero Hodge image, any heart representative has Hodge realization
+pulled back from $X$, hence Betti realization pulled back from $X$.
+\Cref{lem:ordinary-reflection} puts the representative in $\Ccal_X$.
+The induced exact functor therefore detects zero objects, and is faithful:
+apply detection to the image of any morphism it kills. This argument does
+not require an arbitrary quotient morphism to lift to a morphism between
+particular chosen representatives.
+
+Virk's Theorems~7.5--7.6 give exactness and faithfulness of nonzero
+realization on the exponential Hodge heart. Composition gives the same for
+$\rho_\lambda$. Finally
+$\rho_\lambda(\pH^iK)=H^i(\rho_\lambda K)$, so exact faithfulness detects
+all cohomology vanishings and reflects the bounded $t$-structure.
+\end{proof}
+
+\begin{remark}[Absolute exponential presentation]\label{rem:absolute-FJ}
+At $X=\Spec k$, the vanishing-global-cohomology presentation of the
+exponential quotient gives the potential-line model used in the absolute
+exponential literature \cite{Virk,FresanJossenExp}. The comparison needed
+here is constructed below on representatives and their quotient morphisms;
+no equivalence between two entire absolute motivic categories is used as
+an additional input.
+\end{remark}
+
+\subsection{The algebraic exponential functor and the matching Betti fiber}
+
+\begin{theorem}[Algebraic nonzero-scale realization]
+\label{thm:algebraic-exponential}
+For $\lambda\in k^\times$ and an ordinary representative
+$A\in D^b(\MN(S\times\A^1))$, define
+\begin{equation}\label{eq:algebraic-exponential-formula}
+ \rho_{\lambda,k}(\mathsf Q_S A)
+ =p_!\bigl(R_{\dR,S\times\A^1}(A)
+             \otimes\mu^*\mathscr L_{\lambda,k}\bigr),
+ \qquad \mathscr L_{\lambda,k}=\mathscr K_{\lambda,k}[-1].
+\end{equation}
+Here $p$ and $\mu$ are the two projections and
+$\mathscr K_{\lambda,k}=(\Ocal_{\A^1_k},d-\lambda\,dt)$ is the
+holonomic heart object. The formula is a well-defined algebraic functor
+on the exponential derived quotient. It is tensor-compatible, commutes
+with $f^*,f_*,f_!,f^!$, and has duality
+\[
+ \DD\rho_{\lambda,k}=\rho_{-\lambda,k}\DD.
+\]
+It is $t$-exact and faithful on the exponential heart. Its complexification
+is Virk's realization of the Hodge realization, with its actual operation
+maps. We henceforth denote this algebraic functor by $\rho_\lambda$.
+\end{theorem}
+\begin{proof}
+All terms in \eqref{eq:algebraic-exponential-formula} are over $k$ by
+\cref{thm:algebraic-interface}. The polynomial operator
+$\partial_t-\lambda$ is bijective on $k[t]$: on a polynomial $v$ of
+degree $m$ its inverse is
+\[
+ -\sum_{j=0}^{m}\lambda^{-j-1}\partial_t^jv.
+\]
+Thus the algebraic direct image of the exponential kernel to a point
+vanishes; by duality the compactly supported direct image vanishes too.
+Projection formula now shows that the displayed functor kills every
+$p^*$-object. It therefore factors through the Verdier quotient, including
+all its morphisms, rather than merely being independent of representatives
+at the level of object classes.
+
+The identities
+\[
+ \mathrm{sum}^*\mathscr L_{\lambda,k}
+ \simeq\mathscr L_{\lambda,k}\boxtimes\mathscr L_{\lambda,k},
+ \qquad i_0^*\mathscr L_{\lambda,k}=k
+\]
+are the addition and zero-section identities for the shifted exponential
+kernel. Projection formula and Kunneth give tensor compatibility and the
+unit, with their associativity constraints; see also Virk's
+Propositions~6.4 and~6.8. Proper-support composition and base change first
+give $f_!$ and $f^*$ compatibility. The natural forget-support map
+$p_!\to p_*$ after the twist is an isomorphism on ordinary regular
+input. Indeed, after $k\hookrightarrow\C$ it is exactly Virk's
+forget-support isomorphism, proved in his Appendix~B. Algebraic base
+extension is faithfully flat and commutes with the transfer complexes, so
+it reflects this isomorphism. Duality changes the sign of the exponential
+kernel, giving the displayed scale-reversing formula and the remaining
+$f_*,f^!$ compatibilities. These are the same projection, support, and
+adjunction maps as after complexification.
+
+By \cref{thm:algebraic-interface}, the complexified ordinary input is
+the underlying module of its Hodge realization. Thus the complexification
+of \eqref{eq:algebraic-exponential-formula} is Virk's actual formula, not
+an arbitrary isomorphic connection. Virk's Theorems~7.5--7.6 prove
+$t$-exactness and heart faithfulness there. Faithful flatness reflects
+cohomology vanishings over $k$, and the faithful Hodge quotient realization
+of \cref{thm:quotient} reflects zero objects. Exactness then detects
+images of morphisms and proves faithfulness of $\rho_{\lambda,k}$.
+\end{proof}
+
+\begin{proposition}[Comparison with the chosen rapid-decay fiber]
+\label{prop:relative-Betti-interface}
+Choose the direction used in \eqref{eq:betti-fiber} consistently with
+$e^{-\lambda t}$, and let $s_0\in S(k)$ be a lisse point. The algebraic
+fiber $\omega_{v}(N)=\rho_\lambda(N)_{s_0}$ and the chosen Betti fiber
+have a natural tensor comparison
+\[
+ c_N:\omega_{\B,s_0}(N)\otimes_k\C
+       \xrightarrow{\sim}\omega_v(N)\otimes_k\C.
+\]
+On a sufficiently small simply connected lisse analytic open $B$ about
+$s_0$, these comparisons extend uniquely to a horizontal tensor
+comparison with the analytified algebraic connection. On elementary
+exponential data this is the usual rapid-decay integral comparison.
+\end{proposition}
+\begin{proof}
+Normalized restriction $i_{s_0}^*[-d]$ commutes with the realization just
+constructed. At a point its de Rham functor is the absolute exponential
+de Rham functor: the ordinary part is $d_k$ by
+\cref{thm:algebraic-interface}(iv), and the exponential part is its
+twisted algebraic direct-image formula. The directional nearby-fiber
+functor at infinity and the absolute de Rham--rapid-decay comparison
+therefore give $c_N$, functorially in the absolute exponential object.
+Equivalently, compute on a regular representative on the potential line:
+the de Rham--rapid-decay theorem and the directional nearby-fiber
+identification give the comparison of its two vector spaces. The maps
+are natural in that representative and kill the constant subcategory, so
+they descend to the quotient. This uses the period comparison of these
+realizations, not an unproved equivalence of two entire absolute motivic
+categories.
+These are the absolute comparison inputs of
+\cite{FresanJossenExp,Hien}; the directional convention and tensor fiber
+are recorded in \cite[Definition~3.5 and Theorem~3.6]{Snodgrass}.
+Cohomological variance is used on both sides; a homology pairing is
+converted to this comparison by its duality, not by identifying a homology
+space with itself as a cohomology space.
+
+Parallel transport of a flat connection extends each $c_N$ uniquely over
+$B$. For a morphism $N\to M$, the two resulting maps of connections are
+horizontal and agree at $s_0$, hence agree on $B$. The same argument for
+the tensor, symmetry, unit, and evaluation maps proves the tensor
+coherences. It applies to all subquotients because the absolute comparisons
+are already natural on the absolute exponential category and the
+algebraic realization is exact. Thus we are not inferring naturality from
+objectwise choices of a period matrix.
+
+For elementary data, rapid-decay integrals are horizontal solutions of
+the twisted Gauss--Manin connection and their values at $s_0$ are the
+absolute comparison just used \cite{HienRoucairol,Hien}. Uniqueness of
+horizontal continuation makes the two comparisons equal on $B$. In
+particular the later identity $P=Yc$ uses this specific comparison, with
+no algebraicity assertion for the entries of $c$.
+\end{proof}
+
+\subsection{Consequences of Virk's realization theory}\label{sec:Virk}
+
+In this subsection $E(X)$ denotes the exponential Hodge derived quotient.
+The following consequences also apply to our compatible realizations where
+specified.
 
 \begin{proposition}[Derived conservativity and reflection of the $t$-structure]
 \label{prop:t-reflection}
@@ -422,648 +1049,361 @@ $\mathsf{FT}_V(K)$ lies in the exponential heart.  Fourier inversion proves that
 the induced exact functor on hearts is an equivalence.
 \end{proof}
 
-\section{The relative exponentiated Nori heart}\label{sec:Nori-heart}
+\section{Fixed parts and extension from dense opens}\label{sec:fixed}
 
-Fix a quasi-projective $k$-variety $X$ and write
-\[
-  \pi=\pi_X:X\times\Aone\longrightarrow X.
-\]
-Since $\pi$ is smooth of relative dimension one, $\pi^*[1]$ is $t$-exact on
-perverse Nori motives.
-
-\begin{lemma}[Reflection of constant objects]\label{lem:constant-reflection}
-Let $A\in\MN(X\times\Aone)$.  If
-\[
-  \operatorname{rat}(A)\simeq\pi^*L[1]
-\]
-for some $L\in\Perv(X^{\mathrm{an}},k)$, then there exists
-$B\in\MN(X)$ such that $A\simeq\pi^*B[1]$.
-\end{lemma}
-
-\begin{proof}
-Set
-\[
-  B:={}^{p}H^{-1}(\pi_*A).
-\]
-Compatibility with Betti realization and $\Aone$-homotopy invariance give
-\[
-  \operatorname{rat}(B)\simeq L.
-\]
-The adjunction counit yields a morphism
-\[
-  \pi^*B[1]\longrightarrow A.
-\]
-Its Betti realization is the canonical isomorphism
-$\pi^*L[1]\to\pi^*L[1]$.  Since the derived Betti realization is conservative,
-the counit is an isomorphism.
-\end{proof}
-
-\begin{proposition}[Serre property]\label{prop:Serre}
-The essential image of
-\[
-  \pi^*[1]:\MN(X)\longrightarrow\MN(X\times\Aone)
-\]
-is closed under subobjects, quotients, and extensions.
-\end{proposition}
-
-\begin{proof}
-For perverse sheaves, the essential image of smooth pullback along a surjective
-smooth morphism with geometrically connected fibers is Serre
-\cite[Corollaire~4.2.6.2]{BBD}; Virk applies this to $\pi$ in
-\cite[Proposition~7.2]{Virk}.  Let $A$ be a subobject, quotient, or extension of
-objects in the Nori essential image.  Exactness of Betti realization places
-$\operatorname{rat}(A)$ in the corresponding Serre subcategory of perverse
-sheaves.  The conclusion follows from \cref{lem:constant-reflection}.
-\end{proof}
-
-\begin{lemma}[Derived constant subcategory]\label{lem:derived-constant}
-Let
-\[
-  \Ccal_X:=\pi^*[1]\MN(X)\subset\MN(X\times\Aone).
-\]
-The exact functor \(\pi^*[1]\) is fully faithful, and its derived functor
-identifies \(D^b(\MN(X))\) with the full triangulated subcategory of
-\(D^b(\MN(X\times\Aone))\) consisting of complexes whose perverse
-cohomology objects lie in \(\Ccal_X\).  This subcategory is stable under
-perverse truncations.
-\end{lemma}
-
-\begin{proof}
-Full faithfulness follows from adjunction and \(\Aone\)-homotopy invariance.
-By \cref{prop:Serre}, \(\Ccal_X\) is a Serre subcategory.  Tubach's
-derived-category theorem identifies the constructible derived category with the
-bounded derived category of its perverse-Nori heart.  Standard d'evissage for a
-Serre subcategory then identifies \(D^b(\Ccal_X)\) with the full subcategory
-of complexes whose perverse cohomology lies in \(\Ccal_X\); see
-\cite[Section~1.4]{BBD}.  The subcategory is therefore stable under perverse truncations.  Finally,
-\(\pi^*[1]:\MN(X)\to\Ccal_X\) is an equivalence, hence so are the
-bounded derived categories.
-\end{proof}
-
-\begin{definition}[Relative exponential Nori heart]\label{def:EMN}
-Define
-\[
-  \EMN(X)
-  :=\MN(X\times\Aone)\big/\pi^*[1]\MN(X).
-\]
+\begin{definition}[Lisse and admissible categories]\label{def:lisse-objects}
+An exponential heart object is $\lambda$-lisse when $\rho_\lambda$ is an
+algebraic vector bundle with integrable connection. A $\lambda$-admissible
+subcategory is a strictly full rigid tensor subcategory of this lisse heart,
+with tensor product $\otimes_{\lis}$, closed under subquotients. Tannakian
+arguments always take place in such a category.
 \end{definition}
 
-\begin{theorem}[Exponentiated perverse-Nori heart]\label{thm:heart-full}
-The quotient in \cref{def:EMN} is the heart of
+
+
+All tensor operations in this section are normalized as in
+\eqref{eq:lisse-tensor}. Call $N\in\EM(S)$ lisse when $\rho_\lambda(N)$
+is an algebraic vector bundle with integrable connection. Exactness,
+faithfulness, and the usual closure properties of algebraic connections
+make this a Serre subcategory. Work in its dualizable rigid envelope when
+using Tannakian language.
+
+\begin{lemma}[Lowest direct image and independent horizontal sections]\label{lem:lowest}\label{lem:horizontal-evaluation}\label{lem:lowest-direct-image}
+For a connection $M$ on a smooth connected $d$-fold,
 \[
-  D^b(\MN(X\times\Aone))
-  \big/\pi^*D^b(\MN(X)).
+ H^j(a_+M)=0\ (j<-d),\qquad
+ H^{-d}(a_+M)=H^0_{\dR}(S,M)=\Gamma(S,M)^\nabla.
 \]
-As $X$ varies, these derived categories form the exponentiation of the
-perverse-Nori coefficient system.  They carry the six operations and the
-additive-convolution tensor product.  The Hodge realization descends to an exact
-faithful operation-compatible functor
+Evaluation $\Ocal_S\otimes_k\Gamma(S,M)^\nabla\to M$ is injective and
+its image is the maximal trivial algebraic subconnection.
+\end{lemma}
+\begin{proof}
+Algebraic de Rham hypercohomology has no negative ordinary degree; the
+perverse shift is $[d]$. Its lowest group is the kernel of the degree-zero
+connection operator on global sections. This gives the displayed formula
+also for a nonaffine base.
+
+Horizontal sections independent over $k$ are independent over $K=k(S)$.
+Indeed, in a shortest nontrivial rational relation normalize one coefficient
+to one and differentiate. Minimality forces every remaining coefficient to
+be a common differential constant, hence to lie in $k$. This contradicts
+$k$-independence. Locally analytically, a horizontal section vanishing at
+one point vanishes identically; equivalently a fundamental solution
+matrix makes independent horizontal sections a constant full-rank matrix.
+Evaluation is therefore a bundle injection. Every trivial subconnection
+has a basis of global algebraic horizontal sections, proving maximality.
+\end{proof}
+
+\begin{theorem}[Algebraic exponential fixed part]\label{thm:fixed}\label{thm:fixed-part}\label{lem:constant-reflection-exp}
+Let $N$ be lisse and set
 \[
-  R_H^{\exp}:\EMN(X)\longrightarrow\EMH(X).
+ C_N=\pH^{-d}(a_*N),\qquad
+ N^{\fix}=\im\bigl(a^*C_N[d]\longrightarrow N\bigr).
 \]
+Then $\rho_\lambda(N^{\fix})$ is the maximal trivial algebraic
+subconnection of $\rho_\lambda(N)$. An object has trivial connection
+realization if and only if it is constant, namely of the form $a^*C[d]$.
+The object $N^{\fix}$ is the maximal constant subobject of $N$.
 \end{theorem}
-
 \begin{proof}
-By \cref{lem:derived-constant}, the thick subcategory being quotiented is stable
-under perverse truncations.  The localization theorem for $t$-structures therefore
-endows the Verdier quotient with a bounded $t$-structure whose heart is the Serre
-quotient in \cref{def:EMN}; compare \cite[Section~1.4]{BBD} and Virk's proof in
-\cite[Section~7]{Virk}.  Terenzi and Tubach provide a closed symmetric monoidal
-six-functor coefficient system on $D^b(\MN(-))$ \cite{Terenzi,Tubach}.
-Gallauer--Pepin Lehalleur's exponentiation theorem therefore supplies the six
-operations and convolution on the quotient \cite{GallauerPepin}.
+Operation compatibility and \cref{lem:lowest} make the perverse cohomology
+of $a_*N$ vanish below $-d$ after realization. Reflection gives that
+vanishing in the motivic category. The lowest truncation map and adjunction
+therefore define the displayed morphism. It realizes as horizontal
+evaluation. Exact realization takes its image to the maximal trivial
+subconnection.
 
-The Hodge realization commutes with pullback and carries
-$\pi^*[1]\MN(X)$ into $\pi^*[1]\MHM(X)$, so it descends to the quotient.  It is
-exact because the source and target quotient functors are exact.  To prove
-faithfulness, let $f:A\to B$ have zero image in the Hodge quotient.  Then
-$R_H(\im f)$ belongs to the Hodge constant Serre subcategory.  Its underlying
-perverse sheaf is pulled back from $X$, so \cref{lem:constant-reflection} gives
-$\im f\in\pi^*[1]\MN(X)$.  Hence $f$ was already zero in the Nori quotient.
-Compatibility with the operations is inherited from Tubach's realization and
-the functoriality of exponentiation.
+If $Q$ realizes a trivial connection, its own evaluation map
+$a^*C_Q[d]\to Q$ realizes an isomorphism, and hence is an isomorphism.
+Conversely a constant object has constant connection realization. Apply
+this to $N^{\fix}$. A morphism $a^*C[d]\to N$ corresponds by adjunction
+to $C[d]\to a_*N$. The lowest-cohomology truncation and the $t$-structure
+factor this map through $C_N[d]$. Thus every constant subobject is
+contained in $N^{\fix}$.
 \end{proof}
 
-For $\lambda\in\C^\times$ put
-\[
-  \rho_\lambda:=\real_\lambda\circ R_H^{\exp}.
-\]
+\begin{corollary}[Constants and their fiber functors]\label{cor:constants}\label{prop:constant-subquotients}
+Constant lisse objects are closed under subquotients, finite direct sums,
+normalized tensor products, and tensor duals. The functor $a^*[d]$ is
+fully faithful on the absolute heart. On the constant subcategory, the
+generic de Rham fiber is scalar extension from a $k$-valued absolute
+fiber functor, and its actual comparison matrix is independent of $s$.
+\end{corollary}
+\begin{proof}
+Subquotients of a trivial connection are trivial, so use
+\cref{thm:fixed}. The other closure properties follow in the same way or
+from normalized pullback. For full faithfulness, adjunction computes
+$\Hom(a^*C[d],a^*D[d])$ as $\Hom(C,a_*a^*D)$. By the projection formula,
+$a_*a^*D=D\otimes a_*\one_S$. Connectedness and the degree-zero direct
+image give $H^0(a_*\one_S)=\one$ and no negative cohomology. Maps from
+$C$ see just that degree-zero term, by truncation orthogonality. This gives
+$\Hom(C,D)$. Pullback and comparison for the absolute object now give
+the fiber-functor statement.
+\end{proof}
 
-\begin{definition}[Lisse and admissible Tannakian subcategories]
-\label{def:lisse-objects}
-An object $N\in\EMN(X)$ is \emph{$\lambda$-lisse} if
-$\rho_\lambda(N)$ is a vector bundle with integrable connection.  The full
-$\lambda$-lisse subcategory is a Serre tensor subcategory of $\EMN(X)$,
-because $\rho_\lambda$ is exact, faithful, and tensor-compatible and algebraic
-connections form a Serre tensor subcategory of holonomic $\mathscr D$-modules.
-
-A \emph{$\lambda$-admissible Tannakian subcategory} is a strictly full rigid
-tensor subcategory of the $\lambda$-lisse heart which is closed under
-subquotients.  All Tannakian arguments below take place in such a subcategory.
-When the scale is fixed, we suppress $\lambda$.
-\end{definition}
-
-\begin{remark}[Absolute exponential motives]\label{rem:absolute-FJ}
-For $X=\Spec k$, recollement identifies the quotient with the Nori envelope
-generated by perverse objects on $\Aone$ with vanishing global cohomology, the
-model used by Fres\'an--Jossen for absolute exponential motives
-\cite{FresanJossenExp}.
+\begin{remark}[Algebraic, not merely analytic, invariants]
+On $\A^1_s$, $(\Ocal,d-ds)$ has the analytic horizontal section $e^s$
+but no nonzero algebraic horizontal section: $p'=p$ has no nonzero
+polynomial solution. The fixed-part theorem takes algebraic horizontals.
+Finite Betti monodromy alone does not make an algebraic connection constant.
 \end{remark}
 
-\section{The invariant fixed-part theorem}\label{sec:fixed}
+Let $j:U\hookrightarrow S$ be a dense open immersion. Intermediate
+extension in the exponential heart is the image of
+$\pH^0j_!\to\pH^0j_*$; its formation commutes with exact realization.
 
-Let $S$ be smooth, connected, and of dimension $d$, let
-$a:S\to\Spec k$ be the structure morphism, and fix a scale
-$\lambda\in\C^\times$.  Throughout this section $N\in\EMN(S)$ is
-$\lambda$-lisse.
-
-\begin{definition}[Constant subcategory]
-The constant exponential subcategory of $\EMN(S)$ is the essential image of
-\[
-  a^*[d]:\EMN(\Spec k)\longrightarrow\EMN(S).
-\]
-\end{definition}
-
-\begin{lemma}[Lowest algebraic direct image]\label{lem:lowest-direct-image}
-Let $M$ be a vector bundle with integrable algebraic connection on the smooth
-$d$-fold $S$.  In the perverse normalization of algebraic $\mathscr D$-modules,
-\[
-  {}^p\!H^j(a_+M)=0\quad(j<-d),
-  \qquad
-  {}^p\!H^{-d}(a_+M)=H^0_{\dR}(S,M)=H^0_\nabla(S,M).
-\]
+\begin{lemma}[Lisse intermediate extension]\label{lem:middle}
+A lisse exponential object $N$ is canonically $j_{!*}j^*N$. Restriction
+between the lisse subcategories is fully faithful. If $Q_U\in\EM(U)$
+realizes $L|_U$ for a connection $L$ lisse on $S$, then
+$Q=j_{!*}Q_U$ is lisse and realizes $L$.
 \end{lemma}
-
 \begin{proof}
-The algebraic de Rham complex of $M$ is concentrated in ordinary degrees
-$0,\ldots,d$.  The perverse normalization shifts a connection by $d$, giving the stated
-cohomological amplitude and identifying the lowest group with algebraic
-horizontal sections; see \cite[Chapters~1 and~7]{HTT}.
+A lisse connection on $S$ has no nonzero holonomic subobject or quotient
+supported in $S\setminus U$, and is the minimal extension of its
+restriction. Exact realization reflects the absence of such boundary
+objects. The natural adjunction morphisms therefore identify $N$ with
+$j_{!*}j^*N$.
+
+A morphism on $U$ induces a morphism of intermediate extensions. The
+canonical identifications just proved extend it to $S$; a morphism with
+zero restriction has boundary-supported image, hence is zero. This proves
+full faithfulness. Finally
+$\rho_\lambda(j_{!*}Q_U)=j_{!*}(L|_U)=L$. Reflection places $Q$ in the
+lisse heart.
 \end{proof}
 
-Put
-\[
-  C_N:={}^{p}H^{-d}(a_*N)\in\EMN(\Spec k).
-\]
-By operation compatibility and \cref{lem:lowest-direct-image}, the perverse
-cohomology of $a_*N$ vanishes below degree $-d$ after applying
-$\rho_\lambda$.  Faithfulness reflects this vanishing to $\EMN$.  Hence the
-canonical truncation map $C_N[d]\to a_*N$ and adjunction give
-\[
-  \epsilon_N:a^*C_N[d]\longrightarrow N.
-\]
-Define
-\[
-  N^{\mathrm{fix}}:=\im(\epsilon_N).
-\]
-
-\begin{lemma}[Horizontal evaluation]\label{lem:horizontal-evaluation}
-Let $M=\rho_\lambda(N)$.  The realization of $\epsilon_N$ is the evaluation
-map
-\[
-  \Ocal_S\otimes_k H^0_\nabla(S,M)\longrightarrow M.
-\]
-Its image is the maximal trivial differential submodule of $M$.
-\end{lemma}
-
-\begin{proof}
-By \cref{lem:lowest-direct-image}, the realization of $C_N$ is
-$H^0_\nabla(S,M)$, and the adjunction morphism realizes as evaluation.  Its
-image is trivial.  Conversely, every trivial differential submodule has a
-basis of global algebraic horizontal sections and is therefore contained in
-the evaluation image.
-\end{proof}
-
-\begin{lemma}[Constant reflection]\label{lem:constant-reflection-exp}
-Let $Q\in\EMN(S)$ be $\lambda$-lisse.  If $\rho_\lambda(Q)$ is a trivial
-connection, then the adjunction evaluation
-\[
-  a^*\,{}^pH^{-d}(a_*Q)[d]\longrightarrow Q
-\]
-is an isomorphism.  Thus $Q$ is constant.
-\end{lemma}
-
-\begin{proof}
-After realization the displayed map is the evaluation isomorphism
-\[
-  \Ocal_S\otimes_k H^0_\nabla(S,\rho_\lambda(Q))
-  \xrightarrow{\sim}\rho_\lambda(Q).
-\]
-Exact faithfulness of $\rho_\lambda$ reflects this isomorphism.
-\end{proof}
-
-\begin{proposition}[Subquotient closure of constants]
-\label{prop:constant-subquotients}
-Inside the $\lambda$-lisse heart, the constant subcategory is closed under
-subobjects and quotients, as well as tensor products and finite direct sums.
+\begin{proposition}[Extending invertible lifts]\label{prop:extend-line}
+In the last assertion of \cref{lem:middle}, suppose $Q_U$ is invertible.
+Then $Q$ is invertible on $S$.
 \end{proposition}
-
 \begin{proof}
-A subobject or quotient of a trivial connection is trivial.  Exactness of
-$\rho_\lambda$ and \cref{lem:constant-reflection-exp} therefore show that every
-subobject or quotient of a constant $\lambda$-lisse object is constant.  Smooth pullback preserves tensor products and finite direct sums.
+Extend $Q_U^{-1}$ by intermediate extension to $Q'$. Its realization is
+$L^{-1}$, so $Q'$ is lisse. The products $Q\otimes_{\lis}Q'$ and
+$Q'\otimes_{\lis}Q$ are lisse and restrict to the unit on $U$. Applying
+\cref{lem:middle} to these products and to the unit identifies both
+products with $\one_{S,\lis}$. These isomorphisms extend the inverse
+isomorphisms on $U$ and satisfy their coherence identities by faithful
+restriction.
 \end{proof}
 
-\begin{theorem}[Invariant exponential fixed part]\label{thm:fixed-part}
-For the fixed scale $\lambda$,
-\[
-  \rho_\lambda(N^{\mathrm{fix}})
-  =\Fix\!\left(\rho_\lambda(N)\right).
-\]
-Moreover, $N^{\mathrm{fix}}$ is constant and is the maximal constant
-exponential Nori subobject of $N$.
-\end{theorem}
+\begin{remark}[What this does and does not say about opens]
+Every generic differential subquotient of a fixed lisse connection has a
+unique lisse model on $S$: take the saturated differential subobject in
+the holonomic category, then its quotient. Coherent modules with integrable
+connection on a smooth characteristic-zero variety are locally free, so
+no interior singularity is introduced. Morphisms extend by the same
+minimal-extension property. The preceding proposition allows an
+individually constructed motivic rank-one lift to be returned to that
+fixed base. It does not assert that the intersection of infinitely many
+dense opens is open, or that finite tensor generation means finitely many
+tensor constructions. The corresponding lisse-extension and full-faithfulness
+arguments apply to finite diagrams in the generic motivic category.
+\end{remark}
 
-\begin{proof}
-Exactness carries the image defining $N^{\mathrm{fix}}$ to the evaluation
-image, so the first assertion is \cref{lem:horizontal-evaluation}.  This
-realization is trivial; hence \cref{lem:constant-reflection-exp} shows that
-$N^{\mathrm{fix}}$ is constant.
+\section{Fourier fibers and ordinary geometric constituents}\label{sec:fourier}\label{sec:rank-one}
 
-Let $a^*B[d]\hookrightarrow N$ be any constant subobject.  By adjunction it
-corresponds to a morphism $B[d]\to a_*N$.  Since the perverse cohomology of
-$a_*N$ vanishes below degree $-d$, the morphism factors through
-$C_N[d]\to a_*N$.  Its adjoint factors through $\epsilon_N$, so the subobject
-is contained in $N^{\mathrm{fix}}$.
-\end{proof}
+For this section an ordinary geometric object means one in the ordinary
+Nori/Hodge realization framework, before exponentiation. On smooth dense
+opens we use the abelian subquotient-closed category of ordinary geometric
+local systems; Jacobsen--Terenzi, Corollary~5.15, identifies the two standard
+Nori and Ayoub descriptions \cite{JacobsenComparison}. No irregular
+Riemann--Hilbert correspondence is being used to algebraize a connection.
 
-\section{Differential characters and Fourier geometry}\label{sec:rank-one}
+\begin{externalinput}[The Fourier comparison used here]\label{input:fourier}
+For regular geometric input on $S\times\A^1_t$, use the normalized
+partial Fourier--Laplace transform. The finite-graph microlocalization
+result gives a connection on $S\times\Gm$ after shrinking $S$.
+For a pure polarizable minimal extension $\mathcal T$ on
+$S\times\mathbb P^1_t$, Sabbah's Proposition~5.8, Corollary~5.20, and
+sequences (5.21)--(5.22) compare the Fourier cycles at zero with ordinary
+cycles at $t=\infty$ \cite{SabbahMonodromy}. Mixed input is reduced using
+its strict weight filtration and exact transform/cycle functors.
+\end{externalinput}
 
-\subsection{Rank-one lifting}
-
-Fix a nonzero scale $\lambda$ and recall
-$\rho_\lambda=\real_\lambda\circ R_H^{\exp}$ from
-\cref{def:lisse-objects}.  Let $\Tcal\subset\EMN(S)$ be a rigid Tannakian
-subcategory of $\lambda$-lisse objects, and
-let $\Tcal_\nabla$ be the Tannakian subcategory of algebraic connections generated
-by $\rho_\lambda(\Tcal)$ and all its differential subquotients.
-
-\begin{definition}[Rank-one saturation]\label{def:RS}
-The pair $(\Tcal,\rho_\lambda)$ is rank-one saturated if for every invertible
-$L\in\Tcal_\nabla$ there is an invertible object $\mathcal L$ in the ambient
-relative exponential Nori category such that
-\[
-  \rho_\lambda(\mathcal L)\simeq L.
-\]
-\end{definition}
-
-The lift may lie in the ambient category; the associated semi-invariant is
-recovered inside an object of $\Tcal$ in \cref{sec:Tannaka}.
-
-\subsection{A split Fourier-geometric criterion}
-
-We use the following sufficient condition.
-
-\begin{definition}[Split Fourier-geometric category]\label{def:split-FG}
-We call $(\Tcal,\rho_\lambda)$ \emph{split Fourier-geometric} if, for every
-$B\in\Tcal_\nabla$, there exist a dense open $S^\circ\subset S$, a finite Galois
-cover $q:S'\to S^\circ$, and a good compactification such that:
-\begin{enumerate}[label=\textup{(FG\arabic*)},leftmargin=3.5em]
-\item the Stokes-graded connection admits a global decomposition
-\[
-  \gr^{\St}(q^*B)
-   \simeq\bigoplus_{\alpha\in A_B}
-      \Ecal^{g_\alpha}\otimes R_\alpha,
-\]
-with $g_\alpha\in\Ocal(S')$ pairwise distinct modulo constants and with
-$R_\alpha$ regular singular;
-\item every $R_\alpha$ is of geometric origin in the ordinary Nori category;
-\item the Galois descent datum on every rank-one summand
-$\Ecal^{g_\alpha}\otimes A$ with $A$ of finite order is effective in the
-relative exponential Nori category.
-\end{enumerate}
-\end{definition}
-
-\begin{lemma}[Rank-one selection of a Stokes grade]\label{lem:one-grade}
-Let $L$ be a rank-one differential subquotient of a connection satisfying
-\textup{(FG1)}.  Then, after the same finite cover,
-\[
-  q^*L\simeq\Ecal^{g_\alpha}\otimes A
-\]
-for one $\alpha$, where $A$ is a rank-one regular-singular subquotient of
-$R_\alpha$.
+\begin{lemma}[Finite graph reduction and nonzero-scale lissity]\label{lem:graphs}\label{lem:nonzero-lisse}\label{lem:finite-graph}
+For regular geometric perverse input $K_*$ on $S\times\A^1_t$, after
+shrinking $S$ there is a finite etale cover on which all dominating
+singular multisections split into pairwise disjoint graphs $t=u_i(s)$.
+The localized partial transform is a connection on $S\times\Gm$.
 \end{lemma}
-
 \begin{proof}
-Good formal decomposition and the Stokes-graded functor are exact in the abelian
-category of Stokes-filtered local systems.  A rank-one connection has one formal
-exponential factor and no off-diagonal Stokes operator.  Therefore its graded
-object is a rank-one subquotient of one summand.  Removing the selected
-exponential factor leaves a rank-one regular-singular subquotient of
-$R_\alpha$.
+Take a finite Whitney stratification adapted to the regular input. Delete
+the closures of the images of strata that do not dominate $S$. Each
+remaining proper stratum has dimension $d$: it dominates a $d$-dimensional
+base and lies properly in a $(d+1)$-fold. Its closure is generically finite
+over $S$. Normalize these finitely many multisections and shrink so that
+they are finite etale. A common finite Galois refinement splits them into
+sections. Delete the images of intersections of distinct sections. The
+characteristic variety is then contained in the zero section and the
+conormals of the resulting graphs.
+
+Apply the parameterized localized Laplace/microlocalization input with
+$z=\lambda^{-1}$. In Sabbah's Appendix~B the localized module is locally
+free over the parameter ring $\Ocal[z,z^{-1}]$, with integrable
+connection; Proposition~B.1 identifies its residual systems. The reference
+is \cite[Appendix~B, preprint p.~12, immediately before Proposition~B.1]{SabbahParameters}.
+The general parameter statement underpinning this calculation is
+\cite[Propositions~1.18 and~1.20]{DouaiSabbah}. This gives nonzero-scale
+lissity locally on the cover, which descends in the finite etale topology.
 \end{proof}
 
-\begin{lemma}[Finite monodromy of the regular factor]\label{lem:regular-finite}
-Under \textup{(FG2)}, the rank-one regular factor $A$ in
-\cref{lem:one-grade} has finite monodromy.
+\begin{lemma}[Fixed fiber and topological nearby local system]
+\label{lem:fiber-nearby}\label{prop:fiber-nearby}
+After the shrinking of \cref{lem:graphs}, a fixed nonzero Fourier fiber
+and the \emph{topological} nearby-cycle local system at $\lambda=0$
+have isomorphic underlying local systems on $S$, after forgetting the
+commuting nearby monodromy.
 \end{lemma}
-
 \begin{proof}
-Subquotients of ordinary geometric local systems are again of geometric origin.
-Lam--Litt prove that a rank-one complex local system on a smooth variety is of
-geometric origin if and only if it is torsion
-\cite[Lemma~4.2.1]{LamLitt}.  Hence $A$ has finite monodromy.  Over the algebraically closed coefficient
-field, the corresponding character idempotent in the finite \'etale
-pushforward defines an invertible Artin object.
+The local system on $S^{\mathrm{an}}\times\C^\times$ is a representation
+of $\pi_1(S)\times\mathbb Z$. Restriction to a fiber forgets the second
+operator. Topological nearby cycles have the same representation of
+$\pi_1(S)$ and retain the second operator as nearby monodromy. Choose
+a path from the fixed scale to a punctured neighborhood of zero. Changing
+its winding changes the isomorphism by a power of the commuting operator,
+not the underlying isomorphism class or its constituents.
 \end{proof}
 
-\begin{theorem}[Generic split Fourier-geometric saturation]
-\label{thm:split-saturation}
-Let $\Tcal$ be a finitely generated split Fourier-geometric rigid tensor
-subcategory.  After restriction to a suitable common dense open
-$S^\circ\subset S$, the pair $(\Tcal|_{S^\circ},\rho_\lambda)$ is rank-one
-saturated.
-\end{theorem}
-
-\begin{proof}
-Let $L\in\Tcal_\nabla$ be invertible.  By
-\cref{lem:one-grade,lem:regular-finite}, after a finite Galois cover
-\[
-  q^*L\simeq\Ecal^{g}\otimes A
-\]
-with $g$ algebraic and $A$ finite.  At the fixed scale $\lambda$, the graph
-object with potential $-g/\lambda$ realizes $\Ecal^g$ under the convention
-$\Ecal^g=(\Ocal,d-dg)$ and is invertible in the relative exponential Nori
-category.  If $m$ is the order of $A$, choose
-the finite \'etale cover which trivializes $A$.  Over $k$, the character idempotent attached to $A$ cuts out an
-invertible rank-one Artin object.  The convolution tensor product of this Artin object with the graph object
-therefore realizes $q^*L$.  Hypothesis \textup{(FG3)} then produces an invertible object over $S^\circ$ realizing $L|_{S^\circ}$.  Since
-$\Tcal$ is finitely generated, the finitely many dense opens required for its
-generators and tensor constructions may be replaced by one common dense open.
-Hence the restricted category is rank-one saturated.
-\end{proof}
-
-\subsection{Nonzero Fourier fibers and nearby cycles}
-
-Let $K$ be a regular geometric perverse-Nori object on
-$S\times\Aone_t$, and let
-\[
-  \widehat K=\operatorname{FL}_{t/S}(K)
-\]
-be its partial Fourier--Laplace transform on
-$S\times\Aone_\lambda$.  Fix $\lambda_0\in\C^\times$ and shrink $S$ so that
-\[
-  M_{\lambda_0}:=i_{\lambda_0}^{+}\widehat K
-\]
-is a connection on $S$.
-
-\begin{lemma}[Finite graph reduction]\label{lem:finite-graph}
-After shrinking $S$, there is a finite \`etale cover
-\[
-  r:S'\longrightarrow S
-\]
-and pairwise disjoint smooth algebraic graphs
-\[
-  H_i=\{t=u_i(s)\}\subset S'\times\Aone_t,
-  \qquad u_i\in\Ocal(S'),
-\]
-such that the characteristic variety of the regular holonomic
-$\mathscr D$-module underlying $r^*K$ is contained in the union of the zero
-section and the conormal bundles $T^*_{H_i}(S'\times\Aone_t)$.
-\end{lemma}
-
-\begin{proof}
-Choose an algebraic Whitney stratification of $S\times\Aone_t$ adapted to the
-Betti realization of $K$.  After deleting the images in $S$ of all strata which
-do not dominate the base, every remaining non-open stratum has dimension
-$\dim S$: the ambient variety has dimension $\dim S+1$, while a proper stratum
-dominating $S$ has dimension at least $\dim S$ and codimension at least one.
-It is therefore generically finite over $S$.  Normalize the finitely many such
-multisections, shrink once more so that they are finite \`etale, and pass to a
-common finite Galois refinement.  They then split into smooth sections.  Delete
-from $S$ the Galois-stable union of the images of all pairwise intersections;
-after pulling back this open, the graphs are pairwise disjoint.  The characteristic
-variety of a regular holonomic module constructible for the chosen Whitney
-stratification is contained in the union of the conormal varieties of the
-strata.  The open stratum contributes the zero section, and the remaining
-strata contribute the conormals of the displayed graphs.
-\end{proof}
-
-\begin{lemma}[Nonzero-scale lissity]\label{lem:nonzero-lisse}
-After shrinking $S$ further,
-\[
-  \widehat K\big|_{S\times\Gm}
-\]
-is a connection.
-\end{lemma}
-
-\begin{proof}
-Apply \cref{lem:finite-graph} and work analytically on coordinate polydiscs of
-$S'$.  Put $z=\lambda^{-1}$ on the punctured Fourier line.  In the notation of
-Sabbah's parameterized partial Laplace transform, the characteristic-variety
-hypothesis of Appendix~B, Proposition~B.1 is now satisfied by the hypersurfaces
-$H_i=\{t-u_i=0\}$.  Sabbah states on p.~40, immediately before Proposition~B.1, that the
-localized transform is a locally free $\Ocal_{S'}[z,z^{-1}]$-module of finite
-rank with an integrable connection.  Proposition~B.1 then identifies its formal
-logarithmic residual systems with the vanishing-cycle connections along the
-$H_i$.  The microlocalization and decomposition inputs are the results of
-Douai--Sabbah cited there
-\cite[Appendix~B, p.~40 and Proposition~B.1]{SabbahParameters}
-\cite[Propositions~1.18 and~1.20]{DouaiSabbah}.  Under
-$z=\lambda^{-1}$ this localized transform is
-$r^*\widehat K|_{S'\times\Gm}$.  Hence the latter is lisse.  Lissity is local for
-the finite \`etale topology, so it descends from $S'$ to $S$.
-\end{proof}
-
-By \cref{lem:nonzero-lisse}, the Betti realization of $\widehat K$ on
-$S\times\Gm$ is, up to the standard perverse shift, a local system
-$\mathscr G$.  It corresponds to a representation of
-\[
-  \pi_1(S\times\Gm)
-  \simeq\pi_1(S)\times\mathbb Z.
-\]
-We use perverse-normalized cycles
-\[
-  {}^p\!\psi_f:=R\psi_f[-1],
-  \qquad
-  {}^p\!\phi_f:=R\phi_f[-1].
-\]
-Let $\mathscr G_\psi$ denote the unshifted local system on $S$ underlying
-${}^p\!\psi_\lambda\operatorname{rat}(\widehat K)$, equipped with its commuting
-nearby-monodromy operator $T_\lambda$.
-
-\begin{proposition}[Fixed fiber versus nearby cycles]\label{prop:fiber-nearby}
-After forgetting $T_\lambda$, the local systems
-\[
-  \mathscr G_{\lambda_0}
-  \quad\text{and}\quad
-  \operatorname{For}_{T_\lambda}(\mathscr G_\psi)
-\]
-are isomorphic, though not canonically so.  Compatible basepoints and a path in
-$\Gm$ from $\lambda_0$ to a punctured neighbourhood of the origin determine
-such an isomorphism; two choices differ by a power of $T_\lambda$.  Consequently, the fixed nonzero fiber and the nearby-cycle object have the
-same Jordan--H\"older constituents as $\pi_1(S)$-representations.
+\begin{proposition}[The regular-specialization bridge]
+\label{prop:regular-cycle-bridge}
+For the partial Fourier transform of the regular geometric input used in
+\cref{input:fourier}, moderate algebraic nearby cycles at $\lambda=0$
+realize the topological nearby cycles in \cref{lem:fiber-nearby}.
+Consequently those moderate cycles and a fixed nonzero Fourier fiber have
+the same underlying $S$-local-system constituents after forgetting the
+nearby-monodromy operator. This assertion uses regular specialization
+along $\lambda=0$, not just lissity on $S\times\Gm$.
 \end{proposition}
-
 \begin{proof}
-By \cref{lem:nonzero-lisse}, $\mathscr G$ is a local system on
-$S\times\Gm$.  Such a local system is a representation of
-$\pi_1(S)\times\mathbb Z$.  Restriction to $S\times\{\lambda_0\}$ forgets the
-central $\mathbb Z$-operator.  After choosing compatible basepoints and a path
-to a punctured neighbourhood of the origin, perverse nearby cycles identify
-the same vector space and the same $\pi_1(S)$-action, while retaining the
-commuting $\mathbb Z$-operator as $T_\lambda$.  Changing the path winds around
-the origin and composes the identification with a power of $T_\lambda$.  Thus
-the underlying $S$-local systems are isomorphic, though not canonically so.
+For pure input take the regular minimal extension $\mathcal T$ in the
+$t$-direction and its Hodge-to-twistor realization. In Sabbah's notation,
+the \emph{kernel} before projective direct image is
+$\mathcal F\mathcal T=p^+\mathcal T[*\infty]\otimes e^{-t\lambda/z}$.
+Its underlying strict module is strictly specializable and regular along
+$\lambda=\lambda_0$ for every finite $\lambda_0$, including zero, by
+\cite[Proposition~4.1(ii)]{SabbahMonodromy}. Notice the contrast with
+Proposition~4.1(i), which allows irregularity along $t'=0$ at nonzero
+scale; regularity in the two different directions must not be interchanged.
+
+Use the moderate-cycle/de Rham comparison for a module regular along
+the specialization hypersurface, with the perverse shift $[-1]$ on
+topological nearby cycles. The regular-specialization hypothesis is what
+removes a possible purely irregular summand invisible to moderate cycles.
+Proper direct image is compatible with these regular-specialization
+cycles and with their de Rham comparison. Apply it to the projective
+$t$-projection: the resulting comparison is that of the moderate nearby
+cycles of the partial transform with its topological nearby cycles.
+These are the regular-specialization and proper-image comparison maps,
+not an invocation of regular Riemann--Hilbert for an arbitrary irregular
+connection. The cycle comparisons in Sabbah's Proposition~5.8 and
+Corollary~5.20 are used in precisely this setting.
+
+For mixed geometric input, use the finite strict weight filtration of
+its Hodge realization. Normalized Fourier transformation and both cycle
+functors are exact; the cycle comparison is natural. The pure comparison
+on each graded constituent therefore gives the comparison for the mixed
+object by the finite filtration and the long exact cohomology sequences.
+Finally use \cref{lem:fiber-nearby}. All these statements concern the
+complex realization; \cref{thm:algebraic-interface} supplies the
+algebraic ordinary objects and their geometric operation maps.
 \end{proof}
 
-\subsection{Sabbah's conventions and the relative comparison}
+\begin{remark}[The lissity-only assertion would be false]
+The connection $\Ecal^{1/\lambda}$ on a punctured disc has a trivial
+rank-one analytic horizontal local system, but its formal type is purely
+irregular at zero and its moderate nearby cycles vanish. Its topological
+nearby local system has rank one. It is therefore essential to insert
+\cref{prop:regular-cycle-bridge} before using the topological product
+argument in the algebraic-cycle proof. This example does not satisfy the
+regular-specialization conclusion for the intended Fourier kernel.
+\end{remark}
 
-Compactify the source variable by writing
+\begin{proposition}[Unipotent comparison through two triangles]\label{prop:two-triangles}
+Let $t'=t^{-1}$ and let $q:S\times\mathbb P^1_t\to S$ denote the
+proper projection after taking cycles in the Fourier coordinate. Set
 \[
-  X=S\times\mathbb P^1_t,
-  \qquad t'=t^{-1}
+ V=\psi_{\lambda,-1}(\mathcal F\mathcal T),\qquad W=\ker N_\lambda.
 \]
-near infinity, and let
-\[
-  q:X\times\Aone_\lambda\longrightarrow S\times\Aone_\lambda
-\]
-be the projective projection.  Let $\Mcal$ be the regular holonomic
-$\mathscr D$-module underlying the Hodge realization of $K$ on
-$S\times\Aone_t$, and let
-\[
-  \Tcal:=\Mcal_{\min}
-\]
-be its regular minimal (middle) extension across $t=\infty$.  Sabbah's Fourier kernel
-uses the localization $\Tcal[*\infty]=\Mcal[*\infty]$.  Hence replacing an
-arbitrary regular extension by the minimal extension does not change the
-localized kernel, its partial Fourier--Laplace transform, or any nonzero
-Fourier fiber under study.  He first constructs the Fourier kernel object
-$\mathcal F\Tcal$ on $X\times\Aone_\lambda$ and only then applies $q_+$.
-Because the Fourier kernel depends only on $\Tcal[*\infty]$, the normalized
-classical partial Fourier--Laplace transform is the usual exact transform of the
-localized regular holonomic perverse module.  Its projective direct image is
-therefore concentrated in perverse degree zero:
-\[
-  {}^p\!\mathcal H^j q_+(\mathcal F\Tcal)=0\quad(j\ne0),
-  \qquad
-  \widehat{\Tcal}:={}^p\!\mathcal H^0q_+(\mathcal F\Tcal),
-\]
-and $\widehat{\Tcal}$ underlies $\widehat K$; see
-\cite[Appendix~A]{Virk} and \cite[Chapter~3]{HTT}.  The unipotent case is treated before projective direct image.
-
-We keep Sabbah's nearby-cycle exponent labels and write his Fourier coordinate
-$\tau$ as $\lambda$.  With the perverse normalization above, his comparison has
-the following form on underlying regular $\mathscr D$-modules and local systems:
-\begin{equation}\label{eq:sabbah-comparison}
-\begin{array}{c|c}
-\text{label} & \text{comparison before }q_+ \\
-\hline
--1\leq\operatorname{Re}\alpha<0,\ \alpha\neq-1
-&
-\Psi_{\lambda,\alpha}(\mathcal F\mathcal T)
- \simeq
-i_{\infty,+}\Psi_{t',\alpha}(\mathcal T)
-\\[1mm]
-0
-&
-\phi_{\lambda,0}(\mathcal F\mathcal T)
- \simeq
-i_{\infty,+}\psi_{t',-1}(\mathcal T)
-\\[1mm]
--1
-&
-0\to i_{\infty,+}\ker N_{t'}
- \to\ker N_\lambda\to\mathcal T\to0.
-\end{array}
+Every simple constituent of every perverse cohomology of $q_+V$ occurs
+among the perverse-cohomology constituents of the proper direct images of
+\begin{equation}\label{eq:unipotent-geometric-sources}
+ i_{\infty,+}\ker N_{t'},\qquad
+ \mathcal T,\qquad
+ i_{\infty,+}\psi_{t',-1}\mathcal T.
 \end{equation}
-The first two lines are Proposition~5.8; the first two comparisons after
-projective direct image are Corollary~5.20
-\cite[Proposition~5.8 and Corollary~5.20]{SabbahMonodromy}.  The last exact
-sequence is also part of Proposition~5.8.  Here $\phi_{\lambda,0}$ is the
-vanishing-cycle object for eigenvalue $1$, whereas the unipotent nearby-cycle
-object is $\psi_{\lambda,-1}$.
-
-Two twistor normalizations in Sabbah's formulas do not alter the underlying
-$\mathscr D$-module or local system.  By Sabbah's Lemma~5.6, the factor
-$\Ocal_{\Omega_0}(-D_\alpha)$ is absorbed at the level of $R$-triples in the
-comparison above.  The half twist $(-1/2)$ rescales the twistor pairing and
-weight normalization.  Neither is a Nori half-Tate twist, so both are omitted
-when discussing simple local-system constituents
-\cite[Lemma~5.6]{SabbahMonodromy}.
+All cycles here are perverse-normalized.
+\end{proposition}
+\begin{proof}
+Before $q_+$, Sabbah's (5.22) and the first sequence of (5.21) give
+\begin{align}
+0&\longrightarrow i_{\infty,+}\ker N_{t'}
+ \longrightarrow W\longrightarrow\mathcal T\longrightarrow0,
+ \label{eq:upstream-one}\\
+0&\longrightarrow W\longrightarrow V
+ \longrightarrow i_{\infty,+}\psi_{t',-1}\mathcal T\longrightarrow0.
+ \label{eq:upstream-two}
+\end{align}\label{eq:sabbah-comparison}
+Those sequences are stated before the subsequent dimension-one
+specialization in Sabbah's argument. Apply derived proper direct image to
+obtain two distinguished triangles. For any triangle $A\to B\to C\to$,
+the segment
+$\pH^jA\to\pH^jB\to\pH^jC$ gives a short exact sequence whose middle
+object is $\pH^jB$, whose subobject is a quotient of $\pH^jA$, and whose
+quotient is a subobject of $\pH^jC$. Apply this observation
+first to \eqref{eq:upstream-one}, then to \eqref{eq:upstream-two}, for
+each $j$. Finite length gives exactly the asserted constituent containment.
+No exactness of $q_+$ on the heart, and no interchange of a constituent
+filtration with a derived functor, is asserted.
+\end{proof}
 
 \begin{theorem}[Nearby-cycle geometricity]\label{thm:nearby-geometric}
-Every simple lisse constituent of
-\[
-  {}^p\!\psi_{\lambda=0}(\widehat K)
-\]
-is of ordinary geometric origin.
+Every simple lisse constituent of the moderate nearby-cycle object at
+$\lambda=0$ of a partial Fourier transform of regular geometric input is
+of ordinary geometric origin, after the common shrinking used above.
 \end{theorem}
-
 \begin{proof}
-We first treat a simple pure constituent of the Hodge realization of $K$.
-Its regular minimal extension $\Tcal=\Mcal_{\min}$ underlies a
-polarizable regular twistor $\mathscr D$-module by the Hodge-to-twistor
-realization \cite[Section~5]{SabbahTwistor}.  Sabbah's relative Fourier
-comparison then applies with parameter space $Y=S$ \cite{SabbahMonodromy}.
 
-For the non-unipotent labels, the first line of
-\eqref{eq:sabbah-comparison}, followed by the corresponding comparison after
-$q_+$, identifies every simple constituent of the Fourier nearby-cycle object
-with a constituent of an ordinary nearby-cycle object at $t=\infty$.  The
-second line treats the eigenvalue-one vanishing-cycle object.
+Use \cref{prop:regular-cycle-bridge} to identify the moderate-cycle
+objects with the topological nearby local systems. For pure input, the
+non-unipotent Fourier comparisons identify the relevant
+constituents with ordinary nearby-cycle constituents at infinity. The
+unipotent case follows from \cref{prop:two-triangles} and proper
+compatibility of nearby cycles. Minimal extension, ordinary cycles,
+proper direct image, and perverse cohomology remain ordinary geometric
+operations. For mixed input, use the strict finite weight filtration on
+the Hodge realization, exactness of normalized Fourier transformation and
+nearby cycles, and semisimplicity of each pure graded Hodge object. Its
+simple constituent local systems belong to the ordinary geometric-origin
+category; the abelian subquotient closure and its compatibility with the
+Nori description are the comparison input of \cite[Corollary~5.15 and Proposition~5.17]{JacobsenComparison}.
+Apply the pure argument to the graded constituents.
 
-For the unipotent nearby-cycle object
-\[
-  V={}^p\!\psi_{\lambda,-1}(\mathcal F\Tcal),
-  \qquad N=N_\lambda,
-\]
-use the finite filtration
-\[
-  0\subset\ker N\subset\ker N^2\subset\cdots\subset V.
-\]
-For each $j\geq1$, the map induced by $N^{j-1}$ embeds
-$\ker N^j/\ker N^{j-1}$ into $\ker N$.  Hence every simple constituent of $V$
-occurs in $\ker N$.  Sabbah's pre-$q_+$ exact sequence expresses $\ker N$ as
-an extension of $\Tcal$ by
-$i_{\infty,+}\ker N_{t'}$.  Therefore every simple constituent of $V$ occurs
-in
-\begin{equation}\label{eq:unipotent-geometric-sources}
-  \Tcal
-  \quad\text{or}\quad
-  i_{\infty,+}{}^p\!\psi_{t',-1}(\Tcal).
-\end{equation}
+\end{proof}
 
-Now apply the derived proper direct image $Rq_*$.  Proper compatibility of
-nearby cycles identifies $Rq_*V$ with the unipotent nearby-cycle complex of
-$q_+(\mathcal F\Tcal)$.  Applying $Rq_*$ to a finite constituent filtration of
-$V$ gives distinguished triangles whose long exact perverse-cohomology
-sequences show that every simple constituent of
-${}^p\!\psi_{\lambda,-1}(\widehat K)$ occurs among the perverse-cohomology
-constituents of the proper direct images of the two ordinary geometric objects
-in \eqref{eq:unipotent-geometric-sources}.  Thus Sabbah's unipotent sequence is used only before projective direct image.
-
-Middle extension, nearby cycles, proper direct image, and perverse cohomology
-are operations in the ordinary perverse-Nori coefficient system
-\cite{IvorraMorel,Tubach}.  Hence every constituent produced above is of
-ordinary Nori-geometric origin.
-
-For mixed $K$, work on its mixed Hodge realization
-\[
-  H:=R_H(K)\in\MHM(S\times\Aone_t).
-\]
-Saito's weight filtration is strict, and normalized partial Fourier transform
-and perverse nearby cycles are exact.  They therefore induce a finite filtration
-on ${}^p\!\psi_\lambda(\operatorname{FL}_{t/S}H)$ whose graded subquotients
-are subquotients of
-\[
-  {}^p\!\psi_\lambda
-  \operatorname{FL}_{t/S}(\operatorname{gr}^W_mH).
-\]
-Each pure graded object is semisimple.  Its simple strict-support constituents
-belong, on the underlying local-system side, to the abelian subquotient-closed
-category of local systems of geometric origin identified by
-Jacobsen--Terenzi \cite[Corollary~5.15]{JacobsenComparison}.  The pure argument
-above applies constituent by constituent.  Hence every simple constituent of
-the mixed nearby-cycle object is of geometric origin \cite{SaitoMHM}.  Sabbah's comparison is used only to identify complex isomorphism classes;
-geometric origin is supplied by the ordinary geometric objects on the right.
+\begin{corollary}[Finite Betti monodromy of rank-one factors]\label{thm:finite-betti}\label{cor:rankone-finite}
+A rank-one differential subquotient, defined over $k$, of a fixed nonzero
+Fourier fiber of regular geometric input has finite Betti monodromy on a
+suitable dense smooth open.
+\end{corollary}
+\begin{proof}
+By \cref{lem:fiber-nearby,prop:regular-cycle-bridge,thm:nearby-geometric}, a rank-one Betti constituent of the fixed
+fiber is one of these ordinary geometric local systems. The local system
+of a rank-one differential subquotient is such a constituent, because
+analytic horizontal realization is exact on connections. Lam--Litt's
+published Lemma~3.5 says that an ordinary geometric rank-one local system
+is torsion \cite{LamLitt}. Its image is therefore finite. This gives
+finite Betti monodromy, not regular singularity or finite tensor order of
+the original algebraic connection.
 \end{proof}
 
 \begin{remark}[The two-graph family]\label{rem:two-graph}
-For the family $y^2=t(t-s)$, the local system extends at $t=\infty$, so
+Over the base $s\ne0$, for the family $y^2=t(t-s)$, the local system extends at $t=\infty$, so
 ${}^p\!\psi_{t',-1}\Tcal$ has rank one, $N_{t'}=0$, and trivial
-$s$-monodromy.  Moreover $H^0(q_+\Tcal)=H^2(q_+\Tcal)=0$ because there are no
-invariant or coinvariant vectors, while
+$s$-monodromy.  In ordinary topological degrees the cohomology in degrees $0$ and $2$
+vanishes because there are no invariant or coinvariant vectors. Since the
+local monodromies at $0,s$ are nontrivial, the middle-extension and
+punctured-curve Euler characteristics agree, and
 $\chi(\mathbb P^1\setminus\{0,s\},\mathcal L)=0$; hence
 $q_+\Tcal=0$.  Sabbah's upstream exact sequence gives
 $\dim\ker N_\lambda=1$, whereas the unipotent nearby-cycle object has rank
@@ -1072,42 +1412,21 @@ Jordan--H\"older constituents are trivial, as in the confluent system
 $M(1/2,1,\lambda s)$.
 \end{remark}
 
-\begin{corollary}[Finite monodromy of rank-one Fourier factors]
-\label{cor:rankone-finite}
-Every rank-one Jordan--H\"older constituent of a fixed nonzero Fourier fiber has
-finite Betti monodromy.
-\end{corollary}
-
-\begin{proof}
-By \cref{prop:fiber-nearby}, after forgetting the nearby-monodromy
-operator the fixed fiber and the nearby-cycle object have the same underlying
-$\pi_1(S)$-representation.  By \cref{thm:nearby-geometric}, the resulting
-rank-one constituent lies in the Nori category of local systems of geometric
-origin.  Jacobsen--Terenzi identify this category with Ayoub's category of local
-systems of geometric origin \cite[Corollary~5.15]{JacobsenComparison}.
-Lam--Litt prove that a
-rank-one complex local system on a smooth variety is of geometric origin if and
-only if it is torsion \cite[Lemma~4.2.1]{LamLitt}.
-\end{proof}
-
-\subsection{The arithmetic exponential kernel}
-
-From this point $k=\overline{\Q}$, and we use the convention
-$\Ecal^f=(\Ocal_U,d-df)$.
+\section{The arithmetic kernel and rank-one lifts}\label{sec:arithmetic}
 
 \begin{proposition}[Picard $1$-motive convention]
 \label{prop:picard-convention}
 Let $U$ be smooth and let $\overline U$ be a smooth proper compactification
 with normal-crossings boundary $D$.  With the covariance conventions used in
 this paper,
-\[
+\begin{equation}\label{eq:pic-plus}
   T_H\!\left(\operatorname{Pic}^{+}(U)\right)
   \simeq H^1(U,\mathbb Z(1)),
   \qquad
   \operatorname{Pic}^{+}(U)
   =\left[\operatorname{Div}^{0}_{D}(\overline U)
      \longrightarrow\operatorname{Pic}^{0}(\overline U)\right].
-\]
+\end{equation}
 A morphism $\Q(0)\to\operatorname{Pic}^{+}(U)_{\Q}$ is represented by a
 rational boundary divisor in the kernel of the map to
 $\operatorname{Pic}^{0}(\overline U)\otimes\Q$.  After multiplication by an
@@ -1122,132 +1441,100 @@ realizations as constructed by Barbieri--Viale and Srinivas; see
 \cite[Section~10]{DeligneHodgeIII}.
 \end{proof}
 
-\begin{theorem}[Arithmetic exponential-kernel theorem]
-\label{thm:arithmetic-kernel}
-Let $U/\overline{\Q}$ be smooth and connected, and let $L$ be a rank-one
-algebraic integrable connection over $\overline{\Q}$.  If its Betti local system
-has finite monodromy, then there exist a dense affine open immersion
-$j:U^\circ\hookrightarrow U$, a function $f\in\Ocal(U^\circ)$, and a
-finite-order rank-one algebraic connection $A$ on $U^\circ$ such that
+\begin{externalinput}[Degree-one arithmetic realization]\label{input:one-motives}
+Use the cohomological Picard $1$-motive
 \[
-  j^*L\simeq\Ecal^f\otimes A.
+ \operatorname{Pic}^{+}(U)=
+ [\operatorname{Div}^{0}_{D}(\overline U)\to
+   \operatorname{Pic}^{0}(\overline U)]
+\]
+for a smooth compactification with normal-crossings boundary. Its realization
+is $H^1(U)(1)$. A rational boundary divisor giving a morphism from the
+weight-zero lattice object realizes, when made principal, as its logarithmic
+de Rham class \cite{BarbieriVialeSrinivas}.
+The de Rham--Betti realization of $1$-motives over $\overline\Q$ is fully
+faithful with image closed under subquotients
+\cite[Theorem~9.14]{HuberWustholz}. The comparison with degree-one Nori
+motives is \cite{AyoubBarbieriViale}.
+\end{externalinput}
+
+\begin{theorem}[Arithmetic exponential kernel]\label{thm:kernel}\label{thm:arithmetic-kernel}
+Let $U/k$ be smooth and connected and $L$ a rank-one algebraic integrable
+connection over $k$ with finite Betti monodromy. On a dense affine open
+$U^\circ$ there are $f\in\Ocal(U^\circ)$ and a finite-order algebraic
+rank-one connection $A$ such that
+\[
+ L|_{U^\circ}\simeq\Ecal^f\otimes A.
 \]
 \end{theorem}
-
 \begin{proof}
-Let $A_0$ be the finite Artin connection with the same Betti character as $L$;
-it exists over $\overline{\Q}$ by invariance of finite \`etale covers under
-extension of algebraically closed fields.  Set
-$L_0=L\otimes A_0^{-1}$, so that $L_0$ has trivial Betti monodromy.  Choose a
-dense affine open immersion $j:U^\circ\hookrightarrow U$ on which the
-underlying line bundle of $L_0$ is trivial, and replace $U,L_0$ by
-$U^\circ,j^*L_0$ for the remainder of the proof.  Write
+The finite Betti character defines a finite etale cover and its character
+idempotent over $k$; algebraically closed extension does not change finite
+etale covers in characteristic zero. Let $A_0$ be its finite Artin
+connection and replace $L$ by $L_0=L\otimes A_0^{-1}$. On a dense affine
+open trivialize its underlying line bundle and write $\nabla=d+\omega$.
+Integrability gives $d\omega=0$, and trivial monodromy gives
 \[
-  \nabla=d+\omega,
-  \qquad
-  \omega\in\Gamma(U,\Omega^1_{U/\overline{\Q}}),
-  \qquad d\omega=0.
+ \int_\gamma\omega\in2\pi i\mathbb Z
+ \quad(\gamma\in H_1(U^{\mathrm{an}},\mathbb Z)).
 \]
-Trivial monodromy gives
-\[
-  \int_\gamma\omega\in2\pi i\mathbb Z
-  \qquad(\gamma\in H_1(U(\C),\mathbb Z)).
-\]
-Let $\eta\in H^1_{\Betti}(U,\Q)$ be the integral class defined by
-\[
-  \langle\eta,\gamma\rangle
-  =(2\pi i)^{-1}\int_\gamma\omega.
-\]
-Then comparison sends $[\omega]_{\dR}$ to $2\pi i\eta$.  If
-$\eta=0$, comparison gives $[\omega]_{\dR}=0$; since $U$ is affine there is
-$F\in\Ocal(U)$ with $\omega=dF$, and $L_0\simeq\Ecal^{-F}$.  We henceforth assume $\eta\neq0$.
+Define the integral Betti class $\eta$ by division of these periods by
+$2\pi i$. Comparison sends $[\omega]$ to $2\pi i\eta$. If $\eta=0$,
+comparison implies $[\omega]=0$, and affine algebraic de Rham theory
+supplies $F\in\Ocal(U)$ with $\omega=dF$. Then $L_0=\Ecal^{-F}$.
 
-The de Rham--Betti object $H^1_{\dRB}(U)$ then contains the one-dimensional
-subobject determined by the specific pair
-$([\omega]_{\dR},\eta_{\Betti})$:
+Otherwise the \emph{specified} pair $([\omega],\eta)$ gives the morphism
 \begin{equation}\label{eq:tate-line}
-  \Q(-1)\hookrightarrow H^1_{\dRB}(U),
+ \Q(-1)\longrightarrow H^1_{\dRB}(U),
 \end{equation}
-where $\Q(-1)$ is the Tate object whose period is $2\pi i$.  Twisting by
-$\Q(1)$ gives
+with our convention that this Tate period is $2\pi i$. Twisting gives
 \begin{equation}\label{eq:tate-twist}
-  \Q(0)\hookrightarrow H^1_{\dRB}(U)(1).
-\end{equation}
+ \Q(0)\longrightarrow H^1_{\dRB}(U)(1).
+\end{equation} By \cref{input:one-motives}, it lifts to
+the specified morphism $\Q(0)\to\operatorname{Pic}^{+}(U)_\Q$.
+This is a rational boundary divisor $\Delta$ whose Picard class is zero
+in $\operatorname{Pic}^0(\overline U)\otimes\Q$.
 
-Ayoub--Barbieri-Viale identify the degree-one Nori category with Deligne
-$1$-motives with torsion \cite{AyoubBarbieriViale}.  By \cref{prop:picard-convention}, the cohomological Picard $1$-motive of
-$U$ is
-\begin{equation}\label{eq:pic-plus}
-  \operatorname{Pic}^{+}(U)
-  =\left[
-      \operatorname{Div}^{0}_{D}(\overline U)
-      \longrightarrow
-      \operatorname{Pic}^{0}(\overline U)
-    \right],
-\end{equation}
-and realizes $H^1(U,\mathbb Z(1))$.  Huber--W\"ustholz prove that the de Rham--Betti realization of $1$-motives
-is fully faithful and that its image is closed under subquotients
-\cite[Theorem~9.14]{HuberWustholz}.  Closure under subquotients shows that the
-specific Tate line in \eqref{eq:tate-twist} is the realization of a
-$1$-motivic subobject; full faithfulness lifts its inclusion to the specific
-morphism
+Choose $N>0$ clearing its denominators and killing its torsion Picard class.
+Then $N\Delta=\operatorname{div}(u)$ for a function with no zeros or
+poles on $U$, so $u\in\Ocal(U)^\times$. Compatibility with the specified
+morphism gives
 \[
-  \Q(0)\longrightarrow\operatorname{Pic}^{+}(U)_{\Q}
+ N[\omega]=[d\log u]\quad\hbox{in }H^1_{\dR}(U/k).
 \]
-whose realization is \eqref{eq:tate-twist}.
-
-In the isogeny category this morphism is represented by a rational boundary
-divisor $\Delta\in\operatorname{Div}^{0}_{D}(\overline U)\otimes\Q$ whose
-class in $\operatorname{Pic}^{0}(\overline U)\otimes\Q$ is zero.  Choose an
-integer $N>0$ which both clears denominators and kills the resulting torsion
-Picard class.  Then the integral divisor $N\Delta$ has trivial associated line
-bundle, so
+Since $U$ is affine, closed one-forms modulo exact global forms compute
+this cohomology. Thus $N\omega-d\log u=dF$ for some regular $F$, and
 \[
-  N\Delta=\operatorname{div}(u)
+ L_0\simeq\Ecal^{-F/N}\otimes
+ (\Ocal_U,d+N^{-1}d\log u).
 \]
-for a rational function whose zeros and poles lie in $D$; equivalently,
-$u\in\Ocal(U)^\times$.  By \cref{prop:picard-convention}, the lattice generator represented by the
-principal boundary divisor $\operatorname{div}(u)$ maps under de Rham
-realization to the logarithmic class $[d\log u]$.  Compatibility of
-the lifted morphism with de Rham realization therefore gives
-\[
-  N[\omega]=[d\log u]
-  \quad\text{in }H^1_{\dR}(U/\overline{\Q}).
-\]
-Since $U$ is affine, algebraic de Rham cohomology in degree one is computed by
-global forms \cite{HartshorneDR}.  Hence
-\[
-  N\omega-d\log u=dF
-\]
-for some $F\in\Ocal(U)$.  Therefore
-\[
-  L_0\simeq
-  \Ecal^{-F/N}\otimes
-  \left(\Ocal_U,d+\frac1N d\log u\right).
-\]
-The second factor has order dividing $N$, since its $N$th tensor power is
-trivialized by $u^{-1}$.  Tensoring back by $A_0$ proves the theorem.
+The $N$th power of the second factor has horizontal algebraic generator
+$u^{-1}$ and is trivial. Tensor back by $A_0$. This proves the result
+without a relative functional-period theorem.
 \end{proof}
 
-\begin{remark}[Arithmetic scope]
-Over $\C$, a topologically trivial rank-one algebraic connection can carry a
-nonzero second-kind de Rham class and need not be an exponential times a finite
-connection.  Huber--W\"ustholz excludes this non-Tate component over
-$\overline{\Q}$.  For example, if $U=E\setminus\{0\}$ for an elliptic curve,
-then $\operatorname{Div}^{0}_{\{0\}}(E)=0$, so
-$\operatorname{Pic}^{+}(U)$ has no toric $\Q(0)$-subobject.  A nonzero
-second-kind class over $\C$ therefore cannot arise from the Tate-line mechanism
-used in the proof.
-\end{remark}
-
-\subsection{Generic saturation for the Kontsevich--Zagier category}
+\begin{proposition}[Realizing the algebraic factors]\label{prop:realize-line}
+At scale $\lambda\in k^\times$, $\Ecal^f\otimes A$ in
+\cref{thm:kernel} has an invertible exponential motivic lift on $U^\circ$.
+If the connection extends lisse to a given smooth base, so does an
+invertible lift.
+\end{proposition}
+\begin{proof}
+Use the graph potential $f/\lambda$ in \cref{lem:graph}. Its inverse
+is the graph with the negative potential. A finite-order connection is a
+rank-one summand of a finite etale pushforward; over $k$ its character
+idempotent defines a rank-one Artin motive. Insert it on the zero graph
+and take its normalized tensor product with the exponential graph object.
+Both factors are invertible and realize the desired factors. The extension
+assertion is \cref{prop:extend-line}.
+\end{proof}
 
 Let $\eta=\Spec k(S)$ be the generic point.  We write
 \[
   \EMN(\eta):=\varinjlim_{U\subset S}\EMN(U),
 \]
 where objects and morphisms are identified after restriction to a smaller
-nonempty smooth open.  Restriction is exact and tensor-compatible, so every
+nonempty smooth open.  Restriction is exact and compatible with the normalized tensor product, so every
 finite diagram in this filtered $2$-colimit has a common model and the generic
 realization is an exact faithful tensor functor to algebraic differential
 modules over $k(S)$.
@@ -1257,263 +1544,626 @@ generated rigid Tannakian subcategories of $\EMN(\eta)$ generated by
 dualizable restrictions of elementary relative Kontsevich--Zagier exponential
 data.
 
-\begin{theorem}[Generic rank-one saturation]\label{thm:global-RS}
-For every $\lambda\in\overline{\Q}^{\times}$, every finitely generated rigid
-Tannakian subcategory of $\Tcal_{\mathrm{KZ}}(\eta)$ is rank-one saturated.
+
+Let $\Dcal$ denote the differential tensor category generated by the realizations.
+
+\begin{definition}[Rank-one saturation]\label{def:RS}
+The pair $(\Tcal,\rho_\lambda)$ is rank-one saturated if for every invertible
+$L\in\Dcal$ there is an invertible object $\mathcal L$ in the ambient
+relative exponential Nori category such that
+\[
+  \rho_\lambda(\mathcal L)\simeq L.
+\]
+\end{definition}
+
+\begin{theorem}[Rank-one saturation on a fixed lisse model]\label{thm:saturation}
+Let $\Tcal$ be a finitely generated rigid subquotient-closed lisse
+subcategory of the generic exponential Nori envelope, modeled on $S$.
+Suppose its objects have regular geometric pre-Fourier representatives,
+as supplied by the exponential quotient and the ordinary geometric
+coefficient system. Let $\Dcal$ be the differential tensor category
+generated over $K$ by their realizations and differential subquotients.
+Every invertible object of $\Dcal$ has an ambient invertible exponential
+motivic lift. The lift can be modeled on $S$ whenever the differential
+object is modeled lisse there.
 \end{theorem}
-
 \begin{proof}
-Let $B$ be a tensor construction and subquotient in such a category, and let
-$L$ be an invertible differential subquotient of $\rho_\lambda(B)$.  Choose a
-common smooth open model on which $B$ and $L$ are lisse and choose a regular
-geometric pre-Fourier representative $K_B$.  Such a representative exists
-because the quotient functor defining $\EMN$ is essentially surjective on the
-heart; changing it by a constant object does not change any nonzero
-exponential realization.  Additive convolution and the six operations preserve
-regular geometric origin.
+An invertible object $L\in\Dcal$ is a differential subquotient of a
+finite tensor construction in realized generators. Choose its motivic
+counterpart $B$ and a common open model. The quotient description is
+essentially surjective on the heart, so choose an ordinary geometric
+representative $K_B$ for $B$. At nonzero scale the representative realizes
+as its partial Fourier fiber. Ordinary tensor constructions, convolution,
+and the six operations stay within regular geometric input before
+exponentiation; no claim of regularity of the exponential output is made.
 
-After a further dense-open restriction, \cref{cor:rankone-finite} shows that
-the Betti local system of $L$ has finite monodromy.  Applying
-\cref{thm:arithmetic-kernel} on a dense affine open gives
-\[
-  L\simeq\Ecal^f\otimes A
-\]
-with $f$ algebraic and $A$ finite order.  At the fixed scale $\lambda$, the
-graph object with potential $-f/\lambda$ realizes $\Ecal^f$.  The finite-order
-character $A$ is cut out by its character idempotent in the finite \`etale
-pushforward which trivializes it.  Their convolution product is an invertible
-object in the generic exponential Nori category realizing $L$.  Hence $L$ has an ambient invertible lift.
+Apply \cref{thm:finite-betti} to $L$ after shrinking. It has finite
+Betti monodromy there. It is algebraic over $k$, so \cref{thm:kernel}
+applies. \Cref{prop:realize-line} gives the ambient invertible lift on a
+dense affine open, and \cref{prop:extend-line} returns it to $S$ if needed.
+This is an object-by-object argument on one fixed lisse model, not an
+intersection of infinitely many opens. Rank-one objects with transcendental
+connection coefficients are not fed into the arithmetic theorem; extension
+of differential constants is handled later in \cref{sec:pv-base-change}.
 \end{proof}
 
-\begin{remark}[Models on dense opens]
-Every finite packet is defined on a common dense lisse open.  If a rank-one
-connection is defined on a larger smooth base, finite monodromy on a dense open
-implies finite monodromy on the base because
-$\pi_1(U^{\mathrm{an}})\twoheadrightarrow\pi_1(S^{\mathrm{an}})$.
-\end{remark}
-
-\section{Twisted fixed parts and Galois exactness}\label{sec:Tannaka}
-
-Fix $\lambda\in\overline{\Q}^{\times}$ and let $\Tcal$ be a finitely generated
-rigid Tannakian subcategory of $\Tcal_{\mathrm{KZ}}(\eta)$.  Choose a common
-smooth connected open model $S$ on which every generator is $\lambda$-lisse;
-all tensor constructions are then $\lambda$-lisse as well.  Fix a fiber functor
-at a geometric point $s\in S(\C)$ and write
-\[
-  G_{\mot}=\Aut^\otimes(\omega_s|_{\Tcal})
-\]
-for the motivic Galois group.  Let $\Tcal_\nabla$ be the differential tensor
-category generated by $\rho_\lambda(\Tcal)$ and write
-\[
-  G_{\diff}=\Aut^\otimes(\omega_s|_{\Tcal_\nabla}).
-\]
-The exact faithful tensor realization gives a closed immersion
-$G_{\diff}\hookrightarrow G_{\mot}$.
-
-\subsection{Semi-invariant spaces}
-
-For a $G_{\mot}$-representation $V$ and a character
-$\chi:G_{\diff}\to\mathbb G_m$, put
-\[
-  V^\chi
-  =\{v\in V:h v=\chi(h)v\text{ for all }h\in G_{\diff}\}.
-\]
-
-\begin{proposition}[Motivic semi-invariants]\label{prop:semi-invariants}
-Assume rank-one saturation.  For every $B\in\Tcal$ and every character $\chi$,
-the subspace $\rho_\lambda(B)^\chi$ is the realization of a subobject of $B$ belonging
-to $\Tcal$.
-\end{proposition}
-
+\begin{theorem}[Generic rank-one saturation]\label{thm:global-RS}
+For every $\lambda\in k^\times$, every finitely generated rigid Tannakian
+subcategory of $\Tcal_{\mathrm{KZ}}(\eta)$ is rank-one saturated.
+\end{theorem}
 \begin{proof}
-Let $L_\chi$ be the invertible differential object associated with $\chi$ and
-choose an ambient invertible lift $\mathcal L_\chi$ by rank-one saturation.  Apply
-\cref{thm:fixed-part} to the ambient object
-$B\otimes\mathcal L_\chi^{-1}$ and let
-\[
-  \mathcal C_\chi
-  :=(B\otimes\mathcal L_\chi^{-1})^{\mathrm{fix}}.
-\]
-Its realization is
-\[
-  (\rho_\lambda(B)\otimes L_\chi^{-1})^{G_{\diff}}.
-\]
-Tensor the inclusion $\mathcal C_\chi\hookrightarrow
-B\otimes\mathcal L_\chi^{-1}$ by $\mathcal L_\chi$ and define
-\[
-  \mathcal W_\chi
-  :=\im\!\left(
-     \mathcal L_\chi\otimes\mathcal C_\chi\longrightarrow B
-    \right).
-\]
-Exactness of realization gives
-\[
-  \rho_\lambda(\mathcal W_\chi)
-  =L_\chi\otimes
-    (\rho_\lambda(B)\otimes L_\chi^{-1})^{G_{\diff}}
-  =\rho_\lambda(B)^\chi.
-\]
-Although $\mathcal L_\chi$ was chosen in the ambient category,
-$\mathcal W_\chi$ is a subobject of $B$.  The Tannakian category generated by
-$B$ is closed under subobjects, so $\mathcal W_\chi\in\Tcal$.
+Every object of the exponential heart has an ordinary perverse-Nori
+representative. Its Hodge realization is regular geometric input, and
+convolution and the ordinary geometric operations retain that property
+before the Fourier realization. A finite collection has a common smooth
+open model. Apply \cref{thm:saturation} to a tensor construction containing
+the given rank-one differential subquotient. The extension statement in
+\cref{prop:extend-line} returns the lift to any fixed lisse model when
+needed. No infinite intersection of separately chosen opens is taken.
 \end{proof}
 
-\subsection{Normality}
+\subsection{An optional split criterion}
 
-We use Andre's criterion in the following form.
+\begin{definition}[Split Fourier-geometric criterion]\label{def:split-FG}
+Let $\Tcal$ be lisse at a scale $\lambda\in k^\times$ and let $\Dcal$
+be its differential tensor category. For each $B\in\Dcal$, require a
+dense open and a finite Galois cover $q:S'\to S^\circ$ with the following
+properties:
+\begin{enumerate}[label=\textup{(FG\arabic*)},leftmargin=3.2em]
+\item Every rank-one differential subquotient $L$ of $B$ has an actual
+isomorphism $q^*L\simeq\Ecal^{g_\alpha}\otimes A$, where
+$g_\alpha\in\Ocal(S')$ and $A$ is a rank-one regular-singular subquotient
+of one of finitely many regular-singular systems $R_\alpha$.
+\item Each $R_\alpha$ has an ordinary geometric-origin local system.
+\item The descent datum on the resulting exponential--Artin lift is
+effective in the relative exponential Nori category.
+\end{enumerate}
+The actual comparison in \textup{(FG1)} is part of this sufficient
+criterion. An equality only of boundary Stokes grades does not assert it.
+\end{definition}
 
-\begin{lemma}[Andre's normality criterion]\label{lem:Andre}
-Let $H\subseteq G$ be affine algebraic groups over a field of characteristic zero.
-If, for every finite-dimensional $G$-representation $V$ and every character
-$\chi$ of $H$, the semi-invariant space $V^\chi$ is $G$-stable, then $H$ is
-normal in $G$.
+\begin{lemma}[Rank-one comparison in the split criterion]\label{lem:one-grade}
+Under \textup{(FG1)}, each rank-one subquotient has the displayed
+exponential times regular-singular decomposition on the cover.
 \end{lemma}
-
 \begin{proof}
-See \cite{AndreFixed} and the Tannakian formulation in \cite{Mostaed}.
+This is precisely the actual rank-one comparison required in
+\textup{(FG1)}. When constructing an example from Stokes data, this global
+comparison must be proved in addition to the choice of a formal grade.
 \end{proof}
 
-\begin{theorem}[Relative exponential Galois exactness]\label{thm:Galois-exact}
-Assume rank-one saturation.  Let $\Tcal_0\subseteq\Tcal$ be the full
-subcategory of constant objects and let $G_{\const}$ be its Tannakian group.
-Then
+\begin{lemma}[Finite regular factor]\label{lem:regular-finite}
+Under \textup{(FG2)}, the factor $A$ in \cref{lem:one-grade} has finite
+monodromy and is a finite-order regular-singular connection.
+\end{lemma}
+\begin{proof}
+The ordinary geometric-origin category is subquotient-closed. Lam--Litt,
+Lemma~3.5, makes its rank-one local system torsion. For a regular-singular
+connection this finite character is its algebraic Artin realization.
+\end{proof}
+
+\begin{theorem}[Split Fourier-geometric saturation]\label{thm:split-saturation}
+The split criterion implies generic rank-one saturation. On a fixed lisse
+model the invertible lifts extend over that model.
+\end{theorem}
+\begin{proof}
+Apply \cref{lem:one-grade,lem:regular-finite}, realize the factors by the
+potential $g_\alpha/\lambda$ and the Artin idempotent, and use
+\textup{(FG3)} for descent. Then apply \cref{prop:extend-line}.
+\end{proof}
+
+This is an optional sufficient condition, not a hypothesis of
+\cref{thm:global-RS}. The latter uses the full nonzero-Fourier-fiber and
+arithmetic argument instead of a formal Stokes splitting shortcut.
+
+
+
+\section{Compatible fibers and Galois exactness}\label{sec:galois}\label{sec:Tannaka}
+
+Choose $s_0\in S(k)$ where a tensor generator is regular and fix the
+algebraic de Rham evaluation fiber
 \[
-  1\longrightarrow G_{\diff}
-   \longrightarrow G_{\mot}
-   \longrightarrow G_{\const}
-   \longrightarrow1
+ \omega_v:\Dcal\longrightarrow\VecCat_k,\qquad M\longmapsto M_{s_0}.
+\]
+All objects of $\Dcal$ have their unique lisse model on $S$, as explained
+after \cref{prop:extend-line}. The same functor composed with realization
+is a fiber functor on $\Tcal$. Set
+\[
+ G_v=\Aut^\otimes(\omega_v\rho_\lambda|_{\Tcal}),\qquad
+ H_v=\Aut^\otimes(\omega_v|_{\Dcal}).
+\]
+The differential category is generated under subquotients by the image of
+$\Tcal$, so the induced morphism $H_v\to G_v$ is a closed immersion,
+by \cite[Proposition~2.21(b)]{DeligneMilne}. This is not a consequence
+of exact faithfulness alone; the generation statement is also used.
+
+\begin{proposition}[Motivic semi-invariant subspaces]\label{prop:semi}\label{prop:semi-invariants}
+For $B\in\Tcal$ and a character $\chi:H_v\to\Gm$, the
+$\chi$-semi-invariant subspace of $\omega_v\rho_\lambda(B)$ is the
+fiber of a subobject of $B$ in $\Tcal$.
+\end{proposition}
+\begin{proof}
+The character defines an invertible differential object $L_\chi$.
+By \cref{thm:saturation}, choose an ambient invertible lift
+$\mathcal L_\chi$, on a common lisse base if necessary. Take
+\[
+ C_\chi=(B\otimes_{\lis}\mathcal L_\chi^{-1})^{\fix}.
+\]
+By \cref{thm:fixed} its connection realization is the maximal trivial
+subconnection of $\rho_\lambda(B)\otimes L_\chi^{-1}$. Tensor its
+inclusion by $\mathcal L_\chi$ and take the image $W_\chi\subset B$.
+Its fiber is exactly
+\[
+ L_\chi\otimes
+ (\rho_\lambda(B)\otimes L_\chi^{-1})^{H_v},
+\]
+namely the desired semi-invariant subspace. Although the lift was ambient,
+$W_\chi$ belongs to $\Tcal$ because that category is closed under
+subobjects of its objects.
+\end{proof}
+
+\begin{lemma}[Normality from semi-invariants]\label{lem:normality}\label{lem:Andre}
+Let $H\subset G$ be algebraic groups over an algebraically closed field of
+characteristic zero. If $V^\chi$ is $G$-stable for every $G$-representation
+$V$ and every character $\chi$ of $H$, then $H$ is normal in $G$.
+\end{lemma}
+\begin{proof}
+By the stabilizer-of-a-line theorem for linear algebraic groups, choose a
+$G$-representation $V$ and a line $\ell$ with stabilizer $H$. The line
+has an $H$-character $\chi$ and lies in $W=V^\chi$. By hypothesis $W$
+is $G$-stable and $H$ acts on it by scalars. For $g\in G$ and $h\in H$,
+the element $g^{-1}hg$ therefore preserves $\ell$, so it lies in $H$.
+Apply the same argument to $g^{-1}$ to get equality. This proves normality
+on geometric points, hence on the characteristic-zero algebraic groups.
+This is the semi-invariant form of Andr\'e's criterion used in
+\cite{AndreFixed,Mostaed}.
+\end{proof}
+
+\begin{theorem}[Exactness in algebraic evaluation coordinates]\label{thm:exact}\label{thm:Galois-exact}
+Let $\Tcal_0$ be the full constant subcategory of $\Tcal$, and let
+$G_{0,v}$ be its group under the evaluation fiber. Then
+\[
+ 1\longrightarrow H_v\longrightarrow G_v
+ \longrightarrow G_{0,v}\longrightarrow1
 \]
 is exact.
 \end{theorem}
-
 \begin{proof}
-By \cref{prop:semi-invariants,lem:Andre}, $G_{\diff}$ is normal in
-$G_{\mot}$.  By \cref{prop:constant-subquotients}, $\Tcal_0$ is a full tensor
-subcategory stable under subquotients; hence its inclusion induces a faithfully
-flat morphism $G_{\mot}\twoheadrightarrow G_{\const}$
-\cite[Proposition~2.21]{DeligneMilne}.
-
-An object of $\Tcal$ is trivial under $G_{\diff}$ if and only if its
-$\lambda$-differential realization is trivial.  By
-\cref{lem:constant-reflection-exp}, such an object is constant.  Conversely,
-constant objects have trivial relative differential realization.  Therefore the
-Tannakian quotient corresponding to $G_{\mot}/G_{\diff}$ is
-$\Tcal_0$, proving exactness.
+\Cref{prop:semi,lem:normality} make $H_v$ normal. By
+\cref{cor:constants}, $\Tcal_0$ is a full tensor subcategory closed
+under subquotients. Its inclusion gives a faithfully flat quotient of
+$G_v$ \cite[Proposition~2.21(a)]{DeligneMilne}. A $\Tcal$-object is
+trivial as an $H_v$-representation precisely when its connection is
+trivial. By \cref{thm:fixed} this is equivalent to being constant.
+The constant subcategory is also closed under tensor duals, since the dual
+of a trivial connection is trivial. Thus the representations of $G_v/H_v$ are precisely $\Tcal_0$, proving
+exactness. No period-map injectivity has been used.
 \end{proof}
 
-\begin{corollary}[Generic split Fourier-geometric exactness]
-If $\Tcal$ is finitely generated and split Fourier-geometric, then after
-restriction to a suitable common dense open the exact sequence of
-\cref{thm:Galois-exact} holds.
+\begin{corollary}[Split Fourier-geometric exactness]
+For a finite tensor-generated category satisfying the split criterion,
+the exact sequence of \cref{thm:exact} holds, on a common lisse model.
 \end{corollary}
-
-\section{The relative functional period theorem}\label{sec:periods}
-
-\subsection{Comparison torsors and the constant-period base}
-
-Let $K=k(S)$ and let $\omega_{\dR}$ and $\omega_{\Betti}$ denote the de Rham
-and rapid-decay Betti fiber functors on $\Tcal$.  The relative motivic
-comparison torsor is
-\[
-  \mathscr X_{\mot}
-  =\Isom^\otimes(\omega_{\Betti}\otimes_k K,\omega_{\dR}),
-\]
-and its restriction to the constant subcategory is denoted $\mathscr X_0$.
-
-Let $p_0$ be the actual constant comparison point and let
-$Z_0\subseteq\mathscr X_0$ be its Zariski closure.  Put
-\[
-  A_0:=\Ocal(Z_0),
-  \qquad
-  R_0:=K\otimes_k A_0,
-  \qquad
-  F_0:=\operatorname{Frac}(A_0),
-  \qquad
-  K_0:=\operatorname{Frac}(R_0).
-\]
-The kernel of evaluation at $p_0$ is prime, so $A_0$ is a domain.  Since $S$
-is geometrically integral over the algebraically closed field $k$, $R_0$ is a
-domain as well.  We extend the derivations of $K$ to $K_0$ by declaring $F_0$
-to be constant.
-
-Define
-\[
-  \mathscr X_{\mathrm{rel}}
-  :=\mathscr X_{\mot}\times_{\mathscr X_0}Z_0.
-\]
-The algebra $A_0$ is the coordinate ring of the Zariski closure of the actual
-constant comparison point.
-
-\begin{proposition}[Relative torsor]\label{prop:relative-torsor}
-Under rank-one saturation, the morphism
-\[
-  \mathscr X_{\mathrm{rel}}\longrightarrow\Spec R_0
-\]
-is a $G_{\diff,R_0}$-torsor.  Consequently
-$\Ocal(\mathscr X_{\mathrm{rel}})$ is faithfully flat and torsion-free over
-$R_0$.
-\end{proposition}
-
 \begin{proof}
-By \cref{thm:Galois-exact}, restriction of comparison isomorphisms to the
-constant subcategory is the quotient of the $G_{\mot}$-torsor
-$\mathscr X_{\mot}$ by the normal subgroup $G_{\diff}$.  Thus
-$\mathscr X_{\mot}\to\mathscr X_0$ is a $G_{\diff}$-torsor.  Base change along
-$Z_0\to\mathscr X_0$, followed by the scalar extension from $k$ to $K$, gives
-the asserted torsor over $R_0$.  Torsors under affine group schemes are
-faithfully flat over their base.
+Use \cref{thm:split-saturation} for rank-one lifts and
+\cref{thm:exact} for the exact sequence.
 \end{proof}
 
-\subsection{Comparison with Picard--Vessiot theory}
+\subsection{Changing to Betti coordinates}
 
-Let $\mathscr X_{\PV}$ be the Picard--Vessiot torsor of the differential tensor
-category $\Tcal_\nabla$ over the differential field $K_0$, whose field of
-constants contains $F_0$.  On a simply connected analytic open, the comparison
-matrices of objects of $\Tcal$ generate the Picard--Vessiot algebra.  Evaluation
-of motivic matrix coefficients at the same matrices gives a
-$G_{\diff,K_0}$-equivariant closed immersion
+Let $\omega_\B=\omega_{\B,s_0}$ and let $\omega_\dR$ be the generic
+$K$-valued de Rham fiber. Define over $k$
+\begin{equation}\label{eq:betti-groups}
+ G_\B=\Aut^\otimes(\omega_\B|_\Tcal),\qquad
+ G_{0,\B}=\Aut^\otimes(\omega_\B|_{\Tcal_0}),\qquad
+ H_\B=\ker(G_\B\to G_{0,\B}).
+\end{equation}
+Let $c:\omega_\B\otimes_k\C\xrightarrow{\sim}
+\omega_v\rho_\lambda\otimes_k\C$ be the actual comparison at $s_0$.
+It is an isomorphism of fiber functors, not an assertion that its entries
+are algebraic.
+
+\begin{lemma}[The group change is conjugation]\label{lem:conjugation}
+The comparison $c$ identifies $(G_\B)_\C$ with $(G_v)_\C$, and
 \[
-  \mathscr X_{\PV}
-  \longrightarrow
-  \mathscr X_{\mathrm{rel}}\times_{R_0}K_0.
+ (H_\B)_\C=c^{-1}(H_v)_\C c.
 \]
-
-\begin{lemma}[Equivariant maps of torsors]\label{lem:torsor-map}
-An equivariant morphism between two nonempty torsors under the same affine group
-over a field is an isomorphism.
 \end{lemma}
-
 \begin{proof}
-After a faithfully flat extension trivializing both torsors, the morphism becomes
-an equivariant endomorphism of the group acting on itself by translation, hence a
-translation and therefore an isomorphism.  Descent gives the result over the
-original field.
+An isomorphism of fiber functors conjugates their tensor automorphism
+functors. Its restriction to $\Tcal_0$ conjugates the quotient groups
+as well. Kernels are preserved by this commutative diagram. Use
+\cref{thm:exact} to identify the evaluation-coordinate kernel with
+$H_v$. This proves the formula before any analytic torsor comparison.
 \end{proof}
+
+\section{Normalized solutions and extension of constants}\label{sec:pv-base-change}
+
+The next argument establishes the differential base-change statement
+needed for the period comparison. It prevents arbitrary complex differential
+subobjects from being passed unexamined to an arithmetic theorem over $k$.
+
+Shrink around $s_0$ to choose algebraic etale coordinates
+$x_1,\ldots,x_d$ and a frame of a tensor-generator connection. The
+corresponding derivations $\partial_i$ extend uniquely from
+$k(x_1,\ldots,x_d)$ to $K$ and commute. They span the tangent derivations
+over $K$. Write the system as
+\begin{equation}\label{eq:system}
+ \partial_iY=A_iY,\qquad A_i\in M_n(K),\qquad Y(s_0)=I.
+\end{equation}
+Here $\nabla=d-\sum_iA_i\,dx_i$; integrability is
+$\partial_iA_j-\partial_jA_i-[A_i,A_j]=0$.
+
+\begin{lemma}[Algebraic Taylor normalization]\label{lem:taylor}
+The solution $Y$ of \eqref{eq:system} exists on a sufficiently small
+analytic polydisc $B$ and has Taylor coefficients in $k$.
+\end{lemma}
+\begin{proof}
+In etale coordinates, the completed local ring at $s_0$ is
+$k[[x_1,\ldots,x_d]]$, with the coordinates translated to zero.
+The $A_i$ have coefficients there. Coefficient comparison in
+\eqref{eq:system}, starting from $I$, determines each Taylor coefficient
+using only coefficients already determined and division by positive
+integers. Integrability is precisely the consistency of the different
+recursions. Analytic existence for a nonsingular flat system gives a
+convergent solution; uniqueness identifies its Taylor series with this
+formal solution. Thus all its coefficients lie in $k$.
+\end{proof}
+
+\begin{externalinput}[Picard--Vessiot facts for integrable systems]\label{input:pv}
+For finitely many commuting derivations and an algebraically closed common
+constant field, a field generated by a fundamental matrix with no new
+common constants is Picard--Vessiot; its fundamental-matrix algebra is
+differentially simple. Its spectrum is the differential comparison torsor,
+and its group is the tensor automorphism group of the horizontal fiber
+functor. Use classical Picard--Vessiot theory and its integrable-system
+form \cite{PutSinger,Kolchin,CHM}. This is ordinary Picard--Vessiot theory
+with all base derivations, not parameterized Picard--Vessiot theory with
+some derivatives omitted.
+\end{externalinput}
+
+Put
+\[
+ R_k=K[Y,\det(Y)^{-1}]\subset\mathscr M(B),\qquad E=\C(S).
+\]
+The fraction field of $R_k$ has common constants $k$. Indeed, a horizontal
+meromorphic germ is complex constant; after writing the germ as a quotient
+of two formal series over $k$, a nonzero coefficient of the denominator
+shows that this constant belongs to $k$. Thus \cref{input:pv} applies to
+$R_k$, and its solution fiber is the evaluation fiber $\omega_v$, since
+$Y(s_0)=I$. Its group is $H_v$.
+
+\begin{lemma}[Finite coefficient descent]\label{lem:finite-linear}
+For $f_1,\ldots,f_r\in k[[x_1,\ldots,x_d]]$, the space of complex
+constant relations among the $f_j$ is the complex scalar extension of
+the space of $k$-relations.
+\end{lemma}
+\begin{proof}
+Expand $f_j=\sum_\alpha a_{\alpha j}x^\alpha$. A relation is the
+kernel of the matrix $(a_{\alpha j})$ with $r$ columns. Its possibly
+infinite family of rows spans a finite-dimensional subspace of $k^r$.
+Choose finitely many rows that are a basis of this row span. They define
+the same kernel, and kernels of finite matrices commute with field
+extension. This proves the claim without a field automorphism or a
+continuity assumption on one.
+\end{proof}
+
+\begin{proposition}[No extra relations after complex constant extension]\label{prop:pv-base-change}
+Multiplication of meromorphic functions gives an isomorphism
+\begin{equation}\label{eq:pv-extension}
+ R_k\otimes_K E\xrightarrow{\sim}
+ E[Y,\det(Y)^{-1}]=:R_E.
+\end{equation}
+The algebra $R_E$ is Picard--Vessiot over $E$ with group $(H_v)_\C$.
+\end{proposition}
+\begin{proof}
+Surjectivity is immediate. To prove injectivity, take a finite expression
+in the kernel. Choose an affine neighborhood of $s_0$ defined over $k$.
+Every coefficient in $E$ is a quotient of finite complex linear
+combinations of regular $k$-functions. Clear a common nonzero denominator
+of this type. The alleged relation becomes a finite expression
+\[
+ \sum_{j=1}^r c_j r_j=0,\qquad c_j\in\C,\quad r_j\in R_k.
+\]
+Multiply once more by a nonzero element of $K$, if necessary, to remove
+the finitely many poles at $s_0$ of the $r_j$. Their expansions are now in
+$k[[x_1,\ldots,x_d]]$ by \cref{lem:taylor}. By
+\cref{lem:finite-linear}, the vector $(c_j)$ is a complex linear
+combination of $k$-relation vectors. Those relations already vanish in
+$R_k$. Therefore the tensor expression was zero. Reversing the invertible
+denominator multiplications proves injectivity.
+
+The fraction field of $R_E$ is a subfield of $\mathscr M(B)$ containing
+$\C$, so its common constants are exactly $\C$. It is generated by a
+fundamental matrix, hence is Picard--Vessiot by \cref{input:pv}.
+For the group identification, the Picard--Vessiot torsor identity for
+$R_k$ is
+\[
+ R_k\otimes_K R_k\simeq R_k\otimes_k k[H_v].
+\]
+Tensor it with $E$ and use \eqref{eq:pv-extension}. This is the torsor
+identity for $R_E$ with group $(H_v)_\C$. The action sends $Y$ to $Yh$.
+Equivalently, the matrix relation ideal and its tensor symmetries have
+just been shown to commute with this constant extension.
+\end{proof}
+
+\begin{remark}[Why this base-change argument is needed]
+An exact faithful functor on the original $k$-category does not by itself
+identify every later complex differential subobject. Here that step is
+proved using a normalized solution with algebraic Taylor coefficients.
+Actual period matrices need not have algebraic Taylor coefficients; they
+are introduced only after \cref{prop:pv-base-change}.
+\end{remark}
+
+\section{The torsor and the exact constant-field argument}\label{sec:torsor}\label{sec:periods}
+
+We now give the comparison and descent argument. The result also has
+an abstract formulation: it applies to
+any finite-type neutral Tannakian system with the fiber functors and the
+exactness established in \cref{sec:galois}, and with the algebraic
+connection realization used in \cref{sec:pv-base-change}.
+
+\subsection{The actual constant-period base}
+
+Let $\omega_{\dR,0}:\Tcal_0\to\VecCat_k$ be the constant de Rham fiber
+of \cref{cor:constants}. Define the comparison torsors
+\begin{align*}
+ X&=\Isom^\otimes(\omega_\B\otimes_k K,\omega_\dR),\\
+ X_0&=\Isom^\otimes(\omega_\B|_{\Tcal_0},\omega_{\dR,0}).
+\end{align*}
+Thus $X$ is over $K$, whereas $X_0$ is over $k$. In a fiber product the
+base change $X_{0,K}$ is always understood explicitly. These are affine
+torsors by \cite[Theorem~3.2]{DeligneMilne}.
+
+Let $p_0\in X_0(\C)$ be the actual constant comparison point and put
+\begin{equation}\label{eq:actual-base}
+ \begin{split}
+ Z_0&=\overline{\{p_0\}}^{\mathrm{Zar}},\qquad
+ A_0=k[Z_0]=k[X_0]/\ker(\operatorname{ev}_{p_0}),\\
+ F_0&=\Frac(A_0),\qquad R_0=K\otimes_k A_0,\qquad
+ K_0=\Frac(R_0)=F_0(S).
+ \end{split}
+\end{equation}
+Both $A_0$ and $F_0$ are identified with their actual embedded values in
+$\C$. This imposes their relations without asserting that the unknown
+constant-period relations are absent. All derivations kill $F_0$.
+
+\begin{lemma}[Domains, embeddings, and base constants]\label{lem:base-field}
+There are injective maps
+\[
+ R_0\hookrightarrow K_0\hookrightarrow E=\C(S),
+\]
+and the common constant field of $K_0$ is exactly $F_0$.
+\end{lemma}
+\begin{proof}
+Evaluation makes $A_0$ a domain. The smooth connected variety $S$ is
+geometrically integral over the algebraically closed field $k$. After any
+field extension its function-field construction is therefore a domain.
+In particular $K\otimes_k\C$ is a domain whose fraction field is $E$.
+Flatness of $K$ over $k$ embeds $R_0$ in $K\otimes_k\C$, giving the
+claimed injections and identifying $K_0$ with $F_0(S)$.
+
+The derivations $\partial_i$ form a basis of the tangent derivations of
+$K_0/F_0$. If they all kill $u\in K_0$, then $du=0$ in
+$\Omega^1_{K_0/F_0}$. In characteristic zero this implies that $u$ is
+algebraic over $F_0$. Geometric integrality of $S_{F_0}$ implies that
+$F_0$ is relatively algebraically closed in $F_0(S)$, so $u\in F_0$.
+The reverse inclusion is part of the definition of the derivations.
+\end{proof}
+
+Set
+\begin{equation}\label{eq:relative-scheme}
+ X_{\mathrm{rel}}=X\times_{X_{0,K}}(\Spec K\times_k Z_0),
+ \qquad B_0=\Ocal(X_{\mathrm{rel}}).
+\end{equation}
+
+\begin{proposition}[The correct group and its torsor]\label{prop:relative-torsor}
+The map $X_{\mathrm{rel}}\to\Spec R_0$ is a torsor under
+$H_{\B,R_0}$. Its coordinate algebra $B_0$ is faithfully flat and
+torsion-free over $R_0$.
+\end{proposition}
+\begin{proof}
+The normal subgroup $H_\B$ of \eqref{eq:betti-groups} is defined over
+$k$. The map $X\to X_{0,K}$ is an $H_{\B,K}$-torsor: after a faithfully
+flat trivialization of $X$, it is the quotient map $G_\B\to G_{0,\B}$,
+whose kernel is $H_\B$. Descend this assertion and base change along
+$\Spec K\times_k Z_0\to X_{0,K}$. An affine torsor under an affine
+algebraic group is faithfully flat. Since $R_0$ is a domain, flatness
+implies torsion-freeness.
+\end{proof}
+
+There is a natural differential structure on $B_0$. For a tensor-generator
+connection in the frame of \eqref{eq:system}, its universal comparison
+matrix $U$ satisfies
+\begin{equation}\label{eq:universal-derivation}
+ \partial_iU=A_iU.
+\end{equation}
+Naturality and tensor relations are stable under these operators because
+the de Rham morphisms and tensor structure are horizontal. Constant
+comparison coefficients are horizontal; hence restriction along $Z_0$
+also respects the derivations. Thus actual analytic comparison defines a
+differential map $B_0\to\mathscr M(B)$ without yet claiming it injective.
+
+\subsection{An explicit equivariant comparison over \texorpdfstring{$\C(S)$}{C(S)}}
+
+Use the tensor generator, algebraic frame, and normalized matrix $Y$ of
+\cref{sec:pv-base-change}. Let $P$ be its actual comparison matrix from
+Betti to de Rham coordinates, and let $c=P(s_0)$ be the matrix of the
+comparison in \cref{lem:conjugation}. Uniqueness of solutions gives
+\begin{equation}\label{eq:P-Yc}
+ P=Yc.
+\end{equation}
+The coefficients of $c$ belong to $\C$ and need not belong to $F_0$.
+This fact is allowed; those coefficients are not adjoined to the smaller
+solution field in the descent argument.
+
+\begin{lemma}[The analytic algebra and equivariance]\label{lem:analytic-torsor}
+Evaluation gives a surjective $E$-algebra map
+\begin{equation}\label{eq:evaluation-E}
+ B_0\otimes_{R_0}E\longrightarrow E[P,\det(P)^{-1}]=R_E.
+\end{equation}
+The induced closed immersion of schemes is equivariant for
+$H_{\B,E}$, under the identification
+$(H_\B)_\C=c^{-1}(H_v)_\C c$.
+\end{lemma}
+\begin{proof}
+The actual comparison is natural and tensor-compatible. Its restriction to
+constant objects is $p_0$, so it factors through $X_{\mathrm{rel}}$.
+Because $\Tcal$ has a tensor generator, its comparison algebra is generated
+by the entries of the generator's universal matrix and its inverse
+determinant, with its tensor relations. Evaluation therefore has precisely
+the image on the right of \eqref{eq:evaluation-E}, and is surjective.
+By \eqref{eq:P-Yc}, $E[P,\det(P)^{-1}]=E[Y,\det(Y)^{-1}]$.
+
+The group of the latter Picard--Vessiot algebra acts by $Y\mapsto Yh$,
+$h\in(H_v)_\C$. Consequently its action on $P$ is
+\[
+ P=Yc\longmapsto Yhc=P(c^{-1}hc).
+\]
+By \cref{lem:conjugation}, $c^{-1}hc$ ranges over $(H_\B)_\C$.
+On the motivic comparison torsor, precomposition by a Betti tensor
+automorphism is exactly right multiplication $U\mapsto Ug$.
+The two formulas coincide. They are identities for the universal matrix
+coordinate functions, so they establish equivariance as group-scheme
+actions, not only on a selected set of analytic points.
+\end{proof}
+
+\begin{lemma}[Equivariant torsor maps]\label{lem:torsor-iso}\label{lem:torsor-map}
+An equivariant morphism between two nonempty torsors under the same affine
+group over a field is an isomorphism.
+\end{lemma}
+\begin{proof}
+Make a faithfully flat extension that trivializes both torsors and choose
+origins. An equivariant map between the two right regular group torsors
+is left translation by the image of the identity, hence is invertible.
+The inverse descends, since invertibility of a morphism is faithfully
+flat local on the base.
+\end{proof}
+
+\begin{theorem}[Injective relative period comparison]\label{thm:period-injective}
+The actual map $B_0\to\mathscr M(B)$ is injective. Moreover
+\begin{equation}\label{eq:complex-isomorphism}
+ B_0\otimes_{R_0}\C(S)\simeq R_E
+\end{equation}
+as differential algebras and equivariant torsor coordinate algebras.
+\end{theorem}
+\begin{proof}
+By \cref{prop:pv-base-change}, the source scheme of the closed immersion
+in \cref{lem:analytic-torsor} is a Picard--Vessiot torsor under
+$H_{\B,E}$, in the Betti coordinates just computed. By
+\cref{prop:relative-torsor}, its target is a torsor under the same group.
+\Cref{lem:torsor-iso} makes that immersion an isomorphism. This proves
+\eqref{eq:complex-isomorphism}.
+
+By \cref{prop:relative-torsor} and \cref{lem:base-field}, the actual
+period map is the composite of injections
+\[
+ B_0\ \lhook\joinrel\longrightarrow\ B_0\otimes_{R_0}K_0
+ \ \lhook\joinrel\longrightarrow\ B_0\otimes_{R_0}E
+ \ \xrightarrow{\sim}\ R_E
+ \ \lhook\joinrel\longrightarrow\ \mathscr M(B).
+\]
+The first injection is localization of a torsion-free module over a
+domain. The second is scalar extension along the field embedding
+$K_0\hookrightarrow E$, hence is injective. The last is the concrete
+analytic Picard--Vessiot embedding. This proves injectivity without
+assuming anything about the constant field of the smaller period-generated
+solution field.
+\end{proof}
+
+\subsection{Descent of differential simplicity and constants}
+
+Put
+\[
+ R=B_0\otimes_{R_0}K_0,\qquad L=\Frac(R).
+\]
+These are domains by \cref{thm:period-injective}. In particular
+$R=K_0[P,\det(P)^{-1}]$ in the actual analytic embedding, not an algebra
+obtained by adjoining the separate entries of $c$.
+
+\begin{lemma}[Intersection in a faithfully embedded tensor product]\label{lem:intersection}
+Let $F\subset L_1,L_2$ be fields. In $L_1\otimes_F L_2$, equality
+$x\otimes1=1\otimes y$ with $x\in L_1$ and $y\in L_2$ implies
+$x=y\in F$. The same conclusion holds if the equality is checked in any
+field into which this tensor product injects.
+\end{lemma}
+\begin{proof}
+If $x\notin F$, the vectors $1,x$ are linearly independent over $F$.
+Choose an $F$-linear functional $\ell:L_1\to F$ with
+$\ell(1)=0$ and $\ell(x)=1$, extending from their span to a basis.
+Applying $\ell\otimes\id$ to the equality gives $1=0$, a contradiction.
+Thus $x\in F$, and the equality then implies $y=x$ by injectivity of the
+field into its scalar extension. The last assertion reduces to this one
+by the assumed injection.
+\end{proof}
+
+\begin{theorem}[Picard--Vessiot descent over the actual constant field]\label{thm:pv-descent}
+The algebra $R$ is differentially simple, its fraction field satisfies
+\begin{equation}\label{eq:exact-constants}
+ L^{\partial_1=\cdots=\partial_d=0}=F_0,
+\end{equation}
+and $R$ is the Picard--Vessiot algebra for the realized tensor generator
+over $K_0=F_0(S)$, with group $(H_\B)_{F_0}$.
+\end{theorem}
+\begin{proof}
+By \cref{thm:period-injective},
+$R\otimes_{K_0}E\simeq R_E$ is differentially simple. If $I\subset R$
+is a nonzero differential ideal, faithful flatness of the field extension
+makes $I\otimes E$ nonzero. Simplicity makes it all of $R_E$.
+Applying faithful flatness to $(R/I)\otimes E=0$ gives $I=R$.
+Thus $R$ is differentially simple.
+
+To prove \eqref{eq:exact-constants}, localize the isomorphism
+$R\otimes_{K_0}E\simeq R_E$ at every nonzero element of $R$. Since
+all those elements map to nonzero elements of the domain $R_E$, this gives
+an injection
+\begin{equation}\label{eq:localized-tensor}
+ L\otimes_{K_0}E\lhook\joinrel\longrightarrow\Frac(R_E)
+ \lhook\joinrel\longrightarrow\mathscr M(B).
+\end{equation}
+Let $b\in L$ be killed by every $\partial_i$. Its analytic image is a
+constant $\alpha\in\C\subset E$: on a connected polydisc a meromorphic
+function with all partial derivatives zero is constant. In the last field
+of \eqref{eq:localized-tensor} the two elements $b\otimes1$ and
+$1\otimes\alpha$ have equal image. The injection gives their equality
+in the tensor product. \Cref{lem:intersection} implies $b\in K_0$.
+Its derivatives are zero there, so \cref{lem:base-field} gives
+$b\in F_0$. Conversely, $F_0$ is killed by all the derivations.
+
+Finally $R$ is generated over $K_0$ by the actual fundamental matrix
+$P$ and its inverse determinant, it is differentially simple, and its
+fraction field has exactly the constants $F_0$. These are the
+Picard--Vessiot properties over this possibly non-algebraically-closed
+constant field. The already established torsor coaction is defined over
+$F_0$ and identifies its group with $(H_\B)_{F_0}$; equivalently this
+identification follows after the faithfully flat constant extension to
+$\C$ from \cref{lem:analytic-torsor} and descends. This completes the
+constant-field argument rather than presupposing it.
+\end{proof}
+
+For $d=0$, $S=\Spec k$, the relative group is trivial and the argument
+reduces to the embedding $A_0\hookrightarrow\C$; set $K_0=L=F_0$.
+For $d>0$, the proofs above use every base derivation. Injectivity on $B$
+implies injectivity on any common analytic continuation domain, so the
+same result holds on the universal-cover formulation of the period map.
+The passage from a finite tensor-generated category to the generic
+exponential envelope is given in \cref{sec:KZ}.
 
 \begin{theorem}[Relative functional exponential-period theorem]
 \label{thm:functional-period}
-Assume rank-one saturation.  The generic fiber of $\mathscr X_{\mathrm{rel}}$
-is the Picard--Vessiot torsor.  The analytic relative period map
+For a category satisfying the fixed-part and rank-one saturation properties
+proved above, the generic fiber of $X_{\mathrm{rel}}$ is the Picard--Vessiot
+torsor over $K_0=F_0(S)$. The actual relative period map
 \[
-  \per^{\exp}_{S,\mathrm{rel}}:
-  \Ocal(\mathscr X_{\mathrm{rel}})
-  \longrightarrow\mathscr M(\widetilde S)
+ \per^{\exp}_{S,\mathrm{rel}}:B_0\longrightarrow\mathscr M(\widetilde S)
 \]
 is injective.
 \end{theorem}
-
 \begin{proof}
-By \cref{prop:relative-torsor}, the generic fiber
-$\mathscr X_{\mathrm{rel}}\times_{R_0}K_0$ and $\mathscr X_{\PV}$ are nonempty
-torsors under the same group.  The preceding closed immersion is therefore an
-isomorphism by \cref{lem:torsor-map}.
-
-Let $x\in\Ocal(\mathscr X_{\mathrm{rel}})$ map to zero analytically.  After
-tensoring with $K_0$, the torsor isomorphism identifies $x$ with an element of
-the Picard--Vessiot algebra which is zero in the meromorphic solution field;
-hence $x\otimes1=0$.  Thus $x$ is $R_0$-torsion.  Faithful flatness in
-\cref{prop:relative-torsor} makes
-$\Ocal(\mathscr X_{\mathrm{rel}})$ torsion-free over $R_0$, so $x=0$.
+The injection is \cref{thm:period-injective}. Differential simplicity,
+the exact field of constants, and the torsor identification over $K_0$
+are \cref{thm:pv-descent}. The preceding argument on a connected analytic
+open determines the continued map on $\widetilde S$.
 \end{proof}
 
 \begin{corollary}[Functional relation interpretation]\label{cor:functional-rel}
@@ -1549,7 +2199,7 @@ the restrictions of elementary data
 and their tensor operations and duals.  Every finite packet has a common dense
 lisse model.  The comparison theorems for exponential periods identify its
 matrix coefficients with cohomological rapid-decay period functions
-\cite{CHH,CommelinHuberII,FresanJossenExp}.
+\cite{CHH,FresanJossenExp}.
 
 \begin{theorem}[Relative exponential Nori--Ayoub theorem]
 \label{thm:exponential-NA}
@@ -1834,10 +2484,9 @@ A finite packet of functions
   z^\alpha(\log z)^mF(z),
   \qquad \alpha\in\Q,
 \]
-with $F$ an $E$-function has finite Kummer and unipotent monodromy at the regular
-singularity.  Monodromy projectors and finite differences provide a concrete
-split model for separating the Kummer and logarithmic components.  Once the
-packet is placed in the relative exponential Nori envelope, the generic
+with $F$ an $E$-function has finite Kummer monodromy and, when logarithmic factors occur,
+possibly infinite unipotent monodromy at the regular singularity.  Monodromy projectors and finite differences provide a concrete
+split model for separating the Kummer and logarithmic components.  For a packet placed in the relative exponential Nori envelope, the generic
 functional theorem applies.  Relations at a fixed algebraic value with
 period-valued coefficients remain arithmetic and are not consequences of the
 functional theorem.
@@ -1862,10 +2511,14 @@ created by specialization and an elementary presentation of the general motivic
 relation algebra are separate problems.
 
 \section*{AI-assisted research disclosure}
-The authors used AI-assisted tools for literature retrieval, drafting, and proof
-checking, and take responsibility for the manuscript.  The AI system is not an
-author.
+The authors used AI-assisted tools for literature retrieval, proof development,
+adversarial checking, and document preparation, and are responsible for the
+manuscript. The AI systems are not authors. The repository records the frozen
+pre-repair baseline, standalone replacement arguments, and the subsequent
+assembled-proof and integration audit. Those checks are not a claim of
+independent human peer review or formal verification.
 
+\small
 \begin{thebibliography}{99}
 
 \bibitem{AndersonBrownawellPapanikolas}
@@ -1874,9 +2527,12 @@ G.~W. Anderson, W.~D. Brownawell, and M.~A. Papanikolas,
 Ann. of Math. (2) \textbf{160} (2004), no.~1, 237--313.
 
 \bibitem{AndreFixed}
-Y.~Andre,
-\emph{Mumford--Tate groups of mixed Hodge structures and the theorem of the fixed part},
-Compositio Math. \textbf{82} (1992), no.~1, 1--24.
+Y.~Andr\'e, \emph{Mumford--Tate groups of mixed Hodge structures and the
+theorem of the fixed part}, Compositio Math. \textbf{82} (1992), 1--24.
+
+\bibitem{AyoubBarbieriViale}
+J.~Ayoub and L.~Barbieri-Viale, \emph{Nori $1$-motives}, Math. Ann.
+\textbf{361} (2015), 367--402. \href{https://arxiv.org/abs/1206.5923}{arXiv:1206.5923}.
 
 \bibitem{AyoubPeriods}
 J.~Ayoub,
@@ -1888,16 +2544,6 @@ J.~Ayoub,
 \emph{Une version relative de la conjecture des periodes de Kontsevich--Zagier},
 Ann. of Math. (2) \textbf{181} (2015), no.~3, 905--992.
 
-\bibitem{AyoubBarbieriViale}
-J.~Ayoub and L.~Barbieri-Viale,
-\emph{Nori $1$-motives},
-Math. Ann. \textbf{361} (2015), no.~1--2, 367--402.
-
-\bibitem{BarbieriVialeSrinivas}
-L.~Barbieri-Viale and V.~Srinivas,
-\emph{Albanese and Picard $1$-motives},
-M\'em. Soc. Math. Fr. (N.S.) \textbf{87} (2001), vi+104 pp.
-
 \bibitem{BBD}
 A.~A. Beilinson, J.~Bernstein, and P.~Deligne,
 \emph{Faisceaux pervers},
@@ -1908,46 +2554,28 @@ B.~Bakker and J.~Tsimerman,
 \emph{Functional transcendence of periods and the geometric Andre--Grothendieck period conjecture},
 Forum Math. Sigma \textbf{13} (2025), e97.
 
+\bibitem{BarbieriVialeSrinivas}
+L.~Barbieri-Viale and V.~Srinivas, \emph{Albanese and Picard $1$-motives},
+M\'em. Soc. Math. Fr. (N.S.) \textbf{87} (2001), vi+104 pp.
+
 \bibitem{CHH}
 J.~Commelin, P.~Habegger, and A.~Huber,
 \emph{Exponential periods and o-minimality},
-arXiv:2007.08280, version 4, 2026.
+\href{https://arxiv.org/abs/2007.08280}{arXiv:2007.08280}.
+The former Part~II (arXiv:2007.08290) was merged into this work.
 
-\bibitem{CommelinHuberII}
-J.~Commelin and A.~Huber,
-\emph{Exponential periods and o-minimality II},
-arXiv:2007.08290.
+\bibitem{CHM}
+T.~Crespo, Z.~Hajto, and R.~Mohseni, \emph{Real Liouvillian extensions of
+partial differential fields}, SIGMA \textbf{17} (2021), 095, especially
+\S2.1 and its comparison with Kolchin's integrable-system theory.
+\href{https://doi.org/10.3842/SIGMA.2021.095}{doi:10.3842/SIGMA.2021.095}.
 
-\bibitem{FresanJossenExp}
-J.~Fresan and P.~Jossen,
-\emph{Exponential motives},
-preliminary manuscript, version consulted August 2026, available from the authors.
-
-\bibitem{GallauerPepin}
-M.~Gallauer and S.~Pepin Lehalleur,
-\emph{Exponentiation of coefficient systems and exponential motives},
-arXiv:2211.17247.
-
-\bibitem{HuberWustholz}
-A.~Huber and G.~W\"ustholz,
-\emph{Transcendence and Linear Relations of $1$-Periods},
-Cambridge Tracts in Mathematics, Cambridge University Press, 2022.
-
-\bibitem{Hien}
-M.~Hien,
-\emph{Periods for flat algebraic connections},
-Invent. Math. \textbf{178} (2009), no.~1, 1--22.
-
-\bibitem{HienRoucairol}
-M.~Hien and C.~Roucairol,
-\emph{Integral representations for solutions of exponential Gauss--Manin systems},
-Bull. Soc. Math. France \textbf{136} (2008), no.~4, 505--532.
-
-\bibitem{IvorraMorel}
-F.~Ivorra and S.~Morel,
-\emph{The four operations on perverse motives},
-J. Eur. Math. Soc. \textbf{26} (2024), 4191--4272.
-
+\bibitem{ChoudhuryGallauer}
+U.~Choudhury and M.~Gallauer Alves de Souza,
+\emph{An isomorphism of motivic Galois groups},
+Adv. Math. \textbf{313} (2017), 470--536.
+\href{https://arxiv.org/abs/1410.6104}{arXiv:1410.6104},
+\S\S6--7, Propositions~7.1 and~7.12.
 
 \bibitem{DeligneHodgeIII}
 P.~Deligne,
@@ -1955,30 +2583,76 @@ P.~Deligne,
 Publ. Math. Inst. Hautes \'Etudes Sci. \textbf{44} (1974), 5--77.
 
 \bibitem{DeligneMilne}
-P.~Deligne and J.~S. Milne,
-\emph{Tannakian categories},
-in \emph{Hodge Cycles, Motives, and Shimura Varieties},
-Lecture Notes in Math. \textbf{900}, Springer, 1982, pp.~101--228.
+P.~Deligne and J.~S.~Milne, \emph{Tannakian categories}, in
+\emph{Hodge Cycles, Motives, and Shimura Varieties}, Lecture Notes in Math.
+\textbf{900}, Springer, 1982, 101--228. Author-hosted corrected text:
+\url{https://www.jmilne.org/math/xnotes/tc.pdf}.
 
 \bibitem{DouaiSabbah}
-A.~Douai and C.~Sabbah,
-\emph{Gauss--Manin systems, Brieskorn lattices and Frobenius structures (I)},
-Ann. Inst. Fourier (Grenoble) \textbf{53} (2003), no.~4, 1055--1116.
+A.~Douai and C.~Sabbah, \emph{Gauss--Manin systems, Brieskorn lattices
+and Frobenius structures (I)}, Ann. Inst. Fourier \textbf{53} (2003),
+1055--1116, Propositions~1.18 and~1.20.
+
+\bibitem{DrewGallauer}
+B.~Drew and M.~Gallauer,
+\emph{The universal six-functor formalism},
+\href{https://arxiv.org/abs/2009.13610v4}{arXiv:2009.13610v4},
+Definitions~7.5 and~7.7, Theorem~7.14.
+
+\bibitem{FresanJossenExp}
+J.~Fres\'an and P.~Jossen, \emph{Exponential motives},
+preliminary manuscript, 2020 version, with the absolute rapid-decay
+comparison used here also recalled in \cite[\S3]{Snodgrass}.
+
+\bibitem{GallauerPepin}
+M.~Gallauer and S.~Pepin Lehalleur, \emph{Exponentiation of coefficient
+systems and exponential motives}, \href{https://arxiv.org/abs/2211.17247}{arXiv:2211.17247}.
+
+\bibitem{HTT}
+R.~Hotta, K.~Takeuchi, and T.~Tanisaki,
+\emph{$D$-Modules, Perverse Sheaves, and Representation Theory},
+Progress in Mathematics \textbf{236}, Birkh\"auser, 2008.
+
+\bibitem{Harrer}
+D.~Harrer,
+\emph{Comparison of the categories of motives defined by Voevodsky and Nori},
+Ph.D. thesis, University of Freiburg, 2016.
+\href{https://arxiv.org/abs/1609.05516}{arXiv:1609.05516},
+Chapters~4 and~7; Theorems~7.4.17 and~7.6.5.
+
+\bibitem{HartshorneDR}
+R.~Hartshorne,
+\emph{On the de Rham cohomology of algebraic varieties},
+Publ. Math. Inst. Hautes Etudes Sci. \textbf{45} (1975), 5--99.
+
+\bibitem{Hien}
+M.~Hien, \emph{Periods for flat algebraic connections},
+Invent. Math. \textbf{178} (2009), 1--22.
+
+\bibitem{HienRoucairol}
+M.~Hien and C.~Roucairol,
+\emph{Integral representations for solutions of exponential Gauss--Manin systems},
+Bull. Soc. Math. France \textbf{136} (2008), 505--532.
+
+\bibitem{HuberWustholz}
+A.~Huber and G.~W\"ustholz, \emph{Transcendence and Linear Relations of
+$1$-Periods}, Cambridge Tracts in Mathematics \textbf{227}, Cambridge
+University Press, 2022. \href{https://arxiv.org/abs/1805.10104}{arXiv:1805.10104},
+Theorem~9.14.
+
+\bibitem{IvorraMorel}
+F.~Ivorra and S.~Morel, \emph{The four operations on perverse motives},
+J. Eur. Math. Soc. \textbf{26} (2024), 4191--4272.
 
 \bibitem{JacobsenComparison}
-E.~Jacobsen and L.~Terenzi,
-\emph{A comparison of categories of Nori motivic sheaves},
-arXiv:2509.21476v1, 2025.
+E.~Jacobsen and L.~Terenzi, \emph{A comparison of categories of Nori
+motivic sheaves}, \href{https://arxiv.org/abs/2509.21476}{arXiv:2509.21476},
+Corollary~5.15.
 
 \bibitem{KatzESDE}
 N.~M.~Katz,
 \emph{Exponential Sums and Differential Equations},
 Annals of Mathematics Studies \textbf{124}, Princeton University Press, 1990.
-
-\bibitem{KontsevichZagier}
-M.~Kontsevich and D.~Zagier,
-\emph{Periods},
-in \emph{Mathematics Unlimited--2001 and Beyond}, Springer, 2001, pp.~771--808.
 
 \bibitem{KoblitzOgus}
 N.~Koblitz and A.~Ogus,
@@ -1987,72 +2661,84 @@ appendix to P.~Deligne, \emph{Valeurs de fonctions $L$ et p\'eriodes d'int\'egra
 Proc. Sympos. Pure Math. \textbf{33}, part~2, Amer. Math. Soc., 1979,
 pp.~343--346.
 
+\bibitem{Kolchin}
+E.~R.~Kolchin, \emph{Picard--Vessiot theory of partial differential fields},
+Proc. Amer. Math. Soc. \textbf{3} (1952), 596--603.
+\href{https://doi.org/10.1090/S0002-9939-1952-0049883-8}{doi:10.1090/S0002-9939-1952-0049883-8}.
+
+\bibitem{KontsevichZagier}
+M.~Kontsevich and D.~Zagier,
+\emph{Periods},
+in \emph{Mathematics Unlimited--2001 and Beyond}, Springer, 2001, pp.~771--808.
+
 \bibitem{LamLitt}
-Y.-H.~J. Lam and D.~Litt,
-\emph{Geometric local systems on the projective line minus four points},
-Compos. Math. \textbf{161} (2025), no.~3, 536--554.
+Y.-H.~J.~Lam and D.~Litt, \emph{Geometric local systems on the projective
+line minus four points}, Compos. Math. \textbf{161} (2025), 536--554,
+Lemma~3.5. \href{https://doi.org/10.1112/S0010437X24007620}{doi:10.1112/S0010437X24007620}.
 
 \bibitem{Mostaed}
-A.~Mostaed,
-\emph{On the invariant cycle theorem for families of Nori motives},
-arXiv:2206.05582.
+A.~Mostaed, \emph{On the invariant cycle theorem for families of Nori
+motives}, \href{https://arxiv.org/abs/2206.05582}{arXiv:2206.05582}, \S4.
 
-\bibitem{HartshorneDR}
-R.~Hartshorne,
-\emph{On the de Rham cohomology of algebraic varieties},
-Publ. Math. Inst. Hautes Etudes Sci. \textbf{45} (1975), 5--99.
-
-\bibitem{HTT}
-R.~Hotta, K.~Takeuchi, and T.~Tanisaki,
-\emph{$D$-Modules, Perverse Sheaves, and Representation Theory},
-Progress in Mathematics \textbf{236}, Birkh\"auser, 2008.
+\bibitem{PutSinger}
+M.~van der Put and M.~F.~Singer, \emph{Galois Theory of Linear Differential
+Equations}, Grundlehren Math. Wiss. \textbf{328}, Springer, 2003, Chapter~1.
+\href{https://doi.org/10.1007/978-3-642-55750-7}{doi:10.1007/978-3-642-55750-7}.
 
 \bibitem{RivoalGamma}
 T.~Rivoal,
 \emph{On the arithmetic nature of the values of the Gamma function, Euler's constant, and Gompertz's constant},
 Michigan Math. J. \textbf{61} (2012), no.~2, 239--254.
 
-\bibitem{SaitoMHM}
-M.~Saito,
-\emph{Mixed Hodge modules},
-Publ. Res. Inst. Math. Sci. \textbf{26} (1990), no.~2, 221--333.
+\bibitem{SabbahMonodromy}
+C.~Sabbah, \emph{Monodromy at infinity and Fourier transform II},
+Publ. Res. Inst. Math. Sci. \textbf{42} (2006), 803--835.
+Proposition~5.8, Corollary~5.20, and (5.21)--(5.22). Author-hosted text:
+\url{https://perso.pages.math.cnrs.fr/users/claude.sabbah/articles/sabbah_Fourier-twistor.pdf}.
+
+\bibitem{SabbahParameters}
+C.~Sabbah, \emph{A short proof of a theorem of Cotti, Dubrovin and
+Guzzetti}, Port. Math. \textbf{79} (2022), 29--43.
+\href{https://arxiv.org/abs/2103.16878v3}{arXiv:2103.16878v3},
+Appendix~B, preprint pp.~12--13 (the assertion immediately before
+Proposition~B.1 and that proposition).
 
 \bibitem{SabbahTwistor}
 C.~Sabbah,
 \emph{Polarizable Twistor $D$-Modules},
 Ast\'erisque \textbf{300}, Soci\'et\'e Math\'ematique de France, 2005.
 
-\bibitem{SabbahMonodromy}
-C.~Sabbah,
-\emph{Monodromy at infinity and Fourier transform II},
-Publ. Res. Inst. Math. Sci. \textbf{42} (2006), no.~3, 803--835.
+\bibitem{SaitoMHM}
+M.~Saito,
+\emph{Mixed Hodge modules},
+Publ. Res. Inst. Math. Sci. \textbf{26} (1990), no.~2, 221--333.
 
-\bibitem{SabbahParameters}
-C.~Sabbah,
-\emph{A short proof of a theorem of Cotti, Dubrovin and Guzzetti},
-Port. Math. \textbf{79} (2022), no.~1, 29--43;
-arXiv:2103.16878v3.
+\bibitem{SaitoMixed}
+M.~Saito, \emph{On the formalism of mixed sheaves},
+Preprint RIMS-784, August 1991; electronic version 2006.
+\href{https://arxiv.org/abs/math/0611597}{arXiv:math/0611597},
+\S1.8(ii), \S\S2--6, and \S6.15.
 
 \bibitem{Snodgrass}
-B.~Snodgrass,
-\emph{Periods of $E$-operators},
-arXiv:2608.06005, 2026.
+B.~Snodgrass, \emph{Periods of $E$-operators},
+\href{https://arxiv.org/abs/2608.06005}{arXiv:2608.06005} (2026),
+Corollary~2.17 and Theorem~3.6.
 
 \bibitem{Terenzi}
-L.~Terenzi,
-\emph{Tensor structure on perverse Nori motives},
-Ann. K-Theory \textbf{11} (2026), no.~1, 47--170; arXiv:2401.13547v3.
+L.~Terenzi, \emph{Tensor structure on perverse Nori motives},
+Ann. K-Theory \textbf{11} (2026), 47--170.
+\href{https://arxiv.org/abs/2401.13547}{arXiv:2401.13547}.
 
 \bibitem{Tubach}
-S.~Tubach,
-\emph{On the Nori and Hodge realisations of Voevodsky motives},
-Compos. Math. \textbf{161} (2025), no.~9, 2155--2201; arXiv:2309.11999v4.
+S.~Tubach, \emph{On the Nori and Hodge realisations of Voevodsky motives},
+Compos. Math. \textbf{161} (2025), 2155--2201.
+\href{https://arxiv.org/abs/2309.11999}{arXiv:2309.11999}.
 
 \bibitem{Virk}
-R.~Virk,
-\emph{Realizations of exponential sheaves and Fourier transform},
-arXiv:2605.14904v4, 2026.
+R.~Virk, \emph{Realizations of exponential sheaves and Fourier transform},
+\href{https://arxiv.org/abs/2605.14904v4}{arXiv:2605.14904v4} (2026),
+\S\S2.6--2.7 and~6.6--6.7, Propositions~6.4, 6.8, and~7.2,
+Theorems~6.13 and~7.5--7.6, and Appendix~B.
 
 \end{thebibliography}
-
 \end{document}

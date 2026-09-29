@@ -1,27 +1,17 @@
 {
   "revision_date": "2026-09-29",
-  "baseline_commit": "0bb151018dc73c9e48b847fff31fb82fd2cb9072",
-  "previous_repair_head": "b2fd02cba7ad6794ccca49b890f72ab1af27cb6c",
-  "baseline_reference_verified": true,
-  "all_eight_prior_sources_unchanged": true,
-  "all_eight_prior_pdf_snapshots_unchanged": true,
-  "all_eight_prior_manifest_records_unchanged": true,
+  "new_document": {
+    "source": "papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex",
+    "source_sha256": "eac3f84b331389c80e687c5530604dc5399624d64b3fac3a94549c57b9f88236",
+    "pdf": "output/pdf/paper-iv-repair-note.pdf",
+    "pdf_sha256": "dedb099b47a7839455dae7b6a7e9343e37dff9edfc259ddee3b5c8ed32113168",
+    "pages": 26
+  },
+  "original_75_note_labels_preserved": true,
   "make_test": "passed",
   "make_pdf": "passed",
   "make_check": "passed",
-  "new_document": {
-    "source": "papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex",
-    "source_sha256": "a6587462e47aeb6b7d4d243db6404438ff078b02c8728dabd509ba3a11709ee4",
-    "pdf": "output/pdf/paper-iv-repair-note.pdf",
-    "pdf_sha256": "e1650dd64f4baa264eaaf5eb2ab4e212ddaf858695600faa79591075241f74b7",
-    "pages": 25
-  },
-  "numbered_sections": 8,
-  "cross_reference_labels": 75,
-  "prior_labels_preserved": 61,
-  "theorem_lemma_proposition_corollary_environments": 39,
-  "external_input_environments": 4,
-  "interface_status": "explicit Nori-algebra augmentation and relative realization construction supplied; corrected kernel and regular-specialization bridge incorporated",
-  "mathematical_status": "replacement proofs internally audited; independent whole-chain audit pending; not integrated into canonical Paper IV",
-  "visual_review": "record separately after downloading the built PDF"
+  "mathematical_status": "audited assembled arguments integrated into canonical Paper IV on the repair branch; final CI and merge recorded in PR",
+  "verification_record": "notes/provenance/paper-iv-integration-build-verification.json",
+  "audit_record": "notes/provenance/paper-iv-assembled-integration-audit-2026-09-29.md"
 }

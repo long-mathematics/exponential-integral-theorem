@@ -120,17 +120,21 @@ long-mathematics/exponential-integral-theorem\\
 \end{quote}
 The reference \path{baseline/paper-iv-pre-repair-2026-09-28} points to that
 commit. The machine-readable baseline record contains the source and PDF
-SHA-256 hashes. This note does not modify the baseline manuscript or its
-26-page PDF. Its proofs are submitted for a fresh adversarial audit; they
-are not an independently checked certification or an integrated revision.
+SHA-256 hashes. The frozen baseline and its 26-page PDF remain available at
+that commit. The replacement arguments have received an assembled-proof
+and integration audit and have been incorporated into the revised canonical
+Paper IV on the repair branch. This note remains a separate development
+companion; the dated closure record specifies the reviewed files and checks.
+Neither that audit nor compilation is independent peer review or formal
+verification.
 
 \paragraph{Reading contract.}
 The standard source theorems below are external inputs, not conclusions
 of the desired period theorem. The previously outstanding relative
 algebraic realization-and-comparison interface is now supplied by
 \cref{thm:algebraic-interface,thm:algebraic-exponential,prop:relative-Betti-interface}.
-Its construction is part of this repair note and remains open to a fresh
-adversarial audit. The final torsor theorem also has an abstract form:
+Its construction is part of this repair note and was examined in the
+assembled-proof audit recorded with the canonical integration. The final torsor theorem also has an abstract form:
 once the fixed-part and rank-one hypotheses are supplied, its proof uses
 no further motivic construction. This revision incorporates the kernel
 and nearby-cycle corrections from the second-pass audit. Historical
@@ -433,8 +437,9 @@ augmentation $\alpha:r(T)\to\one_{\mathcal B}$. Then
 \end{equation}
 defines a colimit-preserving symmetric monoidal functor
 $\operatorname{Mod}_{T}(\mathcal A)\to\mathcal B$. It sends the free
-module $T\otimes Q$ to $r(Q)$. The functor, including its natural
-transformations, is determined by $r$ and the action $\alpha$.
+module $T\otimes Q$ to $r(Q)$. Among colimit-preserving $r$-linear functors with the specified
+identification on free modules, the functor and its compatible natural
+transformations are determined by $r$ and the action $\alpha$.
 \end{lemma}
 \begin{proof}
 Applying $r$ to the multiplication and action maps makes $r(UM)$ an
@@ -1132,8 +1137,9 @@ Those sequences are stated before the subsequent dimension-one
 specialization in Sabbah's argument. Apply derived proper direct image to
 obtain two distinguished triangles. For any triangle $A\to B\to C\to$,
 the segment
-$\pH^jA\to\pH^jB\to\pH^jC$ expresses $\pH^jB$ as an extension of a
-quotient of $\pH^jA$ by a subobject of $\pH^jC$. Apply this observation
+$\pH^jA\to\pH^jB\to\pH^jC$ gives a short exact sequence whose middle
+object is $\pH^jB$, whose subobject is a quotient of $\pH^jA$, and whose
+quotient is a subobject of $\pH^jC$. Apply this observation
 first to \eqref{eq:upstream-one}, then to \eqref{eq:upstream-two}, for
 each $j$. Finite length gives exactly the asserted constituent containment.
 No exactness of $q_+$ on the heart, and no interchange of a constituent
@@ -1158,7 +1164,7 @@ the Hodge realization, exactness of normalized Fourier transformation and
 nearby cycles, and semisimplicity of each pure graded Hodge object. Its
 simple constituent local systems belong to the ordinary geometric-origin
 category; the abelian subquotient closure and its compatibility with the
-Nori description are the comparison input of \cite[Corollary~5.15]{JacobsenTerenzi}.
+Nori description are the comparison input of \cite[Corollary~5.15 and Proposition~5.17]{JacobsenTerenzi}.
 Apply the pure argument to the graded constituents.
 
 By \cref{lem:fiber-nearby,prop:regular-cycle-bridge}, a rank-one Betti constituent of the fixed
@@ -1377,7 +1383,8 @@ under subquotients. Its inclusion gives a faithfully flat quotient of
 $G_v$ \cite[Proposition~2.21(a)]{DeligneMilne}. A $\Tcal$-object is
 trivial as an $H_v$-representation precisely when its connection is
 trivial. By \cref{thm:fixed} this is equivalent to being constant.
-Thus the representations of $G_v/H_v$ are precisely $\Tcal_0$, proving
+The constant subcategory is also closed under tensor duals, since the dual
+of a trivial connection is trivial. Thus the representations of $G_v/H_v$ are precisely $\Tcal_0$, proving
 exactness. No period-map injectivity has been used.
 \end{proof}
 

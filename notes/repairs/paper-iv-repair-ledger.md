@@ -85,3 +85,14 @@ The dated second-pass report remains unchanged. The standalone note now supplies
 - New I1: absolute-to-relative algebraic realization by the Nori module algebra, counit augmentation, bar comparison, and canonical exchange maps — **replacement proof supplied; internally audited; independent audit pending**.
 
 The separate second-pass global rank-one strengthening is not needed for this focused update; the original dense-open arithmetic theorem in this standalone note remains unchanged. Canonical Paper IV and the other seven baseline documents remain frozen. See the new dated `paper-iv-interface-construction-2026-09-29.md` for the source map and proof audit.
+
+
+## Canonical integration and closure review, 2026-09-29
+
+The assembled candidate at `cb81b7d` has undergone the requested source-checked proof audit, followed by integration into canonical Paper IV and an integration audit. The recorded main proof has no unresolved essential objection in this pass. This is AI-assisted review, not independent human peer review or formal verification. Earlier ledger entries and reports remain historical.
+
+The augmentation interface, normalized kernel and fibers, actual nearby-cycle bridge, fixed parts, arithmetic lifting, compatible groups, and explicit torsor/constant-field descent are integrated. The optional split criterion now requires an actual rank-one comparison and effective descent; it is not used by the main generic proof. The module-functor uniqueness hypothesis, the two-graph cohomological convention, and the Nilsson-E monodromy wording are explicit.
+
+Canonical Paper IV is 35 pages; the retained repair companion is 26 pages. All 63 old canonical labels and all 75 old note labels remain. Duplicate canonical lemmas have been consolidated with label aliases; numerical theorem numbering is not unchanged. Authorship, titles, contacts, and manuscript dates are preserved.
+
+See [assembled and integration audit](../provenance/paper-iv-assembled-integration-audit-2026-09-29.md) and [build and structural verification](../provenance/paper-iv-integration-build-verification.json). The official revision build passed `make test`, `make pdf`, and `make check` for all nine documents, preserving the seven unaffected snapshots. Final artifact review, normal PR CI, and the merge are recorded in the PR. The frozen baseline branch remains pinned.
