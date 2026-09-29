@@ -1,0 +1,23 @@
+{
+  "baseline_commit": "0bb151018dc73c9e48b847fff31fb82fd2cb9072",
+  "baseline_reference_verified": true,
+  "all_eight_prior_sources_unchanged": true,
+  "all_eight_prior_pdf_snapshots_unchanged": true,
+  "all_eight_prior_manifest_records_unchanged": true,
+  "make_test": "passed",
+  "make_pdf": "passed",
+  "make_check": "passed",
+  "new_document": {
+    "source": "papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex",
+    "source_sha256": "9540c6757e6943ee3aef12ec734c96cf51dcc682444dd737486e6705d81174d6",
+    "pdf": "output/pdf/paper-iv-repair-note.pdf",
+    "pdf_sha256": "efa2aaa5ca0d1eb7c166bc1e79c29d61a31cd7ee03a24bb9c57382cb4f50ea2f",
+    "pages": 18
+  },
+  "numbered_sections": 8,
+  "cross_reference_labels": 61,
+  "theorem_lemma_proposition_corollary_environments": 32,
+  "external_input_environments": 4,
+  "mathematical_status": "replacement proofs drafted; fresh adversarial audit pending; not integrated",
+  "visual_review": "record separately after downloading and rendering the PDF"
+}
