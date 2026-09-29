@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   note:
     if: github.repository == 'long-mathematics/exponential-integral-theorem' && github.ref == 'refs/heads/paper-iv/standalone-repair-note-2026-09-28'
@@ -29,17 +33,9 @@ jobs:
           record = json.loads(Path('notes/repairs/paper-iv-baseline.json').read_text())
           for field in ('source', 'pdf'):
               assert hashlib.sha256(Path(record[field]).read_bytes()).hexdigest() == record[field + '_sha256']
-          p = Path('papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex')
-          text = p.read_text()
-          old = r'\texttt{4cc45c6d\allowbreake428e09cf5db940632106fc394d01393}'
-          new = r'\texttt{4cc45c6d\allowbreak{}d428e09cf5db940632106fc394d01393}'
-          if old in text:
-              assert text.count(old) == 1
-              text = text.replace(old, new)
-              p.write_text(text)
-          else:
-              assert new in text, 'Unexpected baseline hash text in the repair note'
           PY
+          cp scripts/paper_iv_note_typeset_once.py .build/paper_iv_note_typeset_once.py
+          python3 scripts/paper_iv_note_typeset_once.py
       - name: Install TeX and PDF tools
         run: |
           sudo apt-get update
@@ -51,7 +47,7 @@ jobs:
       - name: Restore all eight baseline PDF snapshots and manifest records
         run: |
           python3 - <<'PY'
-          import json, hashlib
+          import json
           from pathlib import Path
           baseline = Path('.build/audit-baseline')
           mp = Path('output/pdf/manifest.json')
@@ -72,7 +68,7 @@ jobs:
       - name: Record mechanical verification and commit only the standalone additions
         run: |
           python3 - <<'PY'
-          import hashlib, json, re, subprocess
+          import json, re, subprocess
           from pathlib import Path
           baseline = Path('.build/audit-baseline')
           old = json.loads((baseline / 'output/pdf/manifest.json').read_text())
@@ -94,30 +90,25 @@ jobs:
               'all_eight_prior_manifest_records_unchanged': True,
               'make_test': 'passed', 'make_pdf': 'passed', 'make_check': 'passed',
               'new_document': new_by_source[note_source],
-              'original_numbered_sections': len(re.findall(r'\\section\{', text)),
+              'numbered_sections': len(re.findall(r'\\section\{', text)),
               'cross_reference_labels': len(labels),
               'theorem_lemma_proposition_corollary_environments': len(re.findall(r'\\begin\{(?:theorem|lemma|proposition|corollary)\}', text)),
-              'external_input_environments': len(re.findall(r'\\begin\{input\}', text)),
+              'external_input_environments': len(re.findall(r'\\begin\{externalinput\}', text)),
               'mathematical_status': 'replacement proofs drafted; fresh adversarial audit pending; not integrated',
               'visual_review': 'record separately after downloading and rendering the PDF'
           }
           Path('notes/repairs/paper-iv-note-build-verification.json').write_text(json.dumps(report, indent=2) + '\n')
-          allowed = {
-              note_source,
-              'output/pdf/paper-iv-repair-note.pdf',
-              'output/pdf/manifest.json',
-              'notes/repairs/paper-iv-note-build-verification.json'
-          }
+          helper = 'scripts/paper_iv_note_typeset_once.py'
+          Path(helper).unlink()
+          allowed = {note_source, 'output/pdf/paper-iv-repair-note.pdf', 'output/pdf/manifest.json', 'notes/repairs/paper-iv-note-build-verification.json', helper}
           changed = set(subprocess.check_output(['git','diff','--name-only'], text=True).splitlines())
           untracked = set(subprocess.check_output(['git','ls-files','--others','--exclude-standard'], text=True).splitlines())
           assert changed | untracked <= allowed, (changed | untracked) - allowed
           PY
           git diff --check
-          git add papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex output/pdf/paper-iv-repair-note.pdf output/pdf/manifest.json notes/repairs/paper-iv-note-build-verification.json
-          if ! git diff --cached --quiet; then
-            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Build standalone Paper IV repair note; preserve every frozen manuscript snapshot'
-            git push origin HEAD:refs/heads/paper-iv/standalone-repair-note-2026-09-28
-          fi
+          git add papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex output/pdf/paper-iv-repair-note.pdf output/pdf/manifest.json notes/repairs/paper-iv-note-build-verification.json scripts/paper_iv_note_typeset_once.py
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Build standalone Paper IV repair note; preserve every frozen manuscript snapshot'
+          git push origin HEAD:refs/heads/paper-iv/standalone-repair-note-2026-09-28
       - name: Upload the standalone note and verification evidence
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -130,6 +121,8 @@ jobs:
             notes/repairs/
             .build/audit-baseline/
             .build/paper-iv-note-*.txt
+            .build/paper_iv_note_typeset_once.py
+            .build/paper-iv-repair-note/*.pdf
             .build/**/*.log
             .build/**/build-console.txt
           include-hidden-files: true
