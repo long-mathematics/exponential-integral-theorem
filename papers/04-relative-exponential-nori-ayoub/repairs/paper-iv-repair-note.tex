@@ -96,13 +96,18 @@ An Exponential Nori--Ayoub Theorem}. It fixes the exponential graph sign and
 the passage from perverse to lisse tensor conventions; replaces two overly
 general categorical arguments by affine-line adjunction; makes the unipotent
 Fourier direct-image argument use actual exact sequences; and separates
-algebraic and analytic fiber functors in the Galois argument. The last section
+algebraic and analytic fiber functors in the Galois argument. The relative
+algebraic realization is constructed from the absolute Nori algebra and its
+de Rham augmentation, with an explicit bar-resolution comparison and
+six-operation verification. The derived kernel shift and the distinction
+between topological and moderate nearby cycles are included. The last section
 constructs the period comparison first over $\C(S)$, proves equivariance,
 and then descends injectivity, differential simplicity, and the exact field
 of constants. In particular, no assertion that the actual comparison matrix
 is already Picard--Vessiot over the smaller period-constant field is used to
-prove that assertion. External coefficient-system, Fourier, and $1$-motivic
-inputs are identified separately from the replacement proofs.
+prove that assertion. The ordinary module-presentation,
+absolute mixed-realization, Fourier, and $1$-motivic inputs are identified
+separately from the new assembly and replacement proofs.
 \end{abstract}
 
 \paragraph{Frozen baseline and status.}
@@ -120,13 +125,17 @@ SHA-256 hashes. This note does not modify the baseline manuscript or its
 are not an independently checked certification or an integrated revision.
 
 \paragraph{Reading contract.}
-The coefficient-system and arithmetic theorems cited below are external
-inputs, not conclusions of the desired period theorem. Their compatibility
-interfaces are spelled out so that an auditor can challenge an input or its
-application independently. The final torsor result also has an abstract
-form: once the fixed-part and rank-one lifting hypotheses are supplied, its
-proof uses no further claim about the construction of exponential motives.
-The accompanying repair ledger distinguishes these layers.
+The standard source theorems below are external inputs, not conclusions
+of the desired period theorem. The previously outstanding relative
+algebraic realization-and-comparison interface is now supplied by
+\cref{thm:algebraic-interface,thm:algebraic-exponential,prop:relative-Betti-interface}.
+Its construction is part of this repair note and remains open to a fresh
+adversarial audit. The final torsor theorem also has an abstract form:
+once the fixed-part and rank-one hypotheses are supplied, its proof uses
+no further motivic construction. This revision incorporates the kernel
+and nearby-cycle corrections from the second-pass audit. Historical
+reports retain their earlier verdicts; the ledger records the new proofs
+without treating a successful build as a mathematical certification.
 
 \tableofcontents
 
@@ -148,18 +157,22 @@ terms in degrees $0,\ldots,d$.
 
 \subsection{The exponential sign}
 
-We fix
+We distinguish the holonomic heart object from the derived kernel:
 \begin{equation}\label{eq:exponential-sign}
-  \Ecal^f=(\Ocal_S,d-df),\qquad
-  \mathscr L_\lambda=(\Ocal_{\A^1_t},d-\lambda\,dt).
+ \Ecal^f=(\Ocal_S,d-df),\qquad
+ \mathscr K_\lambda=(\Ocal_{\A^1_t},d-\lambda\,dt),\qquad
+ \mathscr L_\lambda=\mathscr K_\lambda[-1].
 \end{equation}
-In left differential-operator notation, the latter has
-$\partial_t\cdot p=p'-\lambda p$. A horizontal section of this connection
-is $e^{\lambda t}$; an integral pairing with the twisted de Rham complex
-uses the dual exponential. This distinction prevents a solution-function
-sign from being substituted for a connection sign. We use the explicit
-operator convention, as in Virk's realization construction
-\cite[\S6.7]{Virk}.
+In left differential-operator notation,
+$\partial_t\cdot p=p'-\lambda p$ on $\mathscr K_\lambda$.
+A horizontal section is $e^{\lambda t}$; the dual exponential in an
+integral pairing is $e^{-\lambda t}$. Virk defines the sheaf-compatible
+derived kernel by requiring $\mathscr L_\lambda[1]$ to be this heart
+object \cite[\S6.6 and Proposition~6.8]{Virk}.
+The shift and the sign are separate conventions, both of which matter.
+At the zero graph over a point, $i_0^*\mathscr L_\lambda=k$ in degree
+zero, whereas $i_0^*\mathscr K_\lambda=k[1]$. This verifies the unit and
+would detect an omitted kernel shift.
 
 Let $\mathsf Q_S$ be the exponential quotient functor, and let
 $i_h:S\to S\times\A^1_t$ be the graph of $h\in\Ocal(S)$.
@@ -173,13 +186,16 @@ realizes the connection $\Ecal^{\lambda h}$ at scale $\lambda$. In
 particular, the graph potential realizing $\Ecal^f$ is $h=f/\lambda$.
 \end{lemma}
 \begin{proof}
-In the realization, tensor the graph object with the pullback of
-$\mathscr L_\lambda$ and push forward along $S\times\A^1\to S$.
-The projection restricted to the graph is the identity, and the graph is
-proper over $S$. Proper base change and the projection formula therefore
-reduce the calculation to $i_h^*\mathscr L_\lambda$. Its connection is
-$d-\lambda\,dh$. The normalization $[d]$ puts this connection in the
-perverse heart and introduces no change in its connection form.
+Let $p:S\times\A^1\to S$ and $\mu:S\times\A^1\to\A^1$ be the
+projections. The algebraic realization constructed in
+\cref{thm:algebraic-exponential} tensors with
+$\mu^*\mathscr L_\lambda$ and applies $p_!$. Since $p i_h=\id_S$ and
+the graph is proper, projection formula reduces it to
+$\one_S[d]\otimes h^*\mathscr L_\lambda$. Its connection is
+$d-\lambda\,dh$. The $[-1]$ already in $\mathscr L_\lambda$ gives the
+unshifted rank-one local object under pullback; the remaining $[d]$ puts
+that connection in the perverse heart. There is no extra shift to remove
+and no change of sign.
 \end{proof}
 
 For example, on $\A^1_s$ at scale one, the potential $s$ gives $d-ds$,
@@ -200,6 +216,13 @@ The associativity, symmetry, and unit constraints are transported from the
 unshifted lisse normalization by $N\mapsto N[-d]$ and its inverse.
 This transport is part of the definition; the symmetry is not an
 unadjusted restriction of the derived Koszul symmetry.
+
+Fix a direction at infinity for the absolute Betti functor. For the
+pairing with $e^{-\lambda t}$ choose the ray with
+$\theta=-\arg\lambda$, or transport an equivalent choice consistently.
+In this note $\Psi_\infty$ denotes this chosen directional functor
+$\Psi_{e^{i\theta}\infty}$, not a direction-free canonical fiber; see
+\cite[Definition~3.5 and Theorem~3.6]{Snodgrass}.
 
 \begin{proposition}[Normalized tensor and fiber]\label{prop:normalization}
 On the lisse subcategory the operations in \eqref{eq:lisse-tensor} realize
@@ -253,24 +276,340 @@ object of the entire perverse heart is rigid.
 
 \section{The coefficient system and the affine-line quotient}\label{sec:heart}
 
-\begin{externalinput}[Ordinary coefficient-system interface]\label{input:ordinary}
-Use the rational perverse-Nori system with exact scalar extension to $k$.
-Its constructible derived categories are identified with the bounded derived
-categories of the perverse hearts. They have adjunction, the six operations,
-projection formula, smooth purity, and conservative derived Betti realization;
-Betti realization is exact and faithful on the heart. There are compatible
-Hodge and algebraic de Rham realizations, the latter defined over $k$ on the
-geometric objects in use. After extension to $\C$ it is the Hodge
-underlying connection realization. The operations and their adjunction maps
-commute with realizations. The sources are Ivorra--Morel, Terenzi, and
-Tubach \cite{IvorraMorel,Terenzi,Tubach}.
+\begin{externalinput}[Ordinary Nori structure and absolute comparison]
+\label{input:ordinary}
+We use the rational perverse-Nori coefficient system of
+Ivorra--Morel, Terenzi, and Tubach, with its enhanced six operations,
+exact faithful perverse Betti realization, and conservative derived Betti
+realization \cite{IvorraMorel,Terenzi,Tubach}. Two precise additional
+forms of these established inputs will be used.
+
+First, put $\mathsf{DM}(X)=\mathsf{DM}_{\mathrm{et}}(X,\Q)$ and
+$\mathsf{DN}(X)=\operatorname{Ind}D^b(\MN_{\Q}(X))$. If
+$\mathsf{Nor}^*\dashv\mathsf{Nor}_*$ is Nori realization and
+\[
+ \mathscr N_k=\mathsf{Nor}_*\one,\qquad
+ \mathscr N_X=a_X^*\mathscr N_k,
+\]
+then $\mathscr N_X\simeq\mathsf{Nor}_{X,*}\one$ and
+\begin{equation}\label{eq:nori-module-model}
+ \mathsf{DN}(X)\simeq
+ \operatorname{Mod}_{\mathscr N_X}(\mathsf{DM}(X)).
+\end{equation}
+Under this symmetric monoidal equivalence, $\mathsf{Nor}_X^*Q$ is the
+free module $\mathscr N_X\otimes Q$. The equivalence is compatible
+with pullback and the constructible six operations. These are
+Tubach's Lemma~4.12, Corollary~4.14, and Proposition~4.16; the compatibility
+is part of the construction in his \S4.2.
+
+Second, at $\Spec k$ ordinary Nori motives have the exact tensor de Rham
+fiber $d_k$ over $k$, the rational Betti fiber $b_k$, and their natural
+complex comparison. Their derived versions compute the corresponding
+geometric realization complexes, compatibly with tensor products and
+comparison. This is the \emph{absolute} mixed-realization construction,
+not a relative realization assumption; see the cellular construction and
+mixed-realization factorization in
+\cite[Theorems~7.4.17 and~7.6.5]{Harrer} and
+\cite[\S\S6--7, especially Propositions~7.1 and~7.12]{ChoudhuryGallauer}.
+We use their complex-level constructions and extend them by Ind.
+The covariant convention here is the homological one in
+Choudhury--Gallauer; when using Harrer's contravariant cohomological
+construction, take its dual on rigid geometric motives. This fixes
+variance before any comparison of complexes.
 \end{externalinput}
 
-This input includes the \emph{algebraic descent} of de Rham realization;
-a functor only to complex analytic connections would not suffice for the
-arithmetic step in \cref{sec:arithmetic}. The note does not reconstruct the
-universal Nori diagram category. This interface, together with its scalar
-extension, is a specific external-dependency audit item.
+The missing relative algebraic realization is constructed below. In
+particular, it is no longer included in \cref{input:ordinary} as a blanket
+compatibility assumption. The construction uses the \emph{absolute}
+Nori algebra in \eqref{eq:nori-module-model}; a choice of separate
+algebraic models for complex Hodge objects would not give this construction.
+
+\subsection{Algebraic geometric realization before the Nori quotient}
+
+Let $\mathscr D_k(X)$ be the Ind-completion of the bounded constructible
+regular-holonomic algebraic differential-module category on $X/k$, in
+sheaf-compatible normalization. For singular $X$, use modules supported
+on a local smooth ambient variety and Kashiwara equivalence. Transfer
+bimodules and Spencer complexes give the enhanced operations. On a smooth
+$d$-fold the unshifted tensor unit is $\Ocal_X[-d]$, not the holonomic
+heart object $\Ocal_X$.
+
+\begin{lemma}[Geometric de Rham coefficient system]\label{lem:geometric-dR}
+There is a colimit-preserving symmetric monoidal geometric realization
+\[
+ r_X:\mathsf{DM}(X)\longrightarrow\mathscr D_k(X)
+\]
+which commutes with the six operations on constructible objects. After
+$k\hookrightarrow\C$ and regular Riemann--Hilbert, it is the complexified
+Betti realization, as a morphism of coefficient systems.
+\end{lemma}
+\begin{proof}
+Use algebraic differential operators and their transfer bimodules over
+$k$, rather than analytifying and choosing a descent afterward. Their
+standard localization, base-change, projection, and smooth-purity maps
+make $\mathscr D_k$ a rational stable coefficient system. These are the
+ordinary algebraic differential-module operations; a realization model
+retaining the filtered module over $k$ together with its complex
+comparison is explicitly described in Saito's \S1.8(ii), with the
+operations developed in his \S\S2--6 \cite{SaitoMixed}. No identification
+of all such mixed sheaves with Nori motives is asserted here.
+
+For clarity, the motivic localization conditions can be checked directly.
+Etale descent is descent of the algebraic modules and transfer complexes.
+For the affine-line projection, the relative algebraic de Rham complex of
+the constant object is $\Ocal_X[t]\xrightarrow{\partial_t}
+\Ocal_X[t]$, with cohomology $\Ocal_X$ in degree zero; integration of
+polynomials is allowed in characteristic zero. Projection formula gives
+$\id\simeq R\pi_*\pi^*$. The projective-line trace identifies the
+reduced projective-line object with an invertible shifted Tate line, giving
+stability. The usual de Rham orientation gives the rational motivic
+factorization. These checks yield $r_X$ by the universal coefficient-system
+construction \cite[Theorem~7.14]{DrewGallauer}. One restricts to the
+geometric constructible image to obtain six-operation compatibility,
+using the constructible realization argument of
+\cite[Theorem~4.5 and its proof]{Tubach}; initiality alone is not being
+used to assert compatibility with every right adjoint.
+
+The relative de Rham theorem over $\C$, the trace map, and the Kunneth
+map identify this system with Betti realization on smooth geometric
+objects and their structure maps. Etale descent, affine-line localization,
+and Tate stabilization extend this as a natural symmetric monoidal
+comparison of the enhanced systems. The comparisons of adjunction and
+base-change maps are the ones induced by the transfer complexes. Thus the
+comparison is a comparison of functors and maps, not just of cohomology
+dimensions or individual isomorphism classes.
+\end{proof}
+
+\begin{lemma}[The absolute comparison in the needed form]
+\label{lem:absolute-dR-comparison}
+On the absolute enhanced categories there is a symmetric monoidal
+identification
+\begin{equation}\label{eq:absolute-compatible}
+ d_k\mathsf{Nor}_k^*\simeq r_k,
+\end{equation}
+and its complexification agrees with the actual absolute de Rham--Betti
+comparison. The identification is compatible with the counit
+$\mathsf{Nor}^*\mathsf{Nor}_*\one\to\one$.
+\end{lemma}
+\begin{proof}
+Here is the specific use of the absolute input. For a good pair, its
+Nori cohomology realizes as the algebraic relative de Rham cohomology and
+as relative Betti cohomology with their integral comparison. Morphisms of
+pairs, boundary maps, products, and Tate maps are included in this diagram.
+Apply the two realizations to the good-filtration complexes used to
+construct absolute derived Nori realization. They give the geometric
+realization complexes with the same maps: the augmentation to the
+geometric complex is the filtration spectral-sequence augmentation when
+each relative pair has cohomology in its designated degree.
+
+Use the system of good filtrations and common refinements, together with
+finite affine Cech covers, not one independently chosen filtration for
+each variety. Its refinement maps and product maps are the complex-level
+construction in \cite[\S7]{ChoudhuryGallauer} and
+\cite[Chapters~4 and~7]{Harrer}. Applying the exact realization functors
+therefore gives a natural comparison of complexes, with the tensor
+coherences supplied by that construction. Localization and Tate
+stabilization give \eqref{eq:absolute-compatible}, and Ind extends it
+from constructibles. This is the usual absolute mixed-realization
+factorization in \cref{input:ordinary}. In particular, we do not need the
+more delicate comparison of separately chosen \emph{relative} cellular
+filtrations discussed in Tubach's Remark~4.10.
+
+The de Rham--Betti comparison is natural on absolute Nori motives; apply
+that naturality to the counit, viewed as a morphism in $\mathsf{DN}(k)$.
+This proves the last assertion. No assertion that its matrix entries are
+algebraic is required.
+\end{proof}
+
+\subsection{The absolute augmentation and the relative module formula}
+
+\begin{lemma}[Extension from an augmented algebra]\label{lem:module-extension}
+Let $\mathcal A$ and $\mathcal B$ be presentable stable symmetric monoidal
+categories, let $r:\mathcal A\to\mathcal B$ preserve colimits and tensor
+products, and let $T$ be a commutative algebra of $\mathcal A$ with an
+augmentation $\alpha:r(T)\to\one_{\mathcal B}$. Then
+\begin{equation}\label{eq:abstract-module-formula}
+ F(M)=\one_{\mathcal B}\otimes^{\mathbf L}_{r(T)}r(UM)
+\end{equation}
+defines a colimit-preserving symmetric monoidal functor
+$\operatorname{Mod}_{T}(\mathcal A)\to\mathcal B$. It sends the free
+module $T\otimes Q$ to $r(Q)$. The functor, including its natural
+transformations, is determined by $r$ and the action $\alpha$.
+\end{lemma}
+\begin{proof}
+Applying $r$ to the multiplication and action maps makes $r(UM)$ an
+$r(T)$-module. Derived extension of scalars along $\alpha$ gives
+\eqref{eq:abstract-module-formula}; associativity of relative tensor
+products gives its monoidal and colimit properties. For a free module the
+formula reduces to
+$\one\otimes_{r(T)}(r(T)\otimes r(Q))\simeq r(Q)$.
+
+For the determination assertion use the augmented simplicial free bar
+resolution of a $T$-module. Its terms are free modules on
+$T^{\otimes n}\otimes UM$, and its face maps are multiplication and the
+module action, with degeneracies induced by the unit. The underlying
+augmented simplicial object is split by the unit, so its geometric
+realization is $M$. A colimit-preserving $r$-linear functor with the given
+action on the unit sends this bar construction to the relative-tensor
+bar construction in \eqref{eq:abstract-module-formula}. This proves the
+assertion for all modules and all module morphisms, not just for the
+objects that happen to be free. It also proves that a compatible
+comparison of $r$ and $\alpha$ induces a coherent comparison of $F$.
+\end{proof}
+
+By the lax symmetric monoidal right adjoint, $\mathscr N_k$ is a
+commutative algebra. Define an algebra map entirely over $k$ by
+\begin{equation}\label{eq:deRham-augmentation}
+ \begin{split}
+ \alpha_k:r_k(\mathscr N_k)
+ &\simeq d_k(\mathsf{Nor}_k^*\mathsf{Nor}_{k,*}\one)\\
+ &\xrightarrow{\ d_k(\varepsilon)\ }d_k(\one)=k.
+ \end{split}
+\end{equation}
+Here $\varepsilon$ is the adjunction counit. For $a_X:X\to\Spec k$
+put $\alpha_X=a_X^*\alpha_k$ under
+$r_X(\mathscr N_X)\simeq a_X^*r_k(\mathscr N_k)$.
+The map $\alpha_k$ is a \emph{de Rham augmentation}. It is not evaluation
+of a numerical period algebra at an alleged algebraic period point.
+
+\begin{theorem}[Algebraic realization and comparison interface]
+\label{thm:algebraic-interface}
+For quasi-projective $X/k$, under \eqref{eq:nori-module-model} set
+\begin{equation}\label{eq:relative-algebraic-realization}
+ R_{\dR,X}(M)=
+ \one_{\mathscr D_k(X)}\otimes^{\mathbf L}_{r_X(\mathscr N_X)}
+ r_X(UM),
+\end{equation}
+using $\alpha_X$. On constructibles this is an algebraic realization over
+$k$ with the following properties.
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.5em]
+\item It is symmetric monoidal, compatible with the six operations and their
+adjunction, projection, and base-change maps, and
+$R_{\dR,X}\mathsf{Nor}_X^*=r_X$.
+\item After $k\hookrightarrow\C$, regular Riemann--Hilbert identifies it
+naturally with the complexified Betti realization. Equivalently, its
+complex algebraic differential module is the underlying differential
+module of the established Nori-to-Hodge realization.
+\item It is $t$-exact for the perverse and holonomic hearts and is exact
+faithful on those hearts. It commutes with ordinary geometric nearby and
+vanishing cycles with their canonical and variation maps.
+\item Its absolute restriction is $d_k$, with the actual absolute
+comparison, not a newly chosen fiber functor.
+\end{enumerate}
+The same statements hold after the $k$-linear coefficient extension of the
+rational Nori category.
+\end{theorem}
+\begin{proof}
+\Cref{lem:module-extension} gives the functor, its tensor structure, and
+its formula on free modules. Since the augmentation is pulled back from
+$\Spec k$, associativity and pullback of relative tensor products supply
+the pullback comparison. On the absolute category the bar lemma identifies
+the formula with $d_k$: by construction \eqref{eq:deRham-augmentation}
+is exactly its action of $r_k(\mathscr N_k)$ on the unit.
+
+For the complex comparison, write the established Betti functor on
+$\mathsf{DN}(X)$ in the module model. It is linear over the Betti
+realization of $\mathsf{DM}(X)$; its action on the unit is its own
+augmentation, pulled back from $\Spec k$. The absolute comparison and
+\cref{lem:absolute-dR-comparison} identify this augmentation with
+$\alpha_k\otimes_k\C$ under the comparison for $r_k$. Pullback identifies
+the actions over $X$. The bar lemma now identifies the two functors on
+\emph{all} modules and their morphisms. This proves (ii) as a natural
+enhanced comparison, rather than by assigning unrelated descent data to
+the Hodge realizations.
+
+We give the six-operation verification explicitly. The compact module
+category is the thick closure of the free modules on compact geometric
+motives. Indeed, these modules are compact by the free--forgetful
+adjunction, since the forgetful functor preserves filtered colimits; they
+generate, since a module with no maps from their shifts has zero underlying
+object. This is also the compact generation used in Tubach's \S4.2.
+The free modules realize as constructible regular-holonomic objects by
+\cref{lem:geometric-dR}; finite cones and retracts show that the realization
+of every compact module is bounded constructible.
+
+The exchange map for a direct image is the mate of the pullback
+comparison and the adjunction counit. On a free module
+$\mathsf{Nor}_Y^*Q$, the source uses
+$f_*\mathsf{Nor}_Y^*Q\simeq\mathsf{Nor}_X^*f_*Q$ from
+\cref{input:ordinary}, and the exchange map becomes exactly
+$r_Xf_*Q\to f_*r_YQ$. It is the geometric exchange map, not merely an
+isomorphism between its source and target: the free action is multiplication
+followed by $\alpha_X$, so naturality of the counit and the pulled-back
+augmentation identifies the two mates. This map is an equivalence by
+\cref{lem:geometric-dR}. The class of constructible objects on which an
+exchange map between exact functors is an equivalence is thick, so the
+claim follows for every compact module. The same argument applies to
+$f_!$ and the mate for $f^!$. Alternatively one obtains $f_!$ from open
+extension, proper direct image, and compactification. Duality is treated
+with the evaluation and dualizing object; internal Hom follows from
+constructible duality and tensor product. Thus all six comparisons exist
+and are isomorphisms on the category used here.
+
+Their coherences are those of the module tensor construction and
+adjunction mates. In particular, a composition of pullbacks is identified
+by the associativity of the relative tensor product, and taking mates
+respects compositions. Projection and base-change squares reduce on free
+modules to the geometric squares and are compatible with the bar
+construction. We do not deduce equality of derived morphisms merely from
+conservativity of Betti realization.
+
+After extension to $\C$, (ii) makes every perverse cohomology outside
+degree zero vanish for a Nori heart object. Faithful flatness of
+$k\hookrightarrow\C$ reflects that vanishing, proving $t$-exactness.
+If a heart object has zero algebraic realization, its Betti realization
+is zero; faithful Betti realization makes the object zero. An exact
+functor detecting zero objects is faithful by applying this observation
+to images of morphisms. This also identifies our heart functor with the
+canonical universal-abelian-hull factorization of
+$Q\mapsto{}^pH^0r_X(Q)$: after comparison its kernel is the same as that
+of perverse Betti realization, and the universal factorization is unique.
+
+For ordinary geometric cycles one can use the actual gluing diagrams.
+Unipotent cycles are stabilized kernels and cokernels formed from
+$j_!,j_*$ and the logarithm objects whose algebraic connections are the
+nilpotent logarithmic systems $d-N\,dt/t$. Their units, trace maps, and
+nilpotent endomorphisms are geometric over $k$. The functor just constructed
+preserves these diagrams and their maps. Finite Kummer pullbacks and their
+character projectors supply the other eigenvalues for geometric objects;
+over $k=\overline\Q$ those projectors are defined. This proves the ordinary
+nearby/vanishing-cycle assertion including the canonical and variation
+maps. It does not identify arbitrary \emph{irregular} moderate cycles with
+topological cycles; that separate issue is treated in
+\cref{prop:regular-cycle-bridge}.
+
+Finally extend coefficients, not the geometric base. For a finite
+coefficient field $E/\Q$ in $k$, first apply the rational realization
+with its $E$-action, then take the summand corresponding to the specified
+embedding $E\hookrightarrow k$ in $E\otimes_\Q k$. Separability makes
+that projector exact. Every object, morphism, and finite diagram in the
+$k$-linear scalar extension is defined over such a finite $E$ and then
+idempotent completion; all comparisons above commute with these
+projectors. Passing to their filtered union gives the final assertion.
+This is distinct from the geometric extension $k\hookrightarrow\C$.
+\end{proof}
+
+\begin{remark}[What has been discharged]\label{rem:interface-discharge}
+The relative algebraic functor, its operation maps, and the comparison are
+provided by \eqref{eq:deRham-augmentation}--\eqref{eq:relative-algebraic-realization}.
+The relative tensor product in the formula is genuinely derived.
+Neither its $t$-exactness nor its faithfulness is automatic for a general
+augmented algebra; those conclusions were proved by the actual complex
+comparison and faithful scalar extension. Likewise, agreement on the
+objects of a generating family alone would not suffice without agreement
+on the augmentation and the bar-resolution maps.
+The standard external inputs are now the ordinary Nori module presentation,
+the ordinary geometric differential-module formalism, and the absolute
+mixed-realization construction. No relative algebraic realization theorem
+or relative period theorem is inserted as an assumption in their place.
+The construction is deliberately on enhanced categories: a statement only
+about isolated cohomology groups would not define the augmentation and
+bar comparison. A new independent audit may challenge these proofs or an
+application of a cited input; the description here records the explicit
+replacement argument, not an independent certification.
+\end{remark}
+
+\subsection{The affine-line quotient}
 
 Fix $X$ and $\pi:X\times\A^1\to X$. Let
 $\mathcal A_X=\MN(X)$ and
@@ -379,6 +718,129 @@ realization on the exponential Hodge heart. Composition gives the same for
 $\rho_\lambda$. Finally
 $\rho_\lambda(\pH^iK)=H^i(\rho_\lambda K)$, so exact faithfulness detects
 all cohomology vanishings and reflects the bounded $t$-structure.
+\end{proof}
+
+\subsection{The algebraic exponential functor and the matching Betti fiber}
+
+\begin{theorem}[Algebraic nonzero-scale realization]
+\label{thm:algebraic-exponential}
+For $\lambda\in k^\times$ and an ordinary representative
+$A\in D^b(\MN(S\times\A^1))$, define
+\begin{equation}\label{eq:algebraic-exponential-formula}
+ \rho_{\lambda,k}(\mathsf Q_S A)
+ =p_!\bigl(R_{\dR,S\times\A^1}(A)
+             \otimes\mu^*\mathscr L_{\lambda,k}\bigr),
+ \qquad \mathscr L_{\lambda,k}=\mathscr K_{\lambda,k}[-1].
+\end{equation}
+Here $p$ and $\mu$ are the two projections and
+$\mathscr K_{\lambda,k}=(\Ocal_{\A^1_k},d-\lambda\,dt)$ is the
+holonomic heart object. The formula is a well-defined algebraic functor
+on the exponential derived quotient. It is tensor-compatible, commutes
+with $f^*,f_*,f_!,f^!$, and has duality
+\[
+ \DD\rho_{\lambda,k}=\rho_{-\lambda,k}\DD.
+\]
+It is $t$-exact and faithful on the exponential heart. Its complexification
+is Virk's realization of the Hodge realization, with its actual operation
+maps. We henceforth denote this algebraic functor by $\rho_\lambda$.
+\end{theorem}
+\begin{proof}
+All terms in \eqref{eq:algebraic-exponential-formula} are over $k$ by
+\cref{thm:algebraic-interface}. The polynomial operator
+$\partial_t-\lambda$ is bijective on $k[t]$: on a polynomial $v$ of
+degree $m$ its inverse is
+\[
+ -\sum_{j=0}^{m}\lambda^{-j-1}\partial_t^jv.
+\]
+Thus the algebraic direct image of the exponential kernel to a point
+vanishes; by duality the compactly supported direct image vanishes too.
+Projection formula now shows that the displayed functor kills every
+$p^*$-object. It therefore factors through the Verdier quotient, including
+all its morphisms, rather than merely being independent of representatives
+at the level of object classes.
+
+The identities
+\[
+ \mathrm{sum}^*\mathscr L_{\lambda,k}
+ \simeq\mathscr L_{\lambda,k}\boxtimes\mathscr L_{\lambda,k},
+ \qquad i_0^*\mathscr L_{\lambda,k}=k
+\]
+are the addition and zero-section identities for the shifted exponential
+kernel. Projection formula and Kunneth give tensor compatibility and the
+unit, with their associativity constraints; see also Virk's
+Propositions~6.4 and~6.8. Proper-support composition and base change first
+give $f_!$ and $f^*$ compatibility. The natural forget-support map
+$p_!\to p_*$ after the twist is an isomorphism on ordinary regular
+input. Indeed, after $k\hookrightarrow\C$ it is exactly Virk's
+forget-support isomorphism, proved in his Appendix~B. Algebraic base
+extension is faithfully flat and commutes with the transfer complexes, so
+it reflects this isomorphism. Duality changes the sign of the exponential
+kernel, giving the displayed scale-reversing formula and the remaining
+$f_*,f^!$ compatibilities. These are the same projection, support, and
+adjunction maps as after complexification.
+
+By \cref{thm:algebraic-interface}, the complexified ordinary input is
+the underlying module of its Hodge realization. Thus the complexification
+of \eqref{eq:algebraic-exponential-formula} is Virk's actual formula, not
+an arbitrary isomorphic connection. Virk's Theorems~7.5--7.6 prove
+$t$-exactness and heart faithfulness there. Faithful flatness reflects
+cohomology vanishings over $k$, and the faithful Hodge quotient realization
+of \cref{thm:quotient} reflects zero objects. Exactness then detects
+images of morphisms and proves faithfulness of $\rho_{\lambda,k}$.
+\end{proof}
+
+\begin{proposition}[Comparison with the chosen rapid-decay fiber]
+\label{prop:relative-Betti-interface}
+Choose the direction used in \eqref{eq:betti-fiber} consistently with
+$e^{-\lambda t}$, and let $s_0\in S(k)$ be a lisse point. The algebraic
+fiber $\omega_{v}(N)=\rho_\lambda(N)_{s_0}$ and the chosen Betti fiber
+have a natural tensor comparison
+\[
+ c_N:\omega_{\B,s_0}(N)\otimes_k\C
+       \xrightarrow{\sim}\omega_v(N)\otimes_k\C.
+\]
+On a sufficiently small simply connected lisse analytic open $B$ about
+$s_0$, these comparisons extend uniquely to a horizontal tensor
+comparison with the analytified algebraic connection. On elementary
+exponential data this is the usual rapid-decay integral comparison.
+\end{proposition}
+\begin{proof}
+Normalized restriction $i_{s_0}^*[-d]$ commutes with the realization just
+constructed. At a point its de Rham functor is the absolute exponential
+de Rham functor: the ordinary part is $d_k$ by
+\cref{thm:algebraic-interface}(iv), and the exponential part is its
+twisted algebraic direct-image formula. The directional nearby-fiber
+functor at infinity and the absolute de Rham--rapid-decay comparison
+therefore give $c_N$, functorially in the absolute exponential object.
+Equivalently, compute on a regular representative on the potential line:
+the de Rham--rapid-decay theorem and the directional nearby-fiber
+identification give the comparison of its two vector spaces. The maps
+are natural in that representative and kill the constant subcategory, so
+they descend to the quotient. This uses the period comparison of these
+realizations, not an unproved equivalence of two entire absolute motivic
+categories.
+These are the absolute comparison inputs of
+\cite{FresanJossen,Hien}; the directional convention and tensor fiber
+are recorded in \cite[Definition~3.5 and Theorem~3.6]{Snodgrass}.
+Cohomological variance is used on both sides; a homology pairing is
+converted to this comparison by its duality, not by identifying a homology
+space with itself as a cohomology space.
+
+Parallel transport of a flat connection extends each $c_N$ uniquely over
+$B$. For a morphism $N\to M$, the two resulting maps of connections are
+horizontal and agree at $s_0$, hence agree on $B$. The same argument for
+the tensor, symmetry, unit, and evaluation maps proves the tensor
+coherences. It applies to all subquotients because the absolute comparisons
+are already natural on the absolute exponential category and the
+algebraic realization is exact. Thus we are not inferring naturality from
+objectwise choices of a period matrix.
+
+For elementary data, rapid-decay integrals are horizontal solutions of
+the twisted Gauss--Manin connection and their values at $s_0$ are the
+absolute comparison just used \cite{HienRoucairol,Hien}. Uniqueness of
+horizontal continuation makes the two comparisons equal on $B$. In
+particular the later identity $P=Yc$ uses this specific comparison, with
+no algebraicity assertion for the entries of $c$.
 \end{proof}
 
 \section{Fixed parts and extension from dense opens}\label{sec:fixed}
@@ -570,20 +1032,76 @@ not p.~40 of that preprint. The underpinning general parameter statement is
 lissity locally on the cover, which descends in the finite etale topology.
 \end{proof}
 
-\begin{lemma}[Fixed fiber and nearby local system]\label{lem:fiber-nearby}
-After this shrinking, a fixed nonzero Fourier fiber and the nearby-cycle
-local system at $\lambda=0$ have isomorphic underlying local systems on
-$S$, after forgetting the commuting nearby monodromy.
+\begin{lemma}[Fixed fiber and topological nearby local system]
+\label{lem:fiber-nearby}
+After the shrinking of \cref{lem:graphs}, a fixed nonzero Fourier fiber
+and the \emph{topological} nearby-cycle local system at $\lambda=0$
+have isomorphic underlying local systems on $S$, after forgetting the
+commuting nearby monodromy.
 \end{lemma}
 \begin{proof}
 The local system on $S^{\mathrm{an}}\times\C^\times$ is a representation
 of $\pi_1(S)\times\mathbb Z$. Restriction to a fiber forgets the second
-operator. Nearby cycles of that local system have the same representation
-of $\pi_1(S)$ and retain the second operator as nearby monodromy. Choose
+operator. Topological nearby cycles have the same representation of
+$\pi_1(S)$ and retain the second operator as nearby monodromy. Choose
 a path from the fixed scale to a punctured neighborhood of zero. Changing
 its winding changes the isomorphism by a power of the commuting operator,
 not the underlying isomorphism class or its constituents.
 \end{proof}
+
+\begin{proposition}[The regular-specialization bridge]
+\label{prop:regular-cycle-bridge}
+For the partial Fourier transform of the regular geometric input used in
+\cref{input:fourier}, moderate algebraic nearby cycles at $\lambda=0$
+realize the topological nearby cycles in \cref{lem:fiber-nearby}.
+Consequently those moderate cycles and a fixed nonzero Fourier fiber have
+the same underlying $S$-local-system constituents after forgetting the
+nearby-monodromy operator. This assertion uses regular specialization
+along $\lambda=0$, not just lissity on $S\times\Gm$.
+\end{proposition}
+\begin{proof}
+For pure input take the regular minimal extension $\mathcal T$ in the
+$t$-direction and its Hodge-to-twistor realization. In Sabbah's notation,
+the \emph{kernel} before projective direct image is
+$\mathcal F\mathcal T=p^+\mathcal T[*\infty]\otimes e^{-t\lambda/z}$.
+Its underlying strict module is strictly specializable and regular along
+$\lambda=\lambda_0$ for every finite $\lambda_0$, including zero, by
+\cite[Proposition~4.1(ii)]{SabbahMonodromy}. Notice the contrast with
+Proposition~4.1(i), which allows irregularity along $t'=0$ at nonzero
+scale; regularity in the two different directions must not be interchanged.
+
+Use the moderate-cycle/de Rham comparison for a module regular along
+the specialization hypersurface, with the perverse shift $[-1]$ on
+topological nearby cycles. The regular-specialization hypothesis is what
+removes a possible purely irregular summand invisible to moderate cycles.
+Proper direct image is compatible with these regular-specialization
+cycles and with their de Rham comparison. Apply it to the projective
+$t$-projection: the resulting comparison is that of the moderate nearby
+cycles of the partial transform with its topological nearby cycles.
+These are the regular-specialization and proper-image comparison maps,
+not an invocation of regular Riemann--Hilbert for an arbitrary irregular
+connection. The cycle comparisons in Sabbah's Proposition~5.8 and
+Corollary~5.20 are used in precisely this setting.
+
+For mixed geometric input, use the finite strict weight filtration of
+its Hodge realization. Normalized Fourier transformation and both cycle
+functors are exact; the cycle comparison is natural. The pure comparison
+on each graded constituent therefore gives the comparison for the mixed
+object by the finite filtration and the long exact cohomology sequences.
+Finally use \cref{lem:fiber-nearby}. All these statements concern the
+complex realization; \cref{thm:algebraic-interface} supplies the
+algebraic ordinary objects and their geometric operation maps.
+\end{proof}
+
+\begin{remark}[The lissity-only assertion would be false]
+The connection $\Ecal^{1/\lambda}$ on a punctured disc has a trivial
+rank-one analytic horizontal local system, but its formal type is purely
+irregular at zero and its moderate nearby cycles vanish. Its topological
+nearby local system has rank one. It is therefore essential to insert
+\cref{prop:regular-cycle-bridge} before using the topological product
+argument in the algebraic-cycle proof. This example does not satisfy the
+regular-specialization conclusion for the intended Fourier kernel.
+\end{remark}
 
 \begin{proposition}[Unipotent comparison through two triangles]\label{prop:two-triangles}
 Let $t'=t^{-1}$ and let $q:S\times\mathbb P^1_t\to S$ denote the
@@ -628,7 +1146,9 @@ Fourier fiber of regular geometric input has finite Betti monodromy on a
 suitable dense smooth open.
 \end{theorem}
 \begin{proof}
-For pure input, the non-unipotent Fourier comparisons identify the relevant
+Use \cref{prop:regular-cycle-bridge} to identify the moderate-cycle
+objects with the topological nearby local systems. For pure input, the
+non-unipotent Fourier comparisons identify the relevant
 constituents with ordinary nearby-cycle constituents at infinity. The
 unipotent case follows from \cref{prop:two-triangles} and proper
 compatibility of nearby cycles. Minimal extension, ordinary cycles,
@@ -641,7 +1161,7 @@ category; the abelian subquotient closure and its compatibility with the
 Nori description are the comparison input of \cite[Corollary~5.15]{JacobsenTerenzi}.
 Apply the pure argument to the graded constituents.
 
-By \cref{lem:fiber-nearby}, a rank-one Betti constituent of the fixed
+By \cref{lem:fiber-nearby,prop:regular-cycle-bridge}, a rank-one Betti constituent of the fixed
 fiber is one of these ordinary geometric local systems. The local system
 of a rank-one differential subquotient is such a constituent, because
 analytic horizontal realization is exact on connections. Lam--Litt's
@@ -1260,10 +1780,12 @@ implies injectivity on any common analytic continuation domain, so the
 same result holds on the universal-cover formulation of the period map.
 Every finite packet in the generic envelope lies in a category of the form
 used here. Thus these replacement arguments give the intended generic
-functional conclusion, subject to the explicitly identified external inputs
-and their realization interfaces. They give neither a new algebraic-fiber
+functional conclusion, using the standard external inputs
+and the realization interface constructed in
+\cref{thm:algebraic-interface,thm:algebraic-exponential,prop:relative-Betti-interface}.
+They give neither a new algebraic-fiber
 specialization theorem nor an elementary presentation of all motivic
-relations. A fresh audit must check those interfaces and the complete
+relations. A fresh audit must check the new assembly proofs and the complete
 sequence of implications before this note is integrated into Paper IV.
 
 \section*{Research disclosure}
@@ -1354,6 +1876,42 @@ Compos. Math. \textbf{161} (2025), 2155--2201.
 \bibitem{Virk}
 R.~Virk, \emph{Realizations of exponential sheaves and Fourier transform},
 \href{https://arxiv.org/abs/2605.14904v4}{arXiv:2605.14904v4} (2026),
-\S\S2.6--2.7, 6.7, Theorems~6.13, 7.5--7.6, and Proposition~7.2.
+\S\S2.6--2.7 and~6.6--6.7, Propositions~6.4, 6.8, and~7.2,
+Theorems~6.13 and~7.5--7.6, and Appendix~B.
+
+\bibitem{ChoudhuryGallauer}
+U.~Choudhury and M.~Gallauer Alves de Souza,
+\emph{An isomorphism of motivic Galois groups},
+Adv. Math. \textbf{313} (2017), 470--536.
+\href{https://arxiv.org/abs/1410.6104}{arXiv:1410.6104},
+\S\S6--7, Propositions~7.1 and~7.12.
+\bibitem{DrewGallauer}
+B.~Drew and M.~Gallauer,
+\emph{The universal six-functor formalism},
+\href{https://arxiv.org/abs/2009.13610v4}{arXiv:2009.13610v4},
+Definitions~7.5 and~7.7, Theorem~7.14.
+\bibitem{Harrer}
+D.~Harrer,
+\emph{Comparison of the categories of motives defined by Voevodsky and Nori},
+Ph.D. thesis, University of Freiburg, 2016.
+\href{https://arxiv.org/abs/1609.05516}{arXiv:1609.05516},
+Chapters~4 and~7; Theorems~7.4.17 and~7.6.5.
+\bibitem{SaitoMixed}
+M.~Saito, \emph{On the formalism of mixed sheaves},
+Preprint RIMS-784, August 1991; electronic version 2006.
+\href{https://arxiv.org/abs/math/0611597}{arXiv:math/0611597},
+\S1.8(ii), \S\S2--6, and \S6.15.
+\bibitem{FresanJossen}
+J.~Fres\'an and P.~Jossen, \emph{Exponential motives},
+preliminary manuscript, 2020 version, with the absolute rapid-decay
+comparison used here also recalled in \cite[\S3]{Snodgrass}.
+\bibitem{Hien}
+M.~Hien, \emph{Periods for flat algebraic connections},
+Invent. Math. \textbf{178} (2009), 1--22.
+\bibitem{HienRoucairol}
+M.~Hien and C.~Roucairol,
+\emph{Integral representations for solutions of exponential Gauss--Manin systems},
+Bull. Soc. Math. France \textbf{136} (2008), 505--532.
+
 \end{thebibliography}
 \end{document}

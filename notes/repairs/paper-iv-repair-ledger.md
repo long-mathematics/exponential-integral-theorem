@@ -61,3 +61,27 @@ The baseline Paper IV source/PDF are not revised. This note is a candidate set o
 Read the note as a proof attempt, not as a list of accepted fixes. Check each external interface, then follow the numbered arguments in dependency order. In particular, attempt to break the normalized tensor symmetry, the extension of invertibility, the normalized-solution constant-extension lemma, the comparison conjugation, scheme-level equivariance, and the localized tensor-product argument for constants. Record whether an objection invalidates a statement, an application, or only an explanation. Do not silently weaken or preserve the main theorem; report precisely what the replacement proofs establish.
 
 A successful build is recorded separately in the build-verification file and PR. The baseline source/PDF hashes and all eight preexisting manifest entries must remain unchanged. The ninth manifest entry is the standalone note, not a replacement Paper IV.
+
+
+## 2026-09-29: algebraic interface construction incorporated
+
+The dated second-pass report remains unchanged. The standalone note now supplies the previously outstanding algebraic realization-and-comparison construction, rather than postulating that interface. This is a new proposed proof in the repair note, not a retroactive change to earlier audit verdicts and not a claim of independent certification.
+
+### New dependency chain
+
+1. The ordinary geometric algebraic differential-module coefficient system gives `r_X` over the geometric field, with its regular complex comparison. Its motivic construction checks descent, affine-line invariance, orientation and stability; six-operation compatibility is asserted on the geometric constructible image, not as an automatic consequence of initiality.
+2. The absolute mixed-realization construction and Tubach's absolute Nori algebra give the algebraic augmentation `alpha_k: r_k(N_k) -> k` by the counit. Pull it back to every base. This is a de Rham augmentation, not evaluation at an algebraic point of a numerical period algebra.
+3. Use Tubach's module description to define `R_dR,X(M) = 1 tensor^L_(r_X(N_X)) r_X(UM)`. The free bar resolution proves the functorial comparison on all module morphisms. Operation exchange maps are their canonical mates, checked on free constructible generators and then on the thick closure.
+4. Exactness and faithfulness on the heart follow from the natural complex comparison and faithful scalar extension. They are not automatic properties of an arbitrary derived augmentation. Coefficient-field extension is kept separate from geometric-field extension.
+5. The shifted algebraic exponential kernel defines the quotient realization over `k`. Its complexification is Virk's actual formula, so the required support and exactness results descend. A fixed directional absolute rapid-decay fiber supplies the actual comparison at `s0`; horizontal continuation extends it naturally to every object and tensor map.
+6. In the Fourier argument, topological nearby cycles and moderate algebraic cycles are distinct until Sabbah's regular-specialization input and proper-image comparison identify them. The two upstream exact sequences are still applied before direct image.
+
+### Updated live status
+
+- N1/N2/N3: positive graph potential retained; the additional derived kernel shift `L_lambda=K_lambda[-1]`, degree-zero unit check, directional fiber, and fixed-scale duality conventions are now explicit.
+- C1/C2/C3/F1/F2: previous replacement proofs retained. Their algebraic realization input now points to the construction in Section 2, not an unnamed interface.
+- G1/G2: the regular-specialization bridge is stated and proved using Sabbah Proposition 4.1(ii); lissity on the punctured family alone is explicitly rejected, with `E^(1/lambda)` as a countercheck.
+- T1/T2/P1/P2: their algebraic and analytic fiber functors are now the ones constructed in Section 2. The existing torsor-and-constant-field proofs are retained and remain subject to a whole-chain fresh audit.
+- New I1: absolute-to-relative algebraic realization by the Nori module algebra, counit augmentation, bar comparison, and canonical exchange maps — **replacement proof supplied; internally audited; independent audit pending**.
+
+The separate second-pass global rank-one strengthening is not needed for this focused update; the original dense-open arithmetic theorem in this standalone note remains unchanged. Canonical Paper IV and the other seven baseline documents remain frozen. See the new dated `paper-iv-interface-construction-2026-09-29.md` for the source map and proof audit.

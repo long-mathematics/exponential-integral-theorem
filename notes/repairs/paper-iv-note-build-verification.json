@@ -1,5 +1,7 @@
 {
+  "revision_date": "2026-09-29",
   "baseline_commit": "0bb151018dc73c9e48b847fff31fb82fd2cb9072",
+  "previous_repair_head": "b2fd02cba7ad6794ccca49b890f72ab1af27cb6c",
   "baseline_reference_verified": true,
   "all_eight_prior_sources_unchanged": true,
   "all_eight_prior_pdf_snapshots_unchanged": true,
@@ -9,15 +11,17 @@
   "make_check": "passed",
   "new_document": {
     "source": "papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex",
-    "source_sha256": "9540c6757e6943ee3aef12ec734c96cf51dcc682444dd737486e6705d81174d6",
+    "source_sha256": "a6587462e47aeb6b7d4d243db6404438ff078b02c8728dabd509ba3a11709ee4",
     "pdf": "output/pdf/paper-iv-repair-note.pdf",
-    "pdf_sha256": "efa2aaa5ca0d1eb7c166bc1e79c29d61a31cd7ee03a24bb9c57382cb4f50ea2f",
-    "pages": 18
+    "pdf_sha256": "e1650dd64f4baa264eaaf5eb2ab4e212ddaf858695600faa79591075241f74b7",
+    "pages": 25
   },
   "numbered_sections": 8,
-  "cross_reference_labels": 61,
-  "theorem_lemma_proposition_corollary_environments": 32,
+  "cross_reference_labels": 75,
+  "prior_labels_preserved": 61,
+  "theorem_lemma_proposition_corollary_environments": 39,
   "external_input_environments": 4,
-  "mathematical_status": "replacement proofs drafted; fresh adversarial audit pending; not integrated",
-  "visual_review": "record separately after downloading and rendering the PDF"
+  "interface_status": "explicit Nori-algebra augmentation and relative realization construction supplied; corrected kernel and regular-specialization bridge incorporated",
+  "mathematical_status": "replacement proofs internally audited; independent whole-chain audit pending; not integrated into canonical Paper IV",
+  "visual_review": "record separately after downloading the built PDF"
 }
