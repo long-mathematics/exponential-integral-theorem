@@ -58,7 +58,7 @@ The [LaTeX workflow](.github/workflows/latex.yml) runs on pull requests and push
 
 ### Paper V certificates and audit
 
-The [focused audit and revision record](notes/provenance/paper-v-focused-audit-2026-09-29.md) supersedes the earlier Paper V endpoint verdict without changing historical reports.
+The [focused audit and revision record](notes/provenance/paper-v-focused-audit-2026-09-29.md) supersedes the earlier Paper V endpoint verdict without changing historical reports. The [repair-session closeout](notes/provenance/repair-session-closeout-2026-09-29.md) records the cross-document dependency check, completed revisions, and the questions deliberately left for future research. The closeout clarifies scope and references; it does not enlarge the audited theorem.
 
 ```sh
 python3 scripts/paper_v_certificate.py 'x**4 + 2*x*y**2 + 1/3'

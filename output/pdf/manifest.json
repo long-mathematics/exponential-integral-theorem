@@ -45,9 +45,9 @@
     },
     {
       "source": "papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex",
-      "source_sha256": "8a901eb3ccc298e59fa489a94b3a5896ccb102c3827dc9a98f017dce56658262",
+      "source_sha256": "51e93dd691c0b4b593a67941dbd2562c8b4914f7c79221777ca981f4071f988b",
       "pdf": "output/pdf/polynomial-flag-exponential-periods.pdf",
-      "pdf_sha256": "f9a1ea98b8ed3d98e43e84f3cd652cfef8b7a035354a989851bcbdce350af51a",
+      "pdf_sha256": "e120a42c0ad4b5db9a1c33fef106ed97e4190ed137736fed2305008fa6ff6956",
       "pages": 27
     },
     {
