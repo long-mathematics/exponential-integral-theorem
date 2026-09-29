@@ -1,0 +1,263 @@
+diff --git a/README.md b/README.md
+index 86b594c..8d92e53 100644
+--- a/README.md
++++ b/README.md
+@@ -58,7 +58,7 @@ The [LaTeX workflow](.github/workflows/latex.yml) runs on pull requests and push
+ 
+ ### Paper V certificates and audit
+ 
+-The [focused audit and revision record](notes/provenance/paper-v-focused-audit-2026-09-29.md) supersedes the earlier Paper V endpoint verdict without changing historical reports.
++The [focused audit and revision record](notes/provenance/paper-v-focused-audit-2026-09-29.md) supersedes the earlier Paper V endpoint verdict without changing historical reports. The [repair-session closeout](notes/provenance/repair-session-closeout-2026-09-29.md) records the cross-document dependency check, completed revisions, and the questions deliberately left for future research. The closeout clarifies scope and references; it does not enlarge the audited theorem.
+ 
+ ```sh
+ python3 scripts/paper_v_certificate.py 'x**4 + 2*x*y**2 + 1/3'
+diff --git a/notes/provenance/repair-session-closeout-2026-09-29.md b/notes/provenance/repair-session-closeout-2026-09-29.md
+new file mode 100644
+index 0000000..e220566
+--- /dev/null
++++ b/notes/provenance/repair-session-closeout-2026-09-29.md
+@@ -0,0 +1,125 @@
++# Repair-session closeout — 2026-09-29
++
++## Scope and closing snapshot
++
++This closes the recorded September 28–29 repair-and-revise session at the
++revised scope of Paper V, not at the scope of its withdrawn predecessor.
++It is a dependency, presentation, and repository consistency pass; it does
++not replace the mathematical audits or add a theorem.
++
++Baseline: `1d91e575bbf44904e37b89d9c342c1b409f7e8bb` (merged PR #8).
++The downloaded revision archive was verified against the exact Git tree
++`edc7ba453df73999c842a02c19ed67e850b7cfd6` before editing. The baseline's
++post-merge workflow `36527841497`, job `109274684840`, completed successfully.
++
++The closing snapshot is the merge commit containing this note, the
++editorially updated Paper V source and PDF, their manifest record, and the
++README/status reconciliation. Its exact SHA, pull-request CI result, and
++post-merge CI result are recorded in the associated pull-request discussion;
++using the containing commit avoids embedding a circular self-hash here.
++No tag, release, publication, visibility change, or protection change is
++part of this closeout.
++
++## Integrated repairs
++
++| Manuscript | Merged repair | Scope of the integrated work |
++| --- | --- | --- |
++| I | PR #4, `093e260aa41a` | Residue flag, finite Hermite descent, Fourier conventions, and fixed-form scope. |
++| II | PR #5, `5c11c2e1cba0` | Exact cover compositum, compact lifted-edge construction, explicit inherited hypotheses, and finite descent. |
++| III and supplement | PR #6, `0bb151018dc7` | Spectral gauge, exponential base change, meromorphic correction, differential-system closure, and quartic Laurent proof order. |
++| V | PR #8, `1d91e575bbf4` | Actual polynomial Stokes systems, actual one-column criterion, fixed-triangle elliptic functional/numerical comparison, and corrected local numerical fiber. |
++
++The detailed mathematical findings remain in the separate dated revision
++notes. The focused Paper V audit supersedes the favorable endpoint verdict
++in `paper-v-strengthening-audit.md`; both historical records are preserved.
++The old global endpoint assertion is not silently restored by this closeout.
++
++## Cross-document dependency check
++
++All eight active LaTeX sources were checked, together with the README,
++repository status, and contribution instructions. Companion bibliography
++entries, mentions of polynomial flags and endpoint completeness, numerical
++specialization claims, and the relevant introduction/scope passages were
++reviewed. Historical files under `notes/provenance/` were read as historical
++evidence, not treated as current theorem statements.
++
++| Active document | Dependency/scope finding |
++| --- | --- |
++| Paper I | No input from Paper V or its withdrawn endpoint theorem. |
++| Paper II | Uses the Paper I moment package; no input from Paper V. Its actual-curve and reduced-amplitude scope remains explicit. |
++| Linear KZ supplement | References the Paper II comparison; no Paper V endpoint dependency. |
++| Paper III | Uses Papers I and II for the tensor-generated affine-line algebra; no Paper V dependency. |
++| Polynomial KZ supplement | Its compact-line applications refer to Papers I–III; no Paper V endpoint input. |
++| Paper IV (relative Nori–Ayoub) | No dependence on Paper V. Its arithmetic-specialization limits are separate from its relative functional results. This pass is not a new audit of its proof. |
++| Paper V | The actual construction, criterion, and elliptic independence proof do not use companion formal completeness. Paper II interprets the reduced single-phase face relation; Paper III interprets already separated polynomial boundary relations. Paper IV is not an input to the actual elliptic theorem. |
++| EIT structural companion | Companion arguments for Paper I; no Paper V endpoint dependence. |
++
++No active claim or dependency was found that requires the withdrawn general
++Paper V endpoint theorem. The known historical claim remains only as a
++superseded audit statement or in explicit explanations of the correction.
++There was therefore no reason to revise an unrelated manuscript or PDF.
++
++## Final editorial changes
++
++Paper V's introduction now states the internal-series dependency boundary
++explicitly. The Paper III bibliography entry is normalized to its current
++printed title and the repository's companion-preprint style, retaining its
++August 2026 manuscript date and September 28 revision reference. Its
++explanatory dependency prose is placed in the introduction rather than in
++the bibliography.
++
++No theorem, proposition, lemma, corollary, definition, example, remark, or
++proof environment is changed. Existing labels, author order, author
++identifier, contact email, title, PDF metadata, and the September 2026 date
++are preserved. The other seven manuscript sources, PDFs, and manifest
++records remain byte-for-byte unchanged. Earlier provenance records remain
++byte-for-byte unchanged.
++
++The README links this note. The live status page now separates completed
++repairs, withdrawn/conditional claims, and future research/review instead
++of leaving already completed session tasks on a generic pending list.
++
++## Established scope and excluded extrapolations
++
++The general polynomial-representative construction gives actual
++boundary-forced systems; injectivity still requires the comparison
++criterion's hypotheses. The concrete elliptic theorem concerns the fixed
++phase and fixed triangle, with arbitrary polynomial amplitudes, over the
++fields generated by its three fixed faces and their endpoints. It does not
++assert independence over the field of all compact polynomial-line periods.
++Its numerical algebra is the specialized fiber, not the functional algebra
++containing the unspecialized parameter. Its actual independence proof is
++separate from the formal interpretation of residual boundary relations.
++
++General isotypic or multiblock geometric completeness, additional-chain
++comparison, and determinant-line realization remain separate obligations.
++Restoring the withdrawn general theorem is new research, not an unfinished
++step required to close the explicitly delimited repair. Independent review,
++Lean formalization, and publication are separate stages.
++
++## Validation record and limitations
++
++Local validation in this closeout passed all 11 unit-test methods and the
++extended exact suite (81 monomial certificates, both connection and both
++Gelfand–Leray certificates, and 42 independent Taylor identities). All
++eight sources compiled. Paper V remains 27 pages; every page was rendered
++and reviewed, with enlarged inspection of the changed introduction and
++bibliography. All 84 existing numbered/definition/remark/proof environments
++and all 91 labels were compared byte-for-byte and preserved.
++
++The delivery is required to pass `make test`, `make pdf`, and `make check`
++in the repository's Ubuntu 24.04 environment, along with the extended exact
++Paper V suite. All changed PDF pages must be rendered and inspected before
++merge. Source-environment and label preservation, unchanged-document hashes,
++and the six-file delivery boundary are checked against the baseline. Actual
++run identifiers and outcomes are recorded in the associated pull request,
++including the post-merge check on the closing commit.
++
++The local TeX Live discrepancy on Paper IV's unchanged shared-counter
++reference labels is retained as a toolchain limitation, not hidden by an
++unrelated manuscript change. No assertion of byte-identical PDF production
++across different TeX distributions is required by the repository checks.
++
++This closeout is not independent specialist review, a renewed audit of all
++eight proofs, or a kernel-checked mathematical certification. Successful
++compilation and finite regression checks are not substitutes for those.
+diff --git a/notes/repository-status.md b/notes/repository-status.md
+index 09b4471..5a511e9 100644
+--- a/notes/repository-status.md
++++ b/notes/repository-status.md
+@@ -16,11 +16,60 @@
+ 
+ Paper V now uses actual polynomial Stokes boundary systems and includes the explicit elliptic fixed-triangle comparison. Its earlier general endpoint-complete numerical claim has been replaced, not silently retained: numerical maps are defined on specialized fibers and general multiblock formal realization is a separate hypothesis. The current title and manuscript date are intentionally updated; the author list is unchanged. See the [focused audit](provenance/paper-v-focused-audit-2026-09-29.md) for mathematical changes and limitations. The earlier setup and historical audit records remain historical descriptions.
+ 
+-## Remaining mathematical work (not a repository-setup blocker)
++## September 29, 2026 repair-session closeout
+ 
+-1. Reconcile later conversation-only corrections against these exact working sources.
+-2. Audit the mathematical dependency interfaces from I to II to III, including the moment-connection and differential-Galois arguments.
+-3. Independently review the relative Nori–Ayoub hypotheses and Paper V's new analytic/differential-Galois proof; establish actual comparison hypotheses for additional chains and multiblock collections before extending its theorem.
+-4. Review authorship, manuscript dates, external bibliography currency, and release metadata before public or archival publication.
++The recorded September 28–29 repair recommendations for Papers I, II, III,
++and V have been reconciled with the working sources. This completes the
++specified repair session, not an independent certification of every paper.
++The [closeout record](provenance/repair-session-closeout-2026-09-29.md)
++identifies the exact revision baseline, the dependency review, and the
++closing-snapshot convention.
+ 
+-Successful compilation, source hashes, and historical audit reports do not settle these mathematical or publication questions. No new theorem-level verification is claimed by the setup pass.
++### Completed repairs and checks
++
++| Work | Integrated revision | Current disposition |
++| --- | --- | --- |
++| Paper I | PR #4, `093e260aa41a` | Compressed-residue flag, finite descent, Fourier convention, and scope clarifications integrated. |
++| Paper II | PR #5, `5c11c2e1cba0` | Exact-compositum cover correction, compact lifted edges, inherited hypotheses, and descent clarifications integrated. |
++| Paper III and supplement | PR #6, `0bb151018dc7` | Explicit spectral gauge, base-change and correction arguments, closed value systems, and quartic proof order integrated. |
++| Paper V | PR #8, `1d91e575bbf4` | Actual polynomial boundary systems and the explicit elliptic comparison replace the unsupported general endpoint assertion. |
++| Cross-document closeout | Revision containing the linked closeout record | All eight active sources and current scope notes checked for reliance on the withdrawn Paper V theorem; none found. Paper V now explicitly records its internal-series dependencies. |
++
++The earlier generic tasks to reconcile this session's conversation-only
++corrections and review the I–II–III interfaces are completed to the extent
++of the recorded audits and merged repairs. They are not claims of
++independent specialist review. Paper IV's relative Nori–Ayoub proof is not
++an input to Paper V's actual elliptic independence theorem and is not
++newly audited or revised in this closeout.
++
++The post-merge workflow on the Paper V rewrite baseline passed: run
++`36527841497`, job `109274684840`. Validation of the closing revision,
++including its final commit and post-merge run, is recorded in that
++revision's pull request. No release tag or archival publication is implied.
++
++### Deliberately withdrawn or conditional
++
++The old general endpoint-complete numerical theorem is not a remaining
++repair task disguised as a proved result. Its unsupported geometric
++application was withdrawn. The current manuscript proves the fixed
++elliptic triangle result over its associated fixed-face fields and uses
++the specialized numerical fiber. The abstract multicolumn comparison
++requires its stated generic-ideal, realization, and local-flatness
++hypotheses. These are not automatic consequences of observability.
++
++### Separate research and review
++
++Uniform families, additional chains, higher-rank or multiblock actual
++comparison, isotypic compatibility, and determinant-line realization are
++future mathematical work. Independent specialist review (including the
++relative Nori–Ayoub arguments), full formalization, and publication
++metadata/bibliography review are separate verification and dissemination
++stages. They are not prerequisites for closing this scoped repair.
++
++The local TeX Live shared-counter reference-label discrepancy on unchanged
++Paper IV is a documented toolchain issue. Its source and committed PDF
++are not changed to mask that difference. Repository Ubuntu 24.04 checks
++remain the reproducible full-snapshot validation environment.
++
++Historical provenance remains unchanged. Build success, hashes, and finite
++regression tests do not establish a new mathematical proof certificate.
+diff --git a/papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex b/papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex
+index e51ee41..ebb5e80 100644
+--- a/papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex
++++ b/papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex
+@@ -199,10 +199,22 @@ field is the polynomial algebra in $M_0,M_1$, both functionally and at each
+ nonzero algebraic parameter.
+ \end{theorem}
+ 
+-This is proved in \cref{thm:elliptic-main,thm:values}. The proof does not
+-use a formal completeness theorem for boundary periods. Paper III enters
+-only in the final formal-period interpretation, which is explicitly local
+-at boundary denominators known not to vanish.
++This is proved in \cref{thm:elliptic-main,thm:values}. The actual
++functional and numerical independence proofs do not use a formal
++completeness theorem for boundary periods. Paper III enters only in the
++final formal-period interpretation, which is explicitly local at boundary
++denominators known not to vanish.
++
++\paragraph{Dependencies within the series.}
++The construction in \cref{thm:boundary-system}, the criterion in
++\cref{thm:criterion}, and the elliptic independence theorems are established
++here without invoking the companion formal comparison theorems. Paper II
++is used to interpret the reduced face identity in
++\cref{thm:intro-single}; Paper III supplies the polynomial formal
++interpretation after the actual elliptic comparison. Neither that actual
++comparison nor its numerical specialization uses the relative Nori--Ayoub
++manuscript (Paper IV). No argument uses the withdrawn general
++endpoint-complete theorem of an earlier version of this paper.
+ 
+ There are three different levels of assertion. The polynomial boundary
+ system is general. Injectivity of the actual comparison requires the
+@@ -1951,11 +1963,11 @@ Springer, Berlin, 2001, pp.~771--808.
+ the Affine Line},
+ companion preprint (Paper~II), August 2026.
+ 
+-\bibitem{PaperIII}C. D. Long and A.-A. Le Blanc, \emph{A polynomial Kontsevich--Zagier theorem
+-for compact exponential periods on the affine line}, Paper III,
+-working manuscript, August 2026; repository revision of 28 September 2026.
+-This input is used only for the final identification of already isolated
+-boundary relations with formal period operations.
++\bibitem{PaperIII}C.~D.~Long and A.-A.~Le~Blanc,
++\emph{A Polynomial Kontsevich--Zagier Theorem for Compact Exponential Periods
++on the Affine Line},
++companion preprint (Paper~III), August 2026;
++repository revision of 28 September 2026.
+ 
+ \bibitem{Sabbah}C. Sabbah, \emph{Hypergeometric periods for a tame polynomial},
+ Portugal. Math. \textbf{63} (2006), 173--226.

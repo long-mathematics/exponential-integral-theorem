@@ -1,0 +1,137 @@
+name: Build Paper V repair closeout
+
+on:
+  push:
+    branches: [build/paper-v-repair-closeout-2026-09-29]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-v-repair-closeout-2026-09-29
+  cancel-in-progress: false
+
+jobs:
+  closeout:
+    if: github.repository == 'long-mathematics/exponential-integral-theorem'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      BASE: 1d91e575bbf44904e37b89d9c342c1b409f7e8bb
+      TARGET: paper-v/repair-closeout-2026-09-29
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - name: Apply exact closeout patch and verify preservation
+        run: |
+          mkdir -p .build/review
+          python3 - <<'PY'
+          import hashlib, subprocess
+          from pathlib import Path
+          patch = Path('.paper-v-closeout.patch').read_bytes()
+          assert hashlib.sha256(patch).hexdigest() == '8cba23eafd872a6af3b882c91f3c82f66e6b35d9e8461c212ff724a16bf6cd51'
+          subprocess.run(['git','apply','--check','.paper-v-closeout.patch'],check=True)
+          subprocess.run(['git','apply','.paper-v-closeout.patch'],check=True)
+          PY
+          git diff --check
+          python3 - <<'PY'
+          import hashlib, json, os, re, subprocess
+          from pathlib import Path
+          path = 'papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex'
+          old = subprocess.check_output(['git','show',os.environ['BASE']+':'+path],text=True)
+          new = Path(path).read_text()
+          assert hashlib.sha256(new.encode()).hexdigest() == '51e93dd691c0b4b593a67941dbd2562c8b4914f7c79221777ca981f4071f988b'
+          pattern = re.compile(r'\\begin\{(theorem|proposition|lemma|corollary|definition|remark|example|proof)\}.*?\\end\{\1\}', re.S)
+          before = [m.group() for m in pattern.finditer(old)]
+          after = [m.group() for m in pattern.finditer(new)]
+          assert before == after and len(before) == 84
+          labels = re.findall(r'\\label\{[^}]+\}',old)
+          assert labels == re.findall(r'\\label\{[^}]+\}',new) and len(labels) == 91
+          assert old.split(r'\begin{document}')[0] == new.split(r'\begin{document}')[0]
+          for file in ['README.md','notes/repository-status.md','notes/provenance/repair-session-closeout-2026-09-29.md']:
+              for link in re.findall(r'\]\(([^)]+)\)',Path(file).read_text()):
+                  if re.match(r'[a-zA-Z][a-zA-Z0-9+.-]*:',link) or link.startswith('#'):
+                      continue
+                  assert (Path(file).parent / link.split('#')[0]).exists(), (file,link)
+          Path('.build/review/preservation.json').write_text(json.dumps({'preserved_environments':len(before),'preserved_labels':len(labels),'front_matter_unchanged':True,'source_sha256':hashlib.sha256(new.encode()).hexdigest()},indent=2)+'\n')
+          PY
+      - name: Install TeX and exact-check dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils python3-sympy
+      - name: Test repository checks
+        run: make test
+      - name: Run extended exact Paper V checks
+        run: /usr/bin/python3 scripts/check_paper_v.py
+      - name: Compile all eight manuscripts
+        run: make pdf
+      - name: Preserve unchanged snapshots and manifest records
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          path = Path('output/pdf/manifest.json')
+          baseline = json.loads(subprocess.check_output(['git','show',os.environ['BASE']+':'+str(path)]))
+          built = {r['source']:r for r in json.loads(path.read_text())['documents']}
+          target = 'papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex'
+          for i, record in enumerate(baseline['documents']):
+              if record['source'] == target:
+                  baseline['documents'][i] = built[target]
+              else:
+                  subprocess.run(['git','restore','--source',os.environ['BASE'],'--worktree','--',record['pdf']],check=True)
+          path.write_text(json.dumps(baseline,indent=2)+'\n')
+          PY
+      - name: Verify all committed snapshots and README links
+        run: make check
+      - name: Create the clean six-file delivery commit
+        run: |
+          test -z "$(git ls-remote origin "refs/heads/$TARGET")"
+          git add README.md notes/repository-status.md notes/provenance/repair-session-closeout-2026-09-29.md papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex output/pdf/polynomial-flag-exponential-periods.pdf output/pdf/manifest.json
+          git rm .paper-v-closeout.patch .github/workflows/paper-v-closeout-build.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          TREE=$(git write-tree)
+          COMMIT=$(git commit-tree "$TREE" -p "$BASE" -m 'Close Paper V repair with dependency clarification and checked PDF')
+          export COMMIT
+          python3 - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          expected = {
+              'README.md','notes/repository-status.md',
+              'notes/provenance/repair-session-closeout-2026-09-29.md',
+              'papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex',
+              'output/pdf/polynomial-flag-exponential-periods.pdf','output/pdf/manifest.json',
+          }
+          actual = set(subprocess.check_output(['git','diff','--name-only',os.environ['BASE'],os.environ['COMMIT']],text=True).splitlines())
+          assert actual == expected, actual
+          old = json.loads(subprocess.check_output(['git','show',os.environ['BASE']+':output/pdf/manifest.json']))
+          new = json.loads(Path('output/pdf/manifest.json').read_text())
+          unchanged = 0
+          for a,b in zip(old['documents'],new['documents']):
+              if a['source'] != 'papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex':
+                  assert a == b
+                  unchanged += 1
+          assert unchanged == 7
+          PY
+          git diff "$BASE" "$COMMIT" -- README.md notes papers > .build/review/source.diff
+          git diff --stat "$BASE" "$COMMIT" > .build/review/diff-stat.txt
+          printf '%s\n' "$COMMIT" > .build/review/delivery-commit.txt
+          git archive --format=tar.gz "$COMMIT" > .build/review/revised.tar.gz
+          cp .build/paper-v-exact-checks.json .build/review/
+          git push origin "$COMMIT:refs/heads/$TARGET"
+          echo "Delivery commit: $COMMIT" >> "$GITHUB_STEP_SUMMARY"
+          echo 'All repository and extended exact checks passed. Downloaded PDF review and normal PR CI remain merge gates.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload delivery and review logs
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: paper-v-closeout-review
+          path: |
+            .build/review/**
+            .build/**/*.log
+            .build/**/build-console.txt
+            .build/paper-v-exact-checks.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
