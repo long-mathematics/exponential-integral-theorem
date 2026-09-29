@@ -12,7 +12,7 @@ Authors: **Christopher D. Long and Antoine-Auguste Le Blanc**. Le Blanc cryptogr
 | II | A Linear Kontsevich–Zagier Theorem for Compact Exponential Periods on the Affine Line | [Read PDF](output/pdf/linear-kz-affine-line.pdf) | [Source](papers/02-compact-polynomial-line-kz/linear-kz-affine-line.tex) |
 | III | A Polynomial Kontsevich–Zagier Theorem for Compact Exponential Periods on the Affine Line | [Read PDF](output/pdf/polynomial-kz-affine-line.pdf) | [Source](papers/03-complete-polynomial-kz/polynomial-kz-affine-line.tex) |
 | IV | Relative Exponential Fixed Parts and Functional Periods: An Exponential Nori–Ayoub Theorem | [Read PDF](output/pdf/relative-exponential-nori-ayoub.pdf) | [Source](papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex) |
-| V | Relative Exponential Periods on Polynomial Flags: Face Lattices, Stokes Generation, and Endpoint-Complete Relations | [Read PDF](output/pdf/polynomial-flag-exponential-periods.pdf) | [Source](papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex) |
+| V | Relative Exponential Periods on Polynomial Flags: Polynomial Boundary Systems and an Elliptic Comparison Theorem | [Read PDF](output/pdf/polynomial-flag-exponential-periods.pdf) | [Source](papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex) |
 
 The PDFs are committed snapshots of the corresponding sources, not expiring build-artifact links. Access follows the repository's visibility.
 
@@ -24,7 +24,7 @@ These are working research drafts. Their inclusion here and successful compilati
 - **II:** formal linear relations for compact affine-line exponential periods.
 - **III:** polynomial relations for the tensor-generated affine-line algebra, building on I and II.
 - **IV:** relative functional periods and exponential fixed parts. Numerical specialization remains a separate issue.
-- **V:** polynomial-flag geometry and a numerical comparison theorem under the explicitly stated endpoint-complete hypotheses, not an unrestricted two-variable theorem.
+- **V:** general polynomial-representative boundary systems; actual functional and numerical algebraic independence for the fixed elliptic triangle with arbitrary polynomial amplitudes; a separate conditional framework for general collections. The earlier blanket endpoint-completeness claim is superseded by the September 2026 rewrite.
 
 The polynomial-flags manuscript was historically called “Paper IV”; this repository assigns it **Paper V** and reserves **Paper IV** for Nori–Ayoub. Historical audit filenames retain their original terminology.
 
@@ -55,6 +55,21 @@ make test   # test the build checks
 Each LaTeX source is standalone and has an embedded bibliography. PDFs live in `output/pdf/`; intermediate files stay in ignored `.build/`. The [manifest](output/pdf/manifest.json) records each source hash, PDF hash, and page count.
 
 The [LaTeX workflow](.github/workflows/latex.yml) runs on pull requests and pushes to `main`. It checks committed snapshots without writing back to the repository and uploads fresh PDFs and logs for inspection.
+
+### Exact Paper V regression checks
+
+With Python 3 and SymPy installed, run:
+
+```sh
+python3 scripts/check_paper_v.py --output .build/paper-v-exact-checks.json
+```
+
+These check polynomial certificates, actual face-system coefficients, and
+countermodels for unsafe specialization. They are separate from `make test`
+and do not certify the analytic-continuation or differential-Galois proofs.
+The [focused audit and scope changes](notes/provenance/paper-v-focused-audit-and-rewrite-2026-09-29.md)
+record the mathematical rewrite; its [exact results](notes/provenance/paper-v-exact-checks-2026-09-29.json)
+are reproducible with the command above.
 
 ## Provenance and maintenance
 

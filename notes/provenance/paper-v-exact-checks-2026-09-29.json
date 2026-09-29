@@ -1,0 +1,43 @@
+{
+  "normal_form_monomial_certificates": 81,
+  "top_form_connection_certificates": 2,
+  "gelfand_leray_certificates": 2,
+  "fourier_matrix_identity": true,
+  "scalar_bessel_identity": true,
+  "boundary_euclidean_division_certificates": 2,
+  "boundary_critical_values": [
+    "107/108 - 14*sqrt(7)/27",
+    "107/108 + 14*sqrt(7)/27"
+  ],
+  "boundary_scale": "7*sqrt(7)/27",
+  "adjoint_scales_differ": true,
+  "independent_triangle_and_face_taylor_identities": 42,
+  "independently_integrated_boundary_system_taylor_identities": 63,
+  "branch_and_neck_exact_checks": 10,
+  "local_torsion_countermodel_checks": 3,
+  "stokes_logarithm_countermodel_checks": 2,
+  "determinant_monic_division_check": true,
+  "first_five_moment_derivative_vectors_at_zero": [
+    [
+      "1",
+      "-1/6"
+    ],
+    [
+      "-37/120",
+      "3/16"
+    ],
+    [
+      "147/320",
+      "-4547/40320"
+    ],
+    [
+      "-154247/591360",
+      "2897009/17740800"
+    ],
+    [
+      "387863821/922521600",
+      "-6251917/52715520"
+    ]
+  ],
+  "status": "All exact checks passed. Finite regression tests do not certify the analytic or Galois proofs."
+}

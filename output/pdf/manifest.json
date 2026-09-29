@@ -45,10 +45,10 @@
     },
     {
       "source": "papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex",
-      "source_sha256": "78dfa9f92122950abd00e81603558300e95db0d38a603bc8a7d2a4f23df12221",
+      "source_sha256": "3409e115dc9b2f36f825b1772d2cee3885841fe334f713729aa1b406145a7b77",
       "pdf": "output/pdf/polynomial-flag-exponential-periods.pdf",
-      "pdf_sha256": "b9691e1648b14d83b48c69b4d3bff8a46b104376473d8b8719be035f71073157",
-      "pages": 35
+      "pdf_sha256": "c54c18abaab2d902aedc0c2b8bb79845daf5b0a2e244ac20a320e95f0ff16a69",
+      "pages": 33
     },
     {
       "source": "notes/eit-structural-companion.tex",
