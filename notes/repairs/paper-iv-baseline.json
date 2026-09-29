@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "record_date": "2026-09-28",
+  "repository": "long-mathematics/exponential-integral-theorem",
+  "baseline_commit": "0bb151018dc73c9e48b847fff31fb82fd2cb9072",
+  "baseline_tree": "3f3095804f341bd68359d3e8d9606c45832d05e6",
+  "baseline_reference": "baseline/paper-iv-pre-repair-2026-09-28",
+  "repair_branch": "paper-iv/standalone-repair-note-2026-09-28",
+  "source": "papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex",
+  "source_git_blob": "4cc45c6dd428e09cf5db940632106fc394d01393",
+  "source_sha256": "21f36037536f27cda59a320df574180a42c982d9e6e58dfa2421966464c2ea16",
+  "pdf": "output/pdf/relative-exponential-nori-ayoub.pdf",
+  "pdf_sha256": "56e518861b1bd7451d52a36c473887f4a4e94d49d6c437363594a5aacf4a8696",
+  "pdf_pages": 26,
+  "baseline_manifest_git_blob": "6678e6628261559b4b445ab648a670269d432bc0",
+  "policy": "The baseline reference remains at the recorded commit. The standalone repair note does not replace or edit Paper IV. All eight baseline manuscript sources, PDF snapshots, and their manifest records must remain unchanged on the repair branch. Do not merge the repair branch before a fresh mathematical audit."
+}
