@@ -34,7 +34,10 @@ The polynomial-flags manuscript was historically called “Paper IV”; this rep
 | --- | --- | --- |
 | Linear KZ: alternate presentations and extensions | [Read PDF](output/pdf/linear-kz-supplement.pdf) | [Source](papers/02-compact-polynomial-line-kz/linear-kz-supplement.tex) |
 | Polynomial KZ: quadratic normal forms, tensor-square residues, and entire exponential integrals | [Read PDF](output/pdf/polynomial-kz-supplement.pdf) | [Source](papers/03-complete-polynomial-kz/polynomial-kz-supplement.tex) |
+| Paper IV repair companion: normalizations, fixed parts, and the relative period torsor | [Read PDF](output/pdf/paper-iv-repair-note.pdf) | [Source](papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex) |
 | EIT structural companion | [Read PDF](output/pdf/eit-structural-companion.pdf) | [Source](notes/eit-structural-companion.tex) |
+
+The Paper IV repair arguments are integrated into the canonical manuscript. The retained companion and [assembled-proof and integration audit](notes/provenance/paper-iv-assembled-integration-audit-2026-09-29.md) document the proof development and its qualifications; they are not independent peer-review or formal-verification certificates.
 
 ## Build and check
 
@@ -47,7 +50,7 @@ sudo apt-get install latexmk texlive-latex-extra texlive-fonts-recommended texli
 From the repository root:
 
 ```sh
-make pdf    # compile all eight documents; refresh PDFs and manifest
+make pdf    # compile all nine documents; refresh PDFs and manifest
 make check  # verify hashes, rebuild, compare PDF text, and check README links
 make test   # test the build checks
 ```

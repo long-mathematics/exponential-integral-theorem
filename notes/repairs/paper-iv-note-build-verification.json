@@ -1,0 +1,17 @@
+{
+  "revision_date": "2026-09-29",
+  "new_document": {
+    "source": "papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex",
+    "source_sha256": "eac3f84b331389c80e687c5530604dc5399624d64b3fac3a94549c57b9f88236",
+    "pdf": "output/pdf/paper-iv-repair-note.pdf",
+    "pdf_sha256": "dedb099b47a7839455dae7b6a7e9343e37dff9edfc259ddee3b5c8ed32113168",
+    "pages": 26
+  },
+  "original_75_note_labels_preserved": true,
+  "make_test": "passed",
+  "make_pdf": "passed",
+  "make_check": "passed",
+  "mathematical_status": "audited assembled arguments integrated into canonical Paper IV on the repair branch; final CI and merge recorded in PR",
+  "verification_record": "notes/provenance/paper-iv-integration-build-verification.json",
+  "audit_record": "notes/provenance/paper-iv-assembled-integration-audit-2026-09-29.md"
+}

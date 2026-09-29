@@ -1,0 +1,71 @@
+{
+  "revision_date": "2026-09-29",
+  "baseline_commit": "0bb151018dc73c9e48b847fff31fb82fd2cb9072",
+  "audited_repair_head": "cb81b7d538ffbabd96081d24e8262422dda8052a",
+  "baseline_reference_verified": true,
+  "seven_unaffected_sources_pdfs_and_manifest_records_unchanged": true,
+  "make_test": "passed",
+  "make_pdf": "passed",
+  "make_check": "passed",
+  "canonical_document": {
+    "source": "papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex",
+    "source_sha256": "bc652b2f6d9a2e94b945c2a4e42c3f4b2ac9c19e0b060047cc949271cbf218cb",
+    "pdf": "output/pdf/relative-exponential-nori-ayoub.pdf",
+    "pdf_sha256": "08cfc5d55118bdc5e3f19e3a163b3bb03f3a70d99cd3382c75250f873fd0bf50",
+    "pages": 35
+  },
+  "repair_note": {
+    "source": "papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex",
+    "source_sha256": "eac3f84b331389c80e687c5530604dc5399624d64b3fac3a94549c57b9f88236",
+    "pdf": "output/pdf/paper-iv-repair-note.pdf",
+    "pdf_sha256": "dedb099b47a7839455dae7b6a7e9343e37dff9edfc259ddee3b5c8ed32113168",
+    "pages": 26
+  },
+  "structure_and_aliases": {
+    "audited_repair_commit": "cb81b7d538ffbabd96081d24e8262422dda8052a",
+    "frozen_canonical_commit": "0bb151018dc73c9e48b847fff31fb82fd2cb9072",
+    "canonical_source_before_sha256": "21f36037536f27cda59a320df574180a42c982d9e6e58dfa2421966464c2ea16",
+    "repair_source_before_sha256": "a6587462e47aeb6b7d4d243db6404438ff078b02c8728dabd509ba3a11709ee4",
+    "canonical_source_after_sha256": "bc652b2f6d9a2e94b945c2a4e42c3f4b2ac9c19e0b060047cc949271cbf218cb",
+    "repair_source_after_sha256": "eac3f84b331389c80e687c5530604dc5399624d64b3fac3a94549c57b9f88236",
+    "all_original_canonical_labels_preserved": 63,
+    "canonical_labels": 136,
+    "note_original_labels_preserved": 75,
+    "canonical_numbered_statements": 57,
+    "consolidated_label_aliases": {
+      "sec:background": "sec:normalization",
+      "prop:absolute-rd-input": "prop:normalization",
+      "sec:Nori-heart": "sec:heart",
+      "lem:constant-reflection": "lem:ordinary-reflection",
+      "prop:Serre": "prop:serre-derived",
+      "lem:derived-constant": "prop:serre-derived",
+      "thm:heart-full": "thm:quotient",
+      "lem:lowest-direct-image": "lem:lowest",
+      "lem:horizontal-evaluation": "lem:lowest",
+      "lem:constant-reflection-exp": "thm:fixed",
+      "prop:constant-subquotients": "cor:constants",
+      "thm:fixed-part": "thm:fixed",
+      "sec:rank-one": "sec:fourier",
+      "lem:finite-graph": "lem:graphs",
+      "lem:nonzero-lisse": "lem:graphs",
+      "prop:fiber-nearby": "lem:fiber-nearby",
+      "cor:rankone-finite": "thm:finite-betti",
+      "thm:arithmetic-kernel": "thm:kernel",
+      "sec:Tannaka": "sec:galois",
+      "prop:semi-invariants": "prop:semi",
+      "lem:Andre": "lem:normality",
+      "thm:Galois-exact": "thm:exact",
+      "sec:periods": "sec:torsor",
+      "lem:torsor-map": "lem:torsor-iso"
+    },
+    "explicit_scope_corrections": [
+      "Derived six operations versus normalized lisse tensor operations",
+      "Algebraic scale belongs to geometric ground field",
+      "Optional split criterion requires actual rank-one comparison, not only Stokes grades",
+      "Kummer monodromy finite; logarithmic unipotent monodromy may be infinite"
+    ]
+  },
+  "mathematical_status": "assembled proof and canonical integration source-checked; no unresolved essential objection found in this pass; not independent human peer review or formal verification",
+  "visual_review": "local 35-page canonical and 26-page note reviewed; final repository artifact comparison and normal PR CI recorded in PR before merge",
+  "local_toolchain_limitation": "TeX Live 2025/dev full check stops only at unchanged structural companion reference-name differences; official Ubuntu 24.04 check above passed all nine documents"
+}
