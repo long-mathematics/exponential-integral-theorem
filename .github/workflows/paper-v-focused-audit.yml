@@ -1,0 +1,155 @@
+name: Build audited Paper V rewrite
+
+on:
+  push:
+    branches: [build/paper-v-focused-audit-2026-09-29]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-v-focused-audit-2026-09-29
+  cancel-in-progress: false
+
+jobs:
+  revise:
+    if: github.repository == 'long-mathematics/exponential-integral-theorem'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      BASE: 0bb151018dc73c9e48b847fff31fb82fd2cb9072
+      TARGET: paper-v/actual-elliptic-comparison-2026-09-29
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - name: Apply hash-checked text revision
+        run: |
+          mkdir -p .build/review
+          git archive --format=tar.gz "$BASE" > .build/review/baseline.tar.gz
+          python3 - <<'PY'
+          import base64, hashlib, json, lzma
+          from pathlib import Path
+          allowed = {
+              'papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex',
+              'README.md',
+              'notes/provenance/paper-v-focused-audit-and-rewrite-2026-09-29.md',
+              'notes/provenance/paper-v-exact-checks-2026-09-29.json',
+              'scripts/check_paper_v.py',
+          }
+          encoded = ''.join(Path(f'.paper-v-payload-{i}.b64').read_text() for i in range(4))
+          packed = base64.b64decode(encoded, validate=True)
+          if hashlib.sha256(packed).hexdigest() != '4ee12912b8314c0b51783cfc858972e3dff4542e7fdca9ed789a72a0038bc7da':
+              raise SystemExit('Revision transport hash mismatch')
+          payload = json.loads(lzma.decompress(packed))
+          if set(payload) != allowed:
+              raise SystemExit('Unexpected revision paths')
+          report = {}
+          for name, record in payload.items():
+              p = Path(name)
+              if record['old_sha256'] is None:
+                  if p.exists():
+                      raise SystemExit('Refusing to overwrite a new-file path: ' + name)
+                  content = record['content']
+              else:
+                  old = p.read_bytes()
+                  if hashlib.sha256(old).hexdigest() != record['old_sha256']:
+                      raise SystemExit('Baseline mismatch: ' + name)
+                  lines = old.decode().splitlines(keepends=True)
+                  content = ''.join(op if isinstance(op, str) else ''.join(lines[op[0]:op[1]]) for op in record['ops'])
+              raw = content.encode()
+              if hashlib.sha256(raw).hexdigest() != record['new_sha256']:
+                  raise SystemExit('Final content mismatch: ' + name)
+              p.parent.mkdir(parents=True, exist_ok=True)
+              p.write_bytes(raw)
+              report[name] = record['new_sha256']
+          Path('.build/review/source-hashes.json').write_text(json.dumps(report, indent=2) + '\n')
+          PY
+      - name: Install build and exact-check tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils python3-sympy
+          pdflatex --version > .build/review/tex-version.txt
+      - name: Test build checks
+        run: make test
+      - name: Exact Paper V regressions
+        run: |
+          python3 scripts/check_paper_v.py --output .build/review/exact-checks.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          actual = json.loads(Path('.build/review/exact-checks.json').read_text())
+          expected = json.loads(Path('notes/provenance/paper-v-exact-checks-2026-09-29.json').read_text())
+          if actual != expected:
+              raise SystemExit('Exact check results differ from independently checked record')
+          PY
+      - name: Compile all manuscripts
+        run: make pdf
+      - name: Restore seven unchanged snapshots and manifest records
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          p = Path('output/pdf/manifest.json')
+          original = json.loads(subprocess.check_output(['git', 'show', os.environ['BASE'] + ':' + str(p)]))
+          built = {r['source']: r for r in json.loads(p.read_text())['documents']}
+          target = 'papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex'
+          for i, record in enumerate(original['documents']):
+              if record['source'] == target:
+                  original['documents'][i] = built[target]
+              else:
+                  source = Path(record['source'])
+                  baseline = subprocess.check_output(['git', 'show', os.environ['BASE'] + ':' + str(source)])
+                  if source.read_bytes() != baseline:
+                      raise SystemExit('Unrelated manuscript changed: ' + str(source))
+                  subprocess.run(['git', 'restore', '--source', os.environ['BASE'], '--worktree', '--', record['pdf']], check=True)
+          p.write_text(json.dumps(original, indent=2) + '\n')
+          PY
+      - name: Verify committed snapshots and README links
+        run: make check
+      - name: Prepare clean seven-file delivery commit
+        run: |
+          test -z "$(git ls-remote origin "refs/heads/$TARGET")"
+          git add README.md papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex output/pdf/polynomial-flag-exponential-periods.pdf output/pdf/manifest.json notes/provenance/paper-v-focused-audit-and-rewrite-2026-09-29.md notes/provenance/paper-v-exact-checks-2026-09-29.json scripts/check_paper_v.py
+          git rm .paper-v-payload-0.b64 .paper-v-payload-1.b64 .paper-v-payload-2.b64 .paper-v-payload-3.b64 .github/workflows/paper-v-focused-audit.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          TREE=$(git write-tree)
+          COMMIT=$(git commit-tree "$TREE" -p "$BASE" -m 'Rebuild Paper V around audited actual boundary systems and elliptic comparison')
+          export COMMIT
+          python3 - <<'PY'
+          import os, subprocess
+          expected = {
+              'README.md',
+              'papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex',
+              'output/pdf/polynomial-flag-exponential-periods.pdf',
+              'output/pdf/manifest.json',
+              'notes/provenance/paper-v-focused-audit-and-rewrite-2026-09-29.md',
+              'notes/provenance/paper-v-exact-checks-2026-09-29.json',
+              'scripts/check_paper_v.py',
+          }
+          actual = set(subprocess.check_output(['git', 'diff', '--name-only', os.environ['BASE'], os.environ['COMMIT']], text=True).splitlines())
+          if actual != expected:
+              raise SystemExit('Unexpected delivery diff: ' + repr(actual))
+          PY
+          git diff --stat "$BASE" "$COMMIT" > .build/review/diff-stat.txt
+          git diff "$BASE" "$COMMIT" -- '*.tex' README.md > .build/review/source.diff
+          printf '%s\n' "$COMMIT" > .build/review/delivery-commit.txt
+          git archive --format=tar.gz "$COMMIT" > .build/review/revised.tar.gz
+          git push origin "$COMMIT:refs/heads/$TARGET"
+          echo "Delivery commit: $COMMIT" >> "$GITHUB_STEP_SUMMARY"
+          echo 'All repository checks and exact regressions passed. PDF review and normal PR CI are required before merge.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload review sources, snapshots, diff and logs
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: paper-v-focused-audit-review
+          path: |
+            .build/review/**
+            .build/**/*.log
+            .build/**/build-console.txt
+            papers/05-polynomial-flags/*.tex
+            output/pdf/polynomial-flag-exponential-periods.pdf
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
