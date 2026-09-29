@@ -138,5 +138,5 @@ PDF production across different TeX distributions is required by the
 repository checks.
 
 This closeout is not independent specialist review, a renewed audit of all
-eight proofs, or a kernel-checked mathematical certification. Successful
+proofs, or a kernel-checked mathematical certification. Successful
 compilation and finite regression checks are not substitutes for those.
