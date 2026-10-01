@@ -19,7 +19,7 @@
       "source": "papers/02-compact-polynomial-line-kz/linear-kz-supplement.tex",
       "source_sha256": "96785ebc84db41cfcc6b3365527f337021eb83901cca93d358081c5529fb96db",
       "pdf": "output/pdf/linear-kz-supplement.pdf",
-      "pdf_sha256": "fc5df2b9ecfc50c16833ade8a0ff55e22dc06b0ede662acc1efc149185db0c04",
+      "pdf_sha256": "886aec880558ba8764abe789887ffa00852ba79a16d9290b388aed5bb879a07a",
       "pages": 4
     },
     {
@@ -61,7 +61,7 @@
       "source": "notes/eit-structural-companion.tex",
       "source_sha256": "67b491742e323e7fa7eeedf0c63a4e8c028040816bc4ee88c312a98b90e32b3a",
       "pdf": "output/pdf/eit-structural-companion.pdf",
-      "pdf_sha256": "7b9c7175f3b1f1fb37712d596a434db3a727071d9c1e15d742896dbf1dfc6661",
+      "pdf_sha256": "5c9746a004b45222335334d8c03ff5c876e02c51250da9c4c88f7a97cf29e5d5",
       "pages": 11
     }
   ]
