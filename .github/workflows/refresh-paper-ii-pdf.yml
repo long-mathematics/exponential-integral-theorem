@@ -1,0 +1,38 @@
+name: Refresh Paper II generated output
+
+on:
+  push:
+    branches:
+      - paper-ii-trim-unused-forcing-note
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: ${{ !contains(github.event.head_commit.message, '[refresh output]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: paper-ii-trim-unused-forcing-note
+      - name: Install TeX and PDF tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils
+      - name: Rebuild committed PDFs and manifest
+        run: make pdf
+      - name: Render Paper II pages for inspection
+        run: |
+          mkdir -p .inspection
+          pdftoppm -png -r 110 -f 8 -singlefile output/pdf/linear-kz-affine-line.pdf .inspection/paper-ii-page-08
+          pdftoppm -png -r 110 -f 9 -singlefile output/pdf/linear-kz-affine-line.pdf .inspection/paper-ii-page-09
+          pdftoppm -png -r 110 -f 10 -singlefile output/pdf/linear-kz-affine-line.pdf .inspection/paper-ii-page-10
+      - name: Commit generated output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add output/pdf .inspection/paper-ii-page-08.png .inspection/paper-ii-page-09.png .inspection/paper-ii-page-10.png
+          git commit -m "Refresh Paper II PDF and manifest [refresh output]"
+          git push origin HEAD:paper-ii-trim-unused-forcing-note
