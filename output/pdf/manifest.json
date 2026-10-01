@@ -3,9 +3,9 @@
   "documents": [
     {
       "source": "papers/01-exponential-integral-theorem/exponential-integral-theorem.tex",
-      "source_sha256": "fb5a27bf21499182702770a14048f88f32f71227b4caa7bfa2cb3faa3342645c",
+      "source_sha256": "e65de64456f4b35cd16d7a820d8aca3554e8732abc00283a6567f9ef53b6cfc1",
       "pdf": "output/pdf/exponential-integral-theorem.pdf",
-      "pdf_sha256": "474a91bb1d56ae64221326f7df9010fac2eb0f73bc24472f668d9c5422786fa9",
+      "pdf_sha256": "a8502a70190b304e8ad18d041494ff5c0ea73a9b15103a9eef43124d4084ae2f",
       "pages": 14
     },
     {
