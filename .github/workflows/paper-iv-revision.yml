@@ -1,0 +1,19 @@
+name: Paper IV revision workspace
+on:
+  push:
+    branches: [repair/paper-iv-k-rational-realization-20261005]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Export tracked revision workspace
+        run: git archive --format=tar.gz -o /tmp/paper-iv-workspace.tar.gz HEAD
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: paper-iv-workspace
+          path: /tmp/paper-iv-workspace.tar.gz
+          retention-days: 3
