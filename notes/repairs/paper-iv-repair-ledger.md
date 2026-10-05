@@ -169,3 +169,12 @@ This is not independent human review or formal verification. Closing
 arithmetic kernel, Picard–Vessiot descent, or entire period-torsor chain.
 See the [dated geometric-origin audit](../provenance/paper-iv-geometric-origin-repair-2026-10-05.md)
 and its separate build-verification record. No release/deposit is made.
+
+
+## 2026-10-05: arithmetic mixed-sheaf realization replacement
+
+This follow-up supersedes the earlier augmentation-interface clearance, not the historical files. The canonical source now constructs realization through Saito's arithmetic mixed sheaves and an explicit transfer of Tubach's constructible-heart method. The proposed unary argument for external product was invalid; Terenzi's perverse-concentrated presentation and multi-exact universal factorization replace it. The actual absolute de Rham/integration normalization remains an explicit lemma.
+
+The scoped audit rechecks operation maps, enhancement, universal-heart kernels, ordinary geometric cycles, the arithmetic rank-one kernel, semi-invariant exactness, normalized PV base change and exact constants. No new numerical theorem or optional global arithmetic strengthening is asserted. Tubach arXiv-v4 pinpoints are retained correctly; the rational directional fiber, finite-etale reference and HTT complex-field descent are explicit. The historical repair companion is not synchronized and is not the current proof source.
+
+See the [dated repair/audit](../provenance/paper-iv-arithmetic-realization-repair-2026-10-05.md) and [official build record](../provenance/paper-iv-arithmetic-realization-build-2026-10-05.json). This is an AI-assisted proof/source audit, not independent human review or formal verification.

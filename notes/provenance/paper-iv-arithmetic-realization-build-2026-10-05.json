@@ -1,6 +1,22 @@
 {
-  "schema_version": 1,
-  "documents": [
+  "date": "2026-10-05",
+  "baseline_main": "7ce1c249f46a0bffc7fe2b689027c28c259455b5",
+  "revision_input_commit": "5ae3d5b57dac1f8380c3c9bcc6db215b3eba07ab",
+  "workflow_run_id": 37338525441,
+  "environment": "GitHub Actions ubuntu-24.04",
+  "commands": {
+    "make test": "passed: 11 tests",
+    "make pdf": "passed: 9 documents",
+    "make check": "passed: 9 documents and README links"
+  },
+  "canonical": {
+    "source": "papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex",
+    "source_sha256": "f9fc806c0f40eeaf5b7ea8fd838e685ef50d4a504fcc0f73a1e5294e0ac808aa",
+    "pdf": "output/pdf/relative-exponential-nori-ayoub.pdf",
+    "pdf_sha256": "991dec2e965662d9b4dc5c92839fb6bdb7a4afacb6c3ccc313d10ef50d6881ac",
+    "pages": 41
+  },
+  "preserved_other_documents": [
     {
       "source": "papers/01-exponential-integral-theorem/exponential-integral-theorem.tex",
       "source_sha256": "65567be47d72340210a99932fbcd989fd5e690ffa081b668d0a09c0dde3a902d",
@@ -37,13 +53,6 @@
       "pages": 10
     },
     {
-      "source": "papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex",
-      "source_sha256": "f9fc806c0f40eeaf5b7ea8fd838e685ef50d4a504fcc0f73a1e5294e0ac808aa",
-      "pdf": "output/pdf/relative-exponential-nori-ayoub.pdf",
-      "pdf_sha256": "991dec2e965662d9b4dc5c92839fb6bdb7a4afacb6c3ccc313d10ef50d6881ac",
-      "pages": 41
-    },
-    {
       "source": "papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex",
       "source_sha256": "eac3f84b331389c80e687c5530604dc5399624d64b3fac3a94549c57b9f88236",
       "pdf": "output/pdf/paper-iv-repair-note.pdf",
@@ -64,5 +73,15 @@
       "pdf_sha256": "5c9746a004b45222335334d8c03ff5c876e02c51250da9c4c88f7a97cf29e5d5",
       "pages": 11
     }
-  ]
+  ],
+  "mathematical_scope": "Scoped AI-assisted source and proof audit; not independent peer review or formal verification",
+  "visual_review": "Recorded separately in the pull request after inspection of the official artifact",
+  "preserved_metadata": [
+    "title",
+    "authors",
+    "author identifier",
+    "contact",
+    "August 2026 manuscript date"
+  ],
+  "temporary_helpers": "Branch-only; removed before final PR merge"
 }

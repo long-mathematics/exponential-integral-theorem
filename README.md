@@ -49,6 +49,8 @@ Every nonzero member of this family is a purely transcendental E-function: its v
 
 **Scope.** Lisse relative exponential motives over a smooth connected quasi-projective base $S/\overline{\mathbb{Q}}$, with rapid-decay realizations at a nonzero algebraic exponential scale.
 
+The algebraic realization is constructed through arithmetic mixed sheaves, with an explicit tensor comparison and absolute period normalization.
+
 **Main results.** The paper constructs the relative exponential Nori category and identifies algebraic horizontal sections of the Gauss–Manin connection with the maximal constant exponential submotive. For each finite tensor-generated subcategory of the generic relative Kontsevich–Zagier envelope, it proves the exact sequence
 
 $$

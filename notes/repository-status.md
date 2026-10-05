@@ -9,7 +9,7 @@ This page is the single entry point for the repository's revision history, mathe
 | Paper I | Current theorem and proof retained. September proof audit/clarifications are integrated; October 5 prior-art and citation revisions are integrated. |
 | Paper II | Current linear Kontsevich–Zagier theorem retained. September audit/repair is integrated; October 5 prior-art framing and references are integrated. |
 | Paper III | Current polynomial Kontsevich–Zagier theorem and supplement retained. September audit/repair is integrated; October 5 prior-art framing and the normalized quadratic comparison are integrated. |
-| Paper IV | Canonical relative Nori–Ayoub manuscript includes the September realization/fixed-part/functional-period repairs. The October 5 lissity repair closes interface 3(a), and the separate geometric-origin repair closes interface 3(b), within the stated scoped AI-assisted reviews. |
+| Paper IV | The canonical manuscript uses the arithmetic mixed-sheaf realization replacement, including its enhancement, tensor and absolute-comparison proofs. The separate October 5 lissity and geometric-origin repairs remain integrated; the realization-to-arithmetic-to-PV chain has the scoped follow-up audit linked below. |
 | Paper V | The unsupported earlier general endpoint-complete theorem was withdrawn. The current manuscript proves general polynomial boundary systems and the explicit elliptic fixed-triangle comparison; broader multiblock formal completeness remains conditional on its stated hypotheses. |
 | Build | make test, make pdf, and make check are the repository validation entry points. The committed PDF manifest records current source/PDF hashes and page counts. |
 
@@ -23,12 +23,13 @@ The current manuscripts are working research drafts. Successful compilation, fin
 - Papers I–III: the October 5 prior-art/citation pass is integrated, including the Fresán–Jossen/Jossen overlap and the corrected quadratic normalization.
 - Paper IV interface 3(a): finite-graph/nonzero-scale lissity, fixed-scale restriction, and the regular-singular nearby-cycle bridge.
 - Paper IV interface 3(b): generic smooth-projective realization of the relevant simple constituents and the ensuing rank-one torsion step.
+- Paper IV realization follow-up: arithmetic mixed-sheaf transfer, perverse-concentrated tensor comparison, actual absolute normalization, and the downstream arithmetic/Tannakian/PV chain in the dated scoped AI-assisted audit.
 - Paper V: the current fixed-triangle elliptic theorem and its actual polynomial boundary-system formulation replace the withdrawn endpoint-complete claim.
 
 ### Not claimed by those closures
 
 - No record here is an independent specialist referee report.
-- Paper IV's realization/augmentation interface, arithmetic kernel, Picard–Vessiot descent, and full period-torsor chain were not newly re-audited by the October 5 interface-3 repairs.
+- The interface-3 repairs alone did not audit the realization chain. The later realization follow-up replaces the augmentation proof; its new transfer argument and scoped audit are not independent specialist certification.
 - The Papers I–III prior-art pass does not establish absolute priority against unpublished work.
 - Paper V does not prove unrestricted two-variable or general multiblock formal completeness.
 
@@ -51,6 +52,7 @@ The table gives the high-level flow. Detailed records are linked in the next sec
 | 2026-10-05 | Paper IV lissity repair | A direct algebraic characteristic-variety argument replaced the earlier mismatched finite-graph citation route; interface 3(a) was closed in the scoped review. |
 | 2026-10-05 | Paper IV geometric-origin repair | The smooth-projective bridge and rank-one torsion hypothesis were made explicit; interface 3(b) was closed in the scoped review. |
 | 2026-10-05 | Papers I–III prior-art revision | Fresán–Jossen/Jossen prior art was incorporated and the quadratic normalization/count was checked and recorded. |
+| 2026-10-05 | Paper IV arithmetic realization replacement | Replace the augmentation-based interface; repair the tensor step, retain actual absolute comparison, and recheck the arithmetic/Tannakian/PV dependency chain. |
 | 2026-10-05 | README cleanup | The root README was converted to a current-results guide; historical repair narrative was moved out of the front page and remains here and in provenance records. |
 
 ## Detailed records by paper
@@ -79,6 +81,8 @@ Read the Paper IV records chronologically. Later dated records supersede earlier
 | [Assembled and integration audit](provenance/paper-iv-assembled-integration-audit-2026-09-29.md) | Canonical integration audit for the September Paper IV repair. |
 | [Lissity repair and source check](provenance/paper-iv-lissity-repair-2026-10-05.md) | Replaces the earlier finite-graph microlocalization application with the algebraic characteristic-variety proof; closes interface 3(a) in the scoped review. |
 | [Geometric-origin repair and source check](provenance/paper-iv-geometric-origin-repair-2026-10-05.md) | Supplies the generic smooth-projective constituent bridge and rank-one torsion input; supersedes the open interface 3(b) status in the lissity record. |
+| [Arithmetic realization repair and audit](provenance/paper-iv-arithmetic-realization-repair-2026-10-05.md) | Replaces the earlier realization construction and supersedes its blanket clearance; records the tensor correction and the scoped whole-chain follow-up. |
+| [Arithmetic realization build verification](provenance/paper-iv-arithmetic-realization-build-2026-10-05.json) | Official build and preservation hashes for this replacement. |
 | [Geometric-origin build verification](provenance/paper-iv-geometric-origin-build-verification-2026-10-05.json) | Machine-readable build and preservation record for the final October 5 repair. |
 
 The retained [Paper IV repair companion](../papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex) is historical proof-development material. Canonical claims should be read from the main Paper IV source, not inferred from superseded wording in the companion.
