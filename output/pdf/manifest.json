@@ -38,10 +38,10 @@
     },
     {
       "source": "papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex",
-      "source_sha256": "da7b872f1f8d579e0d3def1dcf8da0c6224bd230f24b4358c3d5c0794d8fe75f",
+      "source_sha256": "e135bb195254b3e172a264a31ef7352c55c1c2e25ae88b18bb66b7c51b5e9cb5",
       "pdf": "output/pdf/relative-exponential-nori-ayoub.pdf",
-      "pdf_sha256": "67f8bc3510bc4749d2aa95fd2489be65a83363a4f1aaf334fb5ea83ddb2a7e7c",
-      "pages": 36
+      "pdf_sha256": "bf3240a06bcbb19eb91e24ff8633939bb555861f9b0ed0e9e2208231ae4a0edd",
+      "pages": 38
     },
     {
       "source": "papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex",
