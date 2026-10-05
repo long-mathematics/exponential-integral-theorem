@@ -1,0 +1,208 @@
+{
+  "date": "2026-10-05",
+  "baseline_commit": "4b6982ac3124bfd24176510fd98829607c82c11c",
+  "build_input_commit": "62e7ea3dbf773e3cc498d2b112c44ce745418f82",
+  "workflow_run": "https://github.com/long-mathematics/exponential-integral-theorem/actions/runs/37361775293",
+  "platform": "ubuntu-24.04",
+  "commands_passed": [
+    "make test",
+    "python3 scripts/check_paper_v.py",
+    "make pdf",
+    "make check"
+  ],
+  "unit_test_methods": 11,
+  "extended_exact_checks": {
+    "normal_form_monomial_certificates": 81,
+    "top_form_connection_certificates": 2,
+    "gelfand_leray_certificates": 2,
+    "fourier_matrix_identity": true,
+    "scalar_bessel_identity": true,
+    "boundary_euclidean_division_certificates": 2,
+    "boundary_critical_values": [
+      "107/108 - 14*sqrt(7)/27",
+      "107/108 + 14*sqrt(7)/27"
+    ],
+    "boundary_scale": "7*sqrt(7)/27",
+    "adjoint_scales_differ": true,
+    "independent_triangle_and_face_taylor_identities": 42,
+    "first_five_moment_derivative_vectors_at_zero": [
+      [
+        "1",
+        "-1/6"
+      ],
+      [
+        "-37/120",
+        "3/16"
+      ],
+      [
+        "147/320",
+        "-4547/40320"
+      ],
+      [
+        "-154247/591360",
+        "2897009/17740800"
+      ],
+      [
+        "387863821/922521600",
+        "-6251917/52715520"
+      ]
+    ],
+    "status": "All exact checks passed. These are finite regression checks, not a proof certificate."
+  },
+  "paper_v": {
+    "source": "papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex",
+    "source_sha256": "c37db9c89aa7fe19d400d92e821ce6aacf20546011529df48af427099ae370f6",
+    "pdf": "output/pdf/polynomial-flag-exponential-periods.pdf",
+    "pdf_sha256": "0152ea226253c61c3aa3b92210ad242f1a42e4d9c32aebd8fc789aca49ce614a",
+    "pages": 30,
+    "log_sha256": "5008028a2e66b6a6747c6f09e9018716ee5267d030af55b718c666d9f055cb47",
+    "log_diagnostics": []
+  },
+  "preservation": {
+    "principal_statements_unchanged": [
+      "thm:intro-elliptic",
+      "thm:criterion",
+      "thm:elliptic-main",
+      "thm:values"
+    ],
+    "preamble_authorship_title_contact_date_unchanged": true,
+    "all_original_labels_retained": true,
+    "original_labels": 91,
+    "current_labels": 93,
+    "bibliography_entries": 16,
+    "all_entries_cited": true,
+    "other_eight_pairs": [
+      {
+        "source": "papers/01-exponential-integral-theorem/exponential-integral-theorem.tex",
+        "source_sha256": "65567be47d72340210a99932fbcd989fd5e690ffa081b668d0a09c0dde3a902d",
+        "pdf": "output/pdf/exponential-integral-theorem.pdf",
+        "pdf_sha256": "933214b764b02088fd61edf57cc85aa7be80a866192c4db3d4e79804f863e9da",
+        "manifest_record_unchanged": true
+      },
+      {
+        "source": "papers/02-compact-polynomial-line-kz/linear-kz-affine-line.tex",
+        "source_sha256": "4568771bc1113ed443a77ceea9c89ce211f40a471a18b525aa1e4e38acb6e26b",
+        "pdf": "output/pdf/linear-kz-affine-line.pdf",
+        "pdf_sha256": "73c8956d7de35641fc3137e1916c5dc1921843898ab82210738037bcc9108d24",
+        "manifest_record_unchanged": true
+      },
+      {
+        "source": "papers/02-compact-polynomial-line-kz/linear-kz-supplement.tex",
+        "source_sha256": "96785ebc84db41cfcc6b3365527f337021eb83901cca93d358081c5529fb96db",
+        "pdf": "output/pdf/linear-kz-supplement.pdf",
+        "pdf_sha256": "886aec880558ba8764abe789887ffa00852ba79a16d9290b388aed5bb879a07a",
+        "manifest_record_unchanged": true
+      },
+      {
+        "source": "papers/03-complete-polynomial-kz/polynomial-kz-affine-line.tex",
+        "source_sha256": "4f1cb54e3b6aab6af1add1da97635b165fe1df9f91e86a79078e588717caaa76",
+        "pdf": "output/pdf/polynomial-kz-affine-line.pdf",
+        "pdf_sha256": "e521f7de5bfcfe50cacb8d17c7d6e239c38e12c96b8a308e7a151dba709c2fec",
+        "manifest_record_unchanged": true
+      },
+      {
+        "source": "papers/03-complete-polynomial-kz/polynomial-kz-supplement.tex",
+        "source_sha256": "72b0d7585620608b23469edf809c664c03657779f348e73af71f32e10fc1b1d5",
+        "pdf": "output/pdf/polynomial-kz-supplement.pdf",
+        "pdf_sha256": "c04ab4764569716b548cdfe57f8565f550e5b22da1a30441db0540fa4c4e6ef1",
+        "manifest_record_unchanged": true
+      },
+      {
+        "source": "papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex",
+        "source_sha256": "82bca80220ecf54a5f10f90951430cf6d14ae4df386a39a946985f719797ea55",
+        "pdf": "output/pdf/relative-exponential-nori-ayoub.pdf",
+        "pdf_sha256": "a2d9b69c0e8ded97d92b5837f76402af6503110f1d3ca6cc6a5d7c722bc256bc",
+        "manifest_record_unchanged": true
+      },
+      {
+        "source": "papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex",
+        "source_sha256": "eac3f84b331389c80e687c5530604dc5399624d64b3fac3a94549c57b9f88236",
+        "pdf": "output/pdf/paper-iv-repair-note.pdf",
+        "pdf_sha256": "dedb099b47a7839455dae7b6a7e9343e37dff9edfc259ddee3b5c8ed32113168",
+        "manifest_record_unchanged": true
+      },
+      {
+        "source": "notes/eit-structural-companion.tex",
+        "source_sha256": "67b491742e323e7fa7eeedf0c63a4e8c028040816bc4ee88c312a98b90e32b3a",
+        "pdf": "output/pdf/eit-structural-companion.pdf",
+        "pdf_sha256": "5c9746a004b45222335334d8c03ff5c876e02c51250da9c4c88f7a97cf29e5d5",
+        "manifest_record_unchanged": true
+      }
+    ]
+  },
+  "render_verification": {
+    "pymupdf_version": "1.26.7",
+    "dpi": 108,
+    "text_hashes": [
+      "9d081b9c9932b6fc068a05a84f2533fef468b73fa414f74860fbfeecc3910ff2",
+      "40cb49afafa2df4de4c85b973dc62ba3a093f0074f23f001e1643659a7efd8ec",
+      "642c6c477d7fd683225edafd0344406376b17cd755d569c5e9c38b79585037b1",
+      "7c149b8a0f0661da399f9d4faa71bb076b2b24985416aec1552c1f3ca66bf337",
+      "672d997f170025fd85c483fbea81ff05fa116feb4447014ae98b339f1bdba87f",
+      "dfd5057b3329ba3024c5e7ffc44a640f98e2f11dfe15b75496e0cccfcb51ea1a",
+      "acbc86c1912a940c0233b545eeec7a733cb93d1c18b3c5de6bf94dac4d613838",
+      "85fa036b2375bac45c45bf36d0404bd22637071618ec9acd14e7d04d80f6c357",
+      "49d9e9a2c19b7b768837e9660484e6dda9a0cbfe6d6a8694f01ea2fb306cb928",
+      "a4af4bee9101be93d8a013d13e25ab3883890fe1d4bb394231315c6fee3a76a1",
+      "87e4960461e6575064751119d8a6e6a46f8ca254e48c088e249c1f09b39cf4f0",
+      "e1cefa26b174f73f62220d2ba80054d6943b1a1740b505a57b732d80d99a532a",
+      "3224ad219b5d8ebe1b8b683c135850785d351cee4c6905ac277f12f220b362da",
+      "7abbe99ebcdb2a71a5f21fb9d4869ae55581e60ed26bea0b7c7b24477fc46234",
+      "dcab1e70f222700e6a12ee820f54dc67a632fca8276e934048f56e916be3311b",
+      "19b99c2180dab77f17cf8161d276933d57a1b7ef4d1812c5bcff2dae46d78241",
+      "84557fc1657057c11bb2beddbb60a3140b081d5621e95c01bd68b8162492296d",
+      "180ef4e29161ebcadd92d8ecec44feddefe827a48762838be969296641b15935",
+      "f1b3369e635e70ce8ddb3a6a06b79f038559c17f3964e049c9d900e7cabf1f76",
+      "a618a2c4d5bced1d999e4366903503b397bbf46e841af131f77b1da7b8170104",
+      "31fc8ef1b85597260e8d0de5ab6d3830b46ab072e3a2a6b550ecd0a3dcabb740",
+      "71ac5046f9f8a7d5367786343740a61fe7f39f015841fa8796fc4a0c10656582",
+      "ec7afefa6d7228bfbc8cfc774e7c5da112ce140f99c48dfbc6758cd80c0d99e3",
+      "5775d000ed1990f9bf82e664bfd4a82dc1f496564cc55ffdddbeaedcae782d20",
+      "3cb43f4b884240c71db51f6d156028a66622cd564a5a6e2393af7ae1434ea371",
+      "e8b1a0c46f45b1dde2028ef26f0322d1182d3d2c83e3314e5cd49d85e4425912",
+      "30fcb2d541061dd5e6cebbe42298a78d5b13ed898de2a3b6e9997b5a2c226d85",
+      "f609dc03ab250dc09993394a5aa7354c01ebb5cf22e2bf351be998654279ad1a",
+      "77b5ae7e5424cbe723b4f0cc57624c53525d0bbda10809fb7e0da3cd3dffd51d",
+      "c2bbd0e7a3d3b9a7f1401b6998056aa8a75dc89600b197fa566300f48cc36095"
+    ],
+    "render_rgb_hashes": [
+      "38531c58d07ec5ed5979bd98cad4bcf6e581f70a007afb407f1952eb08a35e2c",
+      "6e8f4b444f63b6b68c0e43fdd6b016d2085c052b3894bbe87c62098b2873b5d9",
+      "2c498db1447f8ae698a61a17e6e5ede67e705d5b293900ef8fffd8c6a70e6216",
+      "22fd65adba8f90720ed5060528a41c8f14b3462818c402d57f22398668b80360",
+      "5cb99a0b66f112e5bddb77f0aa1018b619af4d063847d0d4e13eb5895f5f670a",
+      "ba6cc17ba9b45d9f0968e4e4685ddb9860fe4469f75d03fd58b650d2a39df99a",
+      "2ac2ac737dac290cd04cf9122218c8808474912aea998be8d79f67e2b2d21ad5",
+      "ccb8288d409d102519b58608376ebf1d12c69108aa71b622b380fb064d237ff4",
+      "cc0a9ccafc0eb1f92f761a2a6f79aa23182bb79290947775cb7904ce4b4bf811",
+      "86a392f7c5b1f62405dd79a8a7e88f21a30d0fa531b57eb8735e919fc9fa5739",
+      "58bdda80e7d1889251106dbc988e2510768bcc81cd65fa7d3fbc791b370f6f22",
+      "83a34987ada3cf3b43fb7becba1629b4c382fadf794b1dd7dea7d28e14360314",
+      "ecfeec9c276f007bfd0efc8069e256d0ccd1f858f271bf9ef6c7c9f4c8df1434",
+      "613d5318c9a737c1b3940fe890419c5410bbf91ba410a3dd059c47bc70de6cb2",
+      "af4d736ff30ae4e1fd3670517a4738d853e407ae58df2950e287ea9abc0e407d",
+      "6b9e2bfdcc01a751708392d11856efc7679d8e229955312f5658005d18c94919",
+      "e7dee0712d12e151532ca1dc95e2765706a834a361db005d56a98f577d8ecbce",
+      "e384db4611e7db977d21fb05bcc807b9f2e9ca5cbeda0a813ac0797bbfceef6e",
+      "e8c96b225223fa1117c060a7135a61b450cd1edc09a233233d954bf8ac985e65",
+      "401fd7d89f06f269ff5dabd77cf9dc106d2693a839dab73e4b383161a2083393",
+      "2c03290936ec5b9786826044f9dfab0b325a7e0591b31b914fc5abc4eed36db2",
+      "3b2d8cf12051ecb4898a700f69623af225cbae41f5af46a01e0e73aa5656a0b1",
+      "2524d8fc74491327abd61c597e0af8096b2fef8c1afa5d3cc562880d3c338c12",
+      "057a6d6912ab4d955a45b006db119cfeb6c6289fb7981243d16f164694866c0f",
+      "ac39a0ed76d22a8d1dd33544af8c864c302b51a380b56fb60710e3ac91a5e6fa",
+      "2bd85f221ef23f2615a9c0fa932e0eb418ccf896cbb0efefa985db6bb1b72f04",
+      "94b9ed0d9efe5339507a131e286af6bbc1ae5ef0544aacf1890d2809428c0f26",
+      "11827389cd2ea0755ff5ed042ca8c7e57052384fff82fc0a515313f6d972b4e7",
+      "008439d24ef0e845f60ab2dd1a45c15104b41996b1fe0a491d5779dd5173c4cd",
+      "64a4b94b63e163645e5abe2a7814ba4c6c2d7bf91433533e9df674d41af2c89f"
+    ],
+    "text_fingerprint": "823c1c4083cdb2957d5f608c18c7114e10bcaa9a6a61e7e29e7f1d25b62a54b5",
+    "render_fingerprint": "e4904282239aa660d3b6c587aeefccf5a5e5123ed4504783ac6517fd9fc19204",
+    "locally_inspected_text_fingerprint": "823c1c4083cdb2957d5f608c18c7114e10bcaa9a6a61e7e29e7f1d25b62a54b5",
+    "locally_inspected_render_fingerprint": "e4904282239aa660d3b6c587aeefccf5a5e5123ed4504783ac6517fd9fc19204",
+    "matches_locally_inspected_text": true,
+    "matches_locally_inspected_render": true
+  },
+  "limits": "Build and finite exact checks are not independent peer review or formal verification. Final clean-tree PR and post-merge CI are recorded in the pull-request discussion."
+}
