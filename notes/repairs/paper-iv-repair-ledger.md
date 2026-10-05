@@ -134,3 +134,38 @@ The realization interface, the remaining rank-one/arithmetic chain, and
 all of Paper IV are not newly certified by closing 3(a). The historical
 repair companion is not synchronized: its lissity argument is superseded
 by the canonical proof. See the [dated repair and source-check record](../provenance/paper-iv-lissity-repair-2026-10-05.md).
+
+
+## 2026-10-05: geometric-origin bridge and interface-3(b) repair
+
+This is the separate follow-up to the lissity repair at main
+`3b587fdfde4992e19745302da1c8e6ec4f9326c0` (PR #12). It supersedes the
+open **3(b)** status above; the historical October 5 lissity record and
+September reports remain unchanged.
+
+- **3(a):** finite-graph/nonzero-scale lissity remains closed by the
+  preceding scoped repair; its proof and normalizations are unchanged.
+- **3(b):** **repaired and closed in this scoped, source-checked AI-assisted
+  review.** `lem:projective-constituents` proves generic smooth-projective
+  realization of each simple constituent by compact generation,
+  compactification, boundary resolution, and a finite Serre/thick argument.
+  `thm:nearby-geometric` identifies the ordinary Nori objects containing
+  the pure direct images, all nearby-cycle eigenparts, and nilpotent-kernel
+  constituents. `lem:projective-rank-one` then applies Deligne/Lam–Litt
+  with the actual family and integral-cohomology hypothesis in place.
+
+The additional audit checked Nori weight pieces before realization,
+ordinary perverse-normalized unipotent cycles, finite Kummer twists for
+all other eigenvalues, preservation of Betti summands without lifting
+complex projectors, and finite étale descent via trace. It neither treats
+proper perverse direct image as exact nor claims arbitrary mixed local
+systems are smooth-projective summands. The optional split criterion has
+the same explicit constituent condition. Jacobsen–Terenzi Corollary 5.15
+and Proposition 5.17 were read directly and are now comparison context,
+not the missing smooth-proper bridge.
+
+This is not independent human review or formal verification. Closing
+3(b) does not newly close the realization/augmentation interface,
+arithmetic kernel, Picard–Vessiot descent, or entire period-torsor chain.
+See the [dated geometric-origin audit](../provenance/paper-iv-geometric-origin-repair-2026-10-05.md)
+and its separate build-verification record. No release/deposit is made.

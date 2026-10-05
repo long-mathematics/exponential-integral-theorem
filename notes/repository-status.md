@@ -100,3 +100,24 @@ deposit**. No counterexample to that application is claimed, and no
 whole-paper certification follows from the present repair. The algebraic
 realization and remaining arithmetic/rank-one interfaces are outside this
 review. No release tag or archival deposit is implied.
+
+
+## Paper IV geometric-origin follow-up, 2026-10-05
+
+The [separate geometric-origin repair and audit](provenance/paper-iv-geometric-origin-repair-2026-10-05.md)
+closes interface **3(b)** in the scoped AI-assisted review, following the
+separate lissity repair of **3(a)** in PR #12. The canonical
+paper now derives the generic smooth-projective realization of its
+simple ordinary Nori/nearby-cycle constituents before using rank-one
+torsion. Jacobsen–Terenzi remains comparison context; the optional split
+criterion uses the same explicit constituent condition. Actual family
+cohomology, not rational structure alone, supplies the integral input.
+
+Both closures have dated source maps and bounded scope. They do not
+constitute independent human peer review, formal verification, or a fresh
+audit of the realization, arithmetic, Picard–Vessiot, or torsor arguments.
+Historical records and the repair companion are preserved unchanged;
+read their earlier open/closed language together with these later
+addenda. No visibility change, release tag, or deposit is part of this
+revision. Build/artifact validation is recorded separately in the PR and
+`provenance/paper-iv-geometric-origin-build-verification-2026-10-05.json`.
