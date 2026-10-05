@@ -51,7 +51,7 @@ jobs:
       - name: Record validation and commit only the intended revision
         run: |
           python3 - <<'PY'
-          import hashlib,json,os,subprocess
+          import json,os,subprocess
           from pathlib import Path
           target='papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex'
           manifest=json.loads(Path('output/pdf/manifest.json').read_text())
@@ -62,7 +62,7 @@ jobs:
               assert Path(r['source']).read_bytes()==subprocess.check_output(['git','show','HEAD:'+r['source']])
               assert Path(r['pdf']).read_bytes()==subprocess.check_output(['git','show','HEAD:'+r['pdf']])
               unchanged.append(r)
-          data={'date':'2026-10-05','baseline_main':'7ce1c249f46a0bffc7fe2b689027c28c259455b5','revision_input_commit':os.environ['GITHUB_SHA'],'workflow_run_id':int(os.environ['GITHUB_RUN_ID']),'environment':'GitHub Actions ubuntu-24.04','commands':{'make test':'passed: 11 tests','make pdf':'passed: 9 documents','make check':'passed: 9 documents and README links'},'canonical':record,'preserved_other_documents':unchanged,'local_validation':{'make test':'passed: 11 tests','make pdf':'all 9 compiled','make check':'8 passed; unchanged structural companion has the previously recorded local cleveref/toolchain text discrepancy; official Ubuntu check above passes'},'mathematical_scope':'Scoped AI-assisted source and proof audit; not independent peer review or formal verification','visual_review':'To be recorded in the pull request after inspecting the official artifact','preserved_metadata':['title','authors','author identifier','contact','August 2026 manuscript date'],'temporary_helpers':'Branch-only; removed before final PR merge'}
+          data={'date':'2026-10-05','baseline_main':'7ce1c249f46a0bffc7fe2b689027c28c259455b5','revision_input_commit':os.environ['GITHUB_SHA'],'workflow_run_id':int(os.environ['GITHUB_RUN_ID']),'environment':'GitHub Actions ubuntu-24.04','commands':{'make test':'passed: 11 tests','make pdf':'passed: 9 documents','make check':'passed: 9 documents and README links'},'canonical':record,'preserved_other_documents':unchanged,'mathematical_scope':'Scoped AI-assisted source and proof audit; not independent peer review or formal verification','visual_review':'Recorded separately in the pull request after inspection of the official artifact','preserved_metadata':['title','authors','author identifier','contact','August 2026 manuscript date'],'temporary_helpers':'Branch-only; removed before final PR merge'}
           Path('notes/provenance/paper-iv-arithmetic-realization-build-2026-10-05.json').write_text(json.dumps(data,indent=2)+'\n')
           PY
           git diff --check
