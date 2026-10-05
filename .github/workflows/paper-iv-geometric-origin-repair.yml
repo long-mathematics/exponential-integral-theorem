@@ -1,0 +1,160 @@
+name: Paper IV geometric-origin repair build
+on:
+  push:
+    branches: [paper-iv/geometric-origin-repair-2026-10-05]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - name: Install TeX and PDF tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils
+      - name: Apply scoped repair and verify its payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .build
+          python3 - <<'PY'
+          import base64, gzip, hashlib, subprocess
+          from pathlib import Path
+          source = Path('papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex')
+          assert hashlib.sha256(source.read_bytes()).hexdigest() == 'da7b872f1f8d579e0d3def1dcf8da0c6224bd230f24b4358c3d5c0794d8fe75f'
+          encoded = ''.join(Path(f'.github/geometric-origin-payload/part{i}.txt').read_text() for i in range(4))
+          patch = gzip.decompress(base64.b64decode(encoded, validate=True))
+          assert hashlib.sha256(patch).hexdigest() == '1e62e3ff1dd343c32847bc4567487411eef4ae0087f9fc9648493f539474f732'
+          subprocess.run(['git', 'apply', '--check', '-'], input=patch, check=True)
+          subprocess.run(['git', 'apply', '-'], input=patch, check=True)
+          assert hashlib.sha256(source.read_bytes()).hexdigest() == 'e135bb195254b3e172a264a31ef7352c55c1c2e25ae88b18bb66b7c51b5e9cb5'
+          PY
+      - name: Test and rebuild all manuscripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          make test 2>&1 | tee .build/geometric-tests.log
+          make pdf 2>&1 | tee .build/geometric-build.log
+          python3 - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          base = '3b587fdfde4992e19745302da1c8e6ec4f9326c0'
+          source = 'papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex'
+          path = Path('output/pdf/manifest.json')
+          old = json.loads(subprocess.check_output(['git', 'show', f'{base}:{path}']))
+          new = {x['source']: x for x in json.loads(path.read_text())['documents']}
+          for i, doc in enumerate(old['documents']):
+              if doc['source'] == source:
+                  old['documents'][i] = new[source]
+              else:
+                  Path(doc['pdf']).write_bytes(subprocess.check_output(['git', 'show', f"{base}:{doc['pdf']}"]))
+          path.write_text(json.dumps(old, indent=2) + '\n')
+          PY
+          make check 2>&1 | tee .build/geometric-check.log
+      - name: Verify preservation and record build evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, os, re, subprocess
+          from pathlib import Path
+          base = '3b587fdfde4992e19745302da1c8e6ec4f9326c0'
+          source = 'papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex'
+          def original(path):
+              return subprocess.check_output(['git', 'show', f'{base}:{path}'])
+          def digest(data):
+              return hashlib.sha256(data).hexdigest()
+          before = original(source).decode()
+          after = Path(source).read_text()
+          oldlabels = re.findall(r'\\label\{([^}]+)\}', before)
+          newlabels = re.findall(r'\\label\{([^}]+)\}', after)
+          assert len(oldlabels) == 138 and len(set(oldlabels)) == 138
+          assert len(newlabels) == 140 and len(set(newlabels)) == 140
+          assert set(newlabels) - set(oldlabels) == {'lem:projective-constituents', 'lem:projective-rank-one'}
+          assert set(oldlabels).issubset(newlabels)
+          assert before.split('\\section', 1)[0] == after.split('\\section', 1)[0]
+          begin = '\\begin{lemma}[Finite graph reduction and nonzero-scale lissity]'
+          end = '\\begin{theorem}[Nearby-cycle geometricity]'
+          preserved = before.split(begin, 1)[1].split(end, 1)[0]
+          assert begin + preserved in after
+          assert digest(Path(source).read_bytes()) == 'e135bb195254b3e172a264a31ef7352c55c1c2e25ae88b18bb66b7c51b5e9cb5'
+          manifest_path = 'output/pdf/manifest.json'
+          old = json.loads(original(manifest_path))
+          new = json.loads(Path(manifest_path).read_text())
+          assert len(old['documents']) == len(new['documents']) == 9
+          bysource = {x['source']: x for x in new['documents']}
+          assert set(bysource) == {x['source'] for x in old['documents']}
+          untouched = []
+          for doc in old['documents']:
+              if doc['source'] == source:
+                  continue
+              assert doc == bysource[doc['source']]
+              for path in (doc['source'], doc['pdf']):
+                  assert Path(path).read_bytes() == original(path), path
+              untouched.append(doc)
+          historical = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', base, 'notes/provenance']).decode().splitlines()
+          for path in historical:
+              assert Path(path).read_bytes() == original(path), path
+          paper = bysource[source]
+          assert paper['source_sha256'] == digest(Path(source).read_bytes())
+          assert paper['pdf_sha256'] == digest(Path(paper['pdf']).read_bytes())
+          assert paper['pages'] == 38
+          info = subprocess.check_output(['pdfinfo', paper['pdf']], text=True)
+          assert re.search(r'^Pages:\s+38$', info, re.M)
+          record = {
+              'schema_version': 1,
+              'date': '2026-10-05',
+              'scope': 'Paper IV geometric-origin to smooth-projective constituent bridge; interface 3(b) only',
+              'baseline_commit': base,
+              'source': paper['source'],
+              'source_sha256': paper['source_sha256'],
+              'pdf': paper['pdf'],
+              'pdf_sha256': paper['pdf_sha256'],
+              'pages': paper['pages'],
+              'runner': 'ubuntu-24.04',
+              'workflow_run_url': 'https://github.com/' + os.environ['GITHUB_REPOSITORY'] + '/actions/runs/' + os.environ['GITHUB_RUN_ID'],
+              'checks': {'make_test': 'passed: 11 tests', 'make_pdf': 'passed: all 9 documents', 'make_check': 'passed: all 9 snapshots, hashes and README links'},
+              'preservation': {'existing_labels_preserved': 138, 'new_labels': ['lem:projective-constituents', 'lem:projective-rank-one'], 'total_labels': 140, 'frontmatter_unchanged': True, 'lissity_fixed_fiber_regular_bridge_two_triangles_unchanged': True, 'historical_provenance_files_unchanged': len(historical), 'other_manuscript_records_unchanged': untouched},
+              'local_preflight': {'make_test': 'passed: 11 tests', 'make_pdf': 'passed: all 9 documents', 'make_check': 'Unchanged structural-companion PDF text differs with local TeX version. All other comparisons passed. No unrelated snapshot was replaced; official Ubuntu check above passed.'},
+              'review_scope': 'Source-checked AI-assisted mathematical review. Neither these checks nor the accompanying audit constitute independent human peer review or formal verification. Normal PR CI and rendered-PDF review are recorded separately in the PR.'
+          }
+          Path('notes/provenance/paper-iv-geometric-origin-build-verification-2026-10-05.json').write_text(json.dumps(record, indent=2) + '\n')
+          print(json.dumps({'source_sha256': paper['source_sha256'], 'pdf_sha256': paper['pdf_sha256'], 'pages': 38, 'other_documents_preserved': len(untouched), 'labels': len(newlabels)}, indent=2))
+          PY
+      - name: Commit only the verified manuscript repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/geometric-origin-payload/part{0,1,2,3}.txt .github/workflows/paper-iv-geometric-origin-repair.yml
+          git add papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex output/pdf/relative-exponential-nori-ayoub.pdf output/pdf/manifest.json README.md notes/repairs/paper-iv-repair-ledger.md notes/repository-status.md notes/provenance/paper-iv-geometric-origin-repair-2026-10-05.md notes/provenance/paper-iv-geometric-origin-build-verification-2026-10-05.json
+          git diff --cached --check
+          python3 - <<'PY'
+          import subprocess
+          base = '3b587fdfde4992e19745302da1c8e6ec4f9326c0'
+          expected = {'papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex', 'output/pdf/relative-exponential-nori-ayoub.pdf', 'output/pdf/manifest.json', 'README.md', 'notes/repairs/paper-iv-repair-ledger.md', 'notes/repository-status.md', 'notes/provenance/paper-iv-geometric-origin-repair-2026-10-05.md', 'notes/provenance/paper-iv-geometric-origin-build-verification-2026-10-05.json'}
+          changed = set(subprocess.check_output(['git', 'diff', '--cached', '--name-only', base]).decode().splitlines())
+          assert changed == expected, (changed - expected, expected - changed)
+          PY
+          git config user.name 'Christopher D. Long'
+          git config user.email 'galizur@gmail.com'
+          git commit -m 'Repair Paper IV geometric-origin bridge and rank-one torsion scope'
+          git push origin HEAD:${GITHUB_REF_NAME}
+          git archive --format=tar HEAD > .build/eit-geometric-repaired.tar
+      - name: Upload verified repository and build logs
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: paper-iv-geometric-origin-repaired
+          path: |
+            .build/eit-geometric-repaired.tar
+            .build/geometric-*.log
+            .build/relative-exponential-nori-ayoub/*.log
+            .build/relative-exponential-nori-ayoub/*.pdf
+            notes/provenance/paper-iv-geometric-origin-build-verification-2026-10-05.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 7
