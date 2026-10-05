@@ -76,6 +76,8 @@ Paper V's actual elliptic independence proofs do not use Paper IV or the compani
 
 These are working research drafts. Compilation and computational checks do not constitute independent peer review or formal verification.
 
+For the chronological development of the manuscripts, mathematical audit and repair records, and current review boundaries, see [Repository history and status](notes/repository-status.md).
+
 ## Supplements and notes
 
 | Document | PDF | LaTeX |

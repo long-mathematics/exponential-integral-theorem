@@ -1,123 +1,121 @@
-# Repository setup and research status
+# Repository history and status
 
-## September 17, 2026 setup
+This page is the single entry point for the repository's revision history, mathematical audit records, repair notes, and current review boundaries. The root [README](../README.md) describes the papers as they stand now; this page explains how that state was reached.
 
-- Five main manuscripts, two supplements, and the EIT structural companion have stable working names and compiled PDF counterparts.
-- The root README links directly to all eight sources and PDFs.
-- `make pdf` builds the documents and records source/PDF hashes and page counts. `make check` verifies snapshots and README links; `make test` tests the checker.
-- A read-only GitHub Actions workflow builds and checks the manuscripts on pull requests and main-branch pushes. It does not automatically commit generated files.
-- Paper V's bibliography now uses the current titles of Papers I–III, and its PDF title metadata matches its full printed title.
-- A malformed title line break in the linear KZ supplement has been corrected.
-- At the author's explicit request, all eight documents now list Christopher D. Long and Antoine-Auguste Le Blanc. Le Blanc's identifier is copied exactly from Paper IV: `b604812530b3535b23d6dbb0f5abe32d1ed1a9de35fb4f7d04d62cff08ea19c8`. PDF author metadata, companion-paper citations, and singular-author disclosure wording are updated consistently. Mathematical statements, proofs, and original manuscript dates are preserved.
-- Historical provenance and audit records are unchanged. Their original-source hashes describe the import, not subsequent editorial changes; the PDF manifest describes the current sources.
-- Repository visibility and licensing are unchanged. No branch-protection or account settings are modified by this setup.
+## Current snapshot
 
-## September 29, 2026 Paper V revision
+| Area | Current status |
+| --- | --- |
+| Paper I | Current theorem and proof retained. September proof audit/clarifications are integrated; October 5 prior-art and citation revisions are integrated. |
+| Paper II | Current linear Kontsevich–Zagier theorem retained. September audit/repair is integrated; October 5 prior-art framing and references are integrated. |
+| Paper III | Current polynomial Kontsevich–Zagier theorem and supplement retained. September audit/repair is integrated; October 5 prior-art framing and the normalized quadratic comparison are integrated. |
+| Paper IV | Canonical relative Nori–Ayoub manuscript includes the September realization/fixed-part/functional-period repairs. The October 5 lissity repair closes interface 3(a), and the separate geometric-origin repair closes interface 3(b), within the stated scoped AI-assisted reviews. |
+| Paper V | The unsupported earlier general endpoint-complete theorem was withdrawn. The current manuscript proves general polynomial boundary systems and the explicit elliptic fixed-triangle comparison; broader multiblock formal completeness remains conditional on its stated hypotheses. |
+| Build | make test, make pdf, and make check are the repository validation entry points. The committed PDF manifest records current source/PDF hashes and page counts. |
 
-Paper V now uses actual polynomial Stokes boundary systems and includes the explicit elliptic fixed-triangle comparison. Its earlier general endpoint-complete numerical claim has been replaced, not silently retained: numerical maps are defined on specialized fibers and general multiblock formal realization is a separate hypothesis. The current title and manuscript date are intentionally updated; the author list is unchanged. See the [focused audit](provenance/paper-v-focused-audit-2026-09-29.md) for mathematical changes and limitations. The earlier setup and historical audit records remain historical descriptions.
+The current manuscripts are working research drafts. Successful compilation, finite computational checks, and scoped AI-assisted audits are not independent peer review or formal verification.
 
-## September 29, 2026 repair-session closeout
+## Current review boundaries and follow-up
 
-The recorded September 28–29 repair recommendations for Papers I, II, III,
-and V have been reconciled with the working sources. The concurrent Paper IV
-integration in PR #7 is also retained and reflected in this status. This completes the
-specified repair session, not an independent certification of every paper.
-The [closeout record](provenance/repair-session-closeout-2026-09-29.md)
-identifies the exact revision baseline, the dependency review, and the
-closing-snapshot convention.
+### Closed in the recorded scoped reviews
 
-### Completed repairs and checks
+- Papers I–III: the September proof-audit revisions recorded below are integrated.
+- Papers I–III: the October 5 prior-art/citation pass is integrated, including the Fresán–Jossen/Jossen overlap and the corrected quadratic normalization.
+- Paper IV interface 3(a): finite-graph/nonzero-scale lissity, fixed-scale restriction, and the regular-singular nearby-cycle bridge.
+- Paper IV interface 3(b): generic smooth-projective realization of the relevant simple constituents and the ensuing rank-one torsion step.
+- Paper V: the current fixed-triangle elliptic theorem and its actual polynomial boundary-system formulation replace the withdrawn endpoint-complete claim.
 
-| Work | Integrated revision | Current disposition |
+### Not claimed by those closures
+
+- No record here is an independent specialist referee report.
+- Paper IV's realization/augmentation interface, arithmetic kernel, Picard–Vessiot descent, and full period-torsor chain were not newly re-audited by the October 5 interface-3 repairs.
+- The Papers I–III prior-art pass does not establish absolute priority against unpublished work.
+- Paper V does not prove unrestricted two-variable or general multiblock formal completeness.
+
+### Useful pre-deposit follow-up
+
+- A concise note to Javier Fresán and Peter Jossen about the general polynomial marked-point theorems would be useful for checking possible unpublished overlap after the February 2025 talk. The current manuscripts already use bounded priority language, so this is a scholarly priority check rather than a logical dependency of the proofs.
+- Independent specialist review remains especially valuable for the full Paper IV realization-to-arithmetic-to-Picard–Vessiot chain.
+
+## Timeline
+
+The table gives the high-level flow. Detailed records are linked in the next section.
+
+| Date | Change | Result |
 | --- | --- | --- |
-| Paper I | PR #4, `093e260aa41a` | Compressed-residue flag, finite descent, Fourier convention, and scope clarifications integrated. |
-| Paper II | PR #5, `5c11c2e1cba0` | Exact-compositum cover correction, compact lifted edges, inherited hypotheses, and descent clarifications integrated. |
-| Paper III and supplement | PR #6, `0bb151018dc7` | Explicit spectral gauge, base-change and correction arguments, closed value systems, and quartic proof order integrated. |
-| Paper IV and repair companion | PR #7, `31ea3d09d944` | Canonical realization, fixed-part, and functional-period repairs integrated in the concurrent workstream; its separate audit records the scope and qualifications. |
-| Paper V | PR #8, `1d91e575bbf4` | Actual polynomial boundary systems and the explicit elliptic comparison replace the unsupported general endpoint assertion. |
-| Cross-document closeout | Revision containing the linked closeout record | All nine active sources and current scope notes checked for reliance on the withdrawn Paper V theorem; none found. Paper V now explicitly records its internal-series dependencies. |
+| 2026-09-17 | Repository setup and import | Five main manuscripts, supplements, structural companion, build scripts, committed PDFs, and provenance records organized under stable paths. |
+| 2026-09-28 | Papers I–III audits | Focused proof audits and clarification passes produced the current repaired versions of Papers I–III. |
+| 2026-09-29 | Paper IV integration | The relative algebraic realization, fixed-part, rank-one lifting, Galois exactness, and functional-period repairs were integrated into canonical Paper IV. |
+| 2026-09-29 | Paper V rewrite and repair closeout | The unsupported general endpoint-complete claim was removed; actual polynomial boundary systems and the explicit elliptic comparison became the canonical result. Cross-document dependencies were rechecked. |
+| 2026-10-01 | Editorial compression | Redundant bookkeeping in Papers I–II was removed without changing mathematical statements. |
+| 2026-10-05 | Paper IV lissity repair | A direct algebraic characteristic-variety argument replaced the earlier mismatched finite-graph citation route; interface 3(a) was closed in the scoped review. |
+| 2026-10-05 | Paper IV geometric-origin repair | The smooth-projective bridge and rank-one torsion hypothesis were made explicit; interface 3(b) was closed in the scoped review. |
+| 2026-10-05 | Papers I–III prior-art revision | Fresán–Jossen/Jossen prior art was incorporated and the quadratic normalization/count was checked and recorded. |
+| 2026-10-05 | README cleanup | The root README was converted to a current-results guide; historical repair narrative was moved out of the front page and remains here and in provenance records. |
 
-The earlier generic tasks to reconcile this session's conversation-only
-corrections and review the I–II–III interfaces are completed to the extent
-of the recorded audits and merged repairs. They are not claims of
-independent specialist review. Paper IV's relative Nori–Ayoub proof is not
-an input to Paper V's actual elliptic independence theorem. Its concurrent
-[assembled-proof and integration audit](provenance/paper-iv-assembled-integration-audit-2026-09-29.md)
-and [latest repair-ledger entry](repairs/paper-iv-repair-ledger.md) record
-that workstream's completed repairs; this closeout checks its dependencies
-and preserves its sources and PDFs, rather than repeating that proof audit.
+## Detailed records by paper
 
-The closeout was reconciled onto `31ea3d09d944` after PR #7 added the ninth
-manuscript. The README links and both Paper IV snapshots are retained.
-The post-merge workflow on the initial Paper V rewrite baseline passed: run
-`36527841497`, job `109274684840`. Validation of the closing revision,
-including its final commit and post-merge run, is recorded in that
-revision's pull request. No release tag or archival publication is implied.
+### Papers I–III
 
-### Deliberately withdrawn or conditional
+| Record | Purpose |
+| --- | --- |
+| [Paper I audit](provenance/paper-i-audit.md) | Original focused proof audit of Paper I. |
+| [Paper I audit clarifications](provenance/paper-i-audit-clarifications-2026-09-28.md) | Clarifications and incorporated repairs following that audit. |
+| [Paper II audit](provenance/paper-ii-audit.md) | Focused audit of the linear Kontsevich–Zagier manuscript. |
+| [Paper II audit clarifications](provenance/paper-ii-audit-clarifications-2026-09-28.md) | Corrections and clarifications integrated into Paper II. |
+| [Paper III audit](provenance/paper-iii-audit.md) | Focused audit of the polynomial Kontsevich–Zagier manuscript. |
+| [Paper III audit clarifications](provenance/paper-iii-audit-clarifications-2026-09-28.md) | Corrections and clarifications integrated into Paper III and its supplement. |
+| [Papers I–III prior-art and citation revision](provenance/papers-i-iii-prior-art-2026-10-05.md) | Source-to-claim comparison with Fresán–Jossen, Jossen, Delaygue, and related E-function literature; includes the quadratic normalization consistency check. |
 
-The old general endpoint-complete numerical theorem is not a remaining
-repair task disguised as a proved result. Its unsupported geometric
-application was withdrawn. The current manuscript proves the fixed
-elliptic triangle result over its associated fixed-face fields and uses
-the specialized numerical fiber. The abstract multicolumn comparison
-requires its stated generic-ideal, realization, and local-flatness
-hypotheses. These are not automatic consequences of observability.
+### Paper IV
 
-### Separate research and review
+Read the Paper IV records chronologically. Later dated records supersede earlier open/closed status statements without rewriting the historical files.
 
-Uniform families, additional chains, higher-rank or multiblock actual
-comparison, isotypic compatibility, and determinant-line realization are
-future mathematical work. Independent specialist review (including the
-relative Nori–Ayoub arguments), full formalization, and publication
-metadata/bibliography review are separate verification and dissemination
-stages. They are not prerequisites for closing this scoped repair.
+| Record | Purpose / present interpretation |
+| --- | --- |
+| [Standalone repair ledger](repairs/paper-iv-repair-ledger.md) | Dependency-ordered record of the original repair program. Early entries are historical and are superseded where later records say so. |
+| [Interface-construction note](repairs/paper-iv-interface-construction-2026-09-29.md) | Construction of the algebraic realization/comparison interface used in the repaired proof. |
+| [Second-pass audit](repairs/paper-iv-second-pass-audit-2026-09-29.md) | Audit of the standalone repaired proof before canonical integration. |
+| [Assembled and integration audit](provenance/paper-iv-assembled-integration-audit-2026-09-29.md) | Canonical integration audit for the September Paper IV repair. |
+| [Lissity repair and source check](provenance/paper-iv-lissity-repair-2026-10-05.md) | Replaces the earlier finite-graph microlocalization application with the algebraic characteristic-variety proof; closes interface 3(a) in the scoped review. |
+| [Geometric-origin repair and source check](provenance/paper-iv-geometric-origin-repair-2026-10-05.md) | Supplies the generic smooth-projective constituent bridge and rank-one torsion input; supersedes the open interface 3(b) status in the lissity record. |
+| [Geometric-origin build verification](provenance/paper-iv-geometric-origin-build-verification-2026-10-05.json) | Machine-readable build and preservation record for the final October 5 repair. |
 
-The former local TeX Live reference-label discrepancy in canonical Paper IV
-was resolved by PR #7's alias counters. The corresponding known discrepancy
-in the unchanged EIT structural companion remains a separate toolchain
-issue. This closeout does not alter that companion to mask the difference.
-Repository Ubuntu 24.04 checks remain the reproducible full-snapshot
-validation environment.
+The retained [Paper IV repair companion](../papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex) is historical proof-development material. Canonical claims should be read from the main Paper IV source, not inferred from superseded wording in the companion.
 
-Historical provenance remains unchanged. Build success, hashes, and finite
-regression tests do not establish a new mathematical proof certificate.
+### Paper V
 
+| Record | Purpose |
+| --- | --- |
+| [Strengthening audit](provenance/paper-v-strengthening-audit.md) | Historical record of the earlier strengthening program. |
+| [Focused audit and revision record](provenance/paper-v-focused-audit-2026-09-29.md) | Records the replacement of the unsupported endpoint-complete theorem by actual boundary systems and the explicit elliptic theorem. |
+| [Repair-session closeout](provenance/repair-session-closeout-2026-09-29.md) | Cross-document dependency review and final scope of the September repair session. |
 
-## October 5, 2026 Paper IV lissity repair
+## Repository and import history
 
-Canonical Paper IV now replaces the unsupported finite-graph
-microlocalization application with an algebraic characteristic-variety
-proof and makes fixed-scale restriction and the regular-singular
-nearby-cycle comparison explicit. The [dated repair record](provenance/paper-iv-lissity-repair-2026-10-05.md)
-corrects the scope of the September audit reports; those reports and the
-historical repair companion are preserved unchanged.
+| Record | Purpose |
+| --- | --- |
+| [Draft import map](provenance/draft-import.md) | Maps recovered/original filenames to the stable repository paths. |
+| [Import validation](provenance/import-validation.md) | Records validation of the initial imported sources and snapshots. |
+| [Contribution and PDF-update workflow](../CONTRIBUTING.md) | Current maintenance procedure for source and PDF changes. |
+| [PDF manifest](../output/pdf/manifest.json) | Current source/PDF hashes and page counts. |
 
-Only interface **3(a), finite-graph/nonzero-scale lissity**, is closed by
-this review. Interface **3(b), the Jacobsen–Terenzi/Lam–Litt
-geometric-origin application**, remains **open for a separate audit before
-deposit**. No counterexample to that application is claimed, and no
-whole-paper certification follows from the present repair. The algebraic
-realization and remaining arithmetic/rank-one interfaces are outside this
-review. No release tag or archival deposit is implied.
+## How to interpret historical status statements
 
+The provenance directory is intentionally append-only in spirit: older reports are preserved as records of what was believed or checked at that time. Therefore:
 
-## Paper IV geometric-origin follow-up, 2026-10-05
+1. Prefer **Current snapshot** and **Current review boundaries and follow-up** above for present status.
+2. For a specific issue, follow the dated records in chronological order.
+3. A later repair may supersede an earlier statement that an interface was open, without altering the earlier file.
+4. Build success and source hashes establish reproducibility and preservation, not mathematical correctness.
+5. Git history remains the authoritative record of exact line-by-line changes and pull-request merges.
 
-The [separate geometric-origin repair and audit](provenance/paper-iv-geometric-origin-repair-2026-10-05.md)
-closes interface **3(b)** in the scoped AI-assisted review, following the
-separate lissity repair of **3(a)** in PR #12. The canonical
-paper now derives the generic smooth-projective realization of its
-simple ordinary Nori/nearby-cycle constituents before using rank-one
-torsion. Jacobsen–Terenzi remains comparison context; the optional split
-criterion uses the same explicit constituent condition. Actual family
-cohomology, not rational structure alone, supplies the integral input.
+## Build and validation model
 
-Both closures have dated source maps and bounded scope. They do not
-constitute independent human peer review, formal verification, or a fresh
-audit of the realization, arithmetic, Picard–Vessiot, or torsor arguments.
-Historical records and the repair companion are preserved unchanged;
-read their earlier open/closed language together with these later
-addenda. No visibility change, release tag, or deposit is part of this
-revision. Build/artifact validation is recorded separately in the PR and
-`provenance/paper-iv-geometric-origin-build-verification-2026-10-05.json`.
+- make test runs the repository's finite regression tests.
+- make pdf builds the manuscript suite and refreshes generated snapshots and the manifest.
+- make check rebuilds and checks committed PDF text, hashes, manifest consistency, and README links.
+- The read-only GitHub Actions workflow runs these checks on pull requests and pushes to main.
+- Historical machine-readable verification files remain in notes/provenance/ and notes/repairs/.
+
+No release tag, archival deposit, or independent human certification is implied by this status page.
