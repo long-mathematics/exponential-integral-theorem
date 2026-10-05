@@ -72,7 +72,7 @@ $$
 
 are algebraically independent over the complexified fixed-face function field. Their values at every nonzero algebraic parameter are algebraically independent over the corresponding face-value field. Every polynomial amplitude has a unique two-coordinate Stokes remainder. The boundary field uses only the specified fixed faces, not all compact line periods. General comparison criteria require explicit Galois and disjointness hypotheses; multiblock formal completeness remains conditional on actual linear and determinant-line realizations.
 
-Paper V's actual elliptic independence proofs do not use Paper IV or the companion formal comparison theorems; Papers II–III enter its formal-period interpretations.
+Paper V also gives a localized fixed-chain Stokes presentation over actual boundary coefficients. After specializing the nonzero algebraic parameter, Paper III identifies the fixed-face formal coefficient algebra; the resulting localized numerical formal comparison is stated as a proposition. This does not assert a generic formal boundary theorem or an unlocalized cancellation theorem. The actual elliptic independence proofs use neither Paper IV nor the companion formal comparison theorems; Paper II is used only for the separate single-phase formal interpretation.
 
 ## Status
 
