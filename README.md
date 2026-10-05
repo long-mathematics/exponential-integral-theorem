@@ -18,7 +18,7 @@ The PDFs are committed snapshots of the corresponding sources, not expiring buil
 
 ## Paper guide
 
-Papers I–III progress from transcendence of individual polynomial exponential integrals to linear and polynomial Kontsevich–Zagier completeness on the affine line. Paper IV treats functional relations over a varying algebraic base. Paper V constructs two-variable boundary systems and proves an explicit elliptic independence theorem. The summaries below describe the current working drafts; full statements and references are in the linked manuscripts, and review qualifications remain under [Scope and status](#scope-and-status).
+Papers I–III progress from transcendence of individual polynomial exponential integrals to linear and polynomial Kontsevich–Zagier completeness on the affine line. Paper IV treats functional relations over a varying algebraic base. Paper V constructs two-variable boundary systems and proves an explicit elliptic independence theorem. Full statements, hypotheses, and references are in the linked manuscripts.
 
 ### Paper I — Algebraic exponential integrals
 
@@ -72,17 +72,9 @@ are algebraically independent over the complexified fixed-face function field. T
 
 Paper V's actual elliptic independence proofs do not use Paper IV or the companion formal comparison theorems; Papers II–III enter its formal-period interpretations.
 
-## Scope and status
+## Status
 
-These are working research drafts. Their inclusion here and successful compilation are not new mathematical certifications.
-
-- **I:** algebraic-value rigidity and common-polynomial linear relations.
-- **II:** formal linear relations for compact affine-line exponential periods.
-- **III:** polynomial relations for the tensor-generated affine-line algebra, building on I and II.
-- **IV:** relative functional periods and exponential fixed parts. The [October 5 lissity repair](notes/provenance/paper-iv-lissity-repair-2026-10-05.md) and the separate [geometric-origin repair](notes/provenance/paper-iv-geometric-origin-repair-2026-10-05.md) close the two components of interface 3 in scoped AI-assisted reviews. The latter exhibits smooth-projective cohomology for the relevant simple constituents before applying rank-one torsion. These are not independent peer-review certificates or new audits of the realization, arithmetic, and period-torsor chain. Numerical specialization remains a separate issue.
-- **V:** general polynomial-representative boundary systems and an explicit fixed-triangle elliptic theorem: the two basic moments and their values at every nonzero algebraic parameter are algebraically independent over the associated fixed-face fields. Observable single-phase geometry is retained. General multiblock formal completeness remains conditional on actual linear and determinant-line realizations; this is not an unrestricted two-variable theorem.
-
-The polynomial-flags manuscript was historically called “Paper IV”; this repository assigns it **Paper V** and reserves **Paper IV** for Nori–Ayoub. Historical audit filenames retain their original terminology.
+These are working research drafts. Compilation and computational checks do not constitute independent peer review or formal verification.
 
 ## Supplements and notes
 
@@ -90,10 +82,7 @@ The polynomial-flags manuscript was historically called “Paper IV”; this rep
 | --- | --- | --- |
 | Linear KZ: alternate presentations and extensions | [Read PDF](output/pdf/linear-kz-supplement.pdf) | [Source](papers/02-compact-polynomial-line-kz/linear-kz-supplement.tex) |
 | Polynomial KZ: quadratic normal forms, tensor-square residues, and entire exponential integrals | [Read PDF](output/pdf/polynomial-kz-supplement.pdf) | [Source](papers/03-complete-polynomial-kz/polynomial-kz-supplement.tex) |
-| Paper IV repair companion: normalizations, fixed parts, and the relative period torsor | [Read PDF](output/pdf/paper-iv-repair-note.pdf) | [Source](papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex) |
 | EIT structural companion | [Read PDF](output/pdf/eit-structural-companion.pdf) | [Source](notes/eit-structural-companion.tex) |
-
-The September Paper IV repair arguments are integrated into the canonical manuscript. The retained companion and [assembled-proof and integration audit](notes/provenance/paper-iv-assembled-integration-audit-2026-09-29.md) document the proof development and its qualifications; they are not independent peer-review or formal-verification certificates. The [October 5 addendum](notes/provenance/paper-iv-lissity-repair-2026-10-05.md) corrects the earlier audit coverage and supersedes the companion's finite-graph lissity argument; the historical companion is preserved unchanged. The [separate geometric-origin addendum](notes/provenance/paper-iv-geometric-origin-repair-2026-10-05.md) supersedes the earlier open status of interface 3(b) and the companion's broad-category-to-torsion step, without rewriting historical reports.
 
 ## Build and check
 
@@ -115,9 +104,7 @@ Each LaTeX source is standalone and has an embedded bibliography. PDFs live in `
 
 The [LaTeX workflow](.github/workflows/latex.yml) runs on pull requests and pushes to `main`. It checks committed snapshots without writing back to the repository and uploads fresh PDFs and logs for inspection.
 
-### Paper V certificates and audit
-
-The [focused audit and revision record](notes/provenance/paper-v-focused-audit-2026-09-29.md) supersedes the earlier Paper V endpoint verdict without changing historical reports. The [repair-session closeout](notes/provenance/repair-session-closeout-2026-09-29.md) records the cross-document dependency check, completed revisions, and the questions deliberately left for future research. The closeout clarifies scope and references; it does not enlarge the audited theorem.
+### Paper V computational certificates
 
 ```sh
 python3 scripts/paper_v_certificate.py 'x**4 + 2*x*y**2 + 1/3'
@@ -126,14 +113,9 @@ python3 scripts/check_paper_v.py  # optional broader exact suite; requires SymPy
 
 The certificate routine and its tests use only the Python standard library; `make test` runs them. The broader script writes its results under `.build/`. Neither finite checks nor a successful build constitute a formal proof certificate.
 
-## Provenance and maintenance
+## Contributing
 
-- [Recovered drafts and original-to-working filename map](notes/provenance/draft-import.md)
-- [Original import validation](notes/provenance/import-validation.md)
-- [Repository setup and outstanding research checks](notes/repository-status.md)
-- [Contribution and PDF-update workflow](CONTRIBUTING.md)
-
-Historical audit reports are preserved in `notes/provenance/`. Stable filenames identify the working sources; Git records their revisions. Mathematical changes should be separated from editorial and build changes.
+See the [contribution and PDF-update workflow](CONTRIBUTING.md). Mathematical changes should be separated from editorial and build changes.
 
 ## License
 
