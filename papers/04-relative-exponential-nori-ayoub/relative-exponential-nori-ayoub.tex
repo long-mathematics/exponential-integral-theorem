@@ -384,22 +384,26 @@ convolution category used here it is an exact faithful tensor fiber
 functor over $\Q$; coefficient extension gives the $k$-valued fiber.
 \end{lemma}
 \begin{proof}
-For sufficiently large $r$ the half-plane avoids the finite singular
-set. The sections are the fiber of a rational local system on a simply
-connected half-plane, so the system stabilizes and commutes with
-extension of coefficients. Restriction, external product, addition and
-the cohomological maps defining convolution are rational sheaf maps.
-They give the rational tensor comparison whose complexification is the
-standard directional convolution comparison. Exactness, invertibility
-of the tensor maps, their coherence and faithfulness can therefore be
-checked after the faithful extension $\Q\subset\C$. The unit is the
-rational convolution unit. These are the rational versions of the
-absolute convolution construction recalled in \cite[\S3]{Snodgrass}.
-For pure exponential geometric data this rational fiber agrees with the
-relative-singular-cohomology rational structure on rapid-decay
-cohomology, with its integral comparison; see also the introduction of
-\cite{Snodgrass}. This does not assign a rational structure to an
-arbitrary irregular connection by choosing complex horizontal generators.
+For the positive-real direction this is the rational nearby fiber of
+\cite[Definition~2.3.5 and Proposition~2.3.7]{FresanJossenExp}.
+The convolution tensor structure and the fiber-functor assertion are
+\cite[Theorems~2.4.11 and~2.8.1]{FresanJossenExp}, respectively.
+That source uses closed half-planes. For sufficiently large $r$, open
+and closed half-planes give the same sections of the local system away
+from the finite singular set, hence the same limiting fiber.
+
+Let $r_\theta(z)=e^{i\theta}z$. Pullback by this homeomorphism is a
+tensor autoequivalence of the rational topological convolution category:
+it commutes with addition and fixes the origin. Since
+$\Psi_{\theta,\Q}=\Psi_{0,\Q}\circ r_\theta^*$, the assertion follows
+in every direction. This is a topological transport, not a motivic
+pullback over $k$. The eventual section spaces also commute with
+coefficient extension, giving the stated $k$- and $\C$-valued fibers.
+For geometric exponential data the rational fiber identifies naturally
+with rational rapid-decay cohomology by
+\cite[Corollary~3.2.3]{FresanJossenExp}, with the direction transported
+as above. No rational structure on an arbitrary irregular connection
+is obtained by choosing complex horizontal generators.
 \end{proof}
 
 \begin{proposition}[Normalized tensor and fiber]\label{prop:normalization}\label{prop:absolute-rd-input}
@@ -431,10 +435,10 @@ is the vector-space fiber of its connection, hence is in degree zero.
 Exact faithful realization reflects that concentration, and the usual
 fiber functor on connections is exact. Tensor compatibility follows by
 applying $i_s^*[-d]$ to \eqref{eq:lisse-tensor}.
-Finally the absolute nearby-fiber functor is exact, faithful, and tensor,
-with the rapid-decay comparison; these are the absolute convolution inputs
-of Katz and Fres\'an--Jossen, in the form recalled by
-\cite[Corollary~2.17 and Theorem~3.6]{Snodgrass}.
+Finally \cref{lem:rational-directional-fiber} supplies the exact faithful
+tensor functor and its rational rapid-decay identification. The absolute
+de Rham--rapid-decay comparison is the one used in
+\cref{prop:relative-Betti-interface}.
 \end{proof}
 
 \begin{remark}[Fixed-scale duality]\label{rem:duality}
@@ -851,10 +855,23 @@ we use the good-pair presentation recalled in
 localization triangle and absolute direct image to the constant object.
 By \cref{prop:arithmetic-enhancement,lem:arithmetic-D-operations}, the
 differential-module component is its algebraic relative de Rham complex,
-and the rational component is its relative Betti complex. Their
-comparison is algebraic de Rham integration. For a good pair, take the
-single designated cohomology group. This identifies its image with the
-usual de Rham realization of that Nori generator.
+and the rational component is its relative Betti complex.
+
+To identify the comparison also for a possibly singular good pair
+$(X,Y)$, compute these relative complexes on compatible smooth proper
+hypercovers $Y_\bullet\to X_\bullet$, using total complexes and the
+relative cone. On the smooth terms the comparison is the algebraic de
+Rham integration map; the smooth comparison and its integration
+normalization are \cite[Lemma~5.5.1 and Theorem~5.3.3]{HuberMullerStach}.
+Proper cohomological descent and common refinements identify the
+resulting relative map with the period isomorphism for arbitrary pairs
+\cite[Definition~5.5.4 and Lemma~5.5.5]{HuberMullerStach}.
+The localization and direct-image maps used above are the same maps on
+these geometric complexes, so this identifies their comparison, not
+just their cohomology spaces. It also retains compatibility with maps
+of pairs, products, and the relative long exact sequences. For a good
+pair, take its single designated cohomology group. This gives precisely
+the usual de Rham realization of that Nori generator.
 
 Morphisms of pairs, connecting maps for triples, products, and the Tate
 map are the maps of these relative complexes. The realization already
@@ -864,8 +881,12 @@ with its vector spaces. In cohomological variance the Tate period is
 $2\pi i$; in the dual homological presentation use the dual comparison
 on both sides. The universal abelian factorization extends the
 identification and its comparison to all absolute Nori objects and
-morphisms. The multi-exact product construction gives the tensor
-compatibility. Thus the absolute comparison is the specified one.
+morphisms. More explicitly, the multiplicative universal property of
+\cite[Theorem~8.1.9]{HuberMullerStach} extends this specified period
+comparison, and Example~8.1.10 there applies it to algebraic de Rham
+cohomology. Together with the multi-exact product construction, this
+identifies the tensor normalization as well. Thus the absolute
+comparison is the specified one.
 This argument identifies heart realizations from their geometric
 presentation; it does not require an enhanced comparison between the
 cellular and universal constructions of $\mathsf{Nor}^*$.
@@ -3053,8 +3074,10 @@ Definitions~7.5 and~7.7, Theorem~7.14.
 
 \bibitem{FresanJossenExp}
 J.~Fres\'an and P.~Jossen, \emph{Exponential motives},
-preliminary manuscript, 2020 version, with the absolute rapid-decay
-comparison used here also recalled in \cite[\S3]{Snodgrass}.
+book manuscript, author-hosted version accessed October~5, 2026.
+\url{https://www.jossenpeter.ch/PdfDvi/ExpMot.pdf}.
+Pinpoints use that version: Definition~2.3.5, Proposition~2.3.7,
+Theorems~2.4.11 and~2.8.1, and Corollary~3.2.3.
 
 \bibitem{GallauerPepin}
 M.~Gallauer and S.~Pepin Lehalleur, \emph{Exponentiation of coefficient
@@ -3085,6 +3108,15 @@ Invent. Math. \textbf{178} (2009), 1--22.
 M.~Hien and C.~Roucairol,
 \emph{Integral representations for solutions of exponential Gauss--Manin systems},
 Bull. Soc. Math. France \textbf{136} (2008), 505--532.
+
+\bibitem{HuberMullerStach}
+A.~Huber and S.~M\"uller-Stach, \emph{Periods and Nori Motives},
+with contributions by B.~Friedrich and J.~von Wangenheim,
+Parts~I--II, manuscript of June~8, 2015.
+\href{https://home.mathematik.uni-freiburg.de/arithgeom/preprints/buch-alt/partI.pdf}{Part~I};
+\href{https://home.mathematik.uni-freiburg.de/arithgeom/preprints/buch-alt/partII.pdf}{Part~II}.
+Pinpoints use this dated manuscript: Theorem~5.3.3, Lemma~5.5.1,
+Definition~5.5.4, Lemma~5.5.5, Theorem~8.1.9, and Example~8.1.10.
 
 \bibitem{HuberWustholz}
 A.~Huber and G.~W\"ustholz, \emph{Transcendence and Linear Relations of

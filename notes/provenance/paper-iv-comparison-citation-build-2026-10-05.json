@@ -1,6 +1,22 @@
 {
-  "schema_version": 1,
-  "documents": [
+  "date": "2026-10-05",
+  "baseline_main": "fa53b5fdb51834fe7135d3948ed4a35cd454c68e",
+  "revision_input_commit": "17ba0090fde77df137a0d17747472751cf46993b",
+  "workflow_run_id": 37346849626,
+  "environment": "GitHub Actions ubuntu-24.04",
+  "commands": {
+    "make test": "passed: 11 tests",
+    "make pdf": "passed: 9 documents",
+    "make check": "passed: 9 documents and README links"
+  },
+  "canonical": {
+    "source": "papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex",
+    "source_sha256": "82bca80220ecf54a5f10f90951430cf6d14ae4df386a39a946985f719797ea55",
+    "pdf": "output/pdf/relative-exponential-nori-ayoub.pdf",
+    "pdf_sha256": "a2d9b69c0e8ded97d92b5837f76402af6503110f1d3ca6cc6a5d7c722bc256bc",
+    "pages": 41
+  },
+  "preserved_other_documents": [
     {
       "source": "papers/01-exponential-integral-theorem/exponential-integral-theorem.tex",
       "source_sha256": "65567be47d72340210a99932fbcd989fd5e690ffa081b668d0a09c0dde3a902d",
@@ -37,13 +53,6 @@
       "pages": 10
     },
     {
-      "source": "papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex",
-      "source_sha256": "82bca80220ecf54a5f10f90951430cf6d14ae4df386a39a946985f719797ea55",
-      "pdf": "output/pdf/relative-exponential-nori-ayoub.pdf",
-      "pdf_sha256": "a2d9b69c0e8ded97d92b5837f76402af6503110f1d3ca6cc6a5d7c722bc256bc",
-      "pages": 41
-    },
-    {
       "source": "papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex",
       "source_sha256": "eac3f84b331389c80e687c5530604dc5399624d64b3fac3a94549c57b9f88236",
       "pdf": "output/pdf/paper-iv-repair-note.pdf",
@@ -64,5 +73,19 @@
       "pdf_sha256": "5c9746a004b45222335334d8c03ff5c876e02c51250da9c4c88f7a97cf29e5d5",
       "pages": 11
     }
-  ]
+  ],
+  "source_assertions": [
+    "all theorem-like statements unchanged",
+    "all labels unchanged",
+    "body from affine-line quotient to bibliography byte-identical",
+    "author/title/date lines unchanged"
+  ],
+  "local_validation": {
+    "make test": "11 tests passed",
+    "make pdf": "all nine documents compiled",
+    "make check": "eight passed; preserved structural companion differs only under the previously recorded local toolchain; official check above passes"
+  },
+  "mathematical_scope": "Focused AI-assisted comparison/source audit, not a new whole-paper audit or independent specialist review",
+  "visual_review": "Recorded in the pull request after inspecting the official artifact",
+  "temporary_helpers": "Removed before final PR merge"
 }
