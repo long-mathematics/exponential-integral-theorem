@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-05",
+  "baseline_commit": "d83904db95a9c68834c0949d5e52fe97c28a1613",
+  "workflow_run_id": "37299547380",
+  "build_input_commit": "af8b6c93fcc014280bfb4b4d956b3d4335b37ef2",
+  "runner": "ubuntu-24.04",
+  "python": "3.12.3",
+  "pdflatex": "pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)",
+  "checks": {
+    "make_test": "passed (11 tests)",
+    "make_pdf": "passed (9 documents)",
+    "make_check": "passed (9 documents and README links)",
+    "unchanged_manuscript_snapshots": 8,
+    "unchanged_manifest_records": 8,
+    "all_other_preexisting_files_unchanged": true,
+    "preserved_canonical_labels": 136,
+    "added_labels": [
+      "eq:fourier-fixed-fiber",
+      "eq:fourier-infinity-characteristic"
+    ]
+  },
+  "canonical_snapshot": {
+    "source": "papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex",
+    "source_sha256": "da7b872f1f8d579e0d3def1dcf8da0c6224bd230f24b4358c3d5c0794d8fe75f",
+    "pdf": "output/pdf/relative-exponential-nori-ayoub.pdf",
+    "pdf_sha256": "67f8bc3510bc4749d2aa95fd2489be65a83363a4f1aaf334fb5ea83ddb2a7e7c",
+    "pages": 36
+  },
+  "log_sha256": {
+    "make-test.log": "cc3b41f644da23bf8d603202d24db228d9ff184dd109f8ff47c9a22ac05c9863",
+    "make-check.log": "0fea088d0f2b46355802c134e3bccdfabc2d8412d8fb64e5aef82a0d32830ed9",
+    "make-pdf.log": "b9b0e841d898d6098bfe1c4bc8f4ca16c29ee5c662d777e990c5229f5fa6b304"
+  },
+  "normal_pr_ci_and_final_artifact_review": "Recorded separately in PR #12",
+  "audit_status": {
+    "interface_3a_lissity": "repaired in scoped AI-assisted review",
+    "interface_3b_geometric_origin": "open for separate audit before deposit"
+  }
+}

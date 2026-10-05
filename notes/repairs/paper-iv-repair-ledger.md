@@ -96,3 +96,41 @@ The augmentation interface, normalized kernel and fibers, actual nearby-cycle br
 Canonical Paper IV is 35 pages; the retained repair companion is 26 pages. All 63 old canonical labels and all 75 old note labels remain. Duplicate canonical lemmas have been consolidated with label aliases; numerical theorem numbering is not unchanged. Authorship, titles, contacts, and manuscript dates are preserved.
 
 See [assembled and integration audit](../provenance/paper-iv-assembled-integration-audit-2026-09-29.md) and [build and structural verification](../provenance/paper-iv-integration-build-verification.json). The official revision build passed `make test`, `make pdf`, and `make check` for all nine documents, preserving the seven unaffected snapshots. Final artifact review, normal PR CI, and the merge are recorded in the PR. The frozen baseline branch remains pinned.
+
+
+## 2026-10-05: finite-graph lissity repair and scoped interface-3 status
+
+This dated correction supersedes the earlier coverage claims for the lissity
+application without rewriting the September 28–29 records. At baseline
+`d83904db95a9c68834c0949d5e52fe97c28a1613`, canonical `lem:graphs` cited
+Sabbah's special eigenvalue-parameter calculation and Douai–Sabbah
+Propositions 1.18/1.20 without verifying the needed microlocal-lattice
+hypothesis. The September 29 reports did not document that verification.
+Their broad closure wording is not evidence that this dependency was checked.
+
+The canonical lemma now has an algebraic compactification and
+characteristic-variety proof. It explains why the singular graphs miss
+infinity, obtains a logarithmic lattice from regularity of the algebraic
+input, proves generation and goodness of the filtration, and separates the
+proper characteristic estimate from Fourier exactness. The fixed-scale
+identification with `rho_lambda` and the regular-singular nearby-cycle
+comparison on the pushed-forward transform are explicit. Douai–Sabbah
+Theorem 1.11 and Corollary 1.12 replace the mismatched citation.
+
+**Interface 3 must be read as two components:**
+
+- **3(a), finite-graph/nonzero-scale lissity: repaired and closed in this
+  scoped review.** The fixed-fiber identification and the bridge's
+  regular-singular comparison are included in the repair. This is an
+  AI-assisted proof review, not independent peer review or formal verification.
+- **3(b), ordinary geometric-origin application: OPEN for separate audit
+  before deposit.** Verify that the category in Jacobsen–Terenzi
+  Corollary 5.15 and Proposition 5.17 contains the precise pure/mixed
+  subquotients of nearby cycles at infinity used here, and that these
+  satisfy the geometric-origin hypothesis of Lam–Litt's published
+  Lemma 3.5. This revision neither proves nor disproves that application.
+
+The realization interface, the remaining rank-one/arithmetic chain, and
+all of Paper IV are not newly certified by closing 3(a). The historical
+repair companion is not synchronized: its lissity argument is superseded
+by the canonical proof. See the [dated repair and source-check record](../provenance/paper-iv-lissity-repair-2026-10-05.md).

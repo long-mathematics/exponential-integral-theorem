@@ -82,3 +82,21 @@ validation environment.
 
 Historical provenance remains unchanged. Build success, hashes, and finite
 regression tests do not establish a new mathematical proof certificate.
+
+
+## October 5, 2026 Paper IV lissity repair
+
+Canonical Paper IV now replaces the unsupported finite-graph
+microlocalization application with an algebraic characteristic-variety
+proof and makes fixed-scale restriction and the regular-singular
+nearby-cycle comparison explicit. The [dated repair record](provenance/paper-iv-lissity-repair-2026-10-05.md)
+corrects the scope of the September audit reports; those reports and the
+historical repair companion are preserved unchanged.
+
+Only interface **3(a), finite-graph/nonzero-scale lissity**, is closed by
+this review. Interface **3(b), the Jacobsen–Terenzi/Lam–Litt
+geometric-origin application**, remains **open for a separate audit before
+deposit**. No counterexample to that application is claimed, and no
+whole-paper certification follows from the present repair. The algebraic
+realization and remaining arithmetic/rank-one interfaces are outside this
+review. No release tag or archival deposit is implied.
