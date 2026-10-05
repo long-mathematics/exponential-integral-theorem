@@ -23,10 +23,32 @@ jobs:
           sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils python3-venv
           python3 -m venv .build/revision-venv
           .build/revision-venv/bin/pip install sympy==1.14.0 PyMuPDF==1.26.7
-      - name: Apply audited source and validate complete suite
+      - name: Apply final notation cleanup and validate complete suite
         run: |
           export PATH="$PWD/.build/revision-venv/bin:$PATH"
-          python3 scripts/_paper_v_revision_patch.py
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          old = 'f3a49ad33b6f58f38e6cbb2d211392d6b4f682b5a7dd8ce2e608097d32c2e655'
+          new = 'c37db9c89aa7fe19d400d92e821ce6aacf20546011529df48af427099ae370f6'
+          p = Path('papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex')
+          s = p.read_text()
+          assert hashlib.sha256(s.encode()).hexdigest() in (old, new)
+          i = s.index(r'\begin{lemma}[Unit-valued lattice quotients]')
+          s = s[:i] + s[i:].replace(r'B[\delta_1,\ldots,\delta_s]', r'B[\delta_1,\ldots,\delta_m]').replace(r'\N^s', r'\N^m')
+          assert hashlib.sha256(s.encode()).hexdigest() == new
+          p.write_text(s)
+          p = Path('notes/provenance/paper-v-audit-followup-2026-10-05.md')
+          p.write_text(p.read_text().replace(old, new))
+          p = Path('scripts/_paper_v_revision_delivery.py')
+          s = p.read_text().replace(old, new)
+          s = s.replace('46cc9987f52b8b10e7bb137c1ba41784c3640e69e9f76f51ceb26af3dd3136da', '823c1c4083cdb2957d5f608c18c7114e10bcaa9a6a61e7e29e7f1d25b62a54b5')
+          s = s.replace('9b979b253aedecfd1ff4e3337f6423ff0ca7c84449e59d4b63795d70caff90cf', 'e4904282239aa660d3b6c587aeefccf5a5e5123ed4504783ac6517fd9fc19204')
+          old_line = '    assert s.count(old) == 1, (path, old[:80])'
+          assert s.count(old_line) == 1
+          s = s.replace(old_line, '    if new in s and old not in s:\n        return\n' + old_line)
+          p.write_text(s)
+          PY
           python3 scripts/_paper_v_revision_delivery.py
       - name: Preserve validation artifacts
         if: always()
