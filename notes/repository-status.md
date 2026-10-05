@@ -83,6 +83,8 @@ Read the Paper IV records chronologically. Later dated records supersede earlier
 | [Geometric-origin repair and source check](provenance/paper-iv-geometric-origin-repair-2026-10-05.md) | Supplies the generic smooth-projective constituent bridge and rank-one torsion input; supersedes the open interface 3(b) status in the lissity record. |
 | [Arithmetic realization repair and audit](provenance/paper-iv-arithmetic-realization-repair-2026-10-05.md) | Replaces the earlier realization construction and supersedes its blanket clearance; records the tensor correction and the scoped whole-chain follow-up. |
 | [Arithmetic realization build verification](provenance/paper-iv-arithmetic-realization-build-2026-10-05.json) | Official build and preservation hashes for this replacement. |
+| [Absolute comparison and rational-fiber citation follow-up](provenance/paper-iv-comparison-citation-audit-2026-10-05.md) | Source-checked general-pair integration normalization, direct rational fiber references, and version-specific pinpoints; theorem statements and downstream proofs unchanged. |
+| [Comparison-citation build verification](provenance/paper-iv-comparison-citation-build-2026-10-05.json) | Official snapshot and preservation checks for the focused follow-up. |
 | [Geometric-origin build verification](provenance/paper-iv-geometric-origin-build-verification-2026-10-05.json) | Machine-readable build and preservation record for the final October 5 repair. |
 
 The retained [Paper IV repair companion](../papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex) is historical proof-development material. Canonical claims should be read from the main Paper IV source, not inferred from superseded wording in the companion.

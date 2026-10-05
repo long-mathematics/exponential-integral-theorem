@@ -178,3 +178,10 @@ This follow-up supersedes the earlier augmentation-interface clearance, not the 
 The scoped audit rechecks operation maps, enhancement, universal-heart kernels, ordinary geometric cycles, the arithmetic rank-one kernel, semi-invariant exactness, normalized PV base change and exact constants. No new numerical theorem or optional global arithmetic strengthening is asserted. Tubach arXiv-v4 pinpoints are retained correctly; the rational directional fiber, finite-etale reference and HTT complex-field descent are explicit. The historical repair companion is not synchronized and is not the current proof source.
 
 See the [dated repair/audit](../provenance/paper-iv-arithmetic-realization-repair-2026-10-05.md) and [official build record](../provenance/paper-iv-arithmetic-realization-build-2026-10-05.json). This is an AI-assisted proof/source audit, not independent human review or formal verification.
+
+
+## 2026-10-05: absolute-comparison and rational-fiber source follow-up
+
+The focused [comparison/citation audit](../provenance/paper-iv-comparison-citation-audit-2026-10-05.md) strengthens the absolute-normalization proof for arbitrary good pairs using the dated Huber–Müller-Stach period construction and its multiplicative Nori universal property. The rational directional fiber now cites Fresan–Jossen directly, using Theorem 2.4.11 for convolution and Theorem 2.8.1 for the fiber functor, with explicit topological rotation and scalar extension. Version-specific bibliography details are corrected. The existing Terenzi multi-exact pinpoints were checked in full.
+
+All theorem statements and labels, the Section 3 realization architecture, and the downstream arithmetic/Tannakian/PV proofs are unchanged. The scope remains that of the preceding repair and its qualifications; this source follow-up is not another whole-paper certification. See the [build record](../provenance/paper-iv-comparison-citation-build-2026-10-05.json) for artifact validation.
