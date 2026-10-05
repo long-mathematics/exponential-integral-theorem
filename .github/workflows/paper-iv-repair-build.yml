@@ -1,4 +1,4 @@
-name: Paper IV repair workspace
+name: Paper IV repair build
 
 on:
   push:
@@ -8,16 +8,120 @@ permissions:
   contents: read
 
 jobs:
-  workspace:
+  repair:
+    if: github.repository == 'long-mathematics/exponential-integral-theorem' && github.ref == 'refs/heads/paper-iv/lissity-repair-2026-10-05'
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    env:
+      BASELINE: d83904db95a9c68834c0949d5e52fe97c28a1613
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - name: Export exact tracked workspace
-        run: git archive --format=tar HEAD -o /tmp/eit-workspace.tar
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
-          name: paper-iv-repair-workspace
-          path: /tmp/eit-workspace.tar
-          retention-days: 3
-          if-no-files-found: error
+          fetch-depth: 0
+      - name: Apply hash-checked source repair
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/eit-validation
+          python3 - <<'PY'
+          import gzip, hashlib, subprocess
+          from pathlib import Path
+          packed = b''.join(Path(f'.github/paper-iv-repair-part-{i}.gzpart').read_bytes() for i in range(1, 5))
+          patch = gzip.decompress(packed)
+          assert hashlib.sha256(patch).hexdigest() == 'aabd19cb7735babc4a7eaf17c6fa874a9887d899ef9c92face6c4b180e742e10'
+          source = Path('papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex')
+          assert hashlib.sha256(source.read_bytes()).hexdigest() == 'bc652b2f6d9a2e94b945c2a4e42c3f4b2ac9c19e0b060047cc949271cbf218cb'
+          subprocess.run(['git', 'apply', '--check', '-'], input=patch, check=True)
+          subprocess.run(['git', 'apply', '-'], input=patch, check=True)
+          assert hashlib.sha256(source.read_bytes()).hexdigest() == 'da7b872f1f8d579e0d3def1dcf8da0c6224bd230f24b4358c3d5c0794d8fe75f'
+          Path('/tmp/eit-validation/repair.patch').write_bytes(patch)
+          PY
+      - name: Install manuscript toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils
+      - name: Test and build all nine manuscripts
+        run: |
+          set -euo pipefail
+          make test 2>&1 | tee /tmp/eit-validation/make-test.log
+          make pdf 2>&1 | tee /tmp/eit-validation/make-pdf.log
+      - name: Preserve unaffected snapshots and verify full build
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          base = os.environ['BASELINE']
+          target = 'papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex'
+          manifest = Path('output/pdf/manifest.json')
+          old = json.loads(subprocess.check_output(['git', 'show', base + ':' + str(manifest)]))
+          new = json.loads(manifest.read_text())
+          record = next(d for d in new['documents'] if d['source'] == target)
+          for i, d in enumerate(old['documents']):
+              if d['source'] == target:
+                  old['documents'][i] = record
+              else:
+                  Path(d['pdf']).write_bytes(subprocess.check_output(['git', 'show', base + ':' + d['pdf']]))
+          manifest.write_text(json.dumps(old, indent=2) + '\n')
+          PY
+          make check 2>&1 | tee /tmp/eit-validation/make-check.log
+      - name: Verify scope, remove helper, and commit to feature branch
+        run: |
+          set -euo pipefail
+          git rm -- .github/workflows/paper-iv-repair-build.yml .github/paper-iv-repair-part-*.gzpart
+          python3 - <<'PY'
+          import hashlib, json, os, platform, re, subprocess
+          from pathlib import Path
+          base = os.environ['BASELINE']
+          source = 'papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex'
+          pdf = 'output/pdf/relative-exponential-nori-ayoub.pdf'
+          note = 'notes/provenance/paper-iv-lissity-repair-2026-10-05.md'
+          verification = 'notes/provenance/paper-iv-lissity-build-verification-2026-10-05.json'
+          allowed = {source, pdf, 'output/pdf/manifest.json', 'README.md', 'notes/repository-status.md', 'notes/repairs/paper-iv-repair-ledger.md', note, verification}
+          oldfiles = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', base], text=True).splitlines()
+          for name in oldfiles:
+              if name not in allowed:
+                  assert Path(name).read_bytes() == subprocess.check_output(['git', 'show', base + ':' + name]), name
+          old = subprocess.check_output(['git', 'show', base + ':' + source], text=True)
+          new = Path(source).read_text()
+          labels = lambda s: set(re.findall(r'\\label\{([^}]+)\}', s))
+          assert labels(old) <= labels(new)
+          assert labels(new) - labels(old) == {'eq:fourier-infinity-characteristic', 'eq:fourier-fixed-fiber'}
+          for marker in ('\\author{', '\\title{', '\\date{', '  pdfauthor='):
+              assert [l for l in old.splitlines() if l.startswith(marker)] == [l for l in new.splitlines() if l.startswith(marker)]
+          m = json.loads(Path('output/pdf/manifest.json').read_text())
+          m0 = json.loads(subprocess.check_output(['git', 'show', base + ':output/pdf/manifest.json']))
+          for d, d0 in zip(m['documents'], m0['documents']):
+              if d['source'] != source:
+                  assert d == d0
+          record = next(d for d in m['documents'] if d['source'] == source)
+          logs = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('/tmp/eit-validation').glob('*.log')}
+          assert 'Ran 11 tests' in Path('/tmp/eit-validation/make-test.log').read_text()
+          assert 'Verified 9 documents and README links.' in Path('/tmp/eit-validation/make-check.log').read_text()
+          report = {'date': '2026-10-05', 'baseline_commit': base, 'workflow_run_id': os.environ['GITHUB_RUN_ID'], 'build_input_commit': os.environ['GITHUB_SHA'], 'runner': 'ubuntu-24.04', 'python': platform.python_version(), 'pdflatex': subprocess.check_output(['pdflatex', '--version'], text=True).splitlines()[0], 'checks': {'make_test': 'passed (11 tests)', 'make_pdf': 'passed (9 documents)', 'make_check': 'passed (9 documents and README links)', 'unchanged_manuscript_snapshots': 8, 'unchanged_manifest_records': 8, 'all_other_preexisting_files_unchanged': True, 'preserved_canonical_labels': len(labels(old)), 'added_labels': sorted(labels(new) - labels(old))}, 'canonical_snapshot': record, 'log_sha256': logs, 'normal_pr_ci_and_final_artifact_review': 'Recorded separately in PR #12', 'audit_status': {'interface_3a_lissity': 'repaired in scoped AI-assisted review', 'interface_3b_geometric_origin': 'open for separate audit before deposit'}}
+          Path(verification).write_text(json.dumps(report, indent=2) + '\n')
+          subprocess.run(['git', 'add', '--', *sorted(allowed)], check=True)
+          changed = set(subprocess.check_output(['git', 'diff', '--cached', '--name-only', base], text=True).splitlines())
+          assert changed == allowed, (changed, allowed)
+          assert not list(Path('.github').glob('paper-iv-repair-*'))
+          assert not Path('.github/workflows/paper-iv-repair-build.yml').exists()
+          print(json.dumps(report, indent=2))
+          PY
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Repair Paper IV algebraic lissity, fiber comparison, and scoped audit status'
+          git push origin HEAD:refs/heads/paper-iv/lissity-repair-2026-10-05
+          git archive --format=tar HEAD -o /tmp/eit-repaired.tar
+          git rev-parse HEAD > /tmp/eit-validation/snapshot-commit.txt
+      - name: Export repaired snapshot and validation logs
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: paper-iv-lissity-repaired
+          path: |
+            /tmp/eit-repaired.tar
+            /tmp/eit-validation/
+          retention-days: 7
+          if-no-files-found: warn
