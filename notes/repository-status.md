@@ -26,6 +26,7 @@ The current manuscripts are working research drafts. Successful compilation, fin
 - Paper IV realization follow-up: arithmetic mixed-sheaf transfer, perverse-concentrated tensor comparison, actual absolute normalization, and the downstream arithmetic/Tannakian/PV chain in the dated scoped AI-assisted audit.
 - Paper V: the current fixed-triangle elliptic theorem and its actual polynomial boundary-system formulation replace the withdrawn endpoint-complete claim.
 - Paper V follow-up: source-checked citations, the fixed-base observable hypothesis, the localized actual/specialized-formal distinction, and the expanded affine-orbit proof are integrated. The principal independence statements are unchanged.
+- Paper V follow-up: source-checked citations, the fixed-base observable hypothesis, the localized actual/specialized-formal distinction, and the expanded affine-orbit proof are integrated. The principal independence statements are unchanged.
 
 ### Not claimed by those closures
 
@@ -55,6 +56,7 @@ The table gives the high-level flow. Detailed records are linked in the next sec
 | 2026-10-05 | Papers I–III prior-art revision | Fresán–Jossen/Jossen prior art was incorporated and the quadratic normalization/count was checked and recorded. |
 | 2026-10-05 | Paper IV arithmetic realization replacement | Replace the augmentation-based interface; repair the tensor step, retain actual absolute comparison, and recheck the arithmetic/Tannakian/PV dependency chain. |
 | 2026-10-05 | README cleanup | The root README was converted to a current-results guide; historical repair narrative was moved out of the front page and remains here and in provenance records. |
+| 2026-10-05 | Paper V audit follow-up | Clarify the actual relative-monodromy hypothesis and localized formal comparison; expand the affine-orbit proof and correct version-specific references without weakening the elliptic independence statements. |
 | 2026-10-05 | Paper V audit follow-up | Clarify the actual relative-monodromy hypothesis and localized formal comparison; expand the affine-orbit proof and correct version-specific references without weakening the elliptic independence statements. |
 
 ## Detailed records by paper
@@ -98,6 +100,8 @@ The retained [Paper IV repair companion](../papers/04-relative-exponential-nori-
 | [Strengthening audit](provenance/paper-v-strengthening-audit.md) | Historical record of the earlier strengthening program. |
 | [Focused audit and revision record](provenance/paper-v-focused-audit-2026-09-29.md) | Records the replacement of the unsupported endpoint-complete theorem by actual boundary systems and the explicit elliptic theorem. |
 | [Repair-session closeout](provenance/repair-session-closeout-2026-09-29.md) | Cross-document dependency review and final scope of the September repair session. |
+| [October 5 audit follow-up](provenance/paper-v-audit-followup-2026-10-05.md) | Additional audit of the proposed clarifications, source-to-claim checks, and precise actual versus specialized formal scope. |
+| [Follow-up build verification](provenance/paper-v-audit-followup-build-2026-10-05.json) | Official build, snapshot preservation, and reproducible rendering fingerprints. |
 | [October 5 audit follow-up](provenance/paper-v-audit-followup-2026-10-05.md) | Additional audit of the proposed clarifications, source-to-claim checks, and precise actual versus specialized formal scope. |
 | [Follow-up build verification](provenance/paper-v-audit-followup-build-2026-10-05.json) | Official build, snapshot preservation, and reproducible rendering fingerprints. |
 

@@ -1,8 +1,8 @@
 {
   "date": "2026-10-05",
   "baseline_commit": "4b6982ac3124bfd24176510fd98829607c82c11c",
-  "build_input_commit": "e4620403ce91947581a0fe1cc33c8c5c748ca043",
-  "workflow_run": "https://github.com/long-mathematics/exponential-integral-theorem/actions/runs/37361116090",
+  "build_input_commit": "62e7ea3dbf773e3cc498d2b112c44ce745418f82",
+  "workflow_run": "https://github.com/long-mathematics/exponential-integral-theorem/actions/runs/37361775293",
   "platform": "ubuntu-24.04",
   "commands_passed": [
     "make test",
@@ -51,11 +51,11 @@
   },
   "paper_v": {
     "source": "papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex",
-    "source_sha256": "f3a49ad33b6f58f38e6cbb2d211392d6b4f682b5a7dd8ce2e608097d32c2e655",
+    "source_sha256": "c37db9c89aa7fe19d400d92e821ce6aacf20546011529df48af427099ae370f6",
     "pdf": "output/pdf/polynomial-flag-exponential-periods.pdf",
-    "pdf_sha256": "6e8e30c482914cb881d7557cd5ebf7029be6355f1e462d5af74315086086060a",
+    "pdf_sha256": "0152ea226253c61c3aa3b92210ad242f1a42e4d9c32aebd8fc789aca49ce614a",
     "pages": 30,
-    "log_sha256": "bfe363f1b894463c4ff1118b2985f2a79685abd45b3f94bdfca6ae425d10fdcf",
+    "log_sha256": "5008028a2e66b6a6747c6f09e9018716ee5267d030af55b718c666d9f055cb47",
     "log_diagnostics": []
   },
   "preservation": {
@@ -161,8 +161,8 @@
       "3cb43f4b884240c71db51f6d156028a66622cd564a5a6e2393af7ae1434ea371",
       "e8b1a0c46f45b1dde2028ef26f0322d1182d3d2c83e3314e5cd49d85e4425912",
       "30fcb2d541061dd5e6cebbe42298a78d5b13ed898de2a3b6e9997b5a2c226d85",
-      "0177e5fc73859d48a951fbb25127520b0c1eda7eb7668ef752f9eeea44808273",
-      "33fccb8e3286cfc6878fabcf765fcafb27bf3ca6600569a7cd0c518ea53a2f0d",
+      "f609dc03ab250dc09993394a5aa7354c01ebb5cf22e2bf351be998654279ad1a",
+      "77b5ae7e5424cbe723b4f0cc57624c53525d0bbda10809fb7e0da3cd3dffd51d",
       "c2bbd0e7a3d3b9a7f1401b6998056aa8a75dc89600b197fa566300f48cc36095"
     ],
     "render_rgb_hashes": [
@@ -193,14 +193,14 @@
       "ac39a0ed76d22a8d1dd33544af8c864c302b51a380b56fb60710e3ac91a5e6fa",
       "2bd85f221ef23f2615a9c0fa932e0eb418ccf896cbb0efefa985db6bb1b72f04",
       "94b9ed0d9efe5339507a131e286af6bbc1ae5ef0544aacf1890d2809428c0f26",
-      "a02ffb376422018a54a1759e2ee5752844a35ad72ee60c6b50fbc21f1d9768dc",
-      "27461d921779e39c8c22307b083243151a480b321e1ab462be4787b9ef412d42",
+      "11827389cd2ea0755ff5ed042ca8c7e57052384fff82fc0a515313f6d972b4e7",
+      "008439d24ef0e845f60ab2dd1a45c15104b41996b1fe0a491d5779dd5173c4cd",
       "64a4b94b63e163645e5abe2a7814ba4c6c2d7bf91433533e9df674d41af2c89f"
     ],
-    "text_fingerprint": "46cc9987f52b8b10e7bb137c1ba41784c3640e69e9f76f51ceb26af3dd3136da",
-    "render_fingerprint": "9b979b253aedecfd1ff4e3337f6423ff0ca7c84449e59d4b63795d70caff90cf",
-    "locally_inspected_text_fingerprint": "46cc9987f52b8b10e7bb137c1ba41784c3640e69e9f76f51ceb26af3dd3136da",
-    "locally_inspected_render_fingerprint": "9b979b253aedecfd1ff4e3337f6423ff0ca7c84449e59d4b63795d70caff90cf",
+    "text_fingerprint": "823c1c4083cdb2957d5f608c18c7114e10bcaa9a6a61e7e29e7f1d25b62a54b5",
+    "render_fingerprint": "e4904282239aa660d3b6c587aeefccf5a5e5123ed4504783ac6517fd9fc19204",
+    "locally_inspected_text_fingerprint": "823c1c4083cdb2957d5f608c18c7114e10bcaa9a6a61e7e29e7f1d25b62a54b5",
+    "locally_inspected_render_fingerprint": "e4904282239aa660d3b6c587aeefccf5a5e5123ed4504783ac6517fd9fc19204",
     "matches_locally_inspected_text": true,
     "matches_locally_inspected_render": true
   },

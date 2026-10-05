@@ -5,7 +5,7 @@
 Baseline main: `4b6982ac3124bfd24176510fd98829607c82c11c`; tree `acf5bdf315953a38459b62cb6c2b329e2a427895`.
 Canonical source: `papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex`.
 Baseline source SHA-256: `51e93dd691c0b4b593a67941dbd2562c8b4914f7c79221777ca981f4071f988b`.
-Revised source SHA-256: `f3a49ad33b6f58f38e6cbb2d211392d6b4f682b5a7dd8ce2e608097d32c2e655`.
+Revised source SHA-256: `c37db9c89aa7fe19d400d92e821ce6aacf20546011529df48af427099ae370f6`.
 
 This is the requested additional audit of the proposed follow-up changes, followed by their integration. It is not a new unrestricted audit of Papers I–IV, independent specialist peer review, a priority certification, or formal verification. No new objection to the principal fixed-triangle elliptic functional or numerical theorem was found in this scoped check. The four theorem statements labelled `thm:intro-elliptic`, `thm:criterion`, `thm:elliptic-main`, and `thm:values` are preserved verbatim. Their fixed-face coefficient fields and the numerical range of every nonzero algebraic parameter are unchanged.
 
