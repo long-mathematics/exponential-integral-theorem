@@ -15,9 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
+          ref: 3b587fdfde4992e19745302da1c8e6ec4f9326c0
           persist-credentials: false
       - name: Export the audited baseline only
-        run: git archive --format=zip -o "$RUNNER_TEMP/eit-baseline.zip" 3b587fdfde4992e19745302da1c8e6ec4f9326c0
+        run: git archive --format=zip -o "$RUNNER_TEMP/eit-baseline.zip" HEAD
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: eit-citation-baseline
