@@ -3,16 +3,16 @@
   "documents": [
     {
       "source": "papers/01-exponential-integral-theorem/exponential-integral-theorem.tex",
-      "source_sha256": "e65de64456f4b35cd16d7a820d8aca3554e8732abc00283a6567f9ef53b6cfc1",
+      "source_sha256": "65567be47d72340210a99932fbcd989fd5e690ffa081b668d0a09c0dde3a902d",
       "pdf": "output/pdf/exponential-integral-theorem.pdf",
-      "pdf_sha256": "a8502a70190b304e8ad18d041494ff5c0ea73a9b15103a9eef43124d4084ae2f",
-      "pages": 14
+      "pdf_sha256": "933214b764b02088fd61edf57cc85aa7be80a866192c4db3d4e79804f863e9da",
+      "pages": 15
     },
     {
       "source": "papers/02-compact-polynomial-line-kz/linear-kz-affine-line.tex",
-      "source_sha256": "7ba2b54f163b6013ac9d882cee34f73c288a77eca173d9f6a1fb76f295b911ed",
+      "source_sha256": "4568771bc1113ed443a77ceea9c89ce211f40a471a18b525aa1e4e38acb6e26b",
       "pdf": "output/pdf/linear-kz-affine-line.pdf",
-      "pdf_sha256": "9b0ba7b3f88ad9a5c6def610994921112f930cce0832c2d57b1d83ffb33d4f37",
+      "pdf_sha256": "73c8956d7de35641fc3137e1916c5dc1921843898ab82210738037bcc9108d24",
       "pages": 19
     },
     {
@@ -24,16 +24,16 @@
     },
     {
       "source": "papers/03-complete-polynomial-kz/polynomial-kz-affine-line.tex",
-      "source_sha256": "7e12aa1727e413bc1816bf130f4e6ccf561a9d93bb8462b2bdc397c881d65910",
+      "source_sha256": "4f1cb54e3b6aab6af1add1da97635b165fe1df9f91e86a79078e588717caaa76",
       "pdf": "output/pdf/polynomial-kz-affine-line.pdf",
-      "pdf_sha256": "39f24de81f9fef5a3619bd9a1e530e7eb8a3118fa224bf9c27f6a846bca79beb",
-      "pages": 12
+      "pdf_sha256": "e521f7de5bfcfe50cacb8d17c7d6e239c38e12c96b8a308e7a151dba709c2fec",
+      "pages": 13
     },
     {
       "source": "papers/03-complete-polynomial-kz/polynomial-kz-supplement.tex",
-      "source_sha256": "22428727db84b4c9c270855930e69eac79140a9c6a33fe1044fd4d8ee2db201f",
+      "source_sha256": "72b0d7585620608b23469edf809c664c03657779f348e73af71f32e10fc1b1d5",
       "pdf": "output/pdf/polynomial-kz-supplement.pdf",
-      "pdf_sha256": "51e20a8c422d53160d788904c515ec160d82fe2528b0f08a092f59126a91302a",
+      "pdf_sha256": "c04ab4764569716b548cdfe57f8565f550e5b22da1a30441db0540fa4c4e6ef1",
       "pages": 10
     },
     {

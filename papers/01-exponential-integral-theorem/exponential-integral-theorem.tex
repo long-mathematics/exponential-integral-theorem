@@ -124,7 +124,7 @@ algebraic data \cite{FresanJossen}.  The present functions form a
 one-dimensional relative family: $X=\Aone$, the regular function is $-q$,
 the algebraic differential form is $dx$, and the integration chain has finite
 boundary.  This is compatible with the general terminology of exponential
-periods \cite{CommelinHabeggerHuber}.  We refer simply to the polynomial $q$
+periods \cite{CommelinHabeggerHuber,FresanJossenExp}.  We refer simply to the polynomial $q$
 and to its values and critical values.
 
 \begin{definition}[Zero-cycles and exponential period functions]
@@ -218,11 +218,33 @@ There is classical overlap in special cases.  For example,
 \]
 so monomial exponents belong to the hypergeometric $E$-function setting;
 see, for example, Delaygue's discussion of hypergeometric values
-\cite{Delaygue}.  Our argument treats arbitrary polynomials, arbitrary
-algebraic degree-zero zero-cycles, and all functional relations among a
-fixed-$q$ family.  The no-algebraic-zero consequence also connects with
+\cite{Delaygue}.  The no-algebraic-zero consequence also connects with
 recent work of Fischler and Rivoal on zeros of $E$-functions
 \cite{FischlerRivoalZeros}.
+
+\paragraph{Prior work and the present contribution.}
+The use of parameter-dependent exponential periods and
+Siegel--Shidlovskii theory is established in the work of Fres\'an and
+Jossen.  Jossen's 2018 report develops polynomial-phase families with
+noncompact rapid-decay cycles and states the Andr\'e--Beukers lifting
+principle for polynomial relations \cite[\S\S2--3]{Jossen2018}.
+For compact loops on $\mathbb G_m$, Fres\'an and Jossen derive
+$E$-function systems from linearity, differentiation, and twisted Stokes
+\cite[\S12.7]{FresanJossenExp}.  They also identify the absolute
+polynomial-phase connection with the Fourier--Laplace transform of the
+reduced polynomial direct image \cite[Proposition~5.1]{FresanJossen}.
+
+In a 2025 lecture reporting joint work in progress with Fres\'an, Jossen
+presented the quadratic marked-point model, including
+$\int_0^a e^{-zx^2}\,dx$ at algebraic $a$ and the endpoint exponentials
+\cite{Jossen2025}.  He described its differential Galois group and explained
+the arithmetic independence obtained from Siegel--Shidlovskii theory,
+separating the additional $\sqrt\pi$-independence question for the full
+rapid-decay period field.  Our contribution is the uniform rigidity theorem
+for compact algebraic boundary data and arbitrary polynomial phase, together
+with the complete fixed-$q$ linear-relation criterion.  The argument uses
+constant-coordinate endomorphism rigidity and inverse-branch densities,
+without assuming simple critical points or distinct critical values.
 
 The proof has three parts.  First, moments of \eqref{eq:I} satisfy one
 explicit inhomogeneous $E$-function system.  Second, the homogeneous
@@ -415,6 +437,12 @@ The homogeneous part of \eqref{eq:moment-system} is
 \begin{equation}\label{eq:homogeneous}
   \mathbf Y'=\left(C+\frac Dz\right)\mathbf Y.
 \end{equation}
+
+The Fourier--Laplace description used below is the polynomial direct-image
+construction of \cite[Proposition~5.1]{FresanJossen}, with the sign and dual
+conventions made explicit.  We recall it in the moment coordinates needed
+for the subsequent residue argument; the finite-monodromy proof of
+semisimplicity does not require genericity of $q$.
 
 \begin{proposition}[Semisimplicity]\label{prop:semisimplicity}
 The differential module over $\C(z)$ defined by
@@ -1138,6 +1166,12 @@ J.~Fres\'an and P.~Jossen,
 Ann. of Math. (2) \textbf{194} (2021), no.~3, 903--942.
 \href{https://doi.org/10.4007/annals.2021.194.3.7}{doi:10.4007/annals.2021.194.3.7}.
 
+\bibitem{FresanJossenExp}
+J.~Fres\'an and P.~Jossen,
+\emph{Exponential motives},
+preliminary book manuscript, 301-page version consulted October 5, 2026.
+\url{http://javier.fresan.perso.math.cnrs.fr/expmot.pdf}.
+
 \bibitem{GavrilovPakovich}
 L.~Gavrilov and F.~Pakovich,
 \emph{Moments on Riemann surfaces and hyperelliptic Abelian integrals},
@@ -1150,6 +1184,19 @@ R.~Hotta, K.~Takeuchi, and T.~Tanisaki,
 Progress in Mathematics, vol.~236,
 Birkh\"auser Boston, Boston, MA, 2008.
 \href{https://doi.org/10.1007/978-0-8176-4523-6}{doi:10.1007/978-0-8176-4523-6}.
+
+\bibitem{Jossen2018}
+P.~Jossen,
+\emph{Special values of $E$-functions as exponential periods},
+lecture report for \emph{Periods and $L$-values of Motives},
+Simons Foundation, May 2018, 11~pp.
+\href{https://simonsfoundation.s3.amazonaws.com/share/mps/symposia/2018/pdf/palvom/Report_Jossen.pdf}{Lecture report}.
+
+\bibitem{Jossen2025}
+P.~Jossen,
+\emph{Examples around the exponential period conjecture},
+CIRM, recorded lecture, February 20, 2025.
+\href{https://doi.org/10.24350/CIRM.V.20308403}{doi:10.24350/CIRM.V.20308403}.
 
 \bibitem{PakovichMuzychuk}
 F.~Pakovich and M.~Muzychuk,

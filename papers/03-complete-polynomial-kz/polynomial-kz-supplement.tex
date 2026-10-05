@@ -243,6 +243,19 @@ Termwise integration and one integration by parts give
 The standard common-denominator estimate for $(2n+1)^{-1}\beta^n$ shows that
 $H_\beta$ is an $E$-function when $\beta$ is algebraic.
 
+Jossen's quadratic marked-point example, presented in a 2025 lecture as
+joint work in progress with Fres\'an \cite{Jossen2025}, uses the integrals
+\[
+  F_a(z)=\int_0^a e^{-zx^2}\,dx=aH_{-a^2}(z)\qquad(a\ne0),
+  \qquad F_0=0.
+\]
+He described their differential Galois group and explained the independence
+obtained from Siegel--Shidlovskii theory, leaving the additional
+$\sqrt\pi$-direction of the full rapid-decay period problem separate.
+The proofs below treat arbitrary finite sets of adjoined exponentials and
+make the resulting quadratic normal form explicit.  In particular, equal
+nonzero squares identify $F_a/a$, not the raw integrals $F_a$.
+
 \begin{theorem}[Functional independence of the quadratic integrals]
 \label{thm:H-functional}
 For distinct $\beta_1,\ldots,\beta_m\in\C^\times$, the functions
@@ -308,6 +321,18 @@ subfield $k(e^\lambda:\lambda\in\Gamma)$ has transcendence degree $r$.
 The $m$ quadratic values are therefore algebraically independent over this
 subfield, which contains the coefficients of the proposed relation.
 \end{proof}
+
+For comparison with the marked-point formulation in \cite{Jossen2025},
+let $a_1,\ldots,a_N\in k$, put
+$r=\dim_{\mathbb Q}\operatorname{Span}_{\mathbb Q}\{a_1^2,\ldots,a_N^2\}$,
+and let $m$ be the number of distinct nonzero squares among the $a_i^2$.
+The normalization above and \cref{thm:H-values,thm:LW} give
+\[
+ \operatorname{trdeg}_k
+ k\bigl(e^{-a_i^2},F_{a_i}(1):1\le i\le N\bigr)=r+m.
+\]
+This recovers the compact-period count; no independence from $\sqrt\pi$
+is asserted here.
 
 Let $\mathscr E_k=k[(k,+)]$ be the group algebra with basis
 $\varepsilon_\lambda$.  Evaluation sends $\varepsilon_\lambda$ to
@@ -787,6 +812,12 @@ S.~Fischler and T.~Rivoal,
 \emph{Effective algebraic independence of values of $E$-functions},
 Math. Z. \textbf{305} (2023), article~48.
 \href{https://doi.org/10.1007/s00209-023-03373-9}{doi:10.1007/s00209-023-03373-9}.
+
+\bibitem{Jossen2025}
+P.~Jossen,
+\emph{Examples around the exponential period conjecture},
+CIRM, recorded lecture, February 20, 2025.
+\href{https://doi.org/10.24350/CIRM.V.20308403}{doi:10.24350/CIRM.V.20308403}.
 
 \bibitem{Kolchin}
 E.~R.~Kolchin,
