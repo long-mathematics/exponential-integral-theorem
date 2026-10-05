@@ -1,0 +1,25 @@
+name: Paper IV citation source audit
+on:
+  push:
+    branches: [docs/paper-iv-comparison-citations-20261005]
+    paths: [.github/workflows/paper-iv-citation-audit.yml]
+permissions:
+  contents: read
+jobs:
+  sources:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Retrieve author-hosted sources for pinpoint verification
+        run: |
+          mkdir -p /tmp/iv-citation-sources
+          curl --fail --location --retry 1 --connect-timeout 15 --max-time 80 https://www.jossenpeter.ch/PdfDvi/ExpMot.pdf -o /tmp/iv-citation-sources/ExpMot.pdf || curl --fail --location --connect-timeout 15 --max-time 80 https://javier.fresan.perso.math.cnrs.fr/expmot.pdf -o /tmp/iv-citation-sources/ExpMot.pdf
+          curl --fail --location --connect-timeout 15 --max-time 60 https://home.mathematik.uni-freiburg.de/arithgeom/preprints/buch-alt/partII.pdf -o /tmp/iv-citation-sources/HMS-partII-20150608.pdf
+          curl --fail --location --connect-timeout 15 --max-time 60 https://home.mathematik.uni-freiburg.de/arithgeom/preprints/buch-alt/partI.pdf -o /tmp/iv-citation-sources/HMS-partI-20150608.pdf
+          sha256sum /tmp/iv-citation-sources/*.pdf > /tmp/iv-citation-sources/sha256.txt
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: paper-iv-citation-sources
+          path: /tmp/iv-citation-sources
+          retention-days: 3
