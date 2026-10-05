@@ -1212,8 +1212,8 @@ Riemann--Hilbert correspondence is being used to algebraize a connection.
 
 \begin{externalinput}[The Fourier comparison used here]\label{input:fourier}
 For regular geometric input on $S\times\A^1_t$, use the normalized
-partial Fourier--Laplace transform. The finite-graph microlocalization
-result gives a connection on $S\times\Gm$ after shrinking $S$.
+partial Fourier--Laplace transform. The algebraic argument in
+\cref{lem:graphs} gives a connection on $S\times\Gm$ after shrinking $S$.
 For a pure polarizable minimal extension $\mathcal T$ on
 $S\times\mathbb P^1_t$, Sabbah's Proposition~5.8, Corollary~5.20, and
 sequences (5.21)--(5.22) compare the Fourier cycles at zero with ordinary
@@ -1232,20 +1232,87 @@ Take a finite Whitney stratification adapted to the regular input. Delete
 the closures of the images of strata that do not dominate $S$. Each
 remaining proper stratum has dimension $d$: it dominates a $d$-dimensional
 base and lies properly in a $(d+1)$-fold. Its closure is generically finite
-over $S$. Normalize these finitely many multisections and shrink so that
-they are finite etale. A common finite Galois refinement splits them into
-sections. Delete the images of intersections of distinct sections. The
-characteristic variety is then contained in the zero section and the
-conormals of the resulting graphs.
+over $S$. After taking the closures in $S\times\mathbb P^1$ and shrinking,
+these multisections miss infinity and are finite etale. A common finite
+Galois refinement splits them into pairwise disjoint sections. We use $S$
+for this cover until the final descent. For the underlying algebraic
+regular holonomic module $M$, the characteristic variety at finite $t$
+is contained in the zero section and the conormals
+\[
+ T^*_{\Gamma_i}(S\times\A^1_t)
+   =\{a(dt-du_i):a\in\A^1\},\qquad \Gamma_i=\{t=u_i(s)\}.
+\]
+Since each $u_i$ is regular, its graph is closed in $S\times\mathbb P^1$
+and disjoint from $D_\infty=S\times\{\infty\}$. Thus the meromorphic
+extension $\overline M=j_+M$, where
+$j:S\times\A^1\hookrightarrow S\times\mathbb P^1$, is a meromorphic
+connection near $D_\infty$. It is regular there: algebraic regular
+holonomicity is preserved by this open direct image
+\cite[Theorem~6.1.5(ii)]{HTT}. Regularity at infinity is therefore a
+consequence of the input, not an additional hypothesis.
 
-Apply the parameterized localized Laplace/microlocalization input with
-$z=\lambda^{-1}$. In Sabbah's Appendix~B the localized module is locally
-free over the parameter ring $\Ocal[z,z^{-1}]$, with integrable
-connection; Proposition~B.1 identifies its residual systems. The reference
-is \cite[Appendix~B, preprint p.~12, immediately before Proposition~B.1]{SabbahParameters}.
-The general parameter statement underpinning this calculation is
-\cite[Propositions~1.18 and~1.20]{DouaiSabbah}. This gives nonzero-scale
-lissity locally on the cover, which descends in the finite etale topology.
+Set $Y=S\times\Gm$, with scale coordinate $\lambda$, and
+$Z=Y\times\mathbb P^1_t$, with proper
+projection $q:Z\to Y$. Pull back $\overline M$ as a differential module
+and twist by the Fourier kernel with connection $d-d(\lambda t)$.
+Denote the resulting meromorphic module by $\Ncal$. Its direct image
+$q_+\Ncal$ computes the localized normalized partial transform. At finite
+$t$, twisting by a nonsingular connection leaves the characteristic
+variety unchanged, so its nonzero covectors are among $a(dt-du_i)$,
+with no $d\lambda$-component. None annihilates the $t$-fiber direction.
+
+Near infinity put $x=t^{-1}$. By the algebraic logarithmic-lattice
+criterion for regular connections \cite[Theorem~5.3.7]{HTT}, choose a
+coherent lattice $L$ in $\overline M$, with $L[x^{-1}]=\overline M$,
+stable under $x\partial_x$ and the parameter derivations $\partial_{s_j}$.
+Pull $L$ back independently of $\lambda$. For the formal kernel generator
+$e$ the sign convention above gives
+\[
+ \partial_\lambda e=-x^{-1}e,\qquad
+ \partial_x e=\lambda x^{-2}e.
+\]
+For local generators $m_a$ of $L$ one has
+\[
+ \partial_\lambda^n(m_ae)=(-1)^n x^{-n}m_ae.
+\]
+Consequently $Le$ generates $\Ncal$ as a $\Dcal_Z$-module. The filtration
+$F_p\Ncal=\Dcal_{Z,\le p}(Le)$ for $p\ge0$, and $F_p\Ncal=0$ for $p<0$,
+is therefore exhaustive and good. The operators
+\[
+ x\partial_\lambda,\qquad
+ x\partial_x+\lambda\partial_\lambda,\qquad
+ \partial_{s_j}
+\]
+preserve $Le$. They preserve every $F_p\Ncal$: if $P$ is one of these
+operators and $Q$ has order at most $p$, then
+$P(Qv)=Q(Pv)+[P,Q]v$, with $[P,Q]$ of order at most $p$.
+Their degree-one symbols thus annihilate $\gr_F\Ncal$, and near infinity
+\begin{equation}\label{eq:fourier-infinity-characteristic}
+ \operatorname{Char}(\Ncal)\subseteq
+ \{x\xi_\lambda=0,\quad x\xi_x+\lambda\xi_\lambda=0,\quad
+                         \xi_{s_j}=0\text{ for all }j\}.
+\end{equation}
+For $x\ne0$ this is the zero section. For $x=0$, invertibility of
+$\lambda$ forces $\xi_\lambda=0$, leaving only the conormal to infinity.
+No nonzero covector in this conormal annihilates the $t$-fiber direction.
+
+The proper direct-image characteristic estimate
+\cite[Theorem~2.5.1 and Remark~2.5.2]{HTT} now places the characteristic
+variety of every cohomology module of $q_+\Ncal$ in the zero section.
+Such a coherent differential module is an $\Ocal_Y$-coherent, hence
+locally free, integrable connection \cite[Proposition~2.2.5]{HTT}.
+Concentration in degree zero is a separate fact: the normalized partial
+Fourier transform is locally induced by the relative Weyl-algebra
+Fourier isomorphism and is exact; localization is exact as well.
+This proves the asserted lissity over $k$, which descends along the
+finite etale cover.
+
+For comparison, the corresponding analytic result is
+\cite[Theorem~1.11(2) and Corollary~1.12]{DouaiSabbah}.
+Its noncharacteristic condition follows from the displayed graph
+conormals: a covector pulled back from $S$ has zero $dt$-component,
+so it intersects them only in zero. This reference is not needed for
+the algebraic characteristic-variety argument above.
 \end{proof}
 
 \begin{lemma}[Fixed fiber and topological nearby local system]
@@ -1256,6 +1323,26 @@ have isomorphic underlying local systems on $S$, after forgetting the
 commuting nearby monodromy.
 \end{lemma}
 \begin{proof}
+First identify the algebraic fixed fiber. Write $\Fcal_*$ for the
+localized transform, and let
+$i_{\lambda_0}:S\hookrightarrow S\times\Gm$ be the slice at
+$\lambda_0\in k^\times$. For $K_*=R_{\dR}(A)$ the identification is
+\begin{equation}\label{eq:fourier-fixed-fiber}
+ i_{\lambda_0}^{*,\mathrm{norm}}\Fcal_*
+       \simeq \rho_{\lambda_0}(\mathsf Q_S A)|_S.
+\end{equation}
+Here normalized restriction means $i_{\lambda_0}^*[-1]$ in the
+perverse six-operation convention, or ordinary restriction of the
+underlying connection. Indeed, the characteristic bounds in
+\cref{lem:graphs} have no $d\lambda$-component, so the slice is
+noncharacteristic both before and after direct image. Apply differential-module
+base change and noncharacteristic restriction
+\cite[Theorems~1.7.3 and~2.4.6]{HTT}, then the forget-supports comparison
+in \cref{thm:algebraic-exponential}. The restricted kernel is
+$\mathscr K_{\lambda_0}$; the normalization gives
+$\mathscr L_{\lambda_0}=\mathscr K_{\lambda_0}[-1]$, exactly as in
+\eqref{eq:algebraic-exponential-formula}.
+
 The local system on $S^{\mathrm{an}}\times\C^\times$ is a representation
 of $\pi_1(S)\times\mathbb Z$. Restriction to a fiber forgets the second
 operator. Topological nearby cycles have the same representation of
@@ -1276,37 +1363,41 @@ nearby-monodromy operator. This assertion uses regular specialization
 along $\lambda=0$, not just lissity on $S\times\Gm$.
 \end{proposition}
 \begin{proof}
-For pure input take the regular minimal extension $\mathcal T$ in the
-$t$-direction and its Hodge-to-twistor realization. In Sabbah's notation,
-the \emph{kernel} before projective direct image is
+Work with the pushed-forward partial transform $\Fcal$ on
+$S\times\A^1_\lambda$, before localizing in $\lambda$. Its analytification
+is regular at every finite Fourier scale by
+\cite[Theorem~1.11(1)]{DouaiSabbah}. The hypotheses apply locally on
+$S^{\mathrm{an}}$: on a sufficiently small relatively compact
+neighborhood the finitely many $u_i$ are bounded, so one disc contains
+all the singular graphs. The regular meromorphic extension at $t=\infty$
+was established in \cref{lem:graphs}. No global boundedness of the graphs
+or purity of the input is required.
+
+By \cref{lem:graphs}, $\Fcal|_{\lambda\ne0}$ is a connection. Thus
+$\Fcal(*\{\lambda=0\})^{\mathrm{an}}$ is a regular-singular meromorphic
+connection along the smooth divisor $\lambda=0$. The classical
+logarithmic comparison now applies; see
+\cite[II, Proposition~5.4, Remark~5.5(ii), and \S6]{DeligneRegular}.
+In a local logarithmic model $d+B\,d\lambda/\lambda$, the residue
+summands, with exponents taken modulo $\mathbb Z$, compute the moderate
+nearby cycles, while $\exp(-2\pi iB)$ is the nearby monodromy of the
+horizontal local system. Integrability makes this identification
+compatible with the $S$-connection. The local comparisons are natural
+and glue, with the perverse shift $[-1]$ on topological nearby cycles.
+Localization at $\lambda=0$ changes neither nearby-cycle object.
+This proves the comparison directly on the transform, for mixed as well
+as pure regular input. Apply \cref{lem:fiber-nearby} for the constituent
+assertion.
+
+For the comparison with ordinary cycles at infinity used below, retain
+Sabbah's kernel notation
 $\mathcal F\mathcal T=p^+\mathcal T[*\infty]\otimes e^{-t\lambda/z}$.
-Its underlying strict module is strictly specializable and regular along
-$\lambda=\lambda_0$ for every finite $\lambda_0$, including zero, by
-\cite[Proposition~4.1(ii)]{SabbahMonodromy}. Notice the contrast with
-Proposition~4.1(i), which allows irregularity along $t'=0$ at nonzero
-scale; regularity in the two different directions must not be interchanged.
-
-Use the moderate-cycle/de Rham comparison for a module regular along
-the specialization hypersurface, with the perverse shift $[-1]$ on
-topological nearby cycles. The regular-specialization hypothesis is what
-removes a possible purely irregular summand invisible to moderate cycles.
-Proper direct image is compatible with these regular-specialization
-cycles and with their de Rham comparison. Apply it to the projective
-$t$-projection: the resulting comparison is that of the moderate nearby
-cycles of the partial transform with its topological nearby cycles.
-These are the regular-specialization and proper-image comparison maps,
-not an invocation of regular Riemann--Hilbert for an arbitrary irregular
-connection. The cycle comparisons in Sabbah's Proposition~5.8 and
-Corollary~5.20 are used in precisely this setting.
-
-For mixed geometric input, use the finite strict weight filtration of
-its Hodge realization. Normalized Fourier transformation and both cycle
-functors are exact; the cycle comparison is natural. The pure comparison
-on each graded constituent therefore gives the comparison for the mixed
-object by the finite filtration and the long exact cohomology sequences.
-Finally use \cref{lem:fiber-nearby}. All these statements concern the
-complex realization; \cref{thm:algebraic-interface} supplies the
-algebraic ordinary objects and their geometric operation maps.
+Its regular specializability at finite $\lambda$ is
+\cite[Proposition~4.1(ii)]{SabbahMonodromy}; Proposition~4.1(i) concerns
+the different, possibly irregular, $t'=0$ direction. The projective
+cycle comparisons remain those of Proposition~5.8 and Corollary~5.20.
+The bridge just proved does not require a de Rham comparison for an
+arbitrary irregular module before projective direct image.
 \end{proof}
 
 \begin{remark}[The lissity-only assertion would be false]
@@ -1316,7 +1407,7 @@ irregular at zero and its moderate nearby cycles vanish. Its topological
 nearby local system has rank one. It is therefore essential to insert
 \cref{prop:regular-cycle-bridge} before using the topological product
 argument in the algebraic-cycle proof. This example does not satisfy the
-regular-specialization conclusion for the intended Fourier kernel.
+regular-singular conclusion for the intended Fourier transform.
 \end{remark}
 
 \begin{proposition}[Unipotent comparison through two triangles]\label{prop:two-triangles}
@@ -2588,10 +2679,16 @@ P.~Deligne and J.~S.~Milne, \emph{Tannakian categories}, in
 \textbf{900}, Springer, 1982, 101--228. Author-hosted corrected text:
 \url{https://www.jmilne.org/math/xnotes/tc.pdf}.
 
+\bibitem{DeligneRegular}
+P.~Deligne, \emph{\'Equations diff\'erentielles \`a points singuliers
+r\'eguliers}, Lecture Notes in Mathematics \textbf{163}, Springer, 1970,
+Chapter~II, \S\S5--6.
+
 \bibitem{DouaiSabbah}
 A.~Douai and C.~Sabbah, \emph{Gauss--Manin systems, Brieskorn lattices
 and Frobenius structures (I)}, Ann. Inst. Fourier \textbf{53} (2003),
-1055--1116, Propositions~1.18 and~1.20.
+1055--1116, Theorem~1.11 and Corollary~1.12 (p.~1063).
+\href{https://doi.org/10.5802/aif.1974}{doi:10.5802/aif.1974}.
 
 \bibitem{DrewGallauer}
 B.~Drew and M.~Gallauer,
@@ -2695,13 +2792,6 @@ C.~Sabbah, \emph{Monodromy at infinity and Fourier transform II},
 Publ. Res. Inst. Math. Sci. \textbf{42} (2006), 803--835.
 Proposition~5.8, Corollary~5.20, and (5.21)--(5.22). Author-hosted text:
 \url{https://perso.pages.math.cnrs.fr/users/claude.sabbah/articles/sabbah_Fourier-twistor.pdf}.
-
-\bibitem{SabbahParameters}
-C.~Sabbah, \emph{A short proof of a theorem of Cotti, Dubrovin and
-Guzzetti}, Port. Math. \textbf{79} (2022), 29--43.
-\href{https://arxiv.org/abs/2103.16878v3}{arXiv:2103.16878v3},
-Appendix~B, preprint pp.~12--13 (the assertion immediately before
-Proposition~B.1 and that proposition).
 
 \bibitem{SabbahTwistor}
 C.~Sabbah,

@@ -23,7 +23,7 @@ These are working research drafts. Their inclusion here and successful compilati
 - **I:** algebraic-value rigidity and common-polynomial linear relations.
 - **II:** formal linear relations for compact affine-line exponential periods.
 - **III:** polynomial relations for the tensor-generated affine-line algebra, building on I and II.
-- **IV:** relative functional periods and exponential fixed parts. Numerical specialization remains a separate issue.
+- **IV:** relative functional periods and exponential fixed parts. The [October 5 lissity repair](notes/provenance/paper-iv-lissity-repair-2026-10-05.md) closes the finite-graph lissity component only; the Jacobsen–Terenzi/Lam–Litt geometric-origin application remains open for a separate audit before deposit. Numerical specialization remains a separate issue.
 - **V:** general polynomial-representative boundary systems and an explicit fixed-triangle elliptic theorem: the two basic moments and their values at every nonzero algebraic parameter are algebraically independent over the associated fixed-face fields. Observable single-phase geometry is retained. General multiblock formal completeness remains conditional on actual linear and determinant-line realizations; this is not an unrestricted two-variable theorem.
 
 The polynomial-flags manuscript was historically called “Paper IV”; this repository assigns it **Paper V** and reserves **Paper IV** for Nori–Ayoub. Historical audit filenames retain their original terminology.
@@ -37,7 +37,7 @@ The polynomial-flags manuscript was historically called “Paper IV”; this rep
 | Paper IV repair companion: normalizations, fixed parts, and the relative period torsor | [Read PDF](output/pdf/paper-iv-repair-note.pdf) | [Source](papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex) |
 | EIT structural companion | [Read PDF](output/pdf/eit-structural-companion.pdf) | [Source](notes/eit-structural-companion.tex) |
 
-The Paper IV repair arguments are integrated into the canonical manuscript. The retained companion and [assembled-proof and integration audit](notes/provenance/paper-iv-assembled-integration-audit-2026-09-29.md) document the proof development and its qualifications; they are not independent peer-review or formal-verification certificates.
+The September Paper IV repair arguments are integrated into the canonical manuscript. The retained companion and [assembled-proof and integration audit](notes/provenance/paper-iv-assembled-integration-audit-2026-09-29.md) document the proof development and its qualifications; they are not independent peer-review or formal-verification certificates. The [October 5 addendum](notes/provenance/paper-iv-lissity-repair-2026-10-05.md) corrects the earlier audit coverage and supersedes the companion's finite-graph lissity argument; the historical companion is preserved unchanged.
 
 ## Build and check
 
