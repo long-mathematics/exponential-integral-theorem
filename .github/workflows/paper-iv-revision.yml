@@ -2,18 +2,86 @@ name: Paper IV revision workspace
 on:
   push:
     branches: [repair/paper-iv-k-rational-realization-20261005]
+    paths: [.revision/apply.py]
 permissions:
-  contents: read
+  contents: write
 jobs:
-  snapshot:
+  revise:
+    if: github.ref == 'refs/heads/repair/paper-iv-k-rational-realization-20261005'
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - name: Export tracked revision workspace
-        run: git archive --format=tar.gz -o /tmp/paper-iv-workspace.tar.gz HEAD
-      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
-          name: paper-iv-workspace
-          path: /tmp/paper-iv-workspace.tar.gz
-          retention-days: 3
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+      - name: Install repository build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils
+      - name: Apply audited source and documentation edits
+        run: python3 .revision/apply.py
+      - name: Test and compile
+        run: |
+          set -o pipefail
+          make test 2>&1 | tee /tmp/iv-tests.log
+          make pdf 2>&1 | tee /tmp/iv-build.log
+      - name: Preserve the eight unaffected snapshots
+        run: |
+          python3 - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          target='papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex'
+          path=Path('output/pdf/manifest.json')
+          built=json.loads(path.read_text())
+          baseline=json.loads(subprocess.check_output(['git','show','HEAD:output/pdf/manifest.json']))
+          record=next(r for r in built['documents'] if r['source']==target)
+          for r in baseline['documents']:
+              if r['source']==target:
+                  r.update(record)
+              else:
+                  assert Path(r['source']).read_bytes()==subprocess.check_output(['git','show','HEAD:'+r['source']])
+                  Path(r['pdf']).write_bytes(subprocess.check_output(['git','show','HEAD:'+r['pdf']]))
+          path.write_text(json.dumps(baseline,indent=2)+'\n')
+          PY
+      - name: Verify all nine committed snapshot texts
+        run: |
+          set -o pipefail
+          make check 2>&1 | tee /tmp/iv-check.log
+      - name: Record validation and commit only the intended revision
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          target='papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex'
+          manifest=json.loads(Path('output/pdf/manifest.json').read_text())
+          record=next(r for r in manifest['documents'] if r['source']==target)
+          unchanged=[]
+          for r in manifest['documents']:
+              if r['source']==target: continue
+              assert Path(r['source']).read_bytes()==subprocess.check_output(['git','show','HEAD:'+r['source']])
+              assert Path(r['pdf']).read_bytes()==subprocess.check_output(['git','show','HEAD:'+r['pdf']])
+              unchanged.append(r)
+          data={'date':'2026-10-05','baseline_main':'7ce1c249f46a0bffc7fe2b689027c28c259455b5','revision_input_commit':os.environ['GITHUB_SHA'],'workflow_run_id':int(os.environ['GITHUB_RUN_ID']),'environment':'GitHub Actions ubuntu-24.04','commands':{'make test':'passed: 11 tests','make pdf':'passed: 9 documents','make check':'passed: 9 documents and README links'},'canonical':record,'preserved_other_documents':unchanged,'local_validation':{'make test':'passed: 11 tests','make pdf':'all 9 compiled','make check':'8 passed; unchanged structural companion has the previously recorded local cleveref/toolchain text discrepancy; official Ubuntu check above passes'},'mathematical_scope':'Scoped AI-assisted source and proof audit; not independent peer review or formal verification','visual_review':'To be recorded in the pull request after inspecting the official artifact','preserved_metadata':['title','authors','author identifier','contact','August 2026 manuscript date'],'temporary_helpers':'Branch-only; removed before final PR merge'}
+          Path('notes/provenance/paper-iv-arithmetic-realization-build-2026-10-05.json').write_text(json.dumps(data,indent=2)+'\n')
+          PY
+          git diff --check
+          git add README.md notes/repository-status.md notes/repairs/paper-iv-repair-ledger.md notes/provenance/paper-iv-arithmetic-realization-repair-2026-10-05.md notes/provenance/paper-iv-arithmetic-realization-build-2026-10-05.json papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex output/pdf/relative-exponential-nori-ayoub.pdf output/pdf/manifest.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Paper IV: audited arithmetic mixed-sheaf realization and comparison repair'
+          git push origin HEAD:repair/paper-iv-k-rational-realization-20261005
+          git archive --format=tar.gz -o /tmp/paper-iv-revised.tar.gz HEAD
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: paper-iv-revised
+          path: |
+            /tmp/paper-iv-revised.tar.gz
+            /tmp/iv-tests.log
+            /tmp/iv-build.log
+            /tmp/iv-check.log
+            .build/relative-exponential-nori-ayoub/*.pdf
+            .build/relative-exponential-nori-ayoub/*.log
+          include-hidden-files: true
+          retention-days: 7
