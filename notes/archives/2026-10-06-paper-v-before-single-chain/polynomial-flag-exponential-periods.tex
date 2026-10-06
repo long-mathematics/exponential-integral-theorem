@@ -1,0 +1,2189 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1.04in]{geometry}
+\usepackage{amsmath,amssymb,mathtools,amsthm}
+\usepackage{aliascnt}
+\usepackage{mathrsfs}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage[capitalize,noabbrev]{cleveref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!45!black,
+  citecolor=green!35!black,
+  urlcolor=blue!55!black,
+  pdftitle={Relative Exponential Periods on Polynomial Flags: Polynomial Boundary Systems and an Elliptic Comparison Theorem},
+  pdfauthor={Christopher D. Long; Antoine-Auguste Le Blanc},
+  pdfsubject={Relative exponential periods, polynomial flags, Fourier--Laplace transform, actual boundary systems, elliptic comparison, algebraic specialization},
+  pdfkeywords={exponential period, polynomial flag, Fourier--Laplace transform, Stokes matrix, differential Galois group, relative exactness, E-function, Kontsevich--Zagier}
+}
+
+\numberwithin{equation}{section}
+\setlength{\emergencystretch}{3em}
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+
+\theoremstyle{definition}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+
+\newaliascnt{example}{theorem}
+\newtheorem{example}[example]{Example}
+\aliascntresetthe{example}
+
+\theoremstyle{remark}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Qbar}{\overline{\mathbb Q}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Aone}{\mathbb A^1}
+\newcommand{\Atwo}{\mathbb A^2}
+\newcommand{\Gm}{\mathbb G_m}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\trdeg}{\operatorname{trdeg}}
+\newcommand{\per}{\operatorname{per}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Lie}{\operatorname{Lie}}
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\Div}{\operatorname{Div}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Crit}{\operatorname{Crit}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ecal}{\mathcal E}
+\newcommand{\Fcal}{\mathcal F}
+\newcommand{\Hcal}{\mathcal H}
+\newcommand{\Lcal}{\mathcal L}
+\newcommand{\Mcal}{\mathcal M}
+\newcommand{\Ocal}{\mathcal O}
+\newcommand{\Pcal}{\mathcal P}
+\newcommand{\Rcal}{\mathcal R}
+\newcommand{\Vcal}{\mathcal V}
+\newcommand{\dd}{\,d}
+\newcommand{\KZ}{\mathrm{KZ}}
+
+\title{Relative Exponential Periods on Polynomial Flags:\\
+Polynomial Boundary Systems and an Elliptic Comparison Theorem}
+\author{Christopher D. Long \and Antoine-Auguste Le Blanc\thanks{Le Blanc cryptographic author identifier: \texttt{b6048125\allowbreak{}30b3535b\allowbreak{}23d6dbb0\allowbreak{}f5abe32d\allowbreak{}1ed1a9de\allowbreak{}35fb4f7d\allowbreak{}04d62cff\allowbreak{}08ea19c8}}}
+\date{September 2026}
+
+
+\newcommand{\Hq}{H_q^2}
+\newcommand{\M}{\mathscr M}
+\newcommand{\Ncal}{\mathcal N}
+\newcommand{\Tcal}{\mathcal T}
+\newcommand{\A}{\mathbb A}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\small
+\texttt{galizur@gmail.com}
+\end{center}
+
+\begin{abstract}
+We construct rational differential systems for compact polynomial-flag
+exponential integrals using polynomial representatives in twisted de Rham
+cohomology. Every forcing term is an actual compact polynomial-line face
+integral, with its normalization retained by a literal Stokes identity.
+An actual-solution criterion upgrades a nonzero quotient by the linear
+boundary space to algebraic independence over the full boundary field,
+under special-linear Galois and projective-disjointness hypotheses.
+For the triangle with vertices $(-1/2,-1),(1/2,0),(-1/2,1)$ and phase
+$y^2-x^3+3x$, these hypotheses are verified. The two moments with amplitudes
+$1$ and $x$ are algebraically independent over the field of the three
+fixed faces. Their values are algebraically independent over the associated
+face-value field at every nonzero algebraic parameter. Every polynomial
+amplitude has a unique two-coordinate Stokes remainder.
+
+We retain the single-phase denominator-free comparison on the observable
+Lefschetz locus, face-lattice and Hodge statements with their correct
+variance and coefficient fields, and an abstract multicolumn orbit
+calculation. For general local comparison, Beukers lifting identifies the
+boundary evaluation prime directly, without a global normal-form claim.
+Numerical injectivity is formulated on the specialized fiber, not on the
+unspecialized function algebra. General multiblock formal completeness
+requires separately verified actual linear and determinant-line
+realizations; it is not inferred from punctual support or observability.
+\end{abstract}
+
+\medskip
+\noindent\textit{2020 Mathematics Subject Classification.}
+Primary 11J91; Secondary 11J81, 12H05, 14D07, 14H40, 32S40, 34M35.
+
+\tableofcontents
+
+\section{Introduction and theorem structure}\label{sec:intro}
+Let $k=\overline{\mathbb Q}$ and $k_{\mathbb R}=k\cap\mathbb R$.
+A polynomial two-chain is a finite $k$-linear combination of polynomial
+pushforwards of $[0,1]^2$, with orientation and multiplicity. A flag is the
+special case with a triangular parametrization. For a polynomial phase $q$
+and a polynomial two-form $\omega$, put
+\[
+ I_D(\omega)(z)=\int_D e^{zq}\omega.
+\]
+Kontsevich--Zagier relations are generated by algebraic changes of variables,
+linearity and Stokes; in the exponential setting one uses
+$d_z=d+z\,dq\wedge$ \cite{KontsevichZagier,CommelinHabeggerHuber}.
+The compact polynomial-line comparisons are developed in the companion
+Papers II and III \cite{LongLinearKZ,PaperIII}.
+
+A boundary field here always refers to the finitely many \emph{fixed faces}
+of the specified chain. It is not the field of all compact line periods.
+A finite closed vector of actual face functions generates it over $k(z)$.
+The construction in \cref{thm:boundary-system} makes all inhomogeneous
+forcing terms elements of this field by polynomial identities, rather
+than by assigning arithmetic normalizations to abstract composition factors.
+
+The main concrete case is
+\begin{equation}\label{eq:intro-elliptic}
+ q=y^2-x^3+3x,\qquad
+ D=\operatorname{conv}\{(-1/2,-1),(1/2,0),(-1/2,1)\},\qquad
+ M_j=I_D(x^j dx\wedge dy)\ (j=0,1).
+\end{equation}
+Let $K_{\partial,0}$ be its actual face-function field over $k(z)$ and
+$K_{\partial,\xi}$ its face-value field at $\xi\in k^\times$.
+
+\begin{theorem}[Elliptic functional and numerical comparison]
+\label{thm:intro-elliptic}
+For \eqref{eq:intro-elliptic}, $M_0,M_1$ are algebraically independent over
+$\mathbb C K_{\partial,0}$. For every $\xi\in k^\times$, the values
+$M_0(\xi),M_1(\xi)$ are algebraically independent over $K_{\partial,\xi}$.
+Every $r\in k[x,y]$ has a unique two-coordinate remainder and a polynomial
+Stokes certificate
+\[
+ r=a_r(z)+b_r(z)x+L_xP_r+L_yQ_r,
+\]
+where $a_r,b_r\in k[z,z^{-1}]$, $P_r,Q_r\in k[z,z^{-1},x,y]$,
+$L_x=\partial_x+3z(1-x^2)$ and $L_y=\partial_y+2zy$.
+Consequently the algebra of all such amplitudes over the actual boundary
+field is the polynomial algebra in $M_0,M_1$, both functionally and at each
+nonzero algebraic parameter.
+\end{theorem}
+
+This is proved in \cref{thm:elliptic-main,thm:values}. The actual
+functional and numerical independence proofs do not use a formal
+completeness theorem for boundary periods. Paper III enters only in the
+localized fixed-chain presentation in
+\cref{prop:localized-formal-comparison}. Its functional statement uses the
+actual boundary coefficients; its numerical formal interpretation uses
+Paper III after specialization, inverting only boundary elements with
+nonzero value.
+
+\paragraph{Dependencies within the series.}
+The construction in \cref{thm:boundary-system}, the criterion in
+\cref{thm:criterion}, and the elliptic independence theorems are established
+here without invoking the companion formal comparison theorems. Paper II
+is used to interpret the reduced face identity in
+\cref{thm:intro-single}; Paper III supplies the specialized boundary-symbol
+comparison in \cref{prop:localized-formal-comparison}. Neither that actual
+comparison nor its numerical specialization uses the relative Nori--Ayoub
+manuscript (Paper IV). No argument uses the withdrawn general
+endpoint-complete theorem of an earlier version of this paper.
+
+There are three different levels of assertion. The polynomial boundary
+system is general. Injectivity of the actual comparison requires the
+explicit hypotheses of \cref{thm:criterion}. Those hypotheses are verified
+for the fixed elliptic chain above, for arbitrary polynomial amplitudes.
+Multiple chains and multiple primitive blocks require additional
+comparisons; the abstract local theorem \cref{thm:abstract-specialization}
+does not itself supply their geometric hypotheses.
+
+For the retained geometric results, the phase is real on the real chain.
+The phase-density, face-lattice, rooted-orbit, and Bonnet arguments are
+independent of the numerical specialization proof. The latter uses the
+actual boundary system and the two-dimensional affine orbit, not an
+unspecified completed current.
+\section{Polynomial representatives and literal boundary forcing}
+Put $k=\overline{\Q}$ and $F_0=k(z)$. Let $D$ be a finite algebraic-linear
+combination of pushforwards of $[0,1]^2$ by polynomial maps with real
+algebraic coefficients. Let $q\in k[x,y]$. For a polynomial two-form
+$\omega$, write
+\[
+ I_D(\omega)=\int_D e^{zq}\omega.
+\]
+When coefficients of $\omega$ lie in $F_0$, interpret this as a meromorphic
+function of $z$ by linearity. For each oriented face parametrization
+$\phi_e:[a_e,b_e]\to\A^2$, put $p_e=q\circ\phi_e$.
+The actual boundary field $K_{\partial,0}$ is the differential field over
+$F_0$ generated by all functions
+\[
+ \int_{a_e}^{b_e} h(t)e^{zp_e(t)}\dd t,\qquad h\in k[t],
+\]
+and the exponential functions at their algebraic endpoints. Only the fixed
+faces are used; this does not mean the field of all compact line periods.
+
+Let $d$ differentiate only in $x,y$, and set
+\[
+ d_z=d+z\,dq\wedge,\qquad
+ \Hq=\Omega^2_{F_0[x,y]/F_0}/d_z\Omega^1_{F_0[x,y]/F_0}.
+\]
+
+\begin{theorem}[Polynomial-representative boundary system]
+\label{thm:boundary-system}
+The space $\Hq$ is finite dimensional. There are forms
+$\omega_i=r_i(x,y)\,dx\wedge dy$, with $r_i\in k[x,y]$, whose classes form
+an $F_0$-basis, a matrix $A\in M_n(F_0)$, and polynomial-in-$x,y$ one-forms
+$\beta_i\in\Omega^1_{F_0[x,y]/F_0}$ such that
+\begin{equation}\label{eq:reduction-system}
+ q\omega_i=\sum_jA_{ij}(z)\omega_j+d_z\beta_i.
+\end{equation}
+The actual integral column $U_i=I_D(\omega_i)$ satisfies
+\begin{equation}\label{eq:actual-system}
+ U'=AU+b,\qquad b_i=\int_{\partial D}e^{zq}\beta_i\in K_{\partial,0}.
+\end{equation}
+Every polynomial two-form $\omega$ has an identity
+\begin{equation}\label{eq:amplitude-normal}
+ \omega=\sum_i a_i(z)\omega_i+d_z\beta,
+\end{equation}
+where $a_i\in F_0$ and $\beta$ is polynomial in $x,y$. Consequently
+\begin{equation}\label{eq:actual-normal}
+ I_D(\omega)=\sum_i a_i(z)U_i+
+              \int_{\partial D}e^{zq}\beta.
+\end{equation}
+For any finite set of amplitudes, these functions belong to a finite closed
+rational first-order system whose coordinates are actual $E$-functions.
+No spatial denominator is introduced. Parameter denominators may occur.
+\end{theorem}
+
+\begin{proof}
+The polynomial Gauss--Manin complex for $q:\A^2\to\A^1_t$ is
+\[
+ \bigl(\Omega^{\bullet+2}_{k[x,y]/k}[\partial_t],
+             d-dq\wedge\partial_t\bigr),
+\]
+and its cohomology is holonomic \cite[Proposition~9.1]{Sabbah}.
+The Fourier substitution $\partial_t\mapsto-z$, $t\mapsto\partial_z$
+turns its differential into $d+z\,dq\wedge$. Fourier transform is exact
+on Weyl modules, and localization to $k(z)$ is exact. The degree-zero
+cohomology of the localized transformed complex is therefore precisely
+$\Hq$, which is finite dimensional over $k(z)$ by holonomicity.
+This uses neither cohomological tameness nor the rank and lattice
+conclusions stated later in \cite{Sabbah}. In particular, no identification
+with a Milnor number is asserted here.
+
+The monomial two-forms with coefficients in $k$ span the quotient over
+$F_0$, so a finite subset is a basis. The connection on the quotient is
+\[
+ \nabla_z[\omega]=[\partial_z\omega+q\omega],
+\]
+because
+\[
+ [\partial_z+q,d+z\,dq\wedge]
+ =dq\wedge-dq\wedge=0.
+\]
+Expressing $q\omega_i$ in the basis proves \eqref{eq:reduction-system};
+expressing an arbitrary class proves \eqref{eq:amplitude-normal}.
+
+For a one-form polynomial in the spatial variables, there is the literal
+identity
+\[
+ e^{zq}d_z\beta=d_{x,y}(e^{zq}\beta).
+\]
+Stokes on the original parametrized compact chain proves
+\eqref{eq:actual-system} and \eqref{eq:actual-normal}. Each pullback of
+$\beta$ to a face is a finite $F_0$-linear combination of polynomial
+one-forms in its parameter. Thus every forcing term is an actual face
+integral with coefficients in $F_0$.
+
+To see finiteness on the boundary, if $\deg p=d\ge2$, division by
+$\partial_t+zp'(t)$ reduces every polynomial amplitude to degree at most
+$d-2$. The leading degree of $(\partial_t+zp')h$, for $h\ne0$, is
+$\deg h+d-1$, with nonzero leading coefficient in $F_0$. The remainder is
+therefore unique. Integration of the exact part gives only endpoint
+exponentials. Multiplication by $p$ and the same division give a rational
+first-order system for the reduced moments and the endpoint exponentials.
+For $d=1$ the twisted operator is surjective on polynomials; for $d=0$ ordinary polynomial antiderivatives suffice. In both cases only endpoint terms remain.
+For finitely many faces, this supplies a finite boundary vector; its
+fraction field is $K_{\partial,0}$.
+
+The integral coordinates are entire and have algebraic Taylor coefficients.
+After pullback to the square they have the form
+$\int_{[0,1]^2}P(u,v)e^{zQ(u,v)}\dd u\dd v$. For the first $m$ Taylor
+coefficients, one denominator of the form
+\[
+ d^{m+1}\operatorname{lcm}(1,\ldots,Cm+C_0)^2
+\]
+suffices, with fixed integers $d,C,C_0$; all conjugates grow exponentially.
+The same argument in one variable handles the faces. Together with the
+constructed differential systems, these are the $E$-function conditions.
+\end{proof}
+
+\begin{proposition}[Actual affine comparison under a change of representatives]
+\label{prop:gauge}
+Suppose
+$\widetilde\omega=T(z)\omega+d_z\gamma$, with $T\in\GL_n(F_0)$.
+Put $g=\int_{\partial D}e^{zq}\gamma$. Then the actual columns satisfy
+\[
+ \widetilde U=TU+g,
+\]
+and their systems are related by
+\[
+ \widetilde A=(T'+TA)T^{-1},\qquad
+ \widetilde b=Tb+g'-\widetilde A g.
+\]
+In particular, this is a comparison of the actual affine solution objects,
+not a statement only about their homogeneous composition factors.
+\end{proposition}
+\begin{proof}
+The first equality is Stokes, and differentiating it proves the other two.
+If two primitives give the same form identity, their difference is
+$d_z$-closed and its integral over $\partial D$ is zero by the same Stokes
+identity. Thus primitive choices do not introduce an arbitrary constant.
+\end{proof}
+
+After adjoining complex constants, write $F=\C(z)$,
+$K_\partial=\C K_{\partial,0}$, and work in a field $\M$ of meromorphic
+germs containing the actual functions. Integration modulo the actual
+boundary field gives a canonical differential map
+\begin{equation}\label{eq:canonical-comparison}
+ K_\partial\otimes_{F_0}\Hq\longrightarrow\M/K_\partial,
+ \qquad [\omega]\longmapsto I_D(\omega)\bmod K_\partial.
+\end{equation}
+Here $\M/K_\partial$ is used as a differential vector space, not as a
+quotient field or ring. This map need not be injective for arbitrary chains.
+The next criterion proves injectivity rather than building it into a
+completion definition.
+
+\section{Polynomial flags and phase densities}\label{sec:flags}
+
+\subsection{Polynomial flag chains}
+
+\begin{definition}[Polynomial two-chain]\label{def:poly-chain}
+A polynomial two-chain over $k_{\R}$ is a finite $k$-linear combination of
+chains
+\[
+  D=\Phi_*[0,1]^2,
+  \qquad
+  \Phi\in k_{\R}[u,v]^2.
+\]
+Its boundary is the alternating sum of the four polynomial face chains.
+A polynomial flag chain is a polynomial two-chain for which, after an affine
+change of the square coordinates,
+\[
+  \Phi(u,v)=\bigl(X(u),A(u)+vB(u)\bigr)
+\]
+with $X,A,B\in k_{\R}[u]$.
+\end{definition}
+
+The chain language is preferable to set-theoretic domains: it records
+orientation, multiplicity, and algebraic change of variables without
+requiring injectivity of $\Phi$.
+
+For a polynomial two-form $\Omega$, define
+\[
+  F_{D,q,\Omega}(z)=\int_D e^{zq}\Omega.
+\]
+Pulling back to the square writes this as
+\begin{equation}\label{eq:square-form}
+  F_{D,q,\Omega}(z)
+  =\int_0^1\int_0^1P(u,v)e^{zQ(u,v)}\,du\,dv,
+  \qquad P,Q\in k[u,v].
+\end{equation}
+
+\subsection{Gelfand--Leray density}
+
+Let $q\in k_{\R}[x,y]$ be nonconstant and let $D$ be a real polynomial flag chain.  Put
+$T=q(|D|)\subset\R$.  Remove the critical values of $q$, the critical values
+of the restrictions of $q$ to the faces, and the phase values of the face
+vertices.  Refine this finite exceptional set if necessary so that the algebraic
+relative Gauss--Manin system of the parametrized slices is smooth on its
+complement. The remaining real phase set is a finite union of open
+intervals $e$. For continuation, the real face intersections are viewed
+inside the reduced algebraic divisor cut out by the complexified faces.
+
+For $t\in e$, let
+\[
+  C_t=q^{-1}(t),
+  \qquad
+  B_t=C_t\cap|\partial D|,
+  \qquad
+  \gamma_t=D\cap C_t.
+\]
+The last object is an oriented relative one-cycle in $(C_t,B_t)$, with the
+multiplicities inherited from $D$.
+
+Let $\Omega$ be a polynomial two-form.  On the smooth locus of $q$, choose a
+one-form $\alpha$ satisfying
+\begin{equation}\label{eq:GL}
+  dq\wedge\alpha=\Omega.
+\end{equation}
+The restriction class of $\alpha$ to $C_t$ is independent of the choice.
+Define
+\begin{equation}\label{eq:density}
+  \rho_e(t)=\int_{\gamma_t}\alpha_t.
+\end{equation}
+
+\begin{lemma}[Phase-density formula]\label{lem:density-formula}
+After discarding chain components on which the pullback of $\Omega$ is zero,
+there is an $L^1$ density $\rho$ on the compact set $T=q(|D|)$ such that
+\begin{equation}\label{eq:laplace-density}
+  F_{D,q,\Omega}(z)=\int_T e^{zt}\rho(t)\,dt.
+\end{equation}
+On every regular interval $e$, the restriction $\rho_e$ is real analytic and
+is a branch of a period of the algebraic Gauss--Manin system.  In particular,
+it admits multivalued holomorphic continuation on the regular phase line.  No
+claim that $\rho_e$ is an algebraic function is made.
+\end{lemma}
+
+\begin{proof}
+On a compact subinterval of $e$, the map $q$ is a submersion on the sliced
+chain.  The Gelfand--Leray or coarea formula gives
+\[
+  \int_{D\cap q^{-1}(e)}e^{zq}\Omega
+  =\int_e e^{zt}\left(\int_{\gamma_t}\alpha_t\right)dt.
+\]
+The inner integral is a period of the relative algebraic de Rham class
+$[\alpha_t]$ and therefore is real analytic on $e$ and has the usual
+multivalued Gauss--Manin continuation.  For a component $\Phi_*[0,1]^2$, apply coarea first on the square to
+$q\circ\Phi$ and the signed polynomial density $\Phi^*\Omega$, including
+its Jacobian, and then push forward. Summing these formulas retains
+orientation and multiplicity; injectivity of $\Phi$ is not required.
+Unless $\Phi^*\Omega=0$, the polynomial $q\circ\Phi$ is nonconstant,
+and its critical set has measure zero. The coarea decomposition of this
+finite measure consequently has an $L^1$ density, including across the
+finitely many exceptional values.  Summing the regular intervals proves
+\eqref{eq:laplace-density}.  A full-dimensional component on which $q$ is
+constant cannot occur for nonconstant polynomial $q$; a lower-dimensional
+component pulls every two-form back to zero.
+\end{proof}
+
+\subsection{Laplace uniqueness}
+
+\begin{lemma}[Compact-support Laplace uniqueness]\label{lem:laplace-unique}
+Let $\rho$ be a compactly supported integrable function on $\R$.  If
+\[
+  \int_{\R}e^{zt}\rho(t)\,dt=0
+  \qquad(z\in\C),
+\]
+then $\rho=0$ almost everywhere.  If $\rho$ is analytic on each member of a
+finite interval decomposition, it vanishes identically on every open
+interval.
+\end{lemma}
+
+\begin{proof}
+Restriction to $z=is$, $s\in\R$, is the Fourier transform of the compactly
+supported $L^1$ function $\rho$.  Fourier uniqueness gives almost-everywhere
+vanishing, and analyticity gives intervalwise vanishing.
+\end{proof}
+
+For multiphase families it is useful to retain the Cauchy-transform form.
+
+\begin{lemma}[Cauchy jump separation]\label{lem:Cauchy-jump}
+Let $T\subset\R$ be a finite union of compact intervals and let $\rho_j$ be
+piecewise analytic integrable densities on $T$.  If
+\[
+  \sum_j c_j\int_T e^{zt}\rho_j(t)\,dt=0
+  \qquad(z\in\C),
+\]
+then
+\[
+  \sum_j c_j\rho_j(t)=0
+\]
+on every open regular interval.
+\end{lemma}
+
+\begin{proof}
+All moments of the combined density vanish.  Its Cauchy transform
+\[
+  \mathcal C(s)=\int_T\frac{\sum_j c_j\rho_j(t)}{s-t}\,dt
+\]
+therefore vanishes for large $s$ and hence on $\C\setminus T$.  At an interior
+point of a regular interval, the two lateral values differ by $2\pi i$ times
+the analytic density.  The jump is zero, so the density vanishes.
+\end{proof}
+
+\begin{remark}[Why real phase support is imposed]\label{rem:phase-support}
+For a general complex-valued polynomial phase on a real two-chain, the
+pushforward is a two-dimensional measure in the complex phase plane.  Its
+holomorphic moments can all vanish without the measure vanishing.  Thus the
+one-variable Cauchy jump argument is unavailable.  The phase-fibered
+hypothesis is mathematical content, not a notational convenience.
+\end{remark}
+
+\section{The face lattice and the generalized Jacobian}\label{sec:face}
+
+Let $\bar f:\bar{\mathcal C}\to S$ be a smooth proper family of connected
+curves and let $\pi:B\to S$ be a nonempty reduced divisor finite \'etale over $S$.
+Define
+\begin{equation}\label{eq:face-lattice}
+  \Fcal_B
+  =\ker\left(\pi_*\Z_B\xrightarrow{\deg}\Z_S\right).
+\end{equation}
+
+\begin{proposition}[Relative homology sequence]\label{prop:relative-homology}
+There is a natural exact sequence of integral local systems
+\begin{equation}\label{eq:relative-homology-seq}
+  0\longrightarrow R_1\bar f_*\Z
+  \longrightarrow R_1\bar f_*(\bar{\mathcal C},B;\Z)
+  \xrightarrow{\partial}\Fcal_B
+  \longrightarrow0.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Apply the homology long exact sequence of the pair $(\bar C_s,B_s)$.
+Connectedness gives $H_0(\bar C_s,\Z)=\Z$, and the map
+$H_0(B_s,\Z)\to H_0(\bar C_s,\Z)$ is the degree map.  The construction is
+locally constant in $s$ and therefore yields \eqref{eq:relative-homology-seq}.
+\end{proof}
+
+\begin{proposition}[Generalized-Jacobian torus]\label{prop:gen-Jac}
+Let $J=\Pic^0(\bar{\mathcal C}/S)$ and
+$J_B=\Pic^0(\bar{\mathcal C}/S,B)$.  There is an exact sequence
+\begin{equation}\label{eq:gen-Jac-seq}
+  1\longrightarrow T_B\longrightarrow J_B\longrightarrow J\longrightarrow0,
+  \qquad
+  T_B=\Res_{B/S}\Gm/\Gm,
+\end{equation}
+and
+\begin{equation}\label{eq:character-face}
+  X^*(T_B)\simeq\Fcal_B.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For reduced modulus, the generalized Jacobian is the extension of the ordinary
+Jacobian by the quotient of the Weil restriction of $\Gm$ by the diagonal
+$\Gm$; see \cite[Chapter~V]{SerreAGCF}.  Characters are contravariant.  The
+character sequence associated to
+\[
+  1\to\Gm\to\Res_{B/S}\Gm\to T_B\to1
+\]
+is
+\[
+  0\to X^*(T_B)\to\pi_*\Z_B\xrightarrow{\deg}\Z_S\to0,
+\]
+which is \eqref{eq:character-face}.
+\end{proof}
+
+\begin{remark}[Variance and weights]\label{rem:variance}
+The relative-homology quotient $\Fcal_B$ is a lattice of boundary classes.
+The same lattice is the character group of the torus $T_B$; the torus itself
+is dual.  In mixed-Hodge terms, relative homology and punctured-curve
+cohomology carry opposite Tate twists.  The slogan ``the face module is the
+toric part'' is correct only after this variance is specified.
+\end{remark}
+
+For a polynomial flag slice, $B_t$ is the finite set of intersections with
+the oriented faces and
+\[
+  \partial\gamma_t\in\Fcal_{B,t}.
+\]
+The equation $\deg\partial\gamma_t=0$ is simultaneously the balanced face
+relation and the boundary-of-boundary identity.
+
+\section{Rooted Picard--Lefschetz observability}\label{sec:PL}
+
+Let $H$ be a finite-dimensional vector space and suppose the monodromy group
+$G$ is generated by relative Picard--Lefschetz transformations
+\begin{equation}\label{eq:relative-PL}
+  (T_i-I)\xi
+  =\varepsilon_i\langle\widetilde\nu_i,\xi\rangle\nu_i,
+  \qquad \varepsilon_i\in\{\pm1\}.
+\end{equation}
+Here $\nu_i$ and $\widetilde\nu_i$ are vanishing and dual vanishing cycles.
+We use the standard relative Picard--Lefschetz formula; see, for example,
+\cite[Chapters~2--3]{DimcaSingularities}.
+Let $\gamma$ be a relative slice class.
+
+\begin{definition}[Rooted variation graph]\label{def:rooted-graph}
+Put
+\[
+  I_\gamma
+  =\{i:\langle\widetilde\nu_i,\gamma\rangle\ne0\}.
+\]
+Put a directed edge $i\to j$ when
+\[
+  \langle\widetilde\nu_j,\nu_i\rangle\ne0.
+\]
+Let $R_\gamma$ be the vertices reachable from $I_\gamma$, and set
+\[
+  \Vcal_\gamma=\Span\{\nu_i:i\in R_\gamma\},
+  \qquad
+  \Ocal_\gamma=\Span\{g\gamma-\gamma:g\in G\}.
+\]
+\end{definition}
+
+\begin{theorem}[Exact rooted orbit theorem]\label{thm:rooted-orbit}
+One has
+\[
+  \Ocal_\gamma=\Vcal_\gamma.
+\]
+The space is invariant under $G$.
+\end{theorem}
+
+\begin{proof}
+The space $\Ocal_\gamma$ is invariant because
+\[
+  h(g\gamma-\gamma)
+  =(hg\gamma-\gamma)-(h\gamma-\gamma).
+\]
+If $i\in I_\gamma$, \eqref{eq:relative-PL} gives $\nu_i\in\Ocal_\gamma$.
+If $\nu_i\in\Ocal_\gamma$ and $i\to j$, then
+\[
+  (T_j-I)\nu_i
+  =\varepsilon_j\langle\widetilde\nu_j,\nu_i\rangle\nu_j,
+\]
+so $\nu_j\in\Ocal_\gamma$.  Hence
+$\Vcal_\gamma\subseteq\Ocal_\gamma$.  The same formula shows that every
+$T_j$ preserves $\Vcal_\gamma$.
+
+Conversely, for every generator,
+\[
+  T_j\gamma-\gamma\in\Vcal_\gamma.
+\]
+If $g\gamma-\gamma\in\Vcal_\gamma$, then
+\[
+  T_j g\gamma-\gamma
+  =T_j(g\gamma-\gamma)+(T_j\gamma-\gamma)
+  \in\Vcal_\gamma.
+\]
+The same argument applies to $T_j^{-1}$, since
+$T_j^{-1}-I$ has the same rank-one image.  Induction on word length in the
+generators and their inverses gives
+$g\gamma-\gamma\in\Vcal_\gamma$ for every $g$, proving the reverse
+inclusion.
+\end{proof}
+
+On absolute curve homology the intersection graph is undirected.
+
+\begin{corollary}[Connected-graph observability]\label{cor:connected-observable}
+Suppose the vanishing cycles span $V$, their intersection graph is connected,
+and $I_\gamma\ne\varnothing$.  Then
+\[
+  \Ocal_\gamma=V.
+\]
+\end{corollary}
+
+\begin{proof}
+Every vertex is reachable from the nonempty active set.  Apply
+\cref{thm:rooted-orbit}.
+\end{proof}
+
+\begin{proposition}[Absolute irreducibility]\label{prop:absolute-irred}
+Assume in addition that $V$ carries a nondegenerate alternating pairing and
+that the $T_i$ are the associated symplectic transvections.  Under the
+hypotheses of \cref{cor:connected-observable}, the representation on $V$ is
+absolutely irreducible.
+\end{proposition}
+
+\begin{proof}
+Let $K/\Q$ be a characteristic-zero extension and let
+$0\ne W\subset V_K$ be invariant.  Choose $0\ne w\in W$.  Since the
+vanishing cycles span and the pairing is nondegenerate, some
+$\langle w,\nu_i\rangle$ is nonzero.  Then
+$(T_i-I)w$ is a nonzero multiple of $\nu_i$, so $\nu_i\in W$.
+Connectivity propagates membership to every vanishing cycle.  Thus
+$W=V_K$.
+\end{proof}
+
+\section{Denominator-free relative exactness}\label{sec:relative-exactness}
+
+\begin{definition}[Admissible observable flag datum]\label{def:admissible}
+An admissible observable flag datum is a triple $(D,q,\Omega)$ with $D$ a
+polynomial flag chain, $q\in k_{\R}[x,y]$, and
+$\Omega\in\Omega^2_{k[x,y]/k}$, satisfying:
+\begin{enumerate}[label=\textup{(A\arabic*)},leftmargin=3.2em]
+\item $q$ has finite critical locus and every fibre $q^{-1}(t)$ is connected;
+\item the generic affine fibre has one place at infinity;
+\item after resolving the compactified pencil, every finite singular fibre
+      has exactly one ordinary node and the finite critical values are
+      distinct; after also deleting the finitely many boundary exceptional
+      values, the compactified fibres form a smooth proper curve family
+      on the chosen phase base, and the reduced algebraic face intersections
+      form a finite \'etale divisor there;
+\item the resulting Lefschetz vanishing cycles span $H_1$ of the compactified
+      generic fibre and have connected intersection graph;
+\item the sliced chain is nonzero on at least one regular phase interval,
+      and on every interval on which it is nonzero it has nonzero incidence
+      with at least one Lefschetz vanishing cycle.
+\end{enumerate}
+\end{definition}
+
+The incidences in \textup{(A5)} refer to relative Picard--Lefschetz
+transformations of the form \eqref{eq:relative-PL} on this chosen base.
+Their action on the relative slice local system is part of the observable
+datum. They need not generate its full monodromy: additional face
+monodromies are allowed. No splitting of the finite \'etale face divisor
+into sections, or preservation of observability under an unspecified
+finite cover, is assumed.
+
+\subsection{Bonnet's theorem}
+
+For a polynomial map $q:\C^2\to\C$, a polynomial one-form $\omega$ is
+\emph{topologically relatively exact} if its restriction to every generic
+fibre has zero integral on every loop.  It is \emph{algebraically relatively
+exact} if
+\[
+  \omega=dR+a\,dq,
+  \qquad R,a\in\C[x,y].
+\]
+
+\begin{lemma}[Bonnet's hypotheses in relative dimension one]
+\label{lem:Bonnet-hypotheses}
+Let $q:\C^2\to\C$ be nonconstant.  If its critical locus is finite and every
+fibre is connected, then $q$ is primitive and quasi-fibered in Bonnet's
+terminology.
+\end{lemma}
+
+\begin{proof}
+A finite critical locus has codimension two, so $q$ is nonsingular in
+codimension one.  Since the target has dimension one, Bonnet's requirement
+that the fibres be $1$-generically connected means that every fibre is
+connected.  His $2$-generic nonemptiness condition is automatic: for every
+$c\in\C$, the proper ideal $(q-c)\subset\C[x,y]$ has a zero by the
+Nullstellensatz.  The weaker generic connectedness and nonemptiness conditions
+defining primitivity follow as well.
+\end{proof}
+
+\begin{theorem}[Bonnet--Gavrilov relative exactness]\label{thm:Bonnet}
+If $q:\C^2\to\C$ has finite critical locus and every fibre is connected, then
+every topologically relatively exact polynomial one-form is algebraically
+relatively exact.
+\end{theorem}
+
+\begin{proof}
+Apply \cref{lem:Bonnet-hypotheses} and
+\cite[Theorem~1.5]{BonnetRelativeExactness}.  Bonnet also records the earlier
+two-variable connected-and-reduced theorem of Gavrilov.
+\end{proof}
+
+\subsection{From a zero phase density to relative exactness}
+
+Let $\Omega$ be a polynomial two-form.  Choose a polynomial one-form $\omega$
+with
+\begin{equation}\label{eq:domega}
+  d\omega=\Omega;
+\end{equation}
+this is possible because $H^2_{\mathrm{dR}}(\Atwo)=0$.
+On a regular fibre choose $\alpha$ as in \eqref{eq:GL}.  The
+Gelfand--Leray formula is
+\begin{equation}\label{eq:GM-derivative}
+  \nabla[\omega_t]=[\alpha_t].
+\end{equation}
+
+\begin{lemma}[Observable density kills the Gelfand--Leray class]
+\label{lem:kill-alpha}
+Let $(D,q,\Omega)$ satisfy \textup{(A2)--(A5)} of
+\cref{def:admissible}.  If the phase density vanishes on a regular interval
+on which the sliced chain is nonzero and has nonzero Lefschetz incidence, then
+\[
+  [\alpha_t]=0\in H^1_{\mathrm{dR}}(C_t)
+\]
+for the generic affine fibre.
+\end{lemma}
+
+\begin{proof}
+On the active interval in the hypothesis, the period
+$\int_{\gamma_t}\alpha_t$ vanishes and hence, by analytic continuation,
+on every continuation of that branch.  Therefore
+$[\alpha_t]$ annihilates
+\[
+  \Span\{g\gamma_t-\gamma_t:g\in G\}.
+\]
+Apply the rooted propagation argument to the relative
+Picard--Lefschetz transformations in the observable datum. The nonzero
+incidence gives one absolute vanishing cycle in this span, and the
+connected intersection graph propagates to all of them. Thus the full
+relative variation span \emph{contains} the complete projective weight-one
+homology; equality with that span is unnecessary. The
+one-place-at-infinity hypothesis identifies the absolute homology with
+$H_1(C_t)$ of the affine fibre.  The de Rham--Betti pairing is perfect,
+so $[\alpha_t]=0$.
+\end{proof}
+
+\begin{lemma}[The primitive one-form is fibrewise exact]\label{lem:omega-exact}
+Under the hypotheses of \cref{lem:kill-alpha}, the restriction of $\omega$ to
+the generic fibre is exact.
+\end{lemma}
+
+\begin{proof}
+Equation \eqref{eq:GM-derivative} and \cref{lem:kill-alpha} show that
+$[\omega_t]$ is horizontal.  It is therefore monodromy invariant.  For a
+Picard--Lefschetz transvection, invariance of the cohomology class forces its
+period on the corresponding vanishing cycle to be zero.  Since the vanishing
+cycles span $H_1(C_t)$, all periods of $\omega_t$ vanish.  Hence the
+restriction is exact.
+\end{proof}
+
+\begin{theorem}[Polynomial relative Stokes]\label{thm:polynomial-relative-Stokes}
+Let $(D,q,\Omega)$ be admissible observable.  If the phase density vanishes on
+every regular interval, there is $a\in k[x,y]$ such that
+\begin{equation}\label{eq:Omega-a}
+  \Omega=da\wedge dq.
+\end{equation}
+Consequently
+\begin{equation}\label{eq:twisted-primitive}
+  e^{zq}\Omega=d\bigl(e^{zq}a\,dq\bigr).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By \textup{(A5)} there is an active regular interval with nonzero Lefschetz
+incidence.  The density vanishes there by hypothesis, so
+\cref{lem:kill-alpha,lem:omega-exact} show that $\omega$ is topologically
+relatively exact.  Apply \cref{thm:Bonnet}:
+\[
+  \omega=dR+a\,dq
+\]
+with $R,a\in\C[x,y]$.  Taking exterior derivatives and using
+\eqref{eq:domega} gives \eqref{eq:Omega-a}.  The coefficients descend to
+$k$: after fixing the finitely many monomials occurring in one solution,
+coefficient comparison is a finite linear system over $k$.  Finally,
+$dq\wedge dq=0$ gives \eqref{eq:twisted-primitive}.
+\end{proof}
+
+\begin{theorem}[Single-phase denominator-free functional comparison]
+\label{thm:intro-single}
+For an admissible observable datum, $I_D(\Omega)\equiv0$ implies
+$\Omega=da\wedge dq$ for some $a\in k[x,y]$. Thus the zero relation is
+reduced by polynomial Stokes to the compact polynomial-line faces.
+\end{theorem}
+\begin{proof}
+Functional vanishing and \cref{lem:laplace-unique} make every regular phase
+density zero.  Apply \cref{thm:polynomial-relative-Stokes} and ordinary
+Stokes:
+\[
+  F(z)=\int_{\partial D}e^{zq}a\,dq.
+\]
+Every face is polynomially parametrized, so the right side is a finite
+combination of compact polynomial-line functions.  It vanishes identically
+because $F\equiv0$.  The functional formal theorem of
+\cite{LongLinearKZ} makes this boundary relation formal.
+\end{proof}
+
+\begin{remark}[Why one place at infinity appears]\label{rem:infinity}
+If the generic affine fibre has $r>1$ points at infinity, then
+$H_1(C_t)$ contains an additional rank-$r-1$ puncture lattice.  Projective
+Picard--Lefschetz observability does not detect it.  One may replace
+\textup{(A2)} by an explicit infinity-lattice observability hypothesis, but it
+cannot simply be omitted.
+\end{remark}
+
+\section{Hodge rigidity and Jacobian correspondences}\label{sec:Hodge}
+
+\begin{theorem}[Deligne uniqueness for irreducible factors]
+\label{thm:Deligne-unique}
+On a connected smooth complex algebraic base, an irreducible complex
+local system underlying a polarizable complex variation of Hodge structure
+carries such a variation uniquely up to tensoring
+by a rank-one complex Hodge structure $\C(r,s)$, equivalently up to a shift of
+the Hodge bigrading.
+\end{theorem}
+
+This is \cite[Proposition~1.13]{DeligneFinitude}; see also the convenient
+formulation in \cite[Theorem~3(1), linked author manuscript]{BakkerMatsushita}.
+The algebraic base is compactifiable, as required in that formulation.
+
+\begin{theorem}[Weight-one Hodge rigidity]\label{thm:Hodge-rigidity}
+Let $\mathbb V$ and $\mathbb W$ be nonzero polarizable rational variations of
+Hodge structure of effective weight one on a connected smooth algebraic base.
+Assume their complex local systems are irreducible.  Every nonzero flat map
+\[
+  \phi:\mathbb V_{\C}\longrightarrow\mathbb W_{\C}
+\]
+is a morphism of complex variations of Hodge structure.
+\end{theorem}
+
+\begin{proof}
+Irreducibility makes $\phi$ an isomorphism of complex local systems.  Transport
+the Hodge bigrading of $\mathbb W$ to $\mathbb V$.  By
+\cref{thm:Deligne-unique}, the transported grading differs from the original
+one by a shift $\C(r,s)$.  Because both variations are effective of weight
+one and arise from rational Hodge structures, both types $(1,0)$ and $(0,1)$
+occur.  The shifted set of types can again be exactly
+$\{(1,0),(0,1)\}$ only when $r=s=0$.  Thus $\phi$ preserves the Hodge
+bigrading and hence the Hodge filtration.
+\end{proof}
+
+\begin{remark}[The reducible warning]\label{rem:reducible-Hodge}
+The theorem fails for repeated reducible local systems.  A constant elliptic
+curve gives a two-dimensional trivial local system; most constant matrices are
+flat but do not preserve $H^{1,0}$.  The irreducibility hypothesis is therefore
+load-bearing.
+\end{remark}
+
+\begin{proposition}[Algebraic realization]\label{prop:Jac-correspondence}
+Let $f_i:\mathcal C_i\to S$ and $f_j:\mathcal C_j\to S$ be smooth proper
+curve families over a smooth connected complex algebraic base, with relative
+Jacobians $J_i,J_j$.  A rational morphism of weight-one variations
+\[
+  R^1f_{i*}\Q\longrightarrow R^1f_{j*}\Q
+\]
+is induced, after multiplication by a positive integer and with the usual
+contravariance convention, by a homomorphism of abelian schemes between
+$J_i$ and $J_j$.  Its action on $R^1$ is represented by an algebraic divisor
+correspondence on $\mathcal C_i\times_S\mathcal C_j$.
+\end{proposition}
+
+\begin{proof}
+The Hodge realization functor from abelian schemes over $S$ to torsion-free
+polarizable integral variations of types $(-1,0)$ and $(0,-1)$ is fully
+faithful; see \cite[Rappel~(4.4.3)]{DeligneHodgeII}.  After multiplying the
+rational morphism by an integer, full faithfulness therefore supplies the
+corresponding homomorphism of relative Jacobians.
+
+To realize the rational action by a divisor without assuming sections
+of the curve families, work first over the function field $\C(S)$.
+After a finite field extension both curves have points. The Abel--Jacobi
+maps and the Poincar\'e bundle then give a divisor correspondence inducing
+the given Jacobian homomorphism. Push this divisor down from the finite
+extension and divide by its degree, and by the integer used above. The
+trace of the induced action is the original rational morphism, since
+that morphism was already defined over $\C(S)$.
+Take the closure of the resulting rational divisor in
+$\mathcal C_i\times_S\mathcal C_j$. This total space is smooth, so the
+closure is a rational Cartier divisor. Its action on the two $R^1$
+local systems agrees with the prescribed map on a dense open base and
+therefore everywhere. Thus no global choice of a degree-one divisor or
+an unmentioned base change is needed.
+\end{proof}
+
+\begin{corollary}[Complex intertwiners are generated by correspondences]
+\label{cor:complex-correspondences}
+Under the hypotheses of \cref{thm:Hodge-rigidity}, every complex flat
+intertwiner is a complex linear combination of rational VHS morphisms.
+When the variations are the $R^1$ of curve families as in
+\cref{prop:Jac-correspondence}, it is consequently a complex linear
+combination of algebraic Jacobian correspondences.
+\end{corollary}
+
+\begin{proof}
+For rational local systems, the intertwiner space is the kernel of a finite
+system of rational linear equations.  Hence scalar extension gives
+\[
+  \Hom_{\pi_1}(\mathbb V,\mathbb W)\otimes_{\Q}\C
+  \simeq
+  \Hom_{\pi_1}(\mathbb V_{\C},\mathbb W_{\C}).
+\]
+Apply \cref{thm:Hodge-rigidity} to the rational summands, and then
+\cref{prop:Jac-correspondence} in the curve-family setting.
+\end{proof}
+
+
+\subsection{Disjoint blocks and the remaining correspondence obligation}
+\begin{proposition}[Disjoint-block comparison on a fixed common base]
+\label{prop:audited-disjoint}
+Let a finite family of admissible data be pulled to a fixed common phase
+base on which the face points are sections. Suppose the absolute complex
+local systems on this base are irreducible and pairwise nonisomorphic,
+and the actual slice-variation space projects onto each active factor.
+A constant-coefficient functional relation then reduces termwise by
+polynomial relative Stokes to a compact polynomial-line boundary relation.
+\end{proposition}
+\begin{proof}
+Laplace uniqueness gives a zero combined density on each active interval.
+Its monodromy differences annihilate the actual variation submodule of
+the direct sum of absolute systems. A submodule of a sum of pairwise
+nonisomorphic simple modules is the sum of some factors; surjectivity to
+every active factor makes it the whole sum. Each scaled Gelfand--Leray
+class is zero. The proof of \cref{thm:polynomial-relative-Stokes} applies
+to each scaled form, and the residual relation is on the faces.
+\end{proof}
+
+The hypotheses refer to the chosen common base, not to a representation
+before an unspecified finite cover. For repeated isomorphic blocks,
+absolute Hodge intertwiners do not determine the relative slice extension.
+Moreover a generic Jacobian correspondence need not preserve polynomial
+representatives without phase denominators. A general isotypic formal
+comparison requires an actual extension comparison and a compatible
+polynomial or local lattice realization. We do not infer either from
+Hodge rigidity alone. For the elliptic theorem below, these issues are
+replaced by a direct actual-column proof.
+\section{An actual-solution comparison criterion}
+Let $\mathcal B$ be a finite rational boundary differential system, let
+$L_\partial/F$ be a Picard--Vessiot field for that system containing its
+actual solution coordinates, and let $\Ncal\subset L_\partial$ be their
+finite-dimensional $F$-linear differential span. Include $1$ when needed and put $K_\partial=F(\Ncal)\subset L_\partial$. All fields are embedded in a common no-new-constants differential overfield.
+Let $\Tcal_\partial$ be the tensor category generated by $\mathcal B$,
+allowing subquotients and duals. Its objects are precisely the differential
+modules trivialized by $L_\partial$ \cite[Theorem 1.5.2]{Singer}.
+
+\begin{lemma}[Differentially finite elements of a Picard--Vessiot field]
+\label{lem:dfinite}
+Every finite-dimensional $F$-differential subspace of $L_\partial$ belongs
+to $\Tcal_\partial$.
+\end{lemma}
+\begin{proof}
+Let $R$ be the Picard--Vessiot ring. If $f\in L_\partial$ satisfies a scalar
+linear equation over $F$, all its Galois translates satisfy that equation.
+Their constant span is finite dimensional. After trivializing the torsor,
+a rational function with finite-dimensional translation orbit has no pole:
+the union of the polar loci of a finite basis is a proper closed subset
+invariant under all translations, whereas the group acts transitively on
+itself. This remains valid component by component if the group is
+ disconnected. Thus $f\in R$; see the locally finite argument in
+\cite[proof of Proposition 1.3.33]{Singer}.
+
+Write $R=F[Y_{ij},(\det Y)^{-1}]$ for a boundary fundamental matrix.
+A bounded span of monomials in $Y_{ij}$ and $(\det Y)^{-1}$ is stable
+under differentiation, since $Y'=A_\partial Y$ and
+$((\det Y)^{-1})'=-\operatorname{tr}(A_\partial)(\det Y)^{-1}$.
+Such a span is a quotient of finite sums of tensor constructions in the
+boundary module and its determinant dual. Every finite-dimensional
+$F$-differential subspace of $R$ lies in one of these spans. Closure under
+subquotients and the Picard--Vessiot tensor equivalence
+\cite[Theorem 1.5.2]{Singer} prove the claim.
+\end{proof}
+
+\begin{lemma}[Regular affine cocycles]\label{lem:affine-cocycle}
+Let $G$ be an algebraic group over an algebraically closed field $C_0$
+of characteristic zero, with reductive identity component, and let $V$
+be a finite-dimensional rational representation. Every regular cocycle
+$c(gh)=c(g)+g c(h)$ has the form $c(g)=v-gv$ for some $v\in V$.
+\end{lemma}
+\begin{proof}
+Let $g$ act on $V\oplus C_0$ by
+$g(w,t)=(gw+t c(g),t)$. Complete reducibility supplies an invariant
+lift $(v,1)$ of $1$ in the trivial quotient, giving the assertion.
+Complete reducibility here includes disconnected groups: average a
+$G^\circ$-equivariant splitting over the finite component group
+\cite[Corollary~22.43]{MilneAG}. Equivalently, this is the vanishing of
+algebraic $H^1(G,V)$ in \cite[Proposition~15.15]{MilneAG}.
+\end{proof}
+
+\begin{theorem}[Actual one-column comparison]
+\label{thm:criterion}
+Suppose an actual column $U$ satisfies $U'=AU+b$, with $b_i\in\Ncal$,
+and $n\ge2$. Assume:
+\begin{enumerate}
+\item the homogeneous Galois group over $F$ contains $\SL_n$;
+\item its adjoint module $\End^0(A)$ does not belong to $\Tcal_\partial$;
+\item at least one coordinate of $U$ is not in $\Ncal$.
+\end{enumerate}
+Then $U_1,\ldots,U_n$ are algebraically independent over
+$K_\partial\subset L_\partial$. In the setting of
+\cref{thm:boundary-system}, \eqref{eq:canonical-comparison} is injective,
+and its image is the span of the actual polynomial-amplitude periods
+modulo $K_\partial$.
+\end{theorem}
+
+\begin{proof}
+Let $E=\Ncal+\sum_i FU_i$. The differential module $E/\Ncal$ is a
+quotient of the coefficient module associated with $A$. Use the coefficient module with basis $e_i$ and
+$\partial e_i=\sum_j A_{ij}e_j$; the map $e_i\mapsto U_i\bmod\Ncal$
+is a differential map. Its horizontal representation is dual to the
+solution representation of $Y'=AY$, so it is irreducible and has the same
+adjoint tensor module. By the third assumption, the quotient is nonzero and hence is
+that entire irreducible module.
+
+If all $U_i$ belonged to $L_\partial$, \cref{lem:dfinite} would put $E$,
+then $E/\Ncal$, and then its adjoint module in $\Tcal_\partial$,
+contradicting the second assumption. Thus $U\notin L_\partial^n$.
+
+In a joint Picard--Vessiot extension for $A$ and the boundary system, the
+kernel of restriction to $L_\partial$ maps to a normal subgroup $H$ of
+the homogeneous group $G\subset\GL_n$. A normal subgroup of a group
+containing $\SL_n$ either contains $\SL_n$ or has trivial projective
+image. Indeed, if $H\cap\SL_n$ is not all of $\SL_n$, it is finite central.
+For each $h\in H$, the commutator map from the connected group $\SL_n$
+to this finite intersection is constant and equals the identity at $1$.
+Thus $h$ centralizes $\SL_n$ and is scalar. This also excludes a hidden
+noncentral finite projective image. In the latter, projectively trivial case, $H$ acts
+trivially on $\End^0(A)$, so the adjoint module is trivialized by
+$L_\partial$, a contradiction. Therefore the homogeneous group after
+base change to $L_\partial$, and hence to $K_\partial$, contains $\SL_n$.
+
+Let $Y$ be a fundamental matrix over a joint field for the inhomogeneous
+system over $K_\partial$. Its affine Galois group is a subgroup of
+$\C^n\rtimes G_{K_\partial}$, acting by
+$\sigma(U)=U+Yc_\sigma$. Its translation kernel is an invariant vector
+subspace, hence either $0$ or $\C^n$.
+If it is $\C^n$, translations make the orbit of $U$ Zariski dense in
+$\A^n$. If it is zero, the remaining regular algebraic cocycle of the
+homogeneous group is a coboundary by \cref{lem:affine-cocycle}.
+Here reductivity of its identity component follows
+also directly: a unipotent radical would lie in $\SL_n$ and be normal
+under $\SL_n$, which has no nontrivial connected normal unipotent
+subgroup. Explicitly, writing $\sigma(Y)=Yg_\sigma$, the cocycle
+can be written $c_\sigma=g_\sigma c-c$; hence $U-Yc$ is fixed. Thus
+\[
+ U=a+Yc,\qquad a\in K_\partial^n,\quad c\in\C^n.
+\]
+The vector $c$ is nonzero, since otherwise $U\in K_\partial^n$. The
+$\SL_n$-orbit of a nonzero vector is $\A^n\setminus\{0\}$, again dense.
+In either case a polynomial over $K_\partial$ vanishing at $U$ vanishes
+on a dense affine orbit and is zero. Linear independence modulo the
+boundary field, and then the last assertion by normal-form reduction,
+follow immediately.
+\end{proof}
+
+\begin{remark}
+The third condition concerns only rational \emph{linear} combinations of a
+finite actual boundary vector. It is strictly weaker than the desired
+nonmembership in the boundary fraction field. The proof is what upgrades
+this linear test to the fraction-field statement. A nonzero abstract
+cohomology class alone would not suffice.
+\end{remark}
+
+\section{The elliptic polynomial normal form}
+Fix the counterclockwise triangle
+\[
+ D=\operatorname{conv}\{(-1/2,-1),(1/2,0),(-1/2,1)\}
+ =\{-1/2\le x\le1/2,\ |y|\le1/2-x\},
+\]
+and
+\[
+ q=y^2-x^3+3x,\qquad
+ M_j=\int_Dx^j e^{zq}\dd x\dd y\quad(j=0,1).
+\]
+A polynomial parametrization is
+$\Phi(u,v)=(u-1/2,(1-u)(2v-1))$, with Jacobian $2(1-u)$.
+
+For $\beta=P\,dy-Q\,dx$, one has
+\[
+ d_z\beta=(L_xP+L_yQ)\,dx\wedge dy,
+\quad L_x=\partial_x+3z(1-x^2),\quad L_y=\partial_y+2zy.
+\]
+The operators act in separate variables. Their one-variable quotients have
+bases $1,x$ and $1$, respectively; both operators are injective on
+polynomials. Tensoring the two one-variable complexes proves
+\begin{equation}\label{eq:ranktwo}
+ \Hq=F_0[dx\wedge dy]\oplus F_0[x\,dx\wedge dy].
+\end{equation}
+In particular the rank is exactly two, not merely at most two.
+
+The explicit reduction recurrences are
+\begin{align}
+ [x^i y^j]&=-\frac{j-1}{2z}[x^i y^{j-2}] &&(j\ge1),\label{eq:yrec}\\
+ [x^{m+2}]&=[x^m]+\frac{m}{3z}[x^{m-1}] &&(m\ge0),\label{eq:xrec}
+\end{align}
+with the zero-coefficient terms omitted. Each use records a polynomial
+primitive. Hence every $r\in k[x,y]$ has a unique remainder
+$a_r(z)+b_r(z)x$, with $a_r,b_r\in k[z,z^{-1}]$, and an identity
+\begin{equation}\label{eq:elliptic-normal}
+ r=a_r+b_rx+L_xP_r+L_yQ_r,
+ \qquad P_r,Q_r\in k[z,z^{-1},x,y].
+\end{equation}
+
+Let
+\[
+ C=\begin{pmatrix}0&2\\2&0\end{pmatrix},\qquad
+ D_0=\begin{pmatrix}-5/6&0\\0&-7/6\end{pmatrix},\qquad A=C+D_0/z.
+\]
+The following are identities of polynomial forms, with Laurent coefficients
+in $z$:
+\begin{align}
+ q\,dx\wedge dy
+ &= -\frac5{6z}\,dx\wedge dy+2x\,dx\wedge dy+d_z\beta_0,\\
+ qx\,dx\wedge dy
+ &=2\,dx\wedge dy-\frac7{6z}x\,dx\wedge dy+d_z\beta_1,\label{eq:explicit-beta}
+\end{align}
+where
+\[
+ \beta_0=\frac{x}{3z}\,dy-\frac{y}{2z}\,dx,
+ \qquad
+ \beta_1=\frac{x^2-2}{3z}\,dy-\frac{xy}{2z}\,dx.
+\]
+Define actual face integrals
+\[
+ B_{x,j}=\int_{\partial D}x^je^{zq}\,dy,
+ \qquad
+ B_{y,j}=-\int_{\partial D}x^jye^{zq}\,dx.
+\]
+Then
+\begin{equation}\label{eq:elliptic-system}
+ \binom{M_0}{M_1}'
+ =\begin{pmatrix}-5/(6z)&2\\2&-7/(6z)\end{pmatrix}\binom{M_0}{M_1}
+ +\frac1z\binom{B_{y,0}/2+B_{x,1}/3}
+ {B_{y,1}/2+B_{x,2}/3-2B_{x,0}/3}.
+\end{equation}
+This is obtained by integrating \eqref{eq:explicit-beta}, not by choosing
+an isomorphic abstract connection and then normalizing a solution.
+
+\subsection{A finite actual boundary field}
+Put
+\[
+ p(x)=-x^3+x^2+2x+\tfrac14,
+ \quad P_j(z)=\int_{-1/2}^{1/2}x^j e^{zp(x)}\dd x,
+ \quad Q_0(z)=\int_{-1}^{1}e^{z(y^2-11/8)}\dd y,
+\]
+and $E_a=e^{-3z/8}$, $E_b=e^{11z/8}$. Parametrizing the three oriented
+edges gives
+\begin{equation}\label{eq:face-identities}
+ B_{x,j}=2P_j-(-1/2)^jQ_0,
+ \qquad B_{y,j}=P_j-2P_{j+1}.
+\end{equation}
+The one-variable reductions imply
+\begin{equation}\label{eq:boundary-field}
+ K_{\partial,0}=k(z)(P_0,P_1,Q_0,E_a,E_b).
+\end{equation}
+Indeed the two slanted faces have the same phase $p$; their arbitrary
+polynomial amplitudes reduce to $P_0,P_1$ and endpoints. The vertical
+quadratic amplitudes reduce to $Q_0$ and endpoints.
+
+For completeness, a closed boundary system is
+\begin{align}
+ P_0'&=\left(\frac{17}{36}-\frac1{3z}\right)P_0+
+       \frac{14}{9}P_1+\frac{E_b+5E_a}{18z},\\
+ P_1'&=\left(\frac{28}{27}+\frac1{9z}\right)P_0+
+       \left(\frac{163}{108}-\frac2{3z}\right)P_1+
+       \frac{-53E_b+41E_a}{108z},\\
+ Q_0'&=\left(-\frac{11}{8}-\frac1{2z}\right)Q_0+\frac{E_a}{z},
+ \qquad E_a'=-\tfrac38 E_a,\quad E_b'=\tfrac{11}{8}E_b.
+\end{align}
+For example, $P_2=(2P_1+2P_0)/3-(E_b-E_a)/(3z)$, so
+\eqref{eq:elliptic-system} closes with this boundary vector. The only
+finite pole of the combined rational system is zero.
+
+\subsection{The actual normalization at zero}
+The face forcing in \eqref{eq:elliptic-system} is $b(z)/z$ with $b$ entire.
+Writing $M=\sum v_mz^m$, $b=\sum b_mz^m$, its holomorphic solution obeys
+\[
+ (mI-D_0)v_m=Cv_{m-1}+b_m,\qquad v_{-1}=0.
+\]
+Every $mI-D_0$, $m\ge0$, is invertible. Thus there is at most one
+holomorphic solution at zero with these actual forcing functions. The
+integral supplies it, with
+\[
+ M_0(0)=1,\qquad M_1(0)=-\tfrac16.
+\]
+This supplies a second, independent check that no unspecified homogeneous
+solution has been added to the actual column.
+
+\section{Explicit comparison with elliptic Gauss--Manin periods}
+The regular fibers are
+\[
+ E_t:\ y^2=f_t(x)=x^3-3x+t.
+\]
+On a locally constant closed cycle, let
+$h_j(t)=\int x^j dx/(2y)$ for $j=0,1$. Set
+\[
+ R_0(x,t)=\frac{4-tx-2x^2}{6(t^2-4)},\qquad
+ R_1(x,t)=\frac{2t-2x-tx^2}{6(t^2-4)}.
+\]
+Direct differentiation of rational forms gives
+\begin{equation}\label{eq:GLcertificate}
+ \partial_t\left(\frac{x^jdx}{2y}\right)
+ -\sum_{k=0}^1G_{jk}(t)\frac{x^kdx}{2y}
+ =d_x\left(\frac{R_j(x,t)}{y}\right),
+ \qquad
+ G(t)=\frac1{6(t^2-4)}\begin{pmatrix}-t&2\\-2&t\end{pmatrix}.
+\end{equation}
+These identities can be checked after multiplication by $4y^3$.
+Integration on closed cycles proves
+\begin{equation}\label{eq:phase-GM}
+ h'=G(t)h,\qquad (tI-C)h'=-(D_0+I)h.
+\end{equation}
+For the convention $dq\wedge\alpha=x^jdx\wedge dy$, the
+Gelfand--Leray form is $-x^jdx/(2y)$. The common minus sign does not
+change the matrix $G$ or the nonvanishing of its periods.
+The forms $dx/(2y),x\,dx/(2y)$ are the usual two-dimensional de Rham
+basis of the elliptic curve (the latter is of the second kind at infinity).
+The exact rational-form identities identify the actual Gauss--Manin
+connection, not only its local exponents.
+
+With Laplace convention
+$\mathcal L(tT)=\partial_z\mathcal L(T)$ and
+$\mathcal L(\partial_tT)=-z\mathcal L(T)$, applying the Weyl substitution
+to \eqref{eq:phase-GM} gives
+\[
+ -\partial_z(zU)-C(-zU)=-(D_0+I)U,
+ \quad\text{hence}\quad zU'=zCU+D_0U.
+\]
+This is exactly the homogeneous part of \eqref{eq:elliptic-system}.
+The polynomial certificates \eqref{eq:explicit-beta} give its actual
+relative forcing. This comparison concerns the displayed polynomial Weyl presentation
+and its generic transformed connection. It does not identify arbitrary
+lattices or every possible middle extension from its generic matrix alone.
+For the application no such identification is needed: the polynomial
+certificates already give the actual system, and its Galois group is
+computed directly below. No arithmetic normalization is inferred from
+independently split punctual distributions.
+
+\section{The actual column is not linearly generated by the faces}
+In this section all linear coefficients may be complex. Let
+\[
+ \Ncal=\Span_{\C(z)}\{1,P_0,P_1,Q_0,E_a,E_b\}.
+\]
+It is a differential space by the displayed boundary system.
+
+\begin{lemma}[Nonzero actual quotient]\label{lem:nonzero-quotient}
+One has $M_0\notin\Ncal$.
+\end{lemma}
+\begin{proof}
+Suppose otherwise. Clearing rational denominators yields
+\[
+ P(z)M_0(z)=\sum_jR_j(z)g_j(z),\qquad
+ 0\ne P\in\C[z],\quad R_j\in\C[z],\quad
+ g_j\in\{1,P_0,P_1,Q_0,E_a,E_b\}.
+\]
+The inverse Laplace distributions of the actual line periods have
+algebraic densities on every regular real interval: on a monotone branch
+of a polynomial phase the density is $h(x(t))/p'(x(t))$.
+The exponentials and $1$ give point masses. Derivatives of these
+distributions still have algebraic germs on regular intervals.
+Laplace uniqueness for compactly supported distributions therefore implies
+that the density germ $\rho(t)$ of $M_0$, on a regular interval just to
+the right of $t=0$, satisfies
+\begin{equation}\label{eq:rho-algebraic}
+ P(-\partial_t)\rho(t)\quad\text{is algebraic over }\C(t).
+\end{equation}
+
+We verify a nonzero elliptic monodromy variation of this particular germ.
+Put $f(x)=-x^3+3x$, let $r_2(s)\in(-1,1)$ be its middle inverse branch
+for $-2<s<2$, and let $c(t)$ be the inverse branch of $p$ beginning at
+$c(0)\in(-1/5,0)$. Set $a(t)=1/2-c(t)$. Coarea on the triangle gives,
+near zero,
+\begin{equation}\label{eq:actual-density}
+ \rho(t)=\int_{-a(t)}^{a(t)}
+ \frac{dy}{3(1-r_2(t-y^2)^2)}.
+\end{equation}
+Here $p'(x)=-3x^2+2x+2$ is positive on $[-1/5,1]$.
+Moreover $p(-1/5)<0<p(0)$ and $p(4/5)<2<p(1)$, so $c(t)$ is a
+single real-analytic branch for $0\le t\le2$, with
+$c(0)\in(-1/5,0)$ and $c(2)\in(4/5,1)$. For
+$|y|\le|a(t)|$ one has
+\[
+ f(c(t))=t-a(t)^2\le t-y^2\le t<2,
+ \qquad f(c(t))>-2.
+\]
+Thus the middle inverse branch is regular on this moving segment for
+$0<t<2$. Writing the signed integral on the fixed interval as
+\[
+ a(t)\int_{-1}^1
+ \frac{ds}{3(1-r_2(t-a(t)^2s^2)^2)}
+\]
+proves real analyticity and hence local holomorphic continuation along
+that interval. At $t=11/8$ one has $c(t)=1/2$, so the endpoints meet,
+but the displayed expression is analytic and zero there. This specifies
+the continuation through that otherwise excluded boundary value. Near
+$t=2$, $a(t)<0$ and $a(2)\ne0$, and both endpoints are unramified.
+
+Write $\varepsilon=2-t$ and $r_2(t-y^2)=1-v$. Since
+$f(1-v)=2-3v^2+v^3$, near the node the integrand is
+\[
+ \frac1{2\sqrt3\sqrt{\varepsilon+y^2}}+O(1).
+\]
+Choose a fixed $b>0$ smaller than $|a(2)|$. The outer parts
+$|y|\ge b$ extend holomorphically to $t=2$; on $|y|\le b$ the remainder
+in the displayed expansion is uniformly bounded for $\varepsilon>0$.
+Since the integration orientation is reversed near $2$, it follows that
+\begin{equation}\label{eq:audited-log-coefficient}
+ \rho(t)=\frac{1}{2\sqrt3}\log(2-t)+O(1)
+ \qquad(t\to2^-).
+\end{equation}
+The local geometry makes the corresponding variation precise. Put
+$v=1-x$ and $u=v\sqrt{3-v}$. Then $q-2=y^2-u^2$ near the node, so a
+nearby local fiber is an annulus. The path outside a small nodal
+neighborhood and its two endpoints return under a sufficiently small
+loop. Its variation lies in the one-dimensional cycle space of that
+annulus. The coefficient in \eqref{eq:audited-log-coefficient} proves it
+is nonzero. The local core cycle $\delta_+$ is fixed by this nodal
+monodromy (equivalently by its Dehn twist). Consequently
+\[
+ (T_+-I)\rho=c_*h_+(t),\qquad c_*\ne0,
+ \quad h_+(t)=\int_{\delta_+}\frac{dx}{2y},
+ \quad T_+h_+=h_+.
+\]
+This is also the local annulus proof of the Picard--Lefschetz formula in
+this case; the nonzero coefficient has just been checked on the actual
+path by \eqref{eq:actual-density}.
+
+A power $T_+^m$ fixes the algebraic germ in \eqref{eq:rho-algebraic}.
+Analytic continuation commutes with the constant-coefficient operator,
+so $P(-\partial_t)h_+=0$.
+But every solution germ of a nonzero constant-coefficient differential
+equation extends to an entire function of $t$.
+The elliptic period $h_+$ does not. Indeed, for $-2<t<2$ let
+$r_1<r_2<r_3$ be the roots of $x^3-3x+t$. Up to a fixed nonzero factor,
+\[
+ h_+(t)=\int_{r_2}^{r_3}
+ \frac{dx}{\sqrt{(x-r_1)(x-r_2)(r_3-x)}}.
+\]
+As $t\to-2^+$, $r_1,r_2\to-1$ and $r_3\to2$. Put
+$\delta=r_2-r_1$. On $x=r_2+v$, $\delta\le v\le b$ for a fixed small
+$b>0$, the absolute value of the integrand is bounded below by $c/v$
+with a fixed $c>0$. The whole real integral has one sign and is therefore
+unbounded as $\delta\to0$. The analogous upper bound gives logarithmic
+growth. In particular this continuation cannot be entire. This contradiction proves the lemma.
+\end{proof}
+
+\begin{remark}
+The singularity at $t=2$ is a singularity of the analytic continuation of a
+regular phase-density germ. It is not a claim that the original compactly
+supported density is nonzero outside $q(D)=[-11/8,11/8]$.
+\end{remark}
+
+\section{Galois disjointness from the actual boundary system}
+\subsection{The rank-two homogeneous group}
+Eliminating the second coordinate from $Y'=AY$ gives
+\[
+ y_0''+\frac2z y_0'+\left(\frac5{36z^2}-4\right)y_0=0.
+\]
+With $w=zy_0$, this is
+\[
+ w''=\left(4-\frac5{36z^2}\right)w.
+\]
+Equivalently $y_0=z^{-1/2}v(2z)$, where $v$ satisfies the modified Bessel
+equation of order $1/3$. The Bessel differential-Galois classification
+states that the group is $\SL_2$ for an order not in
+$1/2+\Z$ \cite[Example~1.3.32, group statement]{Singer}, attributed
+there to Kolchin \cite{Kolchin1968}. The change from ordinary to modified
+Bessel is the nonzero constant rescaling of the independent variable by
+$i$. An algebraic rank-one twist does
+not change this connected derived group. Moreover $\operatorname{tr}A=-2/z$,
+so the determinant solution is a constant multiple of $z^{-2}$. Thus the
+homogeneous group of our system is exactly $\SL_2$.
+Its adjoint formal exponential factors at infinity are
+\begin{equation}\label{eq:ell-adjoint}
+ 1,\ e^{4z},\ e^{-4z}.
+\end{equation}
+
+\subsection{The boundary has only one nonabelian simple factor}
+The homogeneous rank-two block of the boundary system is the cubic moment
+module for $p$. Write
+\[
+ \alpha=\frac{\sqrt7}{3},\qquad
+ \beta=\alpha^3=\frac{7\sqrt7}{27},\qquad c_0=\frac{107}{108}.
+\]
+Then
+\begin{equation}\label{eq:pnormal}
+ p(\alpha s+1/3)=c_0+\beta(-s^3+3s).
+\end{equation}
+The centered cubic homogeneous moments satisfy
+\[
+ V'=\left[
+ \begin{pmatrix}0&2\beta\\2\beta&0\end{pmatrix}
+ +\frac1z\begin{pmatrix}-1/3&0\\0&-2/3\end{pmatrix}
+ \right]V,
+\]
+up to the scalar exponential $e^{c_0z}$ and an algebraic constant basis
+change. Its first coordinate is again modified Bessel of order $1/3$,
+now at $2\beta z$. Its derived group is $\SL_2$, and its adjoint formal
+exponential factors are
+\begin{equation}\label{eq:boundary-adjoint}
+ 1,\ e^{4\beta z},\ e^{-4\beta z}.
+\end{equation}
+All other diagonal factors in the full boundary system are rank one:
+the vertical quadratic factor and the endpoint exponentials. The kernel of
+the Galois action on these diagonal factors is unipotent, because the
+system is block triangular. The reductive quotient therefore has one
+simple derived factor $\SL_2$, detected by the cubic block; its remaining
+quotient is diagonalizable.
+
+\begin{lemma}[Projective exclusion]\label{lem:projective-exclusion}
+The adjoint module of $A$ does not belong to the tensor category of the
+boundary system.
+\end{lemma}
+\begin{proof}
+Otherwise that boundary group would have the projective Galois group
+$\mathrm{PGL}_2$ of $A$ as a quotient. The unipotent radical maps trivially
+to this reductive quotient, so the quotient factors through the reductive
+boundary group. Its restriction to the unique simple derived $\SL_2$
+is the usual projective quotient up to an automorphism of
+$\mathrm{PGL}_2$; such automorphisms over $\C$ are inner. After aligning
+this restriction with the cubic block, the two projective maps agree on the
+whole group: their discrepancy centralizes $\mathrm{PGL}_2$, whose
+centralizer in itself is trivial. Thus the two adjoint differential modules
+would be isomorphic over $\C(z)$.
+
+Their formal exponential factors \eqref{eq:ell-adjoint} and
+\eqref{eq:boundary-adjoint} disagree, since $\beta\ne\pm1$. These are the exponential factors of the formal normal form at infinity
+\cite[\S1.4, formal fundamental matrix]{Singer}. In the present
+unramified, distinct-leading-eigenvalue case, formal diagonalization
+reduces the claim to rank one: a nonzero Laurent-series intertwiner
+between factors $e^{az}$ and $e^{bz}$ would have logarithmic derivative
+$a-b+O(z^{-1})$, whereas a Laurent series has logarithmic derivative
+$O(z^{-1})$. Thus it requires $a=b$. The unequal sets of factors cannot
+be related by a formal, and hence not by a rational, isomorphism.
+Rank-one endpoint exponentials do not affect an adjoint module, so they
+cannot remove the obstruction.
+\end{proof}
+
+\begin{theorem}[Complete actual elliptic comparison]\label{thm:elliptic-main}
+For the fixed triangle and phase above,
+\[
+ M_0,M_1\quad\text{are algebraically independent over }K_\partial.
+\]
+In particular, over the arithmetic boundary field,
+\begin{equation}\label{eq:free-algebra}
+ K_{\partial,0}[I_D(r\,dx\wedge dy):r\in k[x,y]]
+ =K_{\partial,0}[M_0,M_1]\simeq K_{\partial,0}[X_0,X_1].
+\end{equation}
+The canonical map \eqref{eq:canonical-comparison} is an isomorphism onto the
+two-dimensional space of actual polynomial-amplitude periods modulo the
+boundary field. For every polynomial amplitude,
+\begin{equation}\label{eq:linear-comparison}
+ I_D(r\,dx\wedge dy)\in K_\partial
+ \quad\Longleftrightarrow\quad
+ [r\,dx\wedge dy]=0\text{ in }\Hq.
+\end{equation}
+All such boundary reductions are the polynomial identities
+\eqref{eq:elliptic-normal} integrated by Stokes.
+\end{theorem}
+\begin{proof}
+The homogeneous group is $\SL_2$,
+\cref{lem:projective-exclusion} gives projective disjointness, and
+\cref{lem:nonzero-quotient} gives the required nonzero actual quotient.
+Apply \cref{thm:criterion}. The equality of algebras and the equivalence
+follow from the unique normal form and algebraic independence. The
+statement over $k$ follows from the stronger statement after adjoining
+complex constants.
+\end{proof}
+
+\begin{corollary}[Full actual translation kernel]\label{cor:full-translation}
+Over the complex actual boundary field, the affine Picard--Vessiot group
+of the elliptic column and its homogeneous fundamental matrix is
+$\mathbb G_a^2\rtimes\SL_2$. In particular, the translation kernel is
+all of $\mathbb C^2$.
+\end{corollary}
+\begin{proof}
+The homogeneous group after base change is $\SL_2$, and its invariant
+translation kernel is either zero or the entire standard representation.
+If it were zero, the splitting argument in \cref{thm:criterion} would give
+$M=a+Yc$ with $a\in K_\partial^2$ and $c\ne0$. Every element of the
+actual boundary field is meromorphic at zero, being a ratio of entire
+functions. Hence $Yc=M-a$ would be a nonzero meromorphic homogeneous
+solution at zero. Its first Laurent term $z^mv$ would satisfy
+$m v=D_0v$ with $m\in\Z$, impossible since the eigenvalues of $D_0$
+are $-5/6$ and $-7/6$. Thus the full translation kernel occurs. A subgroup
+of $\mathbb G_a^2\rtimes\SL_2$ containing all translations and surjecting
+to $\SL_2$ is the entire semidirect product.
+\end{proof}
+
+\section{Numerical comparison and the correct fiber algebra}
+\begin{lemma}[Scalar descent for functional relations]\label{lem:scalar-descent}
+For functions with Taylor coefficients in $k$, extending constants from
+$k$ to $\C$ does not change their functional transcendence degree.
+\end{lemma}
+\begin{proof}
+Fix finite bounds on the degrees in $z$ and in the functions. The
+coefficients of an identity in this finite monomial space satisfy a system
+of linear equations over $k$, obtained by Taylor coefficient comparison.
+Its row space is finite dimensional, so finitely many equations suffice.
+The complex kernel is the scalar extension of the $k$-kernel. Clearing
+rational denominators and varying the bounds proves the assertion.
+\end{proof}
+
+
+For $\xi\in k^\times$, put
+\[
+ K_{\partial,\xi}
+ =k\bigl(P_0(\xi),P_1(\xi),Q_0(\xi),E_a(\xi),E_b(\xi)\bigr).
+\]
+It is the field of all polynomial-amplitude values on the three fixed faces
+and their endpoints: the one-variable reductions have only powers of $z$
+in their denominators.
+
+\begin{theorem}[Algebraic specialization]\label{thm:values}
+For every $\xi\in\overline{\Q}^{\times}$, the numbers
+$M_0(\xi),M_1(\xi)$ are algebraically independent over
+$K_{\partial,\xi}$. Consequently
+\[
+ K_{\partial,\xi}[I_D(r\,dx\wedge dy)(\xi):r\in k[x,y]]
+ \simeq K_{\partial,\xi}[X_0,X_1].
+\]
+\end{theorem}
+\begin{proof}
+All coordinates of the boundary system and of its augmentation by
+$M_0,M_1$ are $E$-functions, and the combined rational system has no finite
+singular point other than zero. Let
+\[
+ d=\trdeg_{k(z)} k(z)(P_0,P_1,Q_0,E_a,E_b).
+\]
+By \cref{thm:elliptic-main,lem:scalar-descent}, adjoining $M_0,M_1$ raises this degree to
+$d+2$. The Siegel--Shidlovskii equality, in the form recalled in
+\cite[Theorem 1.1]{Beukers}, applied first to the boundary vector and then
+to the combined vector, gives degrees $d$ and $d+2$ at every
+$\xi\ne0$. The two additional values therefore have transcendence degree
+two over $K_{\partial,\xi}$. The normal-form coefficients are Laurent
+polynomials in $z$, so specialization proves the second assertion.
+\end{proof}
+
+\begin{corollary}[Value-level twisted exactness]\label{cor:value-exactness}
+For $r\in k[x,y]$ and $\xi\in k^\times$, the following are equivalent:
+\begin{enumerate}
+\item $I_D(r\,dx\wedge dy)(\xi)$ is algebraic over $K_{\partial,\xi}$;
+\item it belongs to $K_{\partial,\xi}$;
+\item $r\,dx\wedge dy\in(d+\xi\,dq\wedge)\Omega^1_{k[x,y]/k}$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+Specialize \eqref{eq:elliptic-normal}. A nonzero linear form in two
+algebraically independent variables is transcendental over their base
+field. Thus the first condition forces $a_r(\xi)=b_r(\xi)=0$, and
+specialized polynomial division makes this equivalent to the third
+condition. Literal Stokes gives the second condition in that case.
+\end{proof}
+
+For clarity, let $R_\partial=k[z,P_0,P_1,Q_0,E_a,E_b]$ and
+$B_\xi=(R_\partial)_{(z-\xi)}$. The boundary-DVR lemma
+\cref{lem:boundary-dvr} gives residue field $K_{\partial,\xi}$.
+By the functional and numerical independence just proved,
+\[
+ B_\xi[M_0,M_1]\simeq B_\xi[X_0,X_1],\qquad
+ \ker(\operatorname{ev}_\xi)=(z-\xi)B_\xi[X_0,X_1].
+\]
+Numerical injectivity holds on the fiber
+$K_{\partial,\xi}[X_0,X_1]$, not on the unspecialized algebra.
+
+\begin{proposition}[Localized fixed-chain Stokes and formal comparison]
+\label{prop:localized-formal-comparison}
+Fix the triangle and phase \eqref{eq:intro-elliptic}, and put
+$\Lambda=k[z,z^{-1}]$. Let $R$ be either $K_{\partial,0}$ or $B_\xi$
+for $\xi\in k^\times$. Form the commutative $R$-algebra $\mathscr S_R$
+on symbols $\mathsf I(r)$, $r\in\Lambda[x,y]$, modulo
+$\Lambda$-linearity and the polynomial Stokes relations
+\[
+ \mathsf I(L_xP+L_yQ)
+   =\int_{\partial D}e^{zq}(P\,dy-Q\,dx),
+ \qquad P,Q\in\Lambda[x,y].
+\]
+The right side is a specified element of the actual coefficient ring $R$.
+Then realization gives
+\[
+ \mathscr S_R\simeq R[X_0,X_1]\simeq R[M_0,M_1],
+ \qquad X_0\longleftrightarrow\mathsf I(1),\quad
+        X_1\longleftrightarrow\mathsf I(x).
+\]
+For $R=B_\xi$, its fiber at $\xi$ realizes injectively as
+$K_{\partial,\xi}[M_0(\xi),M_1(\xi)]$.
+
+There is also a numerical formal-period version: take the subalgebra of
+Paper III's formal compact-line algebra generated by the three fixed
+faces with phases $\xi p_e$ and their endpoint exponentials, and localize
+at elements with nonzero numerical value. Adjoining the fixed-triangle
+amplitude symbols, with linearity, multiplication and specialized
+polynomial Stokes, gives an injective numerical realization. Thus every
+relation in this specified localized fixed-$(D,q)$ amplitude algebra is
+generated by the inherited boundary formal relations and those Stokes
+reductions.
+\end{proposition}
+\begin{proof}
+Laurent polynomial division \eqref{eq:elliptic-normal} reduces every
+symbol to
+\[
+ a_r\mathsf I(1)+b_r\mathsf I(x)
+       +\int_{\partial D}e^{zq}(P_r\,dy-Q_r\,dx).
+\]
+This also holds for $r\in\Lambda[x,y]$ by $\Lambda$-linearity, so
+$R[X_0,X_1]\to\mathscr S_R$ is surjective. Its composite with actual
+realization is injective by \cref{thm:elliptic-main}; hence both maps
+are isomorphisms. For $B_\xi$, the boundary residue field is
+$K_{\partial,\xi}$ by \cref{lem:boundary-dvr}, and
+\cref{thm:values} gives injectivity on the polynomial fiber.
+All coefficients and Stokes primitives used here are regular at $\xi$.
+
+For the last assertion, Paper III's polynomial formal comparison
+\cite[main theorem]{PaperIII} identifies the stated boundary subalgebra
+with its numerical image. Localizing at its nonzero elements identifies
+its fraction field with $K_{\partial,\xi}$. Apply the same reduction
+with $z=\xi$, followed by the algebraic independence in
+\cref{thm:values}. The boundary relations are those inherited from
+Paper III's category; they are not restricted to proofs using only the
+three original faces as intermediate objects.
+\end{proof}
+
+The functional assertion above is a presentation over \emph{actual}
+boundary coefficients. The numerical formal assertion invokes Paper III
+only after specialization. Neither asserts an unlocalized cancellation
+theorem for an arbitrary symbol ring, a new generic formal boundary
+theorem, or formal completeness for additional chains or primitive blocks.
+
+\section{Local specialization without a global boundary normal form}
+\label{sec:local-specialization}
+This section is independent of the special elliptic calculation. It
+separates arithmetic lifting from the geometric realization of a generic
+relation ideal.
+
+\begin{lemma}[Boundary evaluation and its DVR]\label{lem:boundary-dvr}
+Let $f_1,\ldots,f_N$ be $E$-functions forming a closed rational first-order
+system over $k(z)$; include $1$ if necessary. Suppose $\xi\in k^\times$
+is nonsingular for that system. Put
+\[
+ R=k[z,f_1,\ldots,f_N],\qquad \pi=z-\xi.
+\]
+Then $\ker(\operatorname{ev}_\xi:R\to\C)=\pi R$.
+The localization $B=R_{\pi R}$ is a DVR with uniformizer $\pi$, residue
+field $k(f_1(\xi),\ldots,f_N(\xi))$, and valuation equal to analytic
+vanishing order at $\xi$.
+\end{lemma}
+\begin{proof}
+For $P(z,f(z))$ vanishing at $\xi$, Beukers' theorem supplies
+$Q(z,X)\in k[z,X]$ with $Q(z,f(z))=0$ and
+$Q(\xi,X)=P(\xi,X)$; homogenize by $1$ if needed
+\cite[Theorems 1.2--1.3]{Beukers}. Thus $P-Q=\pi H$ and
+$P(z,f(z))\in\pi R$. The reverse inclusion is immediate.
+
+The ring $R$ is a finitely generated domain, and $\pi R$ is a nonzero
+principal prime. The principal ideal theorem makes its height one.
+Consequently $B$ is a one-dimensional noetherian local domain with maximal
+ideal generated by $\pi$, hence a DVR. The residue field is the fraction
+field of $R/\pi R=\operatorname{ev}_\xi R$. A denominator inverted in
+$B$ is nonzero at $\xi$, so it is an analytic unit. Repeated division by
+$\pi$, using the kernel statement, shows that the DVR valuation is exactly
+the analytic order. No global normality of $R$ has been assumed.
+\end{proof}
+
+\begin{theorem}[Abstract local functional and numerical comparison]
+\label{thm:abstract-specialization}
+In the setting of \cref{lem:boundary-dvr}, let $K=\operatorname{Frac}(B)$.
+Let $U=(U_1,\ldots,U_n)$ be actual $E$-functions such that $(f,U)$ is a
+closed rational first-order system nonsingular at $\xi$.
+Suppose $J\subset B[X]$ is an ideal of realized identities and satisfies
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.4em]
+\item $JK[X]=\ker(K[X]\to K[U])$;
+\item $B[X]/J$ is $B$-flat.
+\end{enumerate}
+Then $J=JK[X]\cap B[X]$, the functional realization of $B[X]/J$ is
+injective, and its numerical kernel is $\pi(B[X]/J)$. In particular the
+numerical realization is injective on
+\[
+ (B[X]/J)\otimes_B\kappa_\xi,
+ \qquad \kappa_\xi=B/\pi B.
+\]
+If the generators of $J$ are proved formal identities, these conclusions
+are formal comparison statements in that specified localized category.
+\end{theorem}
+\begin{proof}
+Flatness over the DVR implies torsion-freeness, hence injectivity into the
+generic fiber. Hypothesis (i) then gives ideal contraction and functional
+injectivity. Let a class have numerical value zero. Multiply it by a
+common coefficient denominator nonzero at $\xi$, so that it is represented
+by a polynomial $P(z,f,U)$ over $k$. Apply Beukers lifting to the combined
+closed vector $(f,U,1)$ to obtain a functional relation $Q$ with
+$Q(\xi,T,X)=P(\xi,T,X)$. After substituting $f$, the class of $Q$ is
+zero by functional injectivity, while $P-Q$ is divisible by $\pi$.
+The original class therefore belongs to $\pi(B[X]/J)$, since the cleared
+denominator is a unit of $B$. Conversely every such multiple specializes
+to zero. This proves numerical injectivity on the fiber.
+\end{proof}
+
+This theorem does not identify an unspecified generic ideal with geometric
+relations. The equality in (i), the realization of its generators, and a
+regular local coefficient model are separate obligations. A rational
+change of basis with a pole at $\xi$ cannot be used as a polynomial
+coordinate automorphism over $B$ without a further lattice argument.
+
+\section{Scope, coefficient fields, and falsification controls}
+\label{sec:scope}
+\subsection{What is proved and what remains conditional}
+The construction in \cref{thm:boundary-system} is general for polynomial
+phases and polynomially parametrized compact chains. The single-phase
+geometric theorem is on the explicitly stated observable real Lefschetz
+locus. The actual-comparison theorem has explicit group, projective
+exclusion, and nonzero-quotient hypotheses. All of these are verified for
+\eqref{eq:intro-elliptic}. Its numerical theorem is valid for every
+nonzero algebraic parameter, with no extra exceptional set, because the
+specified closed systems have no other finite poles.
+
+The boundary field in this concrete theorem consists only of the three
+fixed faces and their endpoints. Replacing it by all compact polynomial-line
+periods is not an asserted extension. Likewise, one fixed chain and a
+basis of its rank-two twisted cohomology give one actual column. Multiple
+chains can give multiple affine columns. A scalar cyclic presentation alone
+does not count isotypic multiplicities.
+
+For arbitrary isotypic or multiblock collections, the abstract orbit result
+in the appendix is available once its actual group hypotheses hold.
+Geometric realization of the affine-linear identities and rank-one
+identifications is a separate comparison problem. No general numerical
+formal-completeness theorem for such collections is asserted here merely
+from the previous endpoint-complete terminology.
+
+\subsection{Four distinctions that cannot be suppressed}
+\paragraph{The parameter must be specialized.}
+The element $z-\xi$ is nonzero as a functional germ and vanishes numerically.
+Thus numerical injectivity is a statement about a fiber algebra, never the
+unspecialized algebra containing $z$.
+
+\paragraph{Punctual support is not arithmetic normalization.}
+A point-supported distribution is $\sum c_m\delta_a^{(m)}$ and has Laplace
+transform $\sum c_m(-z)^m e^{az}$. Algebraicity of $a$ does not imply
+algebraicity of $c_m$. For example near the minimum $(-1,0)$ of
+$q=y^2-x^3+3x$, writing $u=x+1$ gives $q+2=3u^2-u^3+y^2$.
+The local analytic substitution $X=u\sqrt{3-u}$ has inverse area Jacobian
+$1/\sqrt3$ at zero. A small rational rectangle around that minimum has
+phase density $\mathbf1_{t>-2}g(t+2)$ with $g(0)=\pi/\sqrt3$.
+Its derivative contains $(\pi/\sqrt3)\delta_{-2}$. This coefficient is not
+in $k$. The unsplit polynomial Stokes system remains arithmetic; the
+counterexample concerns independently normalized pieces, not that system.
+
+\paragraph{Actual boundary rings need not have the old global presentation.}
+Let $h=(e^z-1)/z$ and include the entire companion $(1-e^{-z})/z$.
+Their ring with $z,e^{\pm z}$ is
+\[
+ k[z,h,(1+zh)^{-1}].
+\]
+It has the nonconstant unit $1+zh=e^z$, which becomes $1$ modulo $z$.
+A Laurent-polynomial algebra followed by a polynomial extension over $k[z]$
+has no such unit. The local DVR lemma, not that global normal-form claim,
+is what the endpoint proof needs.
+
+\paragraph{Do not clear denominators by nonunits at the endpoint.}
+Over $B$ with uniformizer $\pi$, the equations
+$\delta-1=0$ and $\pi(\delta-1)=0$ have the same generic ideal but
+different local and special-fiber ideals. All coefficients of local
+formal generators must be normalized before specialization. In particular,
+ratios representing a unit must use denominators nonzero at $\xi$.
+
+\subsection{Stokes matrices and complex Hodge maps}
+For $N=E_{12}+E_{23}$, the multiplier $e^N$ has a nonzero $E_{13}$ entry
+but its logarithm $N$ does not. Root extraction must use actual logarithms
+or a separately justified factorization into root subgroups. Distinct
+nonzero torus weights then isolate the components, and a strongly connected
+root graph generates $\mathfrak{sl}_n$ by elementary brackets. We do not
+infer the logarithmic support entrywise from a Stokes multiplier.
+
+Similarly $\sqrt2\,\mathrm{id}$ is a complex flat Hodge intertwiner, but
+no positive integer multiple becomes a rational homology map. Rational
+morphisms and complex linear combinations of correspondences are distinct
+assertions, as stated in \cref{prop:Jac-correspondence,cor:complex-correspondences}.
+
+\subsection{Exact certificates and analytic audit}
+The repository script \texttt{scripts/check\_paper\_v.py} verifies the
+polynomial reductions, actual connection certificates, rational
+Gelfand--Leray identities, Fourier matrix identity, scalar Bessel equations,
+and independent triangle/face Taylor coefficients. The focused audit note
+records the branch continuation, the nonzero nodal logarithm, the
+Picard--Vessiot tensor and normal-subgroup arguments, and the coefficient
+fields in specialization. Finite algebraic checks do not constitute a
+kernel-checked proof of the analytic or Galois arguments. The separate
+certificate routine produces a checkable polynomial identity for a supplied
+rational-coefficient amplitude.
+
+\appendix
+\section{Affine orbit ideals and unit-normalized flat models}
+\label{app:affine-orbits}
+This appendix retains the abstract algebraic mechanism for future
+multicolumn applications. It does not assign geometric realizations to
+relations solely because they are differential-Galois invariants.
+
+Let $K$ be a differential field of characteristic zero with algebraically
+closed constants $C_0$. For each block, let
+\[
+ Y'=AY,\qquad U'=AU+B_0,
+ \qquad U\in\operatorname{Mat}_{n\times r},\quad B_0\in K^{n\times r}.
+\]
+Assume $n\ge2$ in each block and let
+$G\subset\prod_\lambda\GL_{n_\lambda}$ be the joint homogeneous
+Galois group. We require
+$\prod_\lambda\SL_{n_\lambda}\subset G$, as an independent product,
+not merely surjectivity of the separate projections. Its identity
+component is reductive: its unipotent radical lies in that product and
+is normal under it, and must therefore be trivial. All matrices are
+taken in a common no-new-constants Picard--Vessiot extension.
+
+\begin{proposition}[Affine matrix reduction]\label{prop:affine-reduction}
+Constant column operations split off translation-active columns. The
+relation ideal is the extension of its contraction to the remaining
+columns; the active coordinates are polynomially free over those columns.
+Every remaining split block has the form $U_{\rm sp}=A_0+YC$, where
+$A_0$ has entries in $K$ and $C$ is constant. Further constant column
+operations discard precisely the kernel of $C$ as affine-linear relations.
+\end{proposition}
+\begin{proof}
+Let $H$ be the affine Galois group and $T$ the kernel of $H\to G$.
+An algebraic subgroup of a vector group in characteristic zero is a
+vector subspace. It is stable under $G$ by conjugation. The independent
+special-linear factors imply that, in block $\lambda$,
+\[
+ T_\lambda=C_0^{n_\lambda}\otimes R_\lambda
+ \quad\text{for some }R_\lambda\subset C_0^{r_\lambda};
+\]
+there is no coupling between distinct standard factors. Indeed the
+standard modules are pairwise nonisomorphic simple modules for the
+product, with scalar endomorphisms, so their isotypic subspaces have
+exactly this form. Choose constant column bases adapted to each
+$R_\lambda$.
+
+Translations now vary every active column by $Y_\lambda v$
+independently. Over a field trivializing the Picard--Vessiot torsor,
+the invertible $Y_\lambda$ makes this the full affine space of those
+coordinates. The orbit closure is consequently a product of the active
+affine spaces with the orbit closure in the remaining coordinates.
+Its ideal is extended from the latter coordinates. Faithfully flat
+descent of the torsor gives the same statement for relations over $K$.
+
+On the remaining columns, $T$ acts trivially, so their affine cocycle
+descends to $G$. By \cref{lem:affine-cocycle} it is a coboundary:
+if $\sigma(Y)=Yg_\sigma$, there is a constant matrix $C$ with
+$c_\sigma=g_\sigma C-C$. Thus $U-YC=A_0$ is Galois-fixed and has
+entries in $K$. Constant column operations put $C$ into a matrix of
+independent columns followed by zero columns. The latter give precisely
+the affine-linear equations $U_j=(A_0)_j$; no independent column is
+removed.
+\end{proof}
+
+For a constant $n\times s$ matrix $C$ of column rank $s<n$, the
+$\SL_n$-orbit is the full rank-$s$ locus, hence dense: any $\GL_n$ map
+between two such matrices can have its determinant corrected on a
+complementary vector. If $s=n$, its orbit is exactly
+$\det X=\det C$. Thus only square full-rank split blocks remain nonlinear.
+For these write $\Delta_\lambda=\det(U_\lambda-A_\lambda)$.
+Let $m$ be the number of these square blocks and let
+$T_{\det}\subset\Gm^m$ be the image of the joint group under their
+determinant characters. Put
+\[
+ L=\{a\in\Z^m:\chi^a|_{T_{\det}}=1\},\qquad
+ \eta_a=\Delta^{a^+}/\Delta^{a^-}\in K^\times.
+\]
+The subgroup can be disconnected, so $L$ need not be saturated.
+
+\begin{theorem}[Abstract complete affine orbit ideal]\label{thm:orbit}
+Under the stated product-group hypotheses, all relations are generated by
+the affine-linear reductions and the full lattice ideal
+\[
+ \Delta^{a^+}-\eta_a\Delta^{a^-},\qquad a\in L.
+\]
+\end{theorem}
+\begin{proof}
+Perform \cref{prop:affine-reduction}; the active coordinates are
+free and the zero split columns are eliminated. For a remaining split
+block of column rank $s<n$, any map between two ordered independent
+$s$-frames extends to a general-linear map, whose determinant can be
+corrected on a complementary vector. Its special-linear orbit is
+therefore the full-rank open subset of $\operatorname{Mat}_{n\times s}$.
+For $s=n$, two invertible matrices are in the same special-linear orbit
+exactly when their determinants agree. Since the special-linear groups
+act independently, the only remaining joint restriction on the open
+set of maximal-rank matrices is on the square-block determinants.
+
+That restriction is the translate of $T_{\det}$ by the actual
+nonzero determinant tuple. A character $a\in L$ evaluates on this
+tuple to $\eta_a$, which lies in $K^\times$ because it is Galois-fixed.
+In Laurent determinant coordinates the ideal of the translate is the
+character ideal. Its contraction to ordinary polynomial coordinates is
+\[
+ I_L=(\delta^{a^+}-\eta_a\delta^{a^-}:a\in L)
+       \subset K[\delta_1,\ldots,\delta_m].
+\]
+This is the full partial-character lattice ideal
+\cite{EisenbudSturmfels}. One can see the contraction directly by
+grouping monomials whose exponent differences lie in $L$; monomials in
+different character classes are linearly independent on the translate.
+In particular the quotient injects into its localization at
+$\delta_1\cdots\delta_m$. All lattice elements, not just an additive
+basis, are used here; disconnected determinant images are allowed.
+
+We check that pulling back this ideal to the matrix coordinates gives
+the entire orbit closure, without extra components or nilpotents.
+The product of determinant maps is free, hence flat, on coordinate
+rings by \cref{lem:free-determinant}. Thus the injection into the
+Laurent localization stays injective after this base change and after
+adjoining the other coordinates. On the determinant-invertible open
+set the maps $\GL_n\to\Gm$ are smooth. The translated determinant
+subgroup is reduced in characteristic zero, including when it is
+disconnected, so its inverse image is reduced. The whole quotient,
+which embeds in this reduced localization, is reduced as well, and
+the determinant-invertible locus is dense. Requiring full column rank
+in the rectangular blocks removes only a proper closed subset in each
+free matrix factor. The resulting dense open is exactly the orbit
+computed above. Its ideal is therefore the stated pulled-back ideal.
+
+Finally, this orbit computation does determine the relations of the
+actual coordinates over $K$. The Picard--Vessiot ring is the coordinate
+ring of a torsor \cite[Proposition~1.3.20]{Singer}. After a faithfully
+flat extension trivializing that torsor, the coordinate map becomes
+the orbit map of the chosen tuple. Its kernel is the orbit-closure
+ideal just computed. Faithfully flat descent gives equality of the
+original relation ideal with the displayed ideal over $K$, together
+with the affine-linear reductions. This is a statement about the
+base-changed coordinate map of the torsor, not about evaluation at a
+single point of its splitting field.
+\end{proof}
+
+Now work over a DVR $B$ at a nonsingular parameter. Assume the matrix
+frames and coordinate transformations are regular and invertible over $B$.
+Use an actual fundamental matrix holomorphic and invertible at the point.
+A split shift $U-YC$ belonging to $K=\operatorname{Frac}(B)$ is then
+holomorphic, hence in $B$ when the DVR valuation is analytic order.
+Square-block determinants have nonzero value, so $\eta_a\in B^\times$.
+This is an assertion about such a specified regular model, not about an
+arbitrary meromorphic frame.
+
+\begin{lemma}[Unit-valued lattice quotients]\label{lem:flat-lattice}
+For a character $\rho:L\to B^\times$, the algebra
+\[
+ D_\rho=B[\delta_1,\ldots,\delta_m]/
+ (\delta^{a^+}-\rho(a)\delta^{a^-}:a\in L)
+\]
+is free as a $B$-module.
+\end{lemma}
+\begin{proof}
+Partition $\N^m$ by differences in $L$. Choose $u_c$ in each class $c$.
+Map $\delta^u$ to $\rho(u-u_c)e_c$ in the free module with basis $e_c$.
+The character law makes every defining binomial vanish. Conversely any
+two monomials in the same class differ, up to the prescribed unit, by a
+monomial multiple of the defining binomial for their difference. Thus the
+kernel is exactly the lattice ideal, and the $e_c$ give a free basis.
+\end{proof}
+
+\begin{lemma}[Free determinant morphism]\label{lem:free-determinant}
+The ring $B[x_{ij}]$ is free over $B[\delta]$ under
+$\delta\mapsto\det(x_{ij})$.
+\end{lemma}
+\begin{proof}
+Present it as $B[\delta,x_{ij}]/(\det X-\delta)$. A lexicographic order in
+the matrix variables gives a determinant monomial leading coefficient
+$1$. Division by this single monic polynomial has unique remainder in
+monomials not divisible by its leading monomial. These form a free
+$B[\delta]$-basis. This proof is valid over an arbitrary coefficient ring.
+\end{proof}
+
+\begin{corollary}[Flat regular orbit models]\label{cor:flat-orbit}
+For regular affine shifts and unit-valued determinant characters as above,
+the orbit quotient over $B$ is $B$-flat and its ideal is the contraction of
+the generic orbit ideal.
+\end{corollary}
+\begin{proof}
+Remove coordinate affine-linear relations and translate by the shifts in
+$B$. The quotient is obtained from $D_\rho$ by base change under the
+product of the free determinant morphisms, followed by polynomial
+extension in the other coordinates. It is therefore $B$-flat.
+Torsion-freeness gives contraction from the generic fiber.
+\end{proof}
+
+Choose representatives $\eta_a=b_a/c_a$ only with $b_a,c_a$ units at the
+chosen point. Then the cleared determinant equations generate the same
+local ideal; arbitrary multiplication by a vanishing denominator is not
+allowed. A finite set must generate the \emph{full polynomial lattice
+ideal}, not merely the additive lattice: noetherianity supplies such a
+set. Geometric or formal realization of the affine shifts and of every
+required determinant-line identification remains an extra obligation in
+applying \cref{thm:abstract-specialization}.
+
+\section*{Acknowledgments and AI-assisted research disclosure}
+This manuscript is a companion to Papers I--III. OpenAI ChatGPT and
+Anthropic Claude were used in proof exploration, drafting, symbolic checks,
+and adversarial review. The September 2026 revision replaces the earlier
+endpoint argument by actual polynomial boundary systems and an explicit
+elliptic comparison. The AI systems are not authors. The authors bear
+responsibility for the statements, proofs, citations, and remaining errors.
+
+\small
+\begin{thebibliography}{99}
+
+\bibitem{BakkerMatsushita}B.~Bakker,
+\emph{A short proof of a conjecture of Matsushita},
+Adv. Math. \textbf{482} (2025), Paper No.~110554.
+\href{https://doi.org/10.1016/j.aim.2025.110554}{doi:10.1016/j.aim.2025.110554}.
+Theorem numbering here refers to the
+\href{https://benjamin-bakker.github.io/matsushita.pdf}{author manuscript}
+consulted 5 October 2026, Theorem~3(1).
+
+\bibitem{Beukers}F. Beukers, \emph{A refined version of the Siegel--Shidlovskii theorem},
+Ann. of Math. \textbf{163} (2006), 369--379,
+\href{https://doi.org/10.4007/annals.2006.163.369}{doi:10.4007/annals.2006.163.369}.
+
+\bibitem{BonnetRelativeExactness}P.~Bonnet,
+\emph{Relative exactness modulo a polynomial map and algebraic
+$(\mathbb C^p,+)$-actions},
+Bull. Soc. Math. France \textbf{131} (2003), no.~3, 373--398.
+\href{https://doi.org/10.24033/bsmf.2447}{doi:10.24033/bsmf.2447}.
+
+\bibitem{CommelinHabeggerHuber}J.~Commelin, P.~Habegger, and A.~Huber,
+\emph{Exponential periods and o-minimality},
+preprint, arXiv:2007.08280, version~4, 2025.
+\href{https://arxiv.org/abs/2007.08280}{arXiv:2007.08280}.
+
+\bibitem{DeligneFinitude}P.~Deligne,
+\emph{Un th\'eor\`eme de finitude pour la monodromie},
+in \emph{Discrete Groups in Geometry and Analysis},
+Progr. Math., vol.~67, Birkh\"auser, Boston, 1987, pp.~1--19.
+
+\bibitem{DeligneHodgeII}P.~Deligne,
+\emph{Th\'eorie de Hodge. II},
+Inst. Hautes \'Etudes Sci. Publ. Math. \textbf{40} (1971), 5--57,
+Rappel~(4.4.3).
+\href{https://doi.org/10.1007/BF02684692}{doi:10.1007/BF02684692}.
+
+\bibitem{DimcaSingularities}A.~Dimca,
+\emph{Singularities and Topology of Hypersurfaces},
+Universitext, Springer-Verlag, New York, 1992.
+
+\bibitem{EisenbudSturmfels}D.~Eisenbud and B.~Sturmfels,
+\emph{Binomial ideals},
+Duke Math. J. \textbf{84} (1996), no.~1, 1--45.
+\href{https://doi.org/10.1215/S0012-7094-96-08401-X}{doi:10.1215/S0012-7094-96-08401-X}.
+
+\bibitem{Kolchin1968}E.~R.~Kolchin,
+\emph{Algebraic groups and algebraic dependence},
+Amer. J. Math. \textbf{90} (1968), 1151--1164.
+For the Bessel-group attribution used here, see
+\cite[Example~1.3.32 and reference \textnormal{[Kol68]}]{Singer}.
+
+\bibitem{KontsevichZagier}M.~Kontsevich and D.~Zagier,
+\emph{Periods},
+in \emph{Mathematics Unlimited--2001 and Beyond},
+Springer, Berlin, 2001, pp.~771--808.
+\href{https://doi.org/10.1007/978-3-642-56478-9_39}{doi:10.1007/978-3-642-56478-9\_39}.
+
+\bibitem{LongLinearKZ}C.~D.~Long and A.-A.~Le~Blanc,
+\emph{A Linear Kontsevich--Zagier Theorem for Compact Exponential Periods on
+the Affine Line},
+companion preprint (Paper~II), August 2026.
+
+\bibitem{MilneAG}J.~S.~Milne,
+\emph{Algebraic Groups: The Theory of Group Schemes of Finite Type
+ over a Field}, Cambridge Studies in Advanced Mathematics, vol.~170,
+Cambridge University Press, 2017, Proposition~15.15 and Corollary~22.43.
+\href{https://www.jmilne.org/math/Books/iAG2017.pdf}{Author-hosted text}.
+
+\bibitem{PaperIII}C.~D.~Long and A.-A.~Le~Blanc,
+\emph{A Polynomial Kontsevich--Zagier Theorem for Compact Exponential Periods
+on the Affine Line},
+companion preprint (Paper~III), August 2026;
+repository revision of 28 September 2026.
+
+\bibitem{Sabbah}C. Sabbah, \emph{Hypergeometric periods for a tame polynomial},
+Portugal. Math. \textbf{63} (2006), 173--226.
+Preprint \href{https://arxiv.org/abs/math/9805077}{arXiv:math/9805077}.
+We use Proposition~9.1 of the
+\href{https://perso.pages.math.cnrs.fr/users/claude.sabbah/articles/sabbah_bbases.pdf}{author-hosted manuscript};
+no result under its subsequent standing tameness assumption is used
+for general finiteness.
+
+\bibitem{SerreAGCF}J.-P.~Serre,
+\emph{Algebraic Groups and Class Fields},
+Graduate Texts in Mathematics, vol.~117, Springer, New York, 1988.
+
+\bibitem{Singer}M. F. Singer, \emph{Introduction to the Galois theory of linear differential
+equations}, \href{https://arxiv.org/abs/0712.4124}{arXiv:0712.4124},
+version 2, 2008. In particular Example 1.3.32, Proposition 1.3.33,
+\S1.4 (formal fundamental matrices), and Theorem~1.5.2.
+Only the group statement of Example~1.3.32 is used; the $E$-function
+property of the actual compact integrals is proved here separately.
+
+\end{thebibliography}
+\end{document}

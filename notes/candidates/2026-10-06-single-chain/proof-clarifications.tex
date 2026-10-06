@@ -1,0 +1,156 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[colorlinks=true,linkcolor=blue!40!black,urlcolor=blue!40!black]{hyperref}
+\usepackage{xcolor}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{corollary}[proposition]{Corollary}
+\newcommand{\C}{\mathbb C}
+\newcommand{\K}{\mathfrak K}
+\newcommand{\R}{\mathcal R}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\ord}{\operatorname{ord}}
+\title{Proof clarifications for the frozen single-chain candidate}
+\author{Independent audit supplement}
+\date{6 October 2026}
+\begin{document}
+\maketitle
+\noindent\textbf{Scope.} This supplement does not modify the frozen candidate or canonical Paper V. Sections 1--2 expand two geometric interfaces. Section 3 gives a replacement for the general formal-normal-form machinery in the candidate's face-disjointness proof. It uses only the candidate's directly proved, distinct-eigenvalue formal diagonalization and elementary lattice algebra. No Wasow theorem or general Levelt--Turrittin decomposition is needed for that replacement.
+
+\section{The rescaled family and Milnor-fibre stability}
+Write
+\[
+ q(x,y)=\alpha x^a+\beta y^b+
+ \sum_{bi+aj<ab}q_{ij}x^iy^j,
+ \qquad \gcd(a,b)=1.
+\]
+Set $\epsilon=\lambda^{-1}$ and
+\[
+ f_\epsilon(X,Y)=\alpha X^a+\beta Y^b+
+ \sum_{bi+aj<ab}q_{ij}\epsilon^{ab-bi-aj}X^iY^j.
+\]
+Every exponent of $\epsilon$ is a positive integer. Thus this is a holomorphic deformation of $f_0=\alpha X^a+\beta Y^b$, not merely convergence along a sequence of rescalings. For $\epsilon\ne0$,
+\[
+ f_\epsilon(X,Y)=\epsilon^{ab}q(\epsilon^{-b}X,\epsilon^{-a}Y).
+\]
+Its critical points and values are respectively
+\[
+ (\epsilon^b x_i,\epsilon^a y_i),\qquad \epsilon^{ab}c_i.
+\]
+Fix a Milnor ball $\overline B_r$ for $f_0$. Choose $\eta>0$ so that the levels of $f_0$ with $|t|\le2\eta$ meet $\partial B_r$ transversely. Compactness and $C^1$ convergence preserve this transversality for $f_\epsilon$ with $|t|\le\eta$ and sufficiently small $|\epsilon|$. Shrink the parameter disk further so that all critical points lie in $B_{r/2}$ and all critical values have modulus less than $\eta/2$.
+
+Choose $t_*=\eta$. The projection
+\[
+ \{(\epsilon,X,Y):f_\epsilon(X,Y)=t_*,\ (X,Y)\in\overline B_r\}
+ \longrightarrow\{\epsilon:|\epsilon|<\epsilon_0\}
+\]
+is proper and a submersion, including on its boundary. Indeed, the level $t_*$ contains no critical point and is transverse to the sphere. The Ehresmann theorem for manifolds with boundary therefore identifies the fibres with the Milnor fibre of $f_0$. At a fixed small nonzero $\epsilon$, proper submersion over the punctured target disk transports this identification to every other regular level in that disk.
+
+This supplies the short proof behind the perturbation statement in Arnold--Gusein-Zade--Varchenko, Volume II, \S2.1, printed pp.~29--31. Their Theorem 2.1 then supplies the distinguished vanishing-cycle basis. The argument above verifies the parameter and transversality hypotheses for the actual rescaled family.
+
+\section{Compatible local and global transport}
+The gradient estimate in the candidate proves tameness in Broughton's Definition 3.1. In particular, for a relatively compact target neighborhood $U$ whose closure contains no critical value, $\|df_\epsilon\|$ has a positive lower bound on $f_\epsilon^{-1}(\overline U)$: use tameness outside a compact set and compactness inside it.
+
+For a constant target tangent vector $v\in\C$, a global real smooth lift is
+\[
+ V_v=v\,\frac{\overline{\nabla f_\epsilon}}{\|\nabla f_\epsilon\|^2}.
+\]
+It satisfies $df_\epsilon(V_v)=v$ and is bounded over $\overline U$. Near $\partial B_r$, boundary transversality supplies another smooth lift tangent to that sphere. It can be chosen on a compact collar; a partition of unity patches it to $V_v$. The patched lift is bounded, still satisfies $df_\epsilon(V)=v$, and is tangent to the sphere. Its path-lifting flows therefore exist for the required finite times and preserve the sphere and the two sides of it.
+
+These lifts give locally compatible trivializations of the pair
+\[
+ \bigl(f_\epsilon^{-1}(t),\,
+       f_\epsilon^{-1}(t)\cap\overline B_r\bigr).
+\]
+This is the bounded-vector-field mechanism used by Broughton on printed pp.~229--230. The candidate's sentence invoking transversality should also invoke tameness: transversality at one compact sphere alone does not control a nonproper map at infinity.
+
+Let $S_t=f_\epsilon^{-1}(t)\cap\overline B_r$ and $C_t=f_\epsilon^{-1}(t)$. The local intersection form is nondegenerate because the binomial plane-curve germ has one branch. Inclusion preserves intersection numbers, so
+\[
+ j_*v=0\quad\Longrightarrow\quad
+ \langle v,u\rangle=\langle j_*v,j_*u\rangle=0\quad\forall u
+ \quad\Longrightarrow\quad v=0.
+\]
+Broughton's Theorem 1.2 gives $\dim H_1(C_t;\C)=\mu$, equal to the local dimension. Hence $j_*$ is an isomorphism, and the compatible transport just constructed makes it an isomorphism of monodromy representations over the punctured disk. That disk contains all critical values, so its inclusion into their complement in $\C$ induces an isomorphism of fundamental groups.
+
+The connectedness theorem needed next is AGV Theorem 3.3, printed p.~75, or Lazzeri's Theorem 2, printed p.~274. Connectedness, nondegeneracy, and the Picard--Lefschetz transvections imply irreducibility of the full monodromy representation by the propagation argument in the candidate. This is not a claim that the single classical monodromy operator is an irreducible complex representation.
+
+\section{A stable-lattice replacement for leading-exponent theory}
+Put
+\[
+ \R=\C[[w]],\qquad \K=\C((w)),\qquad
+ \delta=\frac d{dz}=-w^2\frac d{dw}.
+\]
+A differential module $M$ is a finite-dimensional $\K$-vector space with an additive operator $\partial$ satisfying the Leibniz rule for $\delta$. A lattice is a finite free $\R$-submodule spanning $M$ over $\K$.
+
+\paragraph{Convention.} We use the coefficient-module convention of Paper V: a column of basis elements $e$ satisfies $\partial e=E e$, and differential homomorphisms out of the module satisfy the solution system $Y'=EY$. In column coordinates of elements of $M$, the induced linear matrix is $E^{\mathsf T}$; its spectrum is the same as that of $E$.
+
+\begin{lemma}[Stable lattices and residue spectra]\label{lem:lattice}
+Let $L\subset M$ be a lattice with $\partial L\subset L$.
+\begin{enumerate}
+\item The operator $\partial$ induces a $\C$-linear map $\bar\partial$ on $L/wL$.
+\item For a differential submodule $N\subset M$, the lattices
+\[
+ L_N=L\cap N,\qquad L_{M/N}=\operatorname{im}(L\to M/N)
+\]
+are stable and fit into an exact sequence of finite free $\R$-modules. Reduction modulo $w$ remains exact. Consequently their residue characteristic polynomials multiply to that of $L/wL$.
+\item If $M^{\rm ss}$ is a direct sum of the successive quotients of any differential-module composition series, it admits a stable lattice whose residue characteristic polynomial equals that of $L/wL$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Since $\delta(\R)\subset w\R$ and $\delta(w)=-w^2$, the induced map on $L/wL$ is well-defined and $\C$-linear. The intersection $L\cap N$ is a finitely generated, saturated submodule of the free module $L$; both it and its quotient are free because $\R$ is a discrete valuation ring. They span the required $\K$-spaces. Stability is inherited from $L$ and $N$. The quotient is free, so reduction modulo $w$ preserves exactness. The residue operators respect that sequence, giving the characteristic-polynomial identity. Apply this argument to the intersections with a composition series and take the direct sum of the quotient lattices.
+\end{proof}
+
+\begin{lemma}[Detecting a rank-one exponential coefficient]\label{lem:rankone}
+Suppose $M$ has a stable lattice $L$ and contains a nonzero vector $v$ with
+\[
+ \partial v=(d+\rho w)v,\qquad d,\rho\in\C.
+\]
+Then $d$ is an eigenvalue of the residue operator on $L/wL$.
+\end{lemma}
+\begin{proof}
+The saturated lattice $L\cap\K v$ has a generator $fv$ with $f\in\K^\times$. Write $f=w^m u$, $u\in\R^\times$. Then
+\[
+ \frac{\delta f}{f}=-mw-w^2\frac{u_w}{u}\in w\R,
+ \qquad
+ \partial(fv)=\left(d+\rho w+\frac{\delta f}{f}\right)fv.
+\]
+Thus its rank-one residue is $d$. By Lemma~\ref{lem:lattice}, its reduction injects into $L/wL$, proving the assertion.
+\end{proof}
+
+\begin{corollary}[The precise obstruction needed for a face]\label{cor:face}
+Let $M$ be given by $Y'=E(w)Y$ with $E(w)\in M_n(\R)$, and let $S$ be the set of eigenvalues of $E(0)$. Let $P$ be a differential module admitting the unramified formal diagonalization
+\[
+ \partial e_i=(c_i+\lambda_i w)e_i.
+\]
+If
+\[
+ \End^0(P)\hookrightarrow\End(M^{\rm ss})
+\]
+is a differential-module embedding, then $c_i-c_j\in S-S$ for all $i\ne j$.
+\end{corollary}
+\begin{proof}
+The standard lattice of $M$ is stable and has residue spectrum $S$. Lemma~\ref{lem:lattice} gives a stable lattice $L^{\rm ss}$ for $M^{\rm ss}$ with the same residue characteristic polynomial. The lattice
+$\End_{\R}(L^{\rm ss})$ is stable in $\End(M^{\rm ss})$. Its residue operator is the commutator with the residue on $L^{\rm ss}$ and therefore has eigenvalues $s-s'$ with $s,s'\in S$, including multiplicities as appropriate.
+
+For $i\ne j$, the vector $e_i\otimes e_j^*$ lies in $\End^0(P)$ and satisfies
+\[
+ \partial(e_i\otimes e_j^*)=
+ \bigl(c_i-c_j+(\lambda_i-\lambda_j)w\bigr)(e_i\otimes e_j^*).
+\]
+Its image under the embedding is nonzero. Lemma~\ref{lem:rankone} applied in $\End(M^{\rm ss})$ gives $c_i-c_j\in S-S$.
+\end{proof}
+
+\paragraph{Application to the frozen candidate.}
+For a face polynomial $p$, the one-variable normal form gives a stable lattice with leading matrix multiplication by $p$ on $\C[s]/(p')$. Its spectrum is the set of critical values of $p$, including repeated values. The candidate's Lie-algebra argument gives an embedding of $\End^0(P)$ into the endomorphism module of one semisimplified face block. Corollary~\ref{cor:face} gives exactly the contradiction to hypothesis (F).
+
+If the semisimplification is first taken over $\C(z)$, base change its composition series to $\K$. The same lattice proof applies to that filtration; the quotients need not remain simple over $\K$. Thus no commutation-of-semisimplification assertion under base change is required.
+
+\paragraph{Dependency consequence.}
+This replacement leaves the statement and the Lie-algebra part of face disjointness unchanged. The interior formal diagonalization is already proved by the candidate's coefficient recursion. The torus and component-group proof uses ordinary Picard--Vessiot theory and Kummer theory, not the general formal normal form. Therefore this replacement removes the remaining use of Singer's general formal-normal-form statement, as well as any need for a Wasow pinpoint. The frozen candidate itself is not silently altered by this supplement.
+
+\end{document}
