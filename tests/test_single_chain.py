@@ -35,10 +35,35 @@ class SingleChainCertificates(unittest.TestCase):
 
     def test_canonical_density_and_metadata_closeout(self):
         source = (ROOT / 'papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex').read_text()
-        self.assertIn(r'\\label{def:polynomial-chain}', source)
-        self.assertIn(r'\\label{def:chain-multiplicity}', source)
-        self.assertIn(r'\\label{lem:phase-density}', source)
-        self.assertIn(r'$\\rho=\\rho_{D,1}$', source)
+        self.assertIn(r'\label{def:polynomial-chain}', source)
+        self.assertIn(r'\label{def:chain-multiplicity}', source)
+        self.assertIn(r'\label{lem:phase-density}', source)
+        self.assertIn(r'$\rho=\rho_{D,1}, source)
+        self.assertIn('Polynomial Chains', source)
+        self.assertNotIn('Stokes matrix', source)
+        self.assertNotIn('14D07', source)
+        self.assertNotIn('14H40', source)
+        self.assertIn(r'K_{\partial,0}\subset K_\partial', source)
+        # Both Milne pinpoints were independently source-checked and are correct.
+        self.assertIn(r'Proposition~15.15', source)
+        self.assertIn(r'Corollary~22.43', source)
+
+    def test_successor_has_lattice_proof_and_scope(self):
+        source = (FOLDER / 'successor/generic-single-chain-theorem-v2.tex').read_text()
+        self.assertIn(r'\label{lem:lattice}', source)
+        self.assertIn(r'\label{lem:rankone}', source)
+        self.assertIn(r'\label{cor:face-lattice}', source)
+        self.assertNotIn(r'\label{lem:exponents}', source)
+        self.assertNotIn(r'\Lambda_\infty', source)
+        self.assertIn('its failure alone does not imply', source)
+        self.assertIn('coefficient module', source)
+        self.assertIn('off-diagonal intersection numbers', source)
+        self.assertIn('rational', source)
+
+
+if __name__ == '__main__':
+    unittest.main()
+, source)
         self.assertIn('Polynomial Chains', source)
         self.assertNotIn('Stokes matrix', source)
         self.assertNotIn('14D07', source)
