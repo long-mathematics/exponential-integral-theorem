@@ -23,9 +23,9 @@ jobs:
       - name: Install TeX and PDF tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils python3-sympy
       - name: Test build checks
-        run: make test
+        run: PATH=/usr/bin:$PATH make test
       - name: Compile and verify committed PDFs
         run: make check
       - name: Upload compiled PDFs and logs

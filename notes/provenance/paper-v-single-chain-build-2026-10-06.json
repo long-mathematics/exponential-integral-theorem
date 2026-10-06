@@ -1,5 +1,25 @@
 {
-  "schema_version": 1,
+  "base_commit": "d5ae8f9081c7bc34d1622316bd8463482f244395",
+  "preparation_input_commit": "15edf12797bce159b1bc0f382ba59790de5bd2bf",
+  "run_id": "37446965266",
+  "commands_passed": [
+    "make test",
+    "make pdf",
+    "make check",
+    "standalone successor latexmk and log validation"
+  ],
+  "other_canonical_sources_preserved": {
+    "papers/01-exponential-integral-theorem/exponential-integral-theorem.tex": "65567be47d72340210a99932fbcd989fd5e690ffa081b668d0a09c0dde3a902d",
+    "papers/03-complete-polynomial-kz/polynomial-kz-affine-line.tex": "4f1cb54e3b6aab6af1add1da97635b165fe1df9f91e86a79078e588717caaa76",
+    "papers/03-complete-polynomial-kz/polynomial-kz-supplement.tex": "72b0d7585620608b23469edf809c664c03657779f348e73af71f32e10fc1b1d5",
+    "papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex": "82bca80220ecf54a5f10f90951430cf6d14ae4df386a39a946985f719797ea55",
+    "papers/02-compact-polynomial-line-kz/linear-kz-supplement.tex": "96785ebc84db41cfcc6b3365527f337021eb83901cca93d358081c5529fb96db",
+    "papers/02-compact-polynomial-line-kz/linear-kz-affine-line.tex": "4568771bc1113ed443a77ceea9c89ce211f40a471a18b525aa1e4e38acb6e26b",
+    "papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex": "eac3f84b331389c80e687c5530604dc5399624d64b3fac3a94549c57b9f88236",
+    "notes/eit-structural-companion.tex": "67b491742e323e7fa7eeedf0c63a4e8c028040816bc4ee88c312a98b90e32b3a"
+  },
+  "unrelated_pdf_snapshots_preserved": true,
+  "previous_paper_v_archived_verbatim": true,
   "documents": [
     {
       "source": "papers/01-exponential-integral-theorem/exponential-integral-theorem.tex",
@@ -64,5 +84,6 @@
       "pdf_sha256": "5c9746a004b45222335334d8c03ff5c876e02c51250da9c4c88f7a97cf29e5d5",
       "pages": 11
     }
-  ]
+  ],
+  "note": "Finite computations and successful builds are not peer review or formal verification. Final PR CI and integrated visual/proof review remain required."
 }

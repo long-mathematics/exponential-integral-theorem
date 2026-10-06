@@ -12,13 +12,13 @@ Authors: **Christopher D. Long and Antoine-Auguste Le Blanc**. Le Blanc cryptogr
 | II | A Linear Kontsevich–Zagier Theorem for Compact Exponential Periods on the Affine Line | [Read PDF](output/pdf/linear-kz-affine-line.pdf) | [Source](papers/02-compact-polynomial-line-kz/linear-kz-affine-line.tex) |
 | III | A Polynomial Kontsevich–Zagier Theorem for Compact Exponential Periods on the Affine Line | [Read PDF](output/pdf/polynomial-kz-affine-line.pdf) | [Source](papers/03-complete-polynomial-kz/polynomial-kz-affine-line.tex) |
 | IV | Relative Exponential Fixed Parts and Functional Periods: An Exponential Nori–Ayoub Theorem | [Read PDF](output/pdf/relative-exponential-nori-ayoub.pdf) | [Source](papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex) |
-| V | Relative Exponential Periods on Polynomial Flags: Polynomial Boundary Systems and an Elliptic Comparison Theorem | [Read PDF](output/pdf/polynomial-flag-exponential-periods.pdf) | [Source](papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex) |
+| V | Relative Exponential Periods on Polynomial Flags: Algebraic Independence over Fixed Boundary Fields | [Read PDF](output/pdf/polynomial-flag-exponential-periods.pdf) | [Source](papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex) |
 
 The PDFs are committed snapshots of the corresponding sources, not expiring build-artifact links. Access follows the repository's visibility.
 
 ## Paper guide
 
-Papers I–III progress from transcendence of individual polynomial exponential integrals to linear and polynomial Kontsevich–Zagier completeness on the affine line. Paper IV treats functional relations over a varying algebraic base. Paper V constructs two-variable boundary systems and proves an explicit elliptic independence theorem. Full statements, hypotheses, and references are in the linked manuscripts.
+Papers I–III progress from transcendence of individual polynomial exponential integrals to linear and polynomial Kontsevich–Zagier completeness on the affine line. Paper IV treats functional relations over a varying algebraic base. Paper V constructs two-variable boundary systems and proves a single-chain algebraic-independence theorem under explicit weighted-phase and boundary hypotheses, with rank-two and rank-six applications. Full statements, hypotheses, and references are in the linked manuscripts.
 
 ### Paper I — Algebraic exponential integrals
 
@@ -60,19 +60,21 @@ $$
 
 Over the actual field of constant exponential periods, the comparison algebra is Picard–Vessiot and analytic evaluation is injective. This is a functional-period theorem after constant-period relations have been imposed, not a numerical specialization theorem or an elementary presentation of all categorical period relations.
 
-### Paper V — Polynomial boundary systems and elliptic comparison
+### Paper V — Single-chain comparison over fixed boundary fields
 
-**Scope.** Compact polynomial-flag exponential integrals in two variables. Polynomial representatives in twisted de Rham cohomology give finite rational differential systems whose forcing terms are actual integrals over the fixed faces of the chain.
+**Scope.** The polynomial boundary-system construction covers compact polynomial two-chains with algebraic parametrizations. The main comparison theorem treats
 
-**Main results.** For $q(x,y)=y^2-x^3+3x$ on the triangle $D$ with vertices $(-1/2,-1)$, $(1/2,0)$, and $(-1/2,1)$, the moments
+$$q=\alpha x^a+\beta y^b+q_<,\qquad \gcd(a,b)=1,$$
 
-$$
-M_j(z)=\int_D x^j e^{zq(x,y)}\,dx\,dy,\qquad j=0,1,
-$$
+where $q_<$ has lower weighted degree for weights $b,a$. It assumes nondegenerate critical points with distinct values, rational independence of the differences $c_i-c_1$, fixed-face separation, and an interior saddle or the stated continuation alternative.
 
-are algebraically independent over the complexified fixed-face function field. Their values at every nonzero algebraic parameter are algebraically independent over the corresponding face-value field. Every polynomial amplitude has a unique two-coordinate Stokes remainder. The boundary field uses only the specified fixed faces, not all compact line periods. General comparison criteria require explicit Galois and disjointness hypotheses; multiblock formal completeness remains conditional on actual linear and determinant-line realizations.
+**Main results.** The $\mu=(a-1)(b-1)$ moments with amplitudes $x^iy^j$, $0\le i\le a-2$, $0\le j\le b-2$, are algebraically independent over the complexified fixed-face function field. Their values at every nonzero algebraic parameter are algebraically independent over the corresponding face-value field. Every polynomial amplitude has a unique Laurent Stokes remainder. Algebraicity of its value over the face-value field is equivalent to polynomial twisted exactness.
 
-Paper V also gives a localized fixed-chain Stokes presentation over actual boundary coefficients. After specializing the nonzero algebraic parameter, Paper III identifies the fixed-face formal coefficient algebra; the resulting localized numerical formal comparison is stated as a proposition. This does not assert a generic formal boundary theorem or an unlocalized cancellation theorem. The actual elliptic independence proofs use neither Paper IV nor the companion formal comparison theorems; Paper II is used only for the separate single-phase formal interpretation.
+The original elliptic triangle for $y^2-x^3+3x$ is retained through the continuation hypothesis $(S^*)$. A second, rank-six example uses $x^4+y^3+xy-y$ on the triangle with vertices $(0,-1),(1,-1),(1/2,0)$; its finite algebraic and geometric hypotheses have exact certificates. For straight-edged chains with $\min(a,b)\ge3$, face separation is automatic under the critical-value hypothesis.
+
+The proof includes direct simple-spectrum formal diagonalization and a stable-lattice boundary obstruction; it does not require a general formal-normal-form theorem. The fields use **only the specified faces**, not all compact line periods. Genericity of the critical-value hypothesis, multiple chains/phases, and general formal completeness are not claimed. The actual comparison does not depend on Paper IV or the companion formal-comparison theorems.
+
+The [frozen candidate and audit](notes/candidates/2026-10-06-single-chain/README.md), [corrected successor](notes/candidates/2026-10-06-single-chain/successor/generic-single-chain-theorem-v2.tex), and [integration record](notes/provenance/paper-v-single-chain-integration-2026-10-06.md) preserve the proof-development sequence. The [pre-integration manuscript](notes/archives/2026-10-06-paper-v-before-single-chain/polynomial-flag-exponential-periods.tex) and [its PDF](notes/archives/2026-10-06-paper-v-before-single-chain/polynomial-flag-exponential-periods.pdf), including the separate geometric and multicolumn material, are archived unchanged; that material is not used in the new main proof.
 
 ## Status
 
@@ -93,7 +95,7 @@ For the chronological development of the manuscripts, mathematical audit and rep
 On Debian/Ubuntu, install the build dependencies:
 
 ```sh
-sudo apt-get install latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils python3 make
+sudo apt-get install latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils python3 python3-sympy make
 ```
 
 From the repository root:
@@ -101,7 +103,7 @@ From the repository root:
 ```sh
 make pdf    # compile all nine documents; refresh PDFs and manifest
 make check  # verify hashes, rebuild, compare PDF text, and check README links
-make test   # test the build checks
+make test   # build regressions and exact elliptic/rank-six/formal certificates
 ```
 
 Each LaTeX source is standalone and has an embedded bibliography. PDFs live in `output/pdf/`; intermediate files stay in ignored `.build/`. The [manifest](output/pdf/manifest.json) records each source hash, PDF hash, and page count.
@@ -112,10 +114,11 @@ The [LaTeX workflow](.github/workflows/latex.yml) runs on pull requests and push
 
 ```sh
 python3 scripts/paper_v_certificate.py 'x**4 + 2*x*y**2 + 1/3'
-python3 scripts/check_paper_v.py  # optional broader exact suite; requires SymPy
+python3 scripts/check_paper_v.py  # optional broader exact elliptic suite
+python3 scripts/check_single_chain.py  # rank-six and formal certificates
 ```
 
-The certificate routine and its tests use only the Python standard library; `make test` runs them. The broader script writes its results under `.build/`. Neither finite checks nor a successful build constitute a formal proof certificate.
+The elliptic certificate routine uses only the Python standard library. The new rank-six and formal-recursion suites require SymPy; `make test` runs all of them. The broader script writes its results under `.build/`. Neither finite checks nor a successful build constitute a formal proof certificate.
 
 ## Contributing
 

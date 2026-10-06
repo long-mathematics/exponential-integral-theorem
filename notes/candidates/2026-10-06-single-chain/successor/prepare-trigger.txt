@@ -1,3 +1,0 @@
-Preparation attempt 1 — 6 October 2026.
-Canonical base: d5ae8f9081c7bc34d1622316bd8463482f244395.
-Generate the audited successor, assemble Paper V, run make test/pdf/check, retain unrelated snapshots, and remove the temporary workflow before final PR review.
