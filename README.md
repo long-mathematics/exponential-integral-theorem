@@ -12,7 +12,7 @@ Authors: **Christopher D. Long and Antoine-Auguste Le Blanc**. Le Blanc cryptogr
 | II | A Linear Kontsevich–Zagier Theorem for Compact Exponential Periods on the Affine Line | [Read PDF](output/pdf/linear-kz-affine-line.pdf) | [Source](papers/02-compact-polynomial-line-kz/linear-kz-affine-line.tex) |
 | III | A Polynomial Kontsevich–Zagier Theorem for Compact Exponential Periods on the Affine Line | [Read PDF](output/pdf/polynomial-kz-affine-line.pdf) | [Source](papers/03-complete-polynomial-kz/polynomial-kz-affine-line.tex) |
 | IV | Relative Exponential Fixed Parts and Functional Periods: An Exponential Nori–Ayoub Theorem | [Read PDF](output/pdf/relative-exponential-nori-ayoub.pdf) | [Source](papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex) |
-| V | Relative Exponential Periods on Polynomial Flags: Algebraic Independence over Fixed Boundary Fields | [Read PDF](output/pdf/polynomial-flag-exponential-periods.pdf) | [Source](papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex) |
+| V | Relative Exponential Periods on Polynomial Chains: Algebraic Independence over Fixed Boundary Fields | [Read PDF](output/pdf/polynomial-flag-exponential-periods.pdf) | [Source](papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex) |
 
 The PDFs are committed snapshots of the corresponding sources, not expiring build-artifact links. Access follows the repository's visibility.
 
