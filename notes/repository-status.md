@@ -25,7 +25,7 @@ The current manuscripts are working research drafts. Successful compilation, fin
 - Paper IV interface 3(b): generic smooth-projective realization of the relevant simple constituents and the ensuing rank-one torsion step.
 - Paper IV realization follow-up: arithmetic mixed-sheaf transfer, perverse-concentrated tensor comparison, actual absolute normalization, and the downstream arithmetic/Tannakian/PV chain in the dated scoped AI-assisted audit.
 - Paper V: the October 6 source-checked class-(W) theorem extends the fixed-triangle actual comparison under explicit hypotheses; it does not reinstate the withdrawn endpoint-complete claim.
-- Paper V: direct formal diagonalization, the diagonal local Picard–Vessiot/Kummer argument, stable-lattice face disjointness, and local/global transport are integrated. The October 5 geometric/formal/multicolumn discussions remain in the unchanged archived manuscript, not in the present main proof.
+- Paper V: direct formal diagonalization, the diagonal local Picard–Vessiot/Kummer argument, stable-lattice face disjointness, and local/global transport are integrated. The October 6 follow-up also defines chain multiplicity and phase density explicitly, including non-injective parametrizations, and closes the associated expository gap. The October 5 geometric/formal/multicolumn discussions remain in the unchanged archived manuscript, not in the present main proof.
 
 ### Not claimed by those closures
 
@@ -58,6 +58,7 @@ The table gives the high-level flow. Detailed records are linked in the next sec
 | 2026-10-05 | Paper V audit follow-up | Clarify the actual relative-monodromy hypothesis and localized formal comparison; expand the affine-orbit proof and correct version-specific references without weakening the elliptic independence statements. |
 
 | 2026-10-06 | Paper V single-chain integration | Freeze the candidate; audit the corrected successor; integrate the weighted-plane comparison and stable-lattice proof, retain both examples, archive the previous manuscript, and add exact regression certificates. |
+| 2026-10-06 | Paper V density and front-matter closeout | Define polynomial-chain multiplicity and phase densities, clarify scalar-field transcendence bookkeeping, rename the current paper from polynomial flags to polynomial chains, and recheck the Sabbah and Milne pinpoints. |
 
 ## Detailed records by paper
 
@@ -97,6 +98,7 @@ The retained [Paper IV repair companion](../papers/04-relative-exponential-nori-
 
 | Record | Purpose |
 | --- | --- |
+| [Density/front-matter closeout](provenance/paper-v-density-closeout-2026-10-06.md) | Defines the phase-density and multiplicity conventions, records scalar-field bookkeeping, metadata cleanup, and independent Sabbah/Milne pinpoint checks. |
 | [Single-chain integration audit](provenance/paper-v-single-chain-integration-2026-10-06.md) | Successor and integrated proof audit, explicit scope, preservation, and validation record. |
 | [Frozen candidate and source audit](candidates/2026-10-06-single-chain/README.md) | Immutable source snapshot, geometric pinpoints, exact certificate, and separate proof supplement. |
 | [Pre-integration manuscript](archives/2026-10-06-paper-v-before-single-chain/polynomial-flag-exponential-periods.tex) | Verbatim archive of the previous canonical Paper V and its additional material. |
