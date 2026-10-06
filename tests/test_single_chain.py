@@ -38,7 +38,7 @@ class SingleChainCertificates(unittest.TestCase):
         self.assertIn(r'\label{def:polynomial-chain}', source)
         self.assertIn(r'\label{def:chain-multiplicity}', source)
         self.assertIn(r'\label{lem:phase-density}', source)
-        self.assertIn(r'\\rho_{D,1}', source)
+        self.assertIn('rho_{D,1}', source)
         self.assertIn('Polynomial Chains', source)
         self.assertNotIn('Stokes matrix', source)
         self.assertNotIn('14D07', source)
