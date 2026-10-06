@@ -1,1 +1,1 @@
-Run the bounded Paper V density/front-matter closeout build on 6 October 2026. Attempt 4 after repairing the density regression block.
+Run the bounded Paper V density/front-matter closeout build on 6 October 2026. Attempt 5 after simplifying the density regression assertion.
