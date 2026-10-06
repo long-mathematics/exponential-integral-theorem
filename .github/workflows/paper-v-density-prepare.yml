@@ -1,0 +1,81 @@
+name: Prepare Paper V density closeout
+
+on:
+  push:
+    branches: [revision/paper-v-density-cleanup-2026-10-06]
+    paths:
+      - notes/provenance/paper-v-density-trigger.txt
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-v-density-prepare-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: revision/paper-v-density-cleanup-2026-10-06
+          fetch-depth: 0
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils python3-sympy
+      - name: Run exact regression tests
+        run: |
+          set -euo pipefail
+          mkdir -p .build/paper-v-density
+          PATH=/usr/bin:$PATH make test 2>&1 | tee .build/paper-v-density/make-test.txt
+      - name: Rebuild PDFs
+        run: |
+          set -euo pipefail
+          make pdf 2>&1 | tee .build/paper-v-density/make-pdf.txt
+      - name: Retain unrelated committed PDF snapshots
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          name='output/pdf/polynomial-flag-exponential-periods.pdf'
+          manifest=Path('output/pdf/manifest.json')
+          built=json.loads(manifest.read_text())
+          record=next(r for r in built['documents'] if r['source']=='papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex')
+          pdf=Path(name).read_bytes()
+          subprocess.run(['git','restore','--source=HEAD','--','output/pdf'],check=True)
+          baseline=json.loads(manifest.read_text())
+          baseline['documents']=[record if r['source']=='papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex' else r for r in baseline['documents']]
+          Path(name).write_bytes(pdf)
+          manifest.write_text(json.dumps(baseline,indent=2)+'\n')
+          PY
+      - name: Run full snapshot validation
+        run: |
+          set -euo pipefail
+          PATH=/usr/bin:$PATH make check 2>&1 | tee .build/paper-v-density/make-check.txt
+      - name: Commit refreshed Paper V snapshot to feature branch
+        run: |
+          set -euo pipefail
+          test "$(git branch --show-current)" = revision/paper-v-density-cleanup-2026-10-06
+          git add output/pdf/polynomial-flag-exponential-periods.pdf output/pdf/manifest.json
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git diff --cached --quiet; then
+            echo "No generated snapshot changes"
+          else
+            git commit -m 'Refresh Paper V PDF after density and metadata closeout'
+            git push origin HEAD:refs/heads/revision/paper-v-density-cleanup-2026-10-06
+          fi
+      - name: Upload validation evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: paper-v-density-closeout
+          path: .build/paper-v-density/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
