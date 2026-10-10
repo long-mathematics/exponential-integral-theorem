@@ -126,30 +126,25 @@ Algebraic Independence over Fixed Boundary Fields}
 \begin{abstract}
 We construct rational differential systems for compact polynomial-chain
 exponential integrals, with polynomial twisted de Rham representatives and
-literal Stokes forcing from fixed faces. For real algebraic phases of coprime
-weighted type, irreducibility and actual-chain detection give linear
-comparison modulo the boundary span, and scalar transcendence at every
-nonzero algebraic parameter. No critical-difference separation or boundary
-field disjointness is needed for this first conclusion. Detection is supplied
-by a saddle, a continued density germ, or a strict interior extremum on a
-positive domain, including an extremum of value zero.
+literal Stokes forcing from the fixed faces. For a real algebraic phase
+$q=\alpha x^a+\beta y^b+q_<$, where $a,b\ge2$ are coprime and $q_<$ has lower
+weighted degree, we prove a single-chain comparison theorem under explicit
+Morse, critical-value independence, face-separation, and saddle-or-continuation
+hypotheses. The $(a-1)(b-1)$ monomial moments are algebraically independent
+over the fixed-face function field, and their values are algebraically
+independent over the corresponding face-value field at every nonzero
+algebraic parameter. Every polynomial amplitude has a unique Laurent Stokes
+remainder; algebraicity of its value over the face-value field is equivalent
+to polynomial twisted exactness.
 
-With separated ordered critical-value differences and adjoint boundary
-disjointness, the $(a-1)(b-1)$ monomial moments are algebraically independent
-over the fixed-face field, both functionally and at every nonzero algebraic
-parameter. Finite root separation replaces rational independence and holds
-on a nonempty Zariski-open subset of the full weighted coefficient family.
-Spectral and rank tests certify boundary disjointness. Every polynomial
-amplitude has a unique Laurent Stokes remainder; its specialized vanishing
-characterizes membership in the boundary span at the linear level and
-algebraicity over the boundary field at the stronger level.
-
-The proof uses Picard--Lefschetz geometry, Fourier irreducibility, a
-separated-root differential-Galois argument, and stable lattices. We retain
-the elliptic and rank-six triangles and add a directly proved noncoprime
-rank-three example with phase $x^4+y^2+x$. All boundary fields use only the
-specified faces. Unrestricted simplex nonvanishing, several-chain comparison,
-and general formal completeness are not asserted.
+The proof combines global Picard--Lefschetz geometry, a Fourier
+order-versus-degree irreducibility argument, direct simple-spectrum formal
+diagonalization, and an elementary stable-lattice obstruction to boundary
+adjoint factors. An actual one-column criterion converts these facts into
+algebraic independence. We verify both the original elliptic triangle and a
+rank-six triangle with phase $x^4+y^3+xy-y$. The boundary fields contain only
+the specified faces. No genericity assertion, several-chain comparison,
+or general formal-completeness theorem is claimed.
 \end{abstract}
 
 \medskip
@@ -157,14 +152,13 @@ and general formal completeness are not asserted.
 Primary 11J91; Secondary 11J81, 12H05, 32S40, 34M35.
 \tableofcontents
 
-\section{Introduction and two levels of comparison}\label{sec:intro}
+\section{Introduction and main comparison theorem}\label{sec:intro}
 We study actual compact integrals and their polynomial Stokes certificates,
-not an unspecified completion of a formal period algebra. The general
-boundary construction leads to two distinct conclusions: linear comparison
-modulo the actual boundary span, and algebraic independence over its fraction
-field under additional hypotheses. Keeping these conclusions separate makes
-both the weaker assumptions and the stronger conclusion explicit. The
-elliptic, rank-six, and noncoprime rank-three triangles are worked applications.
+not an unspecified completion of a formal period algebra. The basic
+polynomial boundary construction is general; the comparison theorem below
+verifies its actual-column criterion for a weighted-plane class under
+explicit hypotheses. The elliptic and rank-six examples give two complete
+applications.
 
 The algebraic changes of variables, linearity, and twisted Stokes identities
 used here belong to the exponential Kontsevich--Zagier framework
@@ -176,12 +170,10 @@ theorems or Paper IV.
 
 \paragraph{Structure and previous version.}
 Section~\ref{sec:boundary-construction} constructs actual systems and their
-$E$-function coordinates. Section~\ref{sec:linear} gives the linear criterion;
-Section~\ref{sec:criterion} upgrades to boundary-field independence. Later
-sections prove irreducibility, root separation, boundary certificates, and
-actual detection, then specialize at every nonzero algebraic parameter.
-Section~\ref{sec:root-locus} proves the precise Zariski-open phase statement;
-the real-geometric chain conditions are not part of that assertion. Section~\ref{sec:elliptic-example}
+$E$-function coordinates. Section~\ref{sec:criterion} proves the general
+one-column criterion. The later sections verify its hypotheses using the
+geometry, Fourier irreducibility, and the fixed-face obstruction, and then
+specialize at nonzero algebraic parameters. Section~\ref{sec:elliptic-example}
 retains the explicit continuation needed for the original triangle.
 The pre-integration version \cite{PaperVPrevious}, including its separate
 observable-Lefschetz, Hodge, face-lattice, and multicolumn discussions, is
@@ -189,13 +181,9 @@ archived unchanged. Those additional discussions are not inputs to the
 proof here. The earlier unrestricted endpoint-complete claim remains
 withdrawn; it is not restored by this theorem.
 
-\paragraph{Revision.} The October 2026 two-level revision adds linear
-comparison without root or boundary separation, the positive-domain extremum
-detector, finite root separation and its Zariski-open locus, and the noncoprime
-rank-three application. It retains the 6 October single-chain proof and both
-of its examples. The author list and original month-year date are unchanged.
-The factorial-moment applications are developed separately in Paper~VI
-\cite{PaperVI}; the present proofs do not depend on that paper.
+\paragraph{Revision.} The 6 October 2026 revision integrates the
+source-checked single-chain theorem and its stable-lattice proof. The
+manuscript's author list and original month-year date are retained.
 
 
 
@@ -328,9 +316,8 @@ used in (iii).
 \item[(M)] \emph{Morse.} $q$ has $\mu$ distinct critical values
  $c_1,\dots,c_\mu$ (equivalently: all critical points are nondegenerate with
  distinct values).
-\item[(R)] \emph{Separated root weights.} All ordered differences
- $c_i-c_j$, $i\ne j$, are distinct: equality $c_i-c_j=c_k-c_l$ with
- $i\ne j$ and $k\ne l$ implies $(i,j)=(k,l)$.
+\item[(Q)] \emph{Independent critical values.} $c_2-c_1,\dots,c_\mu-c_1$ are
+ linearly independent over $\Q$.
 \item[(F)] \emph{Faces.} For every face $e$ with $d_e\ge2$, the set
  $\{c_i-c_j:i\ne j\}$ is not contained in
  $\{u-v: u,v\ \text{critical values of }p_e\}$.
@@ -339,67 +326,12 @@ used in (iii).
  multiplicity $w:=m_D(P_0)$ is nonzero, and $c:=q(P_0)$ is neither the
  value of $q$ at a vertex of $D$ nor a critical value of any $p_e$ on its
  parameter interval.
-\item[(E)] \emph{Extremum.} $D$ represents the usual positive area measure
- on the closure of a bounded real domain with nonempty interior, and
- \[
- \min_D q<\min_{|\partial D|}q
- \quad\text{or}\quad
- \max_D q>\max_{|\partial D|}q.
- \]
- Here $|\partial D|$ is the union of all specified face images, including
- any internal faces in the chosen presentation. This condition is not
- asserted for arbitrary signed or complex chains.
 \end{enumerate}
-The older condition (Q), rational independence of
-$c_2-c_1,\ldots,c_\mu-c_1$, implies (R); it is no longer assumed.
-For $\mu=2$, (R) is automatic.
-
-Let $\Bcal=(B_j)_j$ be the finite closed vector of reduced fixed-face moments,
-endpoint exponentials, and $1$ supplied by
-Theorem~\ref{thm:boundary-system}. Set
-\[
- \Ncal=\sum_j F B_j,\qquad
- \Vcal_{\partial,\xi}=\sum_j k B_j(\xi).
-\]
-The latter is a vector space, not the field $K_{\partial,\xi}$.
-
-\begin{theorem}[Linear single-chain comparison]\label{thm:linear}
-Let $q$ satisfy (W),(M), and let the polynomial two-chain $D$ over
-$k_\R$ satisfy (S), (S$^*$) below, or (E).
-Write $M_m=I_D(m\,dx\wedge dy)$ for $m\in B$.
-Integration induces an injective differential map
-$\Hq\otimes_{F_0}F\longrightarrow\M/\Ncal$.
-For every $\xi\in k^\times$,
-\[
- \sum_{m\in B}\lambda_m M_m(\xi)\in\Vcal_{\partial,\xi},
- \quad\lambda_m\in k
- \quad\Longrightarrow\quad \lambda_m=0\ \text{for all }m.
-\]
-For $r\in k[x,y]$, let $a_{r,m}$ be the unique Laurent Stokes remainder
-coefficients of Lemma~\ref{lem:normal}. Then
-\begin{align*}
- I_D(r\,dx\wedge dy)(\xi)\in\Vcal_{\partial,\xi}
- &\Longleftrightarrow a_{r,m}(\xi)=0\quad\text{for every }m\in B\\
- &\Longleftrightarrow
- r\,dx\wedge dy\in(d+\xi\,dq\wedge)\Omega^1_{k[x,y]/k}.
-\end{align*}
-In particular every nonzero $r\in\Span_k B$ has a transcendental integral
-at every nonzero algebraic parameter. Neither (R), (Q), nor (F) is required.
-\end{theorem}
-
-\begin{remark}\label{rem:two-levels}
-For a general polynomial amplitude, the specialized remainder may vanish.
-That puts its integral in the boundary span; the boundary term need not be
-zero. A nonzero remainder gives transcendence over $k$, not necessarily over
-the boundary field. The following theorem has that stronger conclusion.
-\end{remark}
+For $\mu=2$, (Q) is automatic.
 
 \begin{theorem}[Single-chain comparison]\label{thm:main}
-Let $q$ be of class $(W)$ satisfying \textup{(M),(R)}, and let $D$
-be a polynomial two-chain over $k_\R$ satisfying one of
-\textup{(S),(S$^*$),(E)}. Assume \textup{(F)}, or the intrinsic adjoint
-exclusion described in Corollary~\ref{cor:boundary-tests}; its rank test also
-suffices. Put
+Let $q$ be of class $(W)$ satisfying \textup{(M)} and \textup{(Q)}, and let $D$
+be a polynomial two-chain over $k_\R$ satisfying \textup{(F)} and either \textup{(S)} or \textup{(S$^*$)} below. Put
 $M_m=I_D(m\dd x\wedge dy)$ for $m\in B$.
 \begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.4em]
 \item The classes of $m\,dx\wedge dy$, $m\in B$, form an $F_0$-basis of $\Hq$,
@@ -420,7 +352,7 @@ $M_m=I_D(m\dd x\wedge dy)$ for $m\in B$.
 \end{theorem}
 
 \begin{remark}[The continuation alternative]\label{rem:Sstar}
-The saddle detector in Lemma~\ref{lem:saddle} may be replaced by:
+Hypothesis (S) is used only in Lemma~\ref{lem:saddle}. It may be replaced by:
 \begin{enumerate}[leftmargin=2.6em]
 \item[(S$^*$)] on some interval $e_0\subset\R$ free of critical values of $q$
  and of the $p_e$, of vertex values and of $0$, the density germ
@@ -436,7 +368,7 @@ its functional and numerical comparison from Theorem~\ref{thm:main}.
 \end{remark}
 
 \begin{corollary}[Polygons]\label{cor:polygon}
-Let $\min(a,b)\ge3$, let $q$ be of class $(W)$ with \textup{(M)}, \textup{(R)},
+Let $\min(a,b)\ge3$, let $q$ be of class $(W)$ with \textup{(M)}, \textup{(Q)},
 and let $D$ be a real polygonal chain (all faces straight segments) with vertices
 in $k_\R^2$. Then \textup{(F)} holds automatically. If moreover the coefficients
 of $q$ and the vertices lie in a field $k_0\subset k_\R$ over which
@@ -446,7 +378,7 @@ real saddle of $q$ lies in the interior of $D$ with nonzero multiplicity.
 \begin{proof}
 A straight face has $d_e\le\max(a,b)$, so $p_e$ has at most $\max(a,b)-1<\mu$
 critical values and at most $(\mu-1)(\mu-2)<\mu(\mu-1)$ nonzero differences,
-whereas under (R) the $\mu(\mu-1)$ numbers $c_i-c_j$ are pairwise distinct.
+whereas under (Q) the $\mu(\mu-1)$ numbers $c_i-c_j$ are pairwise distinct.
 Vertex values lie in $k_0$ and critical values of $p_e\in k_0[s]$ have degree at
 most $d_e-1<\max(a,b)$ over $k_0$, so neither can equal $c$.
 \end{proof}
@@ -619,73 +551,8 @@ boundary field gives a canonical differential map
 \end{equation}
 Here $\M/K_\partial$ is used as a differential vector space, not as a
 quotient field or ring. This map need not be injective for arbitrary chains.
-The stronger criterion, Theorem~\ref{thm:criterion}, proves injectivity rather than building it into a
+The next criterion proves injectivity rather than building it into a
 completion definition.
-
-\section{Linear comparison modulo the boundary span}\label{sec:linear}
-
-\begin{proposition}[Actual linear criterion]\label{prop:linear-criterion}
-Suppose an actual column $U$ satisfies $U'=AU+b$ over $F$, where each
-$b_i$ lies in a finite-dimensional differential subspace $\Ncal\subset\M$.
-If the coefficient module of $A$ is irreducible and $U\notin\Ncal^n$, the
-map $e_i\mapsto U_i\bmod\Ncal$ is injective. Thus the coordinates of $U$
-are $F$-linearly independent modulo $\Ncal$.
-If, moreover, the combined boundary-and-interior column is a vector of
-$E$-functions in a closed system over $k[z,z^{-1}]$, its values at every
-$\xi\in k^\times$ are $k$-linearly independent modulo the boundary-value span.
-\end{proposition}
-\begin{proof}
-The displayed assignment is a differential map because the forcing lies in
-$\Ncal$. Its kernel is a differential submodule. Irreducibility and the
-nonzero-image hypothesis force the kernel to vanish. There is no scalar
-extension from $F$ to the fraction field $F(\Ncal)$ in this argument.
-
-For the value statement, apply Beukers' linear lifting theorem
-\cite[Theorem~3.2, p.~375]{Beukers} to the entire combined vector, including
-any redundant boundary coordinates. At the ordinary point $\xi\ne0$ every
-algebraic linear relation is the specialization of a rational functional
-relation regular at $\xi$. Equivalently, Lemma~3.1 of that paper supplies
-polynomial relation rows with full rank on specialization. A functional
-relation has every interior coefficient identically zero by the first
-part, hence also zero at $\xi$. This proves the assertion for the prescribed
-relation, without clearing a denominator that vanishes at $\xi$.
-\end{proof}
-
-\begin{lemma}[Strict interior extremum]\label{lem:extremum}
-Suppose $q$ is real, $D$ satisfies (E), and the twisted module is irreducible
-of rank at least two. Integration modulo $\Ncal$ is injective. In particular
-$I_D(dx\wedge dy)\notin\Ncal$ whenever $[dx\wedge dy]\ne0$.
-\end{lemma}
-\begin{proof}
-Consider the minimum case, and put
-$c=\min_Dq<d=\min_{|\partial D|}q$.
-First omit the artificially adjoined constant $1$ and let $\Ncal_b$ be the
-span of the genuine face moments and endpoint exponentials. It is a
-differential subspace: differentiation and one-variable Stokes reduction
-introduce only these same coordinates. For every $g\in\Ncal_b$ there are
-$C,N$ such that, for all sufficiently large real $s$,
-\[
- |g(-s)|\le Cs^N e^{-ds}.
-\]
-Rational coefficients have at most polynomial growth on that ray away from
-their finitely many poles. On the other hand, a positive-area sublevel
-neighborhood gives, for $0<\varepsilon<d-c$,
-\[
- I_D(dx\wedge dy)(-s)\ge A_\varepsilon e^{-(c+\varepsilon)s},
- \qquad A_\varepsilon>0.
-\]
-Thus the integration map modulo $\Ncal_b$ is nonzero and hence injective.
-Its image is an irreducible module of rank at least two. Its intersection
-with $(\Ncal_b+F)/\Ncal_b$, a differential module of rank at most one, is
-zero. Passing to the quotient by this latter module restores $1$ without
-losing injectivity. This includes $c=0$, and also covers the case when an
-actual boundary coordinate already equals $1$. The maximum case uses the
-positive ray, or equivalently replaces $q$ by $-q$ and $z$ by $-z$.
-\end{proof}
-
-The hypothesis concerns the specified face support. Without positivity,
-several chain contributions near an extremum can cancel, so the preceding
-argument is not an extremum test for arbitrary signed chains.
 
 \section{An actual-solution comparison criterion}\label{sec:criterion}
 Let $\mathcal B$ be a finite rational boundary differential system, let
@@ -1089,16 +956,13 @@ quantities already known, and the off-diagonal part determines
 $H_k^{\rm off}$. Induction on $k$ constructs $\widehat H$.
 \end{proof}
 
-\begin{proposition}[Separated-root group criterion]\label{prop:SL}
-Let $A\in M_\mu(\C[z^{-1}])$, $\mu\ge2$, define an irreducible differential
-module. Suppose its leading matrix $A_0$ has simple eigenvalues
-$c_1,\ldots,c_\mu$ satisfying (R). Then its differential Galois group over
-$F$ contains $\SL_\mu$. In particular this holds for the class (W) under
-(M),(R), by Propositions~\ref{prop:geometry} and~\ref{prop:irred}.
+\begin{proposition}\label{prop:SL}
+Assume \textup{(M)}, \textup{(Q)}, \textup{(G1)--(G3)}, $\mu\ge2$. Then
+$G\supseteq\SL_\mu$.
 \end{proposition}
 \begin{proof}
 \emph{Formal solution and a diagonal subgroup.} Let $\mathfrak K=\C((w))$ with
-$'=d/dz=-w^2d/dw$. By the hypothesis on $A$ and Lemma~\ref{lem:formal},
+$'=d/dz=-w^2d/dw$. By Lemma~\ref{lem:normal}(c) and Lemma~\ref{lem:formal},
 $\widehat H'=A\widehat H-\widehat H(C+\Lambda w)$ with
 $C=\operatorname{diag}(c_i)$, $\Lambda=\operatorname{diag}(\lambda_i)$,
 $\widehat H\in\GL_\mu(\C[[w]])$. Let $K_0$ be a Picard--Vessiot extension of
@@ -1124,11 +988,11 @@ $T$ is a torus with character group $\Z^\mu/\{n:\sum n_ic_i=0\}\cong\sum\Z c_i$,
 acting on the $i$th basis vector with weight $c_i$; being connected,
 $T\subset G^0$.
 
-\emph{Root decomposition.} By (R) the weights $c_i-c_j$ $(i\ne j)$ of $T$ on
+\emph{Root decomposition.} By (Q) the weights $c_i-c_j$ $(i\ne j)$ of $T$ on
 $\mathfrak{gl}_\mu$ are pairwise distinct and nonzero, so
 $\mathfrak g=\Lie G^0=(\mathfrak g\cap\mathfrak d)\oplus\bigoplus_{(i,j)\in R}\C E_{ij}$,
 $\mathfrak d$ the diagonal matrices. $G$ is reductive because $V$ is a faithful
-irreducible representation by hypothesis, so $G^0$ is
+irreducible representation (Proposition~\ref{prop:irred}), so $G^0$ is
 reductive; $\mathfrak g\cap\mathfrak d$ is the centralizer of $\Lie T$, a Cartan
 subalgebra, and therefore $R=-R$. Also $R$ is closed under
 $(i,j),(j,l)\mapsto(i,l)$. So $R$ defines an equivalence relation with classes
@@ -1150,77 +1014,6 @@ matrices preserve each $V_{I_a}$, so each $V_{I_a}$ is $G$-stable and
 irreducibility gives $s=1$. Then every $E_{ij}$ lies in $\mathfrak g$ and
 $\SL_\mu\subset G^0$.
 \end{proof}
-
-\section{A nonempty open phase locus}\label{sec:root-locus}
-
-\begin{proposition}[Zariski-open separated critical values]\label{prop:root-open}
-Fix coprime $a,b\ge2$ and nonzero leading coefficients $\alpha,\beta$.
-In the affine space of \emph{all} coefficients of $q_<$ of weight less than
-$ab$, the conditions (M),(R) define a nonempty Zariski-open subset.
-\end{proposition}
-\begin{proof}
-The leading partial derivatives form the monomial regular sequence
-$x^{a-1},y^{b-1}$. The weighted division used in Lemma~\ref{lem:normal}
-therefore gives a finite free universal Jacobian algebra of rank $\mu$.
-Its reduced-fibre locus, with distinct critical values, is open. It is
-nonempty: take univariate Morse polynomials in the two variables and choose
-their lower coefficients so that the two finite sets of critical values
-have distinct pairwise sums. Scaling the critical points of one univariate
-polynomial varies its critical values by a nonzero scalar while keeping its
-prescribed leading coefficient; only finitely many scalars are excluded.
-Call this irreducible open parameter space $U$.
-
-Over $U$ the critical-point scheme is finite etale. Pass to its finite etale
-cover labeling all points $P_i$ and values $c_i$. For an allowed coefficient
-variation $h$, differentiation of $c_i=q(P_i)$ gives
-$dc_i(h)=h(P_i)$, since $dq(P_i)=0$.
-
-Suppose first $a,b\ge3$. Every polynomial of ordinary degree at most two
-has weight less than $ab$. At a forbidden equality
-$c_i+c_l-c_j-c_k=0$, its differential cannot vanish on all these variations.
-Indeed equality of evaluations for every linear and quadratic $h$ says
-that the pairs $(P_i,P_l)$ and $(P_j,P_k)$ have equal sums and second-moment
-matrices. Writing a pair as $(s+v)/2,(s-v)/2$, those data determine $vv^T$;
-over a field of characteristic zero, $vv^T=ww^T$ forces $w=\pm v$.
-Thus the unordered pairs coincide, including multiplicities. Under
-$i\ne j$, $k\ne l$, the only possibility is the identical ordered
-difference $(i,j)=(k,l)$, which was excluded. Each forbidden equality
-therefore defines a proper closed subset on every component of the cover.
-
-If $b=2$, completing the square in
-$q=\beta y^2+P(x)y+Q(x)$ gives a degree-$a$ polynomial in $x$.
-On $U$ its $a-1$ critical $x$-coordinates are distinct. The allowed
-variations $1,x,\ldots,x^{a-2}$ have an invertible Vandermonde evaluation
-matrix, so no forbidden equality has identically zero differential.
-The case $a=2$ is symmetric. The finite union of the forbidden loci has
-proper closed image under the finite label cover. Its complement in $U$
-is the required nonempty open subset.
-\end{proof}
-
-\begin{example}[Strictly weaker than rational independence]\label{ex:R-not-Q}
-Let
-\[
- p=x^5-\frac54x^4-\frac{35}{3}x^3+\frac52x^2+30x,
- \qquad q=p(x)+y^2.
-\]
-Then $p'=5(x+2)(x+1)(x-1)(x-3)$ and its critical values are
-\[
- -\frac{26}{3},\quad -\frac{217}{12},\quad
- \frac{247}{12},\quad -\frac{243}{4}.
-\]
-Their twelve ordered differences are distinct (an exact rational check),
-so (M),(R) hold. The values are rational, so the three differences from
-one base value are rationally dependent: (Q) fails.
-\end{example}
-
-\begin{remark}
-The proposition concerns the full weighted coefficient space, not every
-sparse subfamily. A separable family with two critical points in each
-variable has additive rectangles and can fail (R) identically. Nor are
-(S),(S$^*$),(E) Zariski-open conditions on that space: they concern an
-actual real chain. Root separation is a sufficient group certificate;
-its failure does not imply that the Galois group is smaller.
-\end{remark}
 
 \section{Face disjointness}
 
@@ -1343,26 +1136,6 @@ therefore makes every $c_i-c_j$ a difference of two such critical values.
 This contradicts (F).
 \end{proof}
 
-\begin{corollary}[Intrinsic, spectral, and rank tests]\label{cor:boundary-tests}
-The full comparison needs the intrinsic exclusion
-$\End^0(A)\notin\Tcal_\partial$. Under the hypotheses of
-Proposition~\ref{prop:faces}, either (F) or the inequalities
-\[
- d_e-1<\mu\qquad\text{for every face with }d_e\ge2
-\]
-certifies this exclusion. The rank test is automatic for straight faces
-in class (W) when $\min(a,b)\ge3$.
-\end{corollary}
-\begin{proof}
-The proof of Proposition~\ref{prop:faces} produces an embedding into
-$\End(H_{p_e}^{\rm ss})$ for one single face if the exclusion fails.
-Its dimensions would require $\mu^2-1\le(d_e-1)^2$, impossible when
-$d_e-1<\mu$. For straight faces $d_e\le\max(a,b)$ and
-$\max(a,b)-1<(a-1)(b-1)$. No comparison merely with the dimension of a
-boundary generating vector would control its whole tensor category;
-the single-face reduction is indispensable.
-\end{proof}
-
 \section{The saddle lemma}
 
 Let $\Ncal=\Span_F\{1,\ \text{reduced face moments},\ \text{endpoint exponentials}\}$.
@@ -1415,36 +1188,15 @@ $g\in\pi_1(S)$. As in Lemma~\ref{lem:injective} the $(g-1)\nu_i$ span $H_1$
 itself vanishes, contradicting (G2).
 \end{proof}
 
-\section{Proof of the linear theorem}
-
-For (W),(M), Propositions~\ref{prop:geometry} and~\ref{prop:irred} give
-irreducibility of $\Hq\otimes F$, independently of (R),(Q),(F).
-Lemma~\ref{lem:saddle} supplies nonzero detection under (S) or (S$^*$);
-Lemma~\ref{lem:extremum} supplies it under (E). Apply
-Proposition~\ref{prop:linear-criterion}. The combined system has no finite
-pole except zero by Lemma~\ref{lem:normal} and the one-variable boundary
-reduction, so the same proposition proves the value assertion for every
-$\xi\in k^\times$.
-
-Specializing the Laurent Stokes identity is legitimate at every such $\xi$.
-Its boundary term is in $\Vcal_{\partial,\xi}$, so linear comparison forces
-all remainder coefficients to vanish if the integral lies in that span.
-The specialized independence part of Lemma~\ref{lem:normal} identifies this
-with polynomial twisted exactness. Conversely exactness gives membership
-by Stokes. If $r\in\Span_k B$ is nonzero, its remainder is the same nonzero
-constant vector at every $\xi$; since $k\subset\Vcal_{\partial,\xi}$, its
-integral is transcendental over $k$. This proves Theorem~\ref{thm:linear}.
-
 \section{Proof of Theorem \ref{thm:main}}
 
 (i) is Lemma~\ref{lem:normal}. For (ii): integrating the certificates of
 $qm$ gives $M'=AM+b$ with $b_m=\int_{\partial D}e^{zq}(P_{qm}\,dy-Q_{qm}\,dx)\in\Ncal$.
 The actual one-column criterion, Theorem~\ref{thm:criterion}, requires:
 (1) $G\supseteq\SL_\mu$, which is Proposition~\ref{prop:SL};
-(2) $\End^0(A)\notin\Tcal_\partial$, which is the assumed intrinsic
-exclusion or follows from Corollary~\ref{cor:boundary-tests};
-(3) some $M_m\notin\Ncal$, which is Lemma~\ref{lem:saddle} or
-Lemma~\ref{lem:extremum}, since $1\in B$.
+(2) $\End^0(A)\notin\Tcal_\partial$, which is Proposition~\ref{prop:faces}
+with (F) and Lemma~\ref{lem:formal};
+(3) some $M_m\notin\Ncal$, which is Lemma~\ref{lem:saddle} since $1\in B$.
 Hence the $M_m$ are algebraically independent over $F(\Ncal)=K_\partial$.
 
 (iii) The vector (boundary coordinates, $M$) consists of $E$-functions
@@ -1480,7 +1232,7 @@ The following are exact computations (script supplied).
  \]
  The same polynomial is obtained independently as the resultant eliminating
  the critical points.
-\item \emph{(M) and the stronger (Q), hence (R).} $\chi$ is irreducible over $\Q$; modulo $7$ it
+\item \emph{(M) and (Q).} $\chi$ is irreducible over $\Q$; modulo $7$ it
  factors with degrees $(1,5)$ and modulo $31$ with degrees $(1,2,3)$. A
  transitive group of degree $6$ containing a $5$-cycle is primitive, and with
  a transposition (the cube of the second Frobenius) it is $S_6$. Given a
@@ -1754,155 +1506,15 @@ normalization and the finite generating boundary vector. Thus this is
 also a specialization of the general proof, not just an abstract
 identification of two homogeneous equations.
 \end{proof}
-\section{A noncoprime rank-three comparison}\label{sec:noncoprime}
-
-The preceding geometric irreducibility proof uses coprime weights, but
-coprimality is not necessary for every individual exponential module.
-Consider
-\[
- q=x^4+y^2+x,\qquad
- T=\operatorname{conv}\{(-1,-1),(0,-\tfrac12),(-\tfrac12,1)\}.
-\]
-\[
- U_j(z)=\int_T x^j e^{zq}\,dx\,dy\quad(0\le j\le2).
-\]
-Use the positive orientation and only the three specified edges.
-
-\begin{theorem}\label{thm:noncoprime}
-The three functions $U_0,U_1,U_2$ are algebraically independent over the
-fixed-face field $K_\partial$. For every $\xi\in k^\times$ their values are
-algebraically independent over $K_{\partial,\xi}$. Every polynomial amplitude
-has a unique Laurent remainder in $1,x,x^2$, and its integral at $\xi$ is
-algebraic over $K_{\partial,\xi}$ if and only if its two-form is polynomially
-$(d+\xi\,dq\wedge)$-exact.
-\end{theorem}
-
-\subsection{Literal system and formal exponents}
-The proof of Lemma~\ref{lem:normal} does not use coprimality. Applied to
-$(a,b)=(4,2)$, it gives the free basis $1,x,x^2$ and a system
-\begin{equation}\label{eq:rank-three-system}
- U'=AU+b,\qquad
- A=C+\frac{D_0}{z},\quad
- C=\begin{pmatrix}0&3/4&0\\0&0&3/4\\-3/16&0&0\end{pmatrix},\quad
- D_0=\operatorname{diag}(-3/4,-1,-5/4).
-\end{equation}
-In fact for $j=0,1,2$ the polynomial certificates are
-\[
- qx^j=\sum_{l=0}^2 A_{jl}x^l+L_xP_j+L_yQ_j,
- \quad
- P_j=\frac{x^{j+1}}{4z}+\frac{3\delta_{j,2}}{16z},\qquad
- Q_j=\frac{x^jy}{2z}.
-\]
-Thus $b_j=\int_{\partial T}e^{zq}(P_j\,dy-Q_j\,dx)$ is the actual boundary
-forcing. No choice of a homogeneous solution normalizes this column.
-
-The critical points satisfy $4x^3+1=0$, $y=0$, and their critical values
-$c_i=3x_i/4$ are the simple roots of
-\[
- c^3+\frac{27}{256}=0.
-\]
-They have six distinct ordered differences. A nontrivial equality among
-three distinct values would make one the midpoint of the other two;
-since their sum is zero this would force a zero critical value.
-
-For the spectral projector onto the $c_i$-eigenline of $C$,
-\[
- \Pi_i=\frac13\left(I+\frac C{c_i}+\frac{C^2}{c_i^2}\right),
- \qquad \operatorname{tr}(\Pi_iD_0)=-1,
-\]
-because $\operatorname{tr}(CD_0)=\operatorname{tr}(C^2D_0)=0$ and
-$\operatorname{tr}(D_0)=-3$. Lemma~\ref{lem:formal} therefore gives the
-three formal exponents $-1$ at infinity.
-
-\subsection{Direct irreducibility}
-\begin{lemma}\label{lem:rank-three-irred}
-The differential module of \eqref{eq:rank-three-system} is irreducible over
-$\C(z)$, and its homogeneous differential Galois group is $\SL_3$.
-\end{lemma}
-\begin{proof}
-A rational invariant line for the solution connection would be generated
-by a primitive polynomial vector $v(z)$, whose entries have no common
-zero. Write its scalar connection as $r(z)$, so
-$v'+rv=Av$. At an ordinary finite point one entry of $v$ is nonzero, hence
-$r$ has no pole there; at zero it has at most a simple pole. Using an entry
-of maximal degree shows $r=O(1)$ at infinity. Thus $r=c+\lambda/z$.
-A corresponding solution is $e^{cz}z^\lambda v(z)$.
-
-At zero $v(0)\ne0$, so $\lambda\in\{-3/4,-1,-5/4\}$.
-Let $d=\deg v$. Comparison of the leading and next coefficients at infinity,
-or the formal diagonalization above, gives $\lambda+d=-1$.
-With $d$ a nonnegative integer the only possibility is $\lambda=-1$, $d=0$.
-But the $-1$ eigenspace of $D_0$ is the middle coordinate line, and $C$
-does not preserve it. There is no such invariant line.
-
-For the dual system $-A^T$, the residue eigenvalues are $3/4,1,5/4$ and
-the formal exponents are all $1$. The same comparison forces
-$\lambda=1$, $d=0$, but the middle line is not preserved by $-C^T$ either.
-Thus there is no invariant line in the dual. A proper submodule in rank
-three has rank one or produces a rank-one quotient; both have been excluded.
-This proves irreducibility, independently of any assertion about the
-punctures of an ordinary fibre.
-
-Proposition~\ref{prop:SL} now gives $G\supseteq\SL_3$. Since
-$\operatorname{tr}A=-3/z$, a determinant solution is $z^{-3}\in F$,
-so $G\subseteq\SL_3$ as well.
-\end{proof}
-
-\subsection{The triangle and its boundary}
-The unique global real minimum is $(-4^{-1/3},0)$.
-Since $1/2<4^{-1/3}<3/4$, it is strictly inside $T$: the three bounding
-lines are
-\[
- y=x/2-1/2,\qquad y=-3x-1/2,\qquad y=4x+3.
-\]
-The minimum is unique and the boundary compact, so (E) holds strictly.
-Lemma~\ref{lem:extremum} supplies actual detection.
-
-For a quartic $p=x^4+Ax^2+Bx+C_0$, let $u_1,u_2,u_3$ be its critical
-values with multiplicity. Multiplication by $p$ in $k[x]/(p')$, or Newton
-identities, gives
-\begin{equation}\label{eq:quartic-face-invariant}
- \sum_{i\ne j}(u_i-u_j)^2
- =6\operatorname{tr}(m_p^2)-2\operatorname{tr}(m_p)^2
- =\frac{A(A^3-27B^2)}4.
-\end{equation}
-On an edge $y=mx+b_0$, take $A=m^2$, $B=1+2mb_0$. The three values of
-\eqref{eq:quartic-face-invariant}, in the order of the lines above, are
-\[
- -\frac{431}{1024},\qquad \frac{2673}{4},\qquad -51116.
-\]
-For the interior cubic critical-value polynomial the same ordered-difference
-square sum is zero. An edge has at most six ordered critical differences.
-Containing the six distinct interior differences would force equality of
-the two sets, without repetitions, and equality of their square sums.
-This is impossible, so (F) holds on each edge, whether or not its own
-critical values repeat.
-
-\begin{proof}[Proof of Theorem~\ref{thm:noncoprime}]
-Apply Theorem~\ref{thm:criterion} using Lemma~\ref{lem:rank-three-irred},
-Proposition~\ref{prop:faces}, and the extremum detector. This gives functional
-independence. The actual combined system has coefficients in $k[z,z^{-1}]$
-and $E$-function coordinates. Applying Beukers' theorem separately to the
-boundary and combined vectors, exactly as in the proof of
-Theorem~\ref{thm:main}(iii), gives independence at every $\xi\ne0$.
-Specialized Laurent reduction and Stokes give the exactness equivalence.
-\end{proof}
-
-This is an explicit noncoprime extension, not a theorem for all noncoprime
-weighted phases. The calculations are reproduced by the comparison and
-factorial-moment verification script.
-
 \section{Scope, dependencies, and verification}\label{sec:scope}
 The normal-form theorem is algebraic and the polynomial boundary-system
-construction allows arbitrary polynomial phases. Linear comparison requires
-irreducibility and actual detection; for the coprime weighted class, (M)
-and one of (S),(S$^*$),(E) suffice. Full independence needs the additional
-root and boundary hypotheses of Theorem~\ref{thm:main}. Finite root separation
-replaces the older arithmetic hypothesis (Q); Proposition~\ref{prop:root-open}
-proves its nonempty Zariski-open locus in the full weighted family, without
-claiming generic real-chain detection. The noncoprime rank-three application
-uses a separate direct irreducibility proof. Its scope is not a universal
-noncoprime theorem.
+construction allows arbitrary polynomial phases. Algebraic independence
+requires the explicitly stated hypotheses of Theorem~\ref{thm:main},
+verified for the two examples above. The result is not contingent on
+an unproved genericity conjecture: (Q) is a hypothesis on the specified
+critical values, certified in the examples. Its failure alone does not
+imply that the homogeneous Galois group is smaller.
+
 All boundary fields are attached to the finitely many fixed faces and
 endpoints of the chain. Replacing them by the field of all compact
 polynomial-line periods is not an asserted extension. Only one phase and
@@ -1924,18 +1536,15 @@ Ordinary Picard--Vessiot theory and its tensor equivalence use
 criterion uses \cite[Proposition~15.15, Corollary~22.43]{MilneAG}.
 The general finiteness assertion uses the explicitly identified
 Proposition~9.1 of Sabbah \cite{Sabbah}.
-Linear specialization uses \cite[Theorem~3.2]{Beukers}; full independence
-uses \cite[Theorem~1.1]{Beukers} separately for the boundary and combined
-vectors. Neither Wasow's formal simplification
+Numerical specialization uses \cite[Theorem~1.1]{Beukers} separately for
+the boundary and combined vectors. Neither Wasow's formal simplification
 nor a general formal-normal-form theorem is needed: the relevant
 simple-spectrum and lattice statements are proved in the text.
 
 \paragraph{Computational verification.}
 The repository contains the retained exact elliptic-amplitude certificate,
 the rank-six polynomial/resultant/Frobenius/Sturm certificate, and exact
-checks of the formal recursion and six formal powers. Additional exact tests
-verify the strict (R)-versus-(Q) example, the rank-three Stokes identities and
-three edge spectra, and the characteristic-five application formulas. The rank-six
+checks of the formal recursion and six formal powers. The rank-six
 geometric inequalities are certified on whole rational intervals.
 These tests verify finite calculations, not the general monodromy or
 Galois proofs. Compilation, regression tests, and AI-assisted audits are
@@ -1982,10 +1591,6 @@ Springer, Berlin, 2001, pp.~771--808.
  over a Field}, Cambridge Studies in Advanced Mathematics, vol.~170,
 Cambridge University Press, 2017, Proposition~15.15 and Corollary~22.43.
 \href{https://www.jmilne.org/math/Books/iAG2017.pdf}{Author-hosted text}.
-
-\bibitem{PaperVI} C.~D.~Long and A.-A.~Le~Blanc,
- \emph{Exponential Periods and Factorial Moments}, Paper~VI, October 2026,
- working manuscript in the same repository.
 
 \bibitem{PaperVPrevious} C.~D.~Long and A.-A.~Le~Blanc,
  \emph{Relative Exponential Periods on Polynomial Flags:

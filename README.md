@@ -1,6 +1,6 @@
 # Exponential Integral Theorem
 
-Research manuscripts on algebraic exponential integrals, E-functions, transcendence and algebraic independence, compact exponential periods, Kontsevich–Zagier relations, relative exponential fixed parts, and polynomial boundary systems.
+Research manuscripts on algebraic exponential integrals, E-functions, transcendence and algebraic independence, compact exponential periods, Kontsevich–Zagier relations, relative exponential fixed parts, polynomial boundary systems, simplex periods, and factorial moments.
 
 Authors: **Christopher D. Long and Antoine-Auguste Le Blanc**. Le Blanc cryptographic author identifier: `b604812530b3535b23d6dbb0f5abe32d1ed1a9de35fb4f7d04d62cff08ea19c8`.
 
@@ -13,12 +13,13 @@ Authors: **Christopher D. Long and Antoine-Auguste Le Blanc**. Le Blanc cryptogr
 | III | A Polynomial Kontsevich–Zagier Theorem for Compact Exponential Periods on the Affine Line | [Read PDF](output/pdf/polynomial-kz-affine-line.pdf) | [Source](papers/03-complete-polynomial-kz/polynomial-kz-affine-line.tex) |
 | IV | Relative Exponential Fixed Parts and Functional Periods: An Exponential Nori–Ayoub Theorem | [Read PDF](output/pdf/relative-exponential-nori-ayoub.pdf) | [Source](papers/04-relative-exponential-nori-ayoub/relative-exponential-nori-ayoub.tex) |
 | V | Relative Exponential Periods on Polynomial Chains: Algebraic Independence over Fixed Boundary Fields | [Read PDF](output/pdf/polynomial-flag-exponential-periods.pdf) | [Source](papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex) |
+| VI | Exponential Periods and Factorial Moments | [Read PDF](output/pdf/exponential-factorial-moments.pdf) | [Source](papers/06-exponential-factorial-moments/exponential-factorial-moments.tex) |
 
 The PDFs are committed snapshots of the corresponding sources, not expiring build-artifact links. Access follows the repository's visibility.
 
 ## Paper guide
 
-Papers I–III progress from transcendence of individual polynomial exponential integrals to linear and polynomial Kontsevich–Zagier completeness on the affine line. Paper IV treats functional relations over a varying algebraic base. Paper V constructs two-variable boundary systems and proves a single-chain algebraic-independence theorem under explicit weighted-phase and boundary hypotheses, with rank-two and rank-six applications. Full statements, hypotheses, and references are in the linked manuscripts.
+Papers I–III progress from transcendence of individual polynomial exponential integrals to linear and polynomial Kontsevich–Zagier completeness on the affine line. Paper IV treats functional relations over a varying algebraic base. Paper V separates linear comparison modulo fixed boundary spans from algebraic independence over fixed boundary fields, with rank-two, rank-three, and rank-six applications. Paper VI uses controlled simplex exponential periods to prove eventual factorial-moment nonvanishing for explicit flat and nonflat families in every dimension. Full statements, hypotheses, and references are in the linked manuscripts.
 
 ### Paper I — Algebraic exponential integrals
 
@@ -60,21 +61,45 @@ $$
 
 Over the actual field of constant exponential periods, the comparison algebra is Picard–Vessiot and analytic evaluation is injective. This is a functional-period theorem after constant-period relations have been imposed, not a numerical specialization theorem or an elementary presentation of all categorical period relations.
 
-### Paper V — Single-chain comparison over fixed boundary fields
+### Paper V — Two levels of single-chain comparison
 
-**Scope.** The polynomial boundary-system construction covers compact polynomial two-chains with algebraic parametrizations. The main comparison theorem treats
+**Scope.** The polynomial boundary-system construction covers compact polynomial two-chains with algebraic parametrizations. The weighted phase class is
 
-$$q=\alpha x^a+\beta y^b+q_<,\qquad \gcd(a,b)=1,$$
+```math
+q=\alpha x^a+\beta y^b+q_<,\qquad \gcd(a,b)=1,
+```
 
-where $q_<$ has lower weighted degree for weights $b,a$. It assumes nondegenerate critical points with distinct values, rational independence of the differences $c_i-c_1$, fixed-face separation, and an interior saddle or the stated continuation alternative.
+with real algebraic coefficients and lower weighted degree for $q_<$. The moments use the basis $x^iy^j$, $0\le i\le a-2$, $0\le j\le b-2$, of rank $\mu=(a-1)(b-1)$.
 
-**Main results.** The $\mu=(a-1)(b-1)$ moments with amplitudes $x^iy^j$, $0\le i\le a-2$, $0\le j\le b-2$, are algebraically independent over the complexified fixed-face function field. Their values at every nonzero algebraic parameter are algebraically independent over the corresponding face-value field. Every polynomial amplitude has a unique Laurent Stokes remainder. Algebraicity of its value over the face-value field is equivalent to polynomial twisted exactness.
+**Linear comparison and scalar transcendence.** Distinct Morse critical values and actual-chain detection suffice: detection can be an interior saddle, the stated density-continuation alternative, or a strict interior extremum on a positive domain. The basic moments are linearly independent modulo the **linear span** of the specified boundary coordinates, functionally and at every nonzero algebraic parameter. A polynomial amplitude has its value in that boundary span exactly when its specialized polynomial twisted class is zero. A nonzero remainder gives absolute transcendence and nonvanishing. Neither critical-difference separation nor boundary-field disjointness is needed for this linear theorem. The extremum test includes critical value zero but is not asserted for arbitrary signed chains.
 
-The original elliptic triangle for $y^2-x^3+3x$ is retained through the continuation hypothesis $(S^*)$. A second, rank-six example uses $x^4+y^3+xy-y$ on the triangle with vertices $(0,-1),(1,-1),(1/2,0)$; its finite algebraic and geometric hypotheses have exact certificates. For straight-edged chains with $\min(a,b)\ge3$, face separation is automatic under the critical-value hypothesis.
+**Algebraic independence over the boundary field.** The stronger theorem additionally uses pairwise distinct ordered critical differences (R) and intrinsic adjoint disjointness from the boundary tensor category. The earlier rational-independence hypothesis (Q) is only a sufficient condition for (R). Spectral face separation (F), or the stated per-face rank test, certifies disjointness. The full conclusion remains algebraic independence over the fixed-face function field and over its value field at **every nonzero algebraic parameter**, with the polynomial twisted-exactness criterion for arbitrary amplitudes.
 
-The proof includes direct simple-spectrum formal diagonalization and a stable-lattice boundary obstruction; it does not require a general formal-normal-form theorem. The fields use **only the specified faces**, not all compact line periods. Genericity of the critical-value hypothesis, multiple chains/phases, and general formal completeness are not claimed. The actual comparison does not depend on Paper IV or the companion formal-comparison theorems.
+The Morse and separated-difference conditions hold on a **nonempty Zariski-open subset of the full weighted coefficient family**. This does not assert generic real-chain detection or genericity in every sparse subfamily. A rational critical-value example shows that (R) is strictly weaker than (Q).
 
-The [frozen candidate and audit](notes/candidates/2026-10-06-single-chain/README.md), [corrected successor](notes/candidates/2026-10-06-single-chain/successor/generic-single-chain-theorem-v2.tex), and [integration record](notes/provenance/paper-v-single-chain-integration-2026-10-06.md) preserve the proof-development sequence. The [pre-integration manuscript](notes/archives/2026-10-06-paper-v-before-single-chain/polynomial-flag-exponential-periods.tex) and [its PDF](notes/archives/2026-10-06-paper-v-before-single-chain/polynomial-flag-exponential-periods.pdf), including the separate geometric and multicolumn material, are archived unchanged; that material is not used in the new main proof.
+**Examples.** The original elliptic triangle for $y^2-x^3+3x$ and the rank-six triangle for $x^4+y^3+xy-y$ are retained. A new noncoprime example $x^4+y^2+x$, on the triangle with vertices $(-1,-1),(0,-1/2),(-1/2,1)$, has a directly proved rank-three $\mathrm{SL}_3$ module and a full fixed-boundary comparison. Its literal Stokes and boundary-spectrum certificates are exact. This is not a theorem for all noncoprime phases.
+
+The proof uses direct simple-spectrum formal diagonalization and stable-lattice boundary obstruction. The fields use **only the specified faces**, not all compact line periods. Multiple chains/phases and unrestricted formal completeness are not claimed. The actual comparison does not depend on Paper IV or on companion formal-comparison theorems.
+
+The [October 10 integration audit](notes/provenance/papers-v-vi-audit-2026-10-10.md) records the new proof interfaces and scope. The [pre-two-level source/PDF archive](notes/archives/2026-10-10-paper-v-before-two-level/README.md) preserves the preceding canonical V unchanged. The [October 6 candidate and audit](notes/candidates/2026-10-06-single-chain/README.md), [corrected successor](notes/candidates/2026-10-06-single-chain/successor/generic-single-chain-theorem-v2.tex), and [integration record](notes/provenance/paper-v-single-chain-integration-2026-10-06.md) retain their historical status. The [earlier archived manuscript](notes/archives/2026-10-06-paper-v-before-single-chain/polynomial-flag-exponential-periods.tex) and [its PDF](notes/archives/2026-10-06-paper-v-before-single-chain/polynomial-flag-exponential-periods.pdf) retain the separate geometric and multicolumn material, which is not used as an unproved input to the current comparison.
+
+### Paper VI — Exponential periods and factorial moments
+
+**Scope.** Write $\mathcal L_n(x_1^{e_1}\cdots x_n^{e_n})=\prod_i e_i!$ and $S=x_1+\cdots+x_n$. An exact radial theorem, allowing arbitrary complex lower homogeneous layers, gives
+
+```math
+\lim_{m\to\infty}\frac{\mathcal L_n(f^m)}{\Gamma(Dm+n)}
+=\int_{\Delta_{n-1}}\exp\bigl(f_{D-1}(t)/D\bigr)\,dt,
+\qquad f=S^D+f_{D-1}+\cdots.
+```
+
+The simplex has coordinate volume $1/(n-1)!$. A nonzero limit proves that every sufficiently large factorial moment is nonzero, which is stronger than the Factorial Conjecture conclusion for that polynomial.
+
+**Explicit families.** An odd-degree weighted planar family works at every nonzero algebraic scale in every dimension, with degree increasing with dimension. A second elliptic construction gives degree-four flat-top families in every dimension. For it, a characteristic-five twisted-remainder argument proves an all-exponent nonexactness theorem whenever $v(\xi)\le0$ at some place above five; the same choice $\xi=101i$ works in every dimension. Exact polynomial gcd checks remove all algebraic parameter exceptions for dimensions $3\le n\le103$. This finite range is not extrapolated to all exponents.
+
+A block-radial theorem supplies nonflat families with arbitrarily many active angular blocks and arbitrary lower-degree cross-block couplings. The degree-next-to-top angular correction is controlled; arbitrary coupling in that layer is not established. The analytic limits and certificates are proved in VI; its transcendence/nonvanishing input is Paper V, not a re-audit of that paper's global geometry.
+
+**Complex scales and limits of the result.** Algebraic specialization extends the FC conclusion to complex scales outside the specified finite algebraic exception sets; power closure gives infinitely many nonzero moments. This does not prove eventual nonvanishing or a nonzero radial limit at every transcendental scale. Neither unrestricted FC(n), arbitrary algebraic polynomial-phase simplex nonvanishing, nor multicolumn independence is asserted.
 
 ## Status
 
@@ -90,6 +115,15 @@ For the chronological development of the manuscripts, mathematical audit and rep
 | Polynomial KZ: quadratic normal forms, tensor-square residues, and entire exponential integrals | [Read PDF](output/pdf/polynomial-kz-supplement.pdf) | [Source](papers/03-complete-polynomial-kz/polynomial-kz-supplement.tex) |
 | EIT structural companion | [Read PDF](output/pdf/eit-structural-companion.pdf) | [Source](notes/eit-structural-companion.tex) |
 
+## Candidate research drafts
+
+These two unnumbered drafts separate proved reductions from research targets. They are **not Papers VII and VIII**, and their inclusion does not promote their open comparison problems to theorems.
+
+| Candidate | Scope and status | PDF | LaTeX |
+| --- | --- | --- | --- |
+| Simplex Exponential Periods: Reductions and Open Comparison Problems | E-function and conjugate-real reductions, fixed-phase exceptional sets, a positive-amplitude obstruction, and the still-open unrestricted simplex/visibility program | [Read PDF](output/pdf/simplex-exponential-periods.pdf) | [Source](notes/candidates/2026-10-10-simplex-program/simplex-exponential-periods.tex) |
+| Multicolumn Exponential Periods: Conditional Comparison and Geometric Realization | Proved elementary orbit and local-contraction statements; actual multichain realization, determinant normalization, and numerical hypotheses remain to be verified | [Read PDF](output/pdf/multicolumn-exponential-periods.pdf) | [Source](notes/candidates/2026-10-10-multicolumn-program/multicolumn-exponential-periods.tex) |
+
 ## Build and check
 
 On Debian/Ubuntu, install the build dependencies:
@@ -101,24 +135,25 @@ sudo apt-get install latexmk texlive-latex-extra texlive-fonts-recommended texli
 From the repository root:
 
 ```sh
-make pdf    # compile all nine documents; refresh PDFs and manifest
+make pdf    # compile all 12 managed documents; refresh PDFs and manifest
 make check  # verify hashes, rebuild, compare PDF text, and check README links
-make test   # build regressions and exact elliptic/rank-six/formal certificates
+make test   # build regressions and exact comparison/factorial certificates
 ```
 
-Each LaTeX source is standalone and has an embedded bibliography. PDFs live in `output/pdf/`; intermediate files stay in ignored `.build/`. The [manifest](output/pdf/manifest.json) records each source hash, PDF hash, and page count.
+Each managed LaTeX source is standalone and has an embedded bibliography. The build explicitly selects the two new candidate drafts; it does not recursively compile historical archives or frozen candidates. PDFs live in `output/pdf/`; intermediate files stay in ignored `.build/`. The [manifest](output/pdf/manifest.json) records each source hash, PDF hash, and page count.
 
 The [LaTeX workflow](.github/workflows/latex.yml) runs on pull requests and pushes to `main`. It checks committed snapshots without writing back to the repository and uploads fresh PDFs and logs for inspection.
 
-### Paper V computational certificates
+### Papers V–VI computational certificates
 
 ```sh
 python3 scripts/paper_v_certificate.py 'x**4 + 2*x*y**2 + 1/3'
 python3 scripts/check_paper_v.py  # optional broader exact elliptic suite
 python3 scripts/check_single_chain.py  # rank-six and formal certificates
+python3 scripts/check_comparison_factorial.py --max-k 100
 ```
 
-The elliptic certificate routine uses only the Python standard library. The new rank-six and formal-recursion suites require SymPy; `make test` runs all of them. The broader script writes its results under `.build/`. Neither finite checks nor a successful build constitute a formal proof certificate.
+The elliptic certificate routine uses only the Python standard library. The rank-six, formal-recursion, rank-three, characteristic-five, and finite coprimality suites require SymPy; `make test` runs all of them. The new checker also verifies simplex normalization and the positive-amplitude counterexample. The broader script writes its results under `.build/`. Neither finite checks nor a successful build constitute a formal proof certificate.
 
 ## Contributing
 

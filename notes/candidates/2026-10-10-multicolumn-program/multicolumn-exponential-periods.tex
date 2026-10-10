@@ -1,0 +1,340 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1.04in]{geometry}
+\usepackage{amsmath,amssymb,mathtools,amsthm}
+\usepackage{aliascnt}
+\usepackage{mathrsfs}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage[capitalize,noabbrev]{cleveref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!45!black,
+  citecolor=green!35!black,
+  urlcolor=blue!55!black,
+  pdftitle={Multicolumn Exponential Periods: Conditional Comparison and Geometric Realization},
+  pdfauthor={Christopher D. Long; Antoine-Auguste Le Blanc},
+  pdfsubject={Candidate multicolumn affine-orbit and actual-realization program},
+  pdfkeywords={exponential periods, candidate draft, comparison, open problems}
+}
+
+\numberwithin{equation}{section}
+\setlength{\emergencystretch}{3em}
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+
+\theoremstyle{definition}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+
+\newaliascnt{example}{theorem}
+\newtheorem{example}[example]{Example}
+\aliascntresetthe{example}
+
+\theoremstyle{remark}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Qbar}{\overline{\mathbb Q}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Aone}{\mathbb A^1}
+\newcommand{\Atwo}{\mathbb A^2}
+\newcommand{\Gm}{\mathbb G_m}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\trdeg}{\operatorname{trdeg}}
+\newcommand{\per}{\operatorname{per}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Lie}{\operatorname{Lie}}
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\Div}{\operatorname{Div}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Crit}{\operatorname{Crit}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ecal}{\mathcal E}
+\newcommand{\Fcal}{\mathcal F}
+\newcommand{\Hcal}{\mathcal H}
+\newcommand{\Lcal}{\mathcal L}
+\newcommand{\Mcal}{\mathcal M}
+\newcommand{\Ocal}{\mathcal O}
+\newcommand{\Pcal}{\mathcal P}
+\newcommand{\Rcal}{\mathcal R}
+\newcommand{\Vcal}{\mathcal V}
+\newcommand{\dd}{\,d}
+\newcommand{\KZ}{\mathrm{KZ}}
+
+\title{Multicolumn Exponential Periods: Conditional Comparison and Geometric Realization}
+\author{Christopher D. Long \and Antoine-Auguste Le Blanc\thanks{Le Blanc cryptographic author identifier: \texttt{b6048125\allowbreak{}30b3535b\allowbreak{}23d6dbb0\allowbreak{}f5abe32d\allowbreak{}1ed1a9de\allowbreak{}35fb4f7d\allowbreak{}04d62cff\allowbreak{}08ea19c8}}}
+\date{October 2026}
+
+
+\newcommand{\Hq}{H_q^2}
+\newcommand{\M}{\mathscr M}
+\newcommand{\Ncal}{\mathcal N}
+\newcommand{\Tcal}{\mathcal T}
+\newcommand{\A}{\mathbb A}
+
+\newcommand{\PGL}{\operatorname{PGL}}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\Bcal}{\mathcal B}
+
+\newtheorem{conjecture}[theorem]{Conjecture}
+\begin{document}
+\maketitle
+
+\begin{center}
+\small
+\texttt{galizur@gmail.com}
+\end{center}
+
+\begin{abstract}
+This candidate draft isolates the algebraic orbit calculations useful for
+multicolumn exponential-period comparison and distinguishes them from their
+unproved realization by actual collections of chains. We prove the
+rectangular and square special-linear orbit statements, explain joint
+determinant-character relations, and give an explicit conditional descent
+criterion. The missing geometric and arithmetic hypotheses are listed
+rather than assigned to a formal period category by definition. No
+unrestricted multichain numerical comparison theorem is asserted.
+\end{abstract}
+\begin{center}
+\textbf{Candidate research draft; not a numbered paper in the series.}
+\end{center}
+\tableofcontents
+
+\section{Why a single column is different}
+Paper V \cite{PaperV} studies a chosen actual vector $U$ satisfying
+$U'=AU+b$ over a fixed boundary field. An affine differential Galois group
+can have a full translation kernel, which gives a dense affine orbit. If
+the kernel is zero, a reductive cocycle splits, giving
+\[
+ U=a+Yc,
+\]
+where $Y$ is a fundamental matrix and $c$ is a constant vector. For a
+homogeneous group containing $\SL_n$, one nonzero vector still has dense
+orbit when $n\ge2$.
+
+Several chains produce several columns. Even when every individual column
+passes the one-column test, their combined orbit can satisfy determinant
+relations. Thus a product of individually nonzero scalar periods, as used
+in Paper VI \cite{PaperVI}, is not a multicolumn independence theorem.
+
+\section{Explicit special-linear orbits}
+Let $C$ be an algebraically closed field of characteristic zero, let
+$n\ge2$, and let $\SL_n(C)$ act on $n\times r$ matrices by left
+multiplication.
+
+\begin{proposition}[Rectangular columns]\label{prop:rectangular}
+If $1\le r<n$ and a matrix $Z$ has column rank $r$, its $\SL_n$ orbit
+is the set of all rank-$r$ matrices. This orbit is Zariski dense in
+$\A^{nr}$ and has zero polynomial vanishing ideal.
+\end{proposition}
+\begin{proof}
+Given two ordered independent $r$-tuples, extend them to bases of $C^n$.
+There is a change of basis carrying one tuple to the other. Because an
+unused basis vector exists, rescale its image to make the determinant
+one without changing the prescribed first $r$ columns. The full-rank
+locus is a nonempty open subset of affine space, hence dense.
+\end{proof}
+
+\begin{proposition}[Square columns]\label{prop:square}
+If $r=n$ and $Z$ is invertible, its orbit is
+\[
+ \{X:\det X=\det Z\}.
+\]
+The polynomial ideal of the orbit is generated by
+$\det X-\det Z$.
+\end{proposition}
+\begin{proof}
+For any $X$ with the same nonzero determinant, $XZ^{-1}\in\SL_n$.
+The fiber is a translate of $\SL_n$, hence irreducible and reduced.
+For completeness, the differential of the determinant at an invertible
+matrix is nonzero, so the fiber is smooth. Its defining principal ideal
+is therefore radical, and the displayed set equality gives the ideal.
+\end{proof}
+For example, two independent columns for $\SL_2$ have the determinant
+invariant $x_{11}x_{22}-x_{12}x_{21}$, although either column alone has
+dense orbit in $\A^2$. This example is an algebraic group calculation,
+not a realized pair of exponential chains.
+
+\begin{remark}[Dependent and excess columns]
+If the actual constant column matrix has rank less than $r$, its linear
+column relations must be imposed first. If $r>n$, maximal minors and their
+relations enter; rectangular density cannot be applied without a rank
+reduction. These cases require the correct actual constant matrix, not a
+chosen formal substitute.
+\end{remark}
+
+\section{Several blocks and joint determinant characters}
+Suppose distinct homogeneous blocks have derived groups containing a
+product of special-linear groups. For a full-rank square block $s$, put
+$\delta_s=\det Z_s$. Its residual transformation is governed by a
+character $\chi_s$ of a common algebraic group $G$.
+
+\begin{proposition}[Joint character equations]\label{prop:lattice}
+For the morphism
+\[
+ \chi:G\longrightarrow(\Gm)^b,\qquad
+ g\longmapsto(\chi_1(g),\ldots,\chi_b(g)),
+\]
+let $T=\chi(G)$ and
+$\Lambda=\{a\in\Z^b: \chi_1^{a_1}\cdots\chi_b^{a_b}=1\}$.
+The Laurent ideal of the orbit $\delta T$ is
+\[
+ (X^a-\delta^a:a\in\Lambda)
+ \subset C[X_1^{\pm1},\ldots,X_b^{\pm1}].
+\]
+\end{proposition}
+\begin{proof}
+A closed subgroup of a torus is defined by the characters trivial on it.
+Equivalently its coordinate algebra is the group algebra
+$C[\Z^b/\Lambda]$, and the quotient map on Laurent monomials has kernel
+generated by $X^a-1$, $a\in\Lambda$. Translation by $\delta$ gives the
+formula. This also covers a disconnected image: in characteristic zero
+the finite diagonalizable part is reduced.
+\end{proof}
+Independent determinant equations for the separate blocks need not
+suffice. For example the image $\{(t,t):t\in C^\times\}$ has neither
+coordinate fixed but has the joint equation
+$X_1\delta_2-X_2\delta_1=0$.
+
+The archived pre-single-chain manuscript \cite{Archive} develops a more
+general affine-orbit calculation, including active translation columns,
+reductive splitting and local determinant-character models. The present
+note does not reclassify arbitrary isotypic affine extensions. In
+particular the hypothesis that a derived group is a product of
+independent special-linear factors must be proved for the actual blocks.
+
+\section{A conditional actual specialization criterion}
+The following algebraic formulation isolates what is required after an
+actual functional comparison has been made. A discrete valuation ring
+is denoted by $R$, with uniformizer $\pi$, fraction field $K$, and residue
+field $\kappa$.
+
+\begin{proposition}[Local contraction and specialization]\label{prop:local}
+Let $I\subset R[X_1,\ldots,X_N]$ and suppose
+$A=R[X]/I$ is $R$-flat. Then
+\[
+ I=(I K[X])\cap R[X].
+\]
+Suppose further that an actual functional period presentation has generic
+kernel $I K[X]$, and that every numerical relation at the chosen parameter
+lifts to a functional relation with coefficients in $R$ and the prescribed
+residue row or polynomial. Then its numerical kernel is exactly the
+specialization of $I$, provided every specialized generator of $I$ is an
+actual numerical relation.
+\end{proposition}
+\begin{proof}
+Flatness implies torsion-freeness over the discrete valuation ring.
+If the class of $P\in R[X]$ vanishes after tensoring with $K$, it is
+annihilated by a power of $\pi$, hence already zero. This proves
+contraction. A lifted numerical relation is in the generic kernel and
+therefore in $I$ by contraction; reducing modulo $\pi$ proves one kernel
+inclusion. The stipulated validity of specialized generators proves the
+other inclusion.
+\end{proof}
+The assertion is conditional on the actual presentation and the lifting
+hypothesis. It does not prove those hypotheses. In a period application,
+$R$ must be chosen from actual boundary coefficients regular at the
+specified parameter; a formal localization at unspecified denominators
+is insufficient. Beukers' lifting theorem \cite{Beukers} applies to
+closed $E$-function systems at nonsingular nonzero algebraic arguments,
+not automatically to an arbitrary formal coefficient ring.
+
+\section{What a genuine multichain theorem must verify}
+A publishable realization should exhibit specific chains and prove the
+following items in dependency order.
+\begin{enumerate}[leftmargin=2em]
+\item \emph{Actual columns and common base.} Derive the common inhomogeneous
+system by literal polynomial Stokes certificates, and identify all actual
+linear relations among columns. Passing to a cover cannot silently be
+assumed to preserve irreducibility or independence of blocks.
+\item \emph{Homogeneous and affine groups.} Verify the product derived group,
+its surviving boundary-field action, and the full translation subspace.
+Isomorphic blocks require an isotypic analysis, not separate copies of an
+irreducible representation by fiat.
+\item \emph{Determinant realization.} Construct determinant-line relations
+with the actual period normalizations. An invariant of an abstract
+fundamental matrix does not by itself identify a formal Stokes relation
+between the prescribed chains.
+\item \emph{Joint characters and local units.} Compute the entire character
+lattice and prove that determinant coefficients and affine shifts have
+the required regularity and nonvanishing at specialization.
+\item \emph{Numerical lifting.} Place the actual coordinates in a closed
+$E$-function system and verify the ordinary-point hypotheses and local
+contraction used in \cref{prop:local}.
+\end{enumerate}
+The earlier unrestricted endpoint-complete claim in the development
+history was withdrawn. Neither this candidate nor the new scalar theorem
+in Paper V reinstates it.
+
+\section{A concrete first target and stopping rule}
+The smallest informative example is a rank-two interior system with two
+geometrically different compact chains sharing a specified boundary
+system. A successful example should first determine whether the affine
+translation kernel makes both columns free or whether a normalized
+determinant survives. In the latter case the determinant must be computed
+as an actual boundary quantity and checked at every claimed algebraic
+scale. A symbolic $2\times2$ determinant calculation is only the orbit
+part of this task.
+
+The candidate is deliberately not assigned a series number. Its proved
+statements are the elementary orbit and local-contraction propositions
+above. The missing theorem is an actual multichain realization satisfying
+all five requirements, with at least one fully checked example. The
+archived proofs and the current V should be cited at their exact scope,
+not used as evidence that the realization has already been completed.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{PaperV} C. D. Long and A.-A. Le Blanc, \emph{Relative Exponential
+Periods on Polynomial Chains: Algebraic Independence over Fixed Boundary
+Fields}, Paper V, September 2026, revised October 2026.
+\bibitem{PaperVI} C. D. Long and A.-A. Le Blanc, \emph{Exponential Periods
+and Factorial Moments}, Paper VI, October 2026, working manuscript.
+\bibitem{Archive} C. D. Long and A.-A. Le Blanc, \emph{Relative Exponential
+Periods on Polynomial Flags: Polynomial Boundary Systems and an Elliptic
+Comparison Theorem}, pre-single-chain manuscript, archived 6 October 2026,
+appendix on affine orbit ideals and local flat models.
+\url{https://github.com/long-mathematics/exponential-integral-theorem/tree/main/notes/archives/2026-10-06-paper-v-before-single-chain}.
+\bibitem{Beukers} F. Beukers, \emph{A refined version of the
+Siegel--Shidlovskii theorem}, Ann. of Math. (2) \textbf{163} (2006), 369--379.
+\url{https://annals.math.princeton.edu/wp-content/uploads/annals-v163-n1-p08.pdf}.
+\end{thebibliography}
+\end{document}

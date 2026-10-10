@@ -10,7 +10,9 @@ This page is the single entry point for the repository's revision history, mathe
 | Paper II | Current linear Kontsevich–Zagier theorem retained. September audit/repair is integrated; October 5 prior-art framing and references are integrated. |
 | Paper III | Current polynomial Kontsevich–Zagier theorem and supplement retained. September audit/repair is integrated; October 5 prior-art framing and the normalized quadratic comparison are integrated. |
 | Paper IV | The canonical manuscript uses the arithmetic mixed-sheaf realization replacement, including its enhancement, tensor and absolute-comparison proofs. The separate October 5 lissity and geometric-origin repairs remain integrated; the realization-to-arithmetic-to-PV chain has the scoped follow-up audit linked below. |
-| Paper V | The class-(W) single-chain theorem is integrated under explicit (M), (Q), (F), and (S) or (S*) hypotheses, with functional independence, all-nonzero-algebraic-parameter independence, and polynomial twisted exactness. The elliptic triangle and rank-six triangle are verified applications. The frozen candidate, corrected successor, and pre-integration manuscript are preserved. The older unrestricted endpoint-complete claim remains withdrawn; genericity and general multiblock formal completeness are not claimed. |
+| Paper V | Two-level comparison: (W),(M) and actual detection give linear comparison and scalar transcendence without (Q)/(R) or (F). Full independence uses finite root separation (R) and intrinsic boundary disjointness, with spectral/rank certificates. The full weighted (M),(R) locus is nonempty Zariski open. Positive extrema, including critical value zero, and a directly proved noncoprime rank-three application are included; elliptic and rank-six examples are retained. |
+| Paper VI | New radial and block-radial factorial-moment theorems and controlled simplex families in every dimension. Odd-degree all-algebraic-scale family; fixed quartic characteristic-five family; finite exception-free range through dimension 103; carefully separated complex-scale FC and eventual-nonvanishing conclusions. |
+| Candidate drafts | Unnumbered simplex and multicolumn drafts preserve proved reductions and explicit missing hypotheses. Neither unrestricted simplex nonvanishing nor actual multichain formal/numerical completeness is asserted. |
 | Build | make test, make pdf, and make check are the repository validation entry points. The committed PDF manifest records current source/PDF hashes and page counts. |
 
 The current manuscripts are working research drafts. Successful compilation, finite computational checks, and scoped AI-assisted audits are not independent peer review or formal verification.
@@ -27,12 +29,14 @@ The current manuscripts are working research drafts. Successful compilation, fin
 - Paper V: the October 6 source-checked class-(W) theorem extends the fixed-triangle actual comparison under explicit hypotheses; it does not reinstate the withdrawn endpoint-complete claim.
 - Paper V: direct formal diagonalization, the diagonal local Picard–Vessiot/Kummer argument, stable-lattice face disjointness, and local/global transport are integrated. The October 6 follow-up also defines chain multiplicity and phase density explicitly, including non-injective parametrizations, and closes the associated expository gap. The October 5 geometric/formal/multicolumn discussions remain in the unchanged archived manuscript, not in the present main proof.
 
+- Papers V–VI: the October 10 integration audit records the linear-versus-field distinction, extremum detector, separated-root and noncoprime arguments, and the radial/characteristic-five applications. Its finite algebra checks and source-interface review are scoped AI-assisted work, not independent specialist refereeing.
+
 ### Not claimed by those closures
 
 - No record here is an independent specialist referee report.
 - The interface-3 repairs alone did not audit the realization chain. The later realization follow-up replaces the augmentation proof; its new transfer argument and scoped audit are not independent specialist certification.
 - The Papers I–III prior-art pass does not establish absolute priority against unpublished work.
-- Paper V does not prove unrestricted two-variable or general multiblock formal completeness.
+- Paper V does not prove unrestricted two-variable or general multiblock formal completeness. Paper VI does not prove unrestricted FC(n) or arbitrary polynomial-phase simplex nonvanishing.
 
 ### Useful pre-deposit follow-up
 
@@ -59,6 +63,8 @@ The table gives the high-level flow. Detailed records are linked in the next sec
 
 | 2026-10-06 | Paper V single-chain integration | Freeze the candidate; audit the corrected successor; integrate the weighted-plane comparison and stable-lattice proof, retain both examples, archive the previous manuscript, and add exact regression certificates. |
 | 2026-10-06 | Paper V density and front-matter closeout | Define polynomial-chain multiplicity and phase densities, clarify scalar-field transcendence bookkeeping, rename the current paper from polynomial flags to polynomial chains, and recheck the Sabbah and Milne pinpoints. |
+
+| 2026-10-10 (UTC) | V/VI integration | Add two-level V comparison, finite root separation and rank-three example; add VI, two explicitly unnumbered candidate drafts, exact scripts, compiled PDFs, and the pre-revision V archive. |
 
 ## Detailed records by paper
 
@@ -94,10 +100,16 @@ Read the Paper IV records chronologically. Later dated records supersede earlier
 
 The retained [Paper IV repair companion](../papers/04-relative-exponential-nori-ayoub/repairs/paper-iv-repair-note.tex) is historical proof-development material. Canonical claims should be read from the main Paper IV source, not inferred from superseded wording in the companion.
 
-### Paper V
+### Papers V–VI and the candidate programs
+
+The October 10 records supersede the former blanket statement that genericity of any critical-value condition is unproved: the new finite condition (R) has a nonempty open locus in the full weighted coefficient family. No claim of Zariski-openness is made for rational independence (Q), real-chain detection, or every sparse subfamily.
 
 | Record | Purpose |
 | --- | --- |
+| [V/VI audit and integration](provenance/papers-v-vi-audit-2026-10-10.md) | New mathematical interfaces, scope, candidate separation, and validation plan/results. |
+| [Pre-two-level V archive](archives/2026-10-10-paper-v-before-two-level/README.md) | Exact preceding source and PDF, preserved without version renaming of the canonical file. |
+| [Simplex candidate](candidates/2026-10-10-simplex-program/README.md) | Reductions and open nonvanishing/visibility targets, not a completed general theorem. |
+| [Multicolumn candidate](candidates/2026-10-10-multicolumn-program/README.md) | Abstract orbit and contraction statements separated from the missing actual geometric realization. |
 | [Density/front-matter closeout](provenance/paper-v-density-closeout-2026-10-06.md) | Defines the phase-density and multiplicity conventions, records scalar-field bookkeeping, metadata cleanup, and independent Sabbah/Milne pinpoint checks. |
 | [Single-chain integration audit](provenance/paper-v-single-chain-integration-2026-10-06.md) | Successor and integrated proof audit, explicit scope, preservation, and validation record. |
 | [Frozen candidate and source audit](candidates/2026-10-06-single-chain/README.md) | Immutable source snapshot, geometric pinpoints, exact certificate, and separate proof supplement. |
