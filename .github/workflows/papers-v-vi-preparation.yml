@@ -4,23 +4,144 @@ on:
     branches: [papers-v-vi-comparison-factorial]
     paths: [.github/workflows/papers-v-vi-preparation.yml]
 permissions:
-  contents: read
+  contents: write
 jobs:
-  export:
+  build:
     runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      BASELINE: 22d98c4f27e606b5b25fa673c33f9c56c53cc86b
+      TARGET_BRANCH: papers-v-vi-comparison-factorial
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          fetch-depth: 1
-          persist-credentials: false
-      - name: Export tracked source snapshot
+          fetch-depth: 0
+      - name: Verify and apply audited source payload
+        shell: bash
         run: |
-          git rev-parse HEAD > /tmp/revision.txt
-          git archive --format=tar HEAD > /tmp/eit-source.tar
-      - uses: actions/upload-artifact@v4
+          set -euo pipefail
+          mkdir -p .build
+          python3 - <<'PY'
+          import base64, hashlib, json, lzma, os, pathlib, subprocess
+          root = pathlib.Path.cwd()
+          base = os.environ['BASELINE']
+          subprocess.run(['git','merge-base','--is-ancestor',base,'HEAD'],check=True)
+          changed = subprocess.check_output(['git','diff','--name-only',base,'HEAD'],text=True).splitlines()
+          assert all(p == '.github/workflows/papers-v-vi-preparation.yml' or p.startswith('.preparation/papers-v-vi/') for p in changed), changed
+          parts = [root/'.preparation/papers-v-vi'/f'part-{i:02d}.b64' for i in range(1,6)]
+          compressed = base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True)
+          assert hashlib.sha256(compressed).hexdigest() == '3592e8d061e5d66c89ad5ccdf8efa9eaf2e4cf241f3588920fb08538a5f61a51'
+          raw = lzma.decompress(compressed)
+          assert hashlib.sha256(raw).hexdigest() == 'f11547089b5e38b3c572d25c32de6e3474f8a39580be864c4af87aa5bc2adcfe'
+          p = json.loads(raw)
+          assert p['baseline'] == base and len(p['sha256']) == 13
+          for name in p['sha256']:
+              path = pathlib.PurePosixPath(name)
+              assert not path.is_absolute() and '..' not in path.parts
+              assert not name.startswith(('.github/','.preparation/'))
+          patch = root/'.build/audited-source.patch'
+          patch.write_text(p['patch'])
+          subprocess.run(['git','apply','--check',str(patch)],check=True)
+          subprocess.run(['git','apply',str(patch)],check=True)
+          for name, content in p['new_files'].items():
+              assert name in p['sha256']
+              path = root/name
+              assert not path.exists(), name
+              path.parent.mkdir(parents=True,exist_ok=True)
+              path.write_text(content,encoding='utf-8')
+          for name, expected in p['sha256'].items():
+              assert hashlib.sha256((root/name).read_bytes()).hexdigest() == expected, name
+          archive = root/p['archive']
+          for original in ('papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex','output/pdf/polynomial-flag-exponential-periods.pdf'):
+              (archive/pathlib.Path(original).name).write_bytes(subprocess.check_output(['git','show',base+':'+original]))
+          (root/'.build/audited-payload.json').write_bytes(raw)
+          (root/'.build/base-manifest.json').write_bytes(subprocess.check_output(['git','show',base+':output/pdf/manifest.json']))
+          print('Verified and applied all 13 source hashes; original V source and PDF archived verbatim.')
+          PY
+      - name: Install TeX and exact-algebra tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science lmodern poppler-utils python3-sympy
+      - name: Run regression and extended certificates
+        shell: bash
+        run: |
+          set -euo pipefail
+          PATH=/usr/bin:$PATH make test 2>&1 | tee .build/v-vi-tests.log
+          /usr/bin/python3 scripts/check_comparison_factorial.py --max-k 100 --output .build/comparison-factorial-exact.json 2>&1 | tee .build/v-vi-exact.log
+          /usr/bin/python3 scripts/check_paper_v.py 2>&1 | tee .build/v-vi-elliptic.log
+      - name: Compile all twelve manuscripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          make pdf 2>&1 | tee .build/v-vi-build.log
+      - name: Preserve unrelated committed snapshots
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,subprocess
+          root=pathlib.Path.cwd();base=os.environ['BASELINE']
+          old={d['source']:d for d in json.loads((root/'.build/base-manifest.json').read_text())['documents']}
+          target=root/'output/pdf/manifest.json';current=json.loads(target.read_text());count=0
+          for i,d in enumerate(current['documents']):
+              if d['source'] in old and not d['source'].startswith('papers/05-'):
+                  b=old[d['source']]
+                  assert hashlib.sha256((root/b['source']).read_bytes()).hexdigest()==b['source_sha256']
+                  data=subprocess.check_output(['git','show',base+':'+b['pdf']])
+                  assert hashlib.sha256(data).hexdigest()==b['pdf_sha256']
+                  (root/b['pdf']).write_bytes(data);current['documents'][i]=b;count+=1
+          assert count==8 and len(current['documents'])==12
+          target.write_text(json.dumps(current,indent=2)+'\n')
+          assert (root/'.github/workflows/latex.yml').read_bytes()==subprocess.check_output(['git','show',base+':.github/workflows/latex.yml'])
+          print('Eight unrelated PDF snapshots/manifest records and the normal read-only workflow preserved.')
+          PY
+      - name: Check all preserved snapshots and links
+        shell: bash
+        run: |
+          set -euo pipefail
+          make check 2>&1 | tee .build/v-vi-check.log
+      - name: Record validation and commit manuscript changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,re,subprocess
+          root=pathlib.Path.cwd();p=json.loads((root/'.build/audited-payload.json').read_text())
+          log=(root/'.build/v-vi-tests.log').read_text();match=re.search(r'Ran (\d+) tests',log)
+          assert match and int(match.group(1))==22 and '\nOK\n' in log
+          manifest=json.loads((root/'output/pdf/manifest.json').read_text())
+          docs=[d for d in manifest['documents'] if pathlib.Path(d['pdf']).stem in p['new_pdf_stems']]
+          assert len(docs)==4
+          for name,expected in p['sha256'].items():
+              assert hashlib.sha256((root/name).read_bytes()).hexdigest()==expected,name
+          report={'baseline':p['baseline'],'preparation_head':os.environ['GITHUB_SHA'],'run_url':os.environ['GITHUB_SERVER_URL']+'/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],'runner':'ubuntu-24.04','test_methods':22,'managed_documents':12,'checks':['make test','extended comparison/factorial certificates through k=100','extended existing elliptic certificates','make pdf','make check after restoring eight unrelated snapshots'],'documents':docs,'source_payload_sha256':'f11547089b5e38b3c572d25c32de6e3474f8a39580be864c4af87aa5bc2adcfe','preserved_unrelated_documents':8,'normal_workflow_unchanged':True,'local_review':p['local_review'],'exact_checks':json.loads((root/'.build/comparison-factorial-exact.json').read_text()),'review_scope':'Scoped mathematical and primary-source audit plus finite exact checks; not independent specialist peer review or formal verification. Final ordinary PR CI remains a separate merge gate.'}
+          report_path='notes/provenance/papers-v-vi-build-verification-2026-10-10.json'
+          (root/report_path).write_text(json.dumps(report,indent=2)+'\n')
+          staged=list(p['sha256'])+[d['pdf'] for d in docs]+['output/pdf/manifest.json',report_path,p['archive']+'/polynomial-flag-exponential-periods.tex',p['archive']+'/polynomial-flag-exponential-periods.pdf']
+          assert all(not x.startswith(('.github/','.preparation/')) for x in staged)
+          subprocess.run(['git','add','--']+staged,check=True)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git diff --cached --check
+          git commit -m 'Revise Paper V and add Paper VI with audited candidate drafts and exact certificates'
+          remote_head=$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | cut -f1)
+          test "$remote_head" = "$GITHUB_SHA"
+          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+      - name: Export checked source tree
+        if: always()
+        run: |
+          git rev-parse HEAD > /tmp/eit-v-vi-revision.txt
+          git archive --format=tar HEAD > /tmp/eit-v-vi-built.tar
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
         with:
-          name: eit-source-snapshot
+          name: eit-v-vi-checked-build
           path: |
-            /tmp/eit-source.tar
-            /tmp/revision.txt
+            /tmp/eit-v-vi-built.tar
+            /tmp/eit-v-vi-revision.txt
+            output/pdf/
+            .build/**/*.log
+            .build/**/build-console.txt
+            .build/comparison-factorial-exact.json
+          include-hidden-files: true
+          if-no-files-found: warn
           retention-days: 7
