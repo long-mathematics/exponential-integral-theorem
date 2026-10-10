@@ -52,10 +52,17 @@
     },
     {
       "source": "papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex",
-      "source_sha256": "161726ecb44f8b06977c290638a594ddc77c169b5cf83e974e161efa23189e24",
+      "source_sha256": "32dbf4c1dc93bb807769338dd43a49bf4eb43b96c8a5ba5c078b4059f0ee59e9",
       "pdf": "output/pdf/polynomial-flag-exponential-periods.pdf",
-      "pdf_sha256": "bd92cb30c4d406b9246d56eff91217543c2c237d6028f33604e8aa937e088873",
-      "pages": 22
+      "pdf_sha256": "9c69990246e7c364e2b79d6a275df58b6b0896d224b7081d18c5a593e57d6169",
+      "pages": 28
+    },
+    {
+      "source": "papers/06-exponential-factorial-moments/exponential-factorial-moments.tex",
+      "source_sha256": "d038dc4dcb464c18a8df93457b862b6edbeb0583445cde0d2473ff51179bc87b",
+      "pdf": "output/pdf/exponential-factorial-moments.pdf",
+      "pdf_sha256": "e9371cd9803dbeea202b8efc5c7e543374857c78aa6f65172b5781958e0e98aa",
+      "pages": 11
     },
     {
       "source": "notes/eit-structural-companion.tex",
@@ -63,6 +70,20 @@
       "pdf": "output/pdf/eit-structural-companion.pdf",
       "pdf_sha256": "5c9746a004b45222335334d8c03ff5c876e02c51250da9c4c88f7a97cf29e5d5",
       "pages": 11
+    },
+    {
+      "source": "notes/candidates/2026-10-10-simplex-program/simplex-exponential-periods.tex",
+      "source_sha256": "8ee39ae10b0813d11985a9fd6e7123acc38fa8f414e02258b38a4747a5c3c7fd",
+      "pdf": "output/pdf/simplex-exponential-periods.pdf",
+      "pdf_sha256": "3af4899986d2c3c41462db5c24da16deeb7c62dc0cd6021f4a6a7e2900b23b26",
+      "pages": 5
+    },
+    {
+      "source": "notes/candidates/2026-10-10-multicolumn-program/multicolumn-exponential-periods.tex",
+      "source_sha256": "8eed0c5c4bb1e241596181483ed37ac744e21ff5903b9c737af484a2fd2eef5f",
+      "pdf": "output/pdf/multicolumn-exponential-periods.pdf",
+      "pdf_sha256": "fa6d08be9f67d73acadbf28799ea4c0c853e7ce9b48b5901be26fe2cf117ab48",
+      "pages": 4
     }
   ]
 }

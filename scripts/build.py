@@ -71,6 +71,11 @@ def check_readme_links(root):
 def sources():
     result = sorted((ROOT / "papers").rglob("*.tex"))
     result.append(ROOT / "notes/eit-structural-companion.tex")
+    # Explicit opt-in: do not compile historical/frozen candidates recursively.
+    result.extend(ROOT / p for p in (
+        "notes/candidates/2026-10-10-simplex-program/simplex-exponential-periods.tex",
+        "notes/candidates/2026-10-10-multicolumn-program/multicolumn-exponential-periods.tex",
+    ))
     names = [p.stem for p in result]
     if len(names) != len(set(names)):
         raise RuntimeError("Duplicate manuscript basenames would overwrite PDFs")

@@ -1,0 +1,242 @@
+{
+  "baseline": "22d98c4f27e606b5b25fa673c33f9c56c53cc86b",
+  "preparation_head": "cf26f2dd0170ea955183e5cc22beefa1c3b06d62",
+  "run_url": "https://github.com/long-mathematics/exponential-integral-theorem/actions/runs/38023587678",
+  "runner": "ubuntu-24.04",
+  "test_methods": 22,
+  "managed_documents": 12,
+  "checks": [
+    "make test",
+    "extended comparison/factorial certificates through k=100",
+    "extended existing elliptic certificates",
+    "make pdf",
+    "make check after restoring eight unrelated snapshots"
+  ],
+  "documents": [
+    {
+      "source": "papers/05-polynomial-flags/polynomial-flag-exponential-periods.tex",
+      "source_sha256": "32dbf4c1dc93bb807769338dd43a49bf4eb43b96c8a5ba5c078b4059f0ee59e9",
+      "pdf": "output/pdf/polynomial-flag-exponential-periods.pdf",
+      "pdf_sha256": "9c69990246e7c364e2b79d6a275df58b6b0896d224b7081d18c5a593e57d6169",
+      "pages": 28
+    },
+    {
+      "source": "papers/06-exponential-factorial-moments/exponential-factorial-moments.tex",
+      "source_sha256": "d038dc4dcb464c18a8df93457b862b6edbeb0583445cde0d2473ff51179bc87b",
+      "pdf": "output/pdf/exponential-factorial-moments.pdf",
+      "pdf_sha256": "e9371cd9803dbeea202b8efc5c7e543374857c78aa6f65172b5781958e0e98aa",
+      "pages": 11
+    },
+    {
+      "source": "notes/candidates/2026-10-10-simplex-program/simplex-exponential-periods.tex",
+      "source_sha256": "8ee39ae10b0813d11985a9fd6e7123acc38fa8f414e02258b38a4747a5c3c7fd",
+      "pdf": "output/pdf/simplex-exponential-periods.pdf",
+      "pdf_sha256": "3af4899986d2c3c41462db5c24da16deeb7c62dc0cd6021f4a6a7e2900b23b26",
+      "pages": 5
+    },
+    {
+      "source": "notes/candidates/2026-10-10-multicolumn-program/multicolumn-exponential-periods.tex",
+      "source_sha256": "8eed0c5c4bb1e241596181483ed37ac744e21ff5903b9c737af484a2fd2eef5f",
+      "pdf": "output/pdf/multicolumn-exponential-periods.pdf",
+      "pdf_sha256": "fa6d08be9f67d73acadbf28799ea4c0c853e7ce9b48b5901be26fe2cf117ab48",
+      "pages": 4
+    }
+  ],
+  "source_payload_sha256": "f11547089b5e38b3c572d25c32de6e3474f8a39580be864c4af87aa5bc2adcfe",
+  "preserved_unrelated_documents": 8,
+  "normal_workflow_unchanged": true,
+  "local_review": {
+    "test_methods": 22,
+    "self_consistent_managed_documents": 12,
+    "preserved_snapshot_local_caveat": "Known unchanged structural-companion TeX-version text discrepancy; retain baseline snapshot and use Ubuntu gate.",
+    "visual": {
+      "polynomial-flag-exponential-periods": {
+        "pages": 28,
+        "pdf_sha256": "c8b658617e15c572bd0670f7292ce070fd93412d163fb4b9f5050362bafe0a28",
+        "visual_review": "All pages reviewed in contact sheets; main proof/formula pages also inspected at full-page scale.",
+        "fonts_embedded": true,
+        "latex_diagnostics": {
+          "overfull": 0,
+          "underfull": 0,
+          "undefined": 0
+        }
+      },
+      "exponential-factorial-moments": {
+        "pages": 11,
+        "pdf_sha256": "8bc3318dce827631ceca27329f5c86bfd085efee44c60db0888c471c8ff1089b",
+        "visual_review": "All pages reviewed in contact sheets; main proof/formula pages also inspected at full-page scale.",
+        "fonts_embedded": true,
+        "latex_diagnostics": {
+          "overfull": 0,
+          "underfull": 0,
+          "undefined": 0
+        }
+      },
+      "simplex-exponential-periods": {
+        "pages": 5,
+        "pdf_sha256": "b2718bcdf21a293658cd4aaa8f039e4b427e2bf6e9625062b3cdf8443f9dc710",
+        "visual_review": "All pages reviewed in contact sheets; main proof/formula pages also inspected at full-page scale.",
+        "fonts_embedded": true,
+        "latex_diagnostics": {
+          "overfull": 0,
+          "underfull": 0,
+          "undefined": 0
+        }
+      },
+      "multicolumn-exponential-periods": {
+        "pages": 4,
+        "pdf_sha256": "27810985ee9d050626350c764b4ce847a37162b1f8484baa466dc3f1989f11b3",
+        "visual_review": "All pages reviewed in contact sheets; main proof/formula pages also inspected at full-page scale.",
+        "fonts_embedded": true,
+        "latex_diagnostics": {
+          "overfull": 0,
+          "underfull": 0,
+          "undefined": 0
+        }
+      }
+    },
+    "pymupdf": "1.26.7"
+  },
+  "exact_checks": {
+    "python": "3.12.3",
+    "sympy": "1.12",
+    "scope": "Finite exact algebra only; not a proof certificate for analytic claims.",
+    "weaker_root_separation_example": {
+      "p": "x**5 - 5*x**4/4 - 35*x**3/3 + 5*x**2/2 + 30*x",
+      "critical_values": [
+        "-26/3",
+        "-217/12",
+        "247/12",
+        "-243/4"
+      ],
+      "distinct_ordered_differences": 12,
+      "Q_fails": "Four rational critical values have three rationally dependent differences."
+    },
+    "noncoprime_rank_three": {
+      "phase": "x**4 + x + y**2",
+      "A0": "Matrix([[0, 3/4, 0], [0, 0, 3/4], [-3/16, 0, 0]])",
+      "residue": "Matrix([[-3/4, 0, 0], [0, -1, 0], [0, 0, -5/4]])",
+      "critical_polynomial": "c**3 + 27/256",
+      "formal_residue_each_eigenline": "-1",
+      "literal_stokes_certificates": [
+        {
+          "amplitude": "1",
+          "P": "x/(4*z)",
+          "Q": "y/(2*z)"
+        },
+        {
+          "amplitude": "x",
+          "P": "x**2/(4*z)",
+          "Q": "x*y/(2*z)"
+        },
+        {
+          "amplitude": "x**2",
+          "P": "x**3/(4*z) + 3/(16*z)",
+          "Q": "x**2*y/(2*z)"
+        }
+      ]
+    },
+    "noncoprime_boundary_separation": {
+      "triangle": [
+        [
+          "-1",
+          "-1"
+        ],
+        [
+          "0",
+          "-1/2"
+        ],
+        [
+          "-1/2",
+          "1"
+        ]
+      ],
+      "interior_difference_square_sum": 0,
+      "quartic_difference_square_sum": "aa*(aa**3 - 27*bb**2)/4",
+      "edges": [
+        {
+          "slope": "1/2",
+          "intercept": "-1/2",
+          "sum_squared_ordered_differences": "-431/1024"
+        },
+        {
+          "slope": "-3",
+          "intercept": "-1/2",
+          "sum_squared_ordered_differences": "2673/4"
+        },
+        {
+          "slope": "4",
+          "intercept": "3",
+          "sum_squared_ordered_differences": "-51116"
+        }
+      ],
+      "interpretation": "Each edge has at most six ordered critical differences; containing all six distinct interior differences would force equality and the same square sum, impossible."
+    },
+    "elliptic_mod5": {
+      "matrix": "Matrix([[h - 1, 2*h**2 + 2], [2, -h - 1]])",
+      "determinant_mod5": 2,
+      "initial_vectors_checked": 5,
+      "direct_reduction_used": true
+    },
+    "elliptic_finite_coprimality": {
+      "range": [
+        0,
+        100
+      ],
+      "number_of_gcds": 101,
+      "all_gcd_degrees_zero": true,
+      "direct_reduction_comparison_range": [
+        0,
+        12
+      ],
+      "maximum_polynomial_degree": 50
+    },
+    "positive_amplitude_counterexample": {
+      "amplitude": "25*t**4 - 50*t**3 + 37*t**2 - 12*t + 2",
+      "positive_form": "25*((t - 1/2)**2 - 1/100)**2 + 14/25",
+      "integral_against_exp_5it": "0 (checked exact primitive with zero endpoints)"
+    },
+    "simplex_affine_jacobians": {
+      "elliptic": 2,
+      "odd_a_absolute": 4
+    },
+    "simplex_monomial_normalizations": {
+      "dimensions": [
+        3,
+        9
+      ],
+      "number_checked": 70,
+      "amplitude_total_degree_at_most": 3,
+      "comparison": "Exact monomial factorial moments, both affine pullbacks and slicing constants."
+    },
+    "radial_coefficient_bounds": {
+      "cases": 1804,
+      "dimension_range": [
+        1,
+        4
+      ],
+      "degree_range": [
+        1,
+        4
+      ],
+      "moment_range": [
+        1,
+        5
+      ],
+      "scope": "Finite exact regression for the bound proved uniformly in Paper VI."
+    },
+    "rank_three_interior_minimum": {
+      "signed_edge_tests": [
+        "rr/2 + 1/2",
+        "3*rr/2 - 1/4",
+        "3/2 - 2*rr"
+      ],
+      "interval_for_4_to_minus_one_third": [
+        "1/2",
+        "3/4"
+      ],
+      "interpretation": "r=4^(-1/3) is strictly inside the interval; all three edge tests are positive there."
+    }
+  },
+  "review_scope": "Scoped mathematical and primary-source audit plus finite exact checks; not independent specialist peer review or formal verification. Final ordinary PR CI remains a separate merge gate."
+}
